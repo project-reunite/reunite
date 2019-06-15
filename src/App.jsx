@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'mineral-ui/themes';
 import Dashboard from './components/Dashboard';
-
+import './App.css';
 
 const App = () => (
   <ThemeProvider>
@@ -12,7 +12,5 @@ const App = () => (
   </ThemeProvider>
 
 );
-
-// render(<App />, document.getElementById('app'));
 
 export default App;
