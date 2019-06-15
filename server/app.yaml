@@ -1,0 +1,4 @@
+# Used by the 'gcloud' command-line tool to deploy to Google Cloud Platform's App Engine.
+# Read our README.md and/or https://cloud.google.com/appengine/docs/standard/nodejs/quickstart
+
+runtime: nodejs10
