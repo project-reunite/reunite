@@ -1,0 +1,20 @@
+{
+  "name": "reunite",
+  "version": "0.1.0",
+  "description": "App for reuniting families separated by natural disasters",
+  "main": "index.js",
+  "scripts": {
+    "test": "(cd server && npm test) && (cd client && npm test)",
+    "test:full": "(cd server && npm run test:full)",
+    "install": "(cd server && npm install); (cd client && npm install)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.ibm.com:ProjectReunite/reunite.git"
+  },
+  "keywords": [
+    "Watson"
+  ],
+  "author": "Project Reunite",
+  "license": "Apache-2.0"
+}
