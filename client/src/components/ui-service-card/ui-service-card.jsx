@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './UIServiceCard.css';
+import './ui-service-card.css';
 
 import Card, { CardBlock, CardImage, CardTitle } from 'mineral-ui/Card';
 
