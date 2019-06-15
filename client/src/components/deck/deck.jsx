@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid, { GridItem } from 'mineral-ui/Grid';
-import UIServiceCard from '../ui-service-card';
+import PersonCard from '../person-card';
 import Data from '../../data';
 import MatchCard from '../match-card';
 
@@ -17,7 +17,7 @@ class Deck extends React.Component {
     data.forEach((person) => {
       children.push(
         <GridItem key={person.name}>
-          <UIServiceCard
+          <PersonCard
             name={person.name}
             age={person.age}
             gender={person.gender}

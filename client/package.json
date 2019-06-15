@@ -9,6 +9,10 @@
     "@emotion/styled": "^10.0.11",
     "axios": "^0.19.0",
     "emotion-theming": "^10.0.10",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.3.5",
+    "identity-obj-proxy": "^3.0.0",
     "mineral-ui": "^0.58.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -18,8 +22,8 @@
   },
   "scripts": {
     "start": "PORT=41002 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build": "babel src -d lib",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,10 +42,34 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0"
+  },
+  "jest": {
+    "verbose": true,
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/utils/tests/setup-tests.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/utils/file-mock.js",
+      "\\.(scss|css|less)$": "identity-obj-proxy",
+      "module_name_(.*)": "<rootDir>/src/utils/file-mock.js"
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testMatch": [
+      "**/*.test.js",
+      "**/*.test.jsx",
+      "**/*.steps.js"
+    ]
   }
 }

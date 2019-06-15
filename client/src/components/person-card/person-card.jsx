@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ui-service-card.css';
+import './person-card.css';
 
 import Card, { CardBlock, CardImage, CardTitle } from 'mineral-ui/Card';
 
-const UIServiceCard = ({
+const PersonCard = ({
   name, age, gender, img, onClick,
 }) => {
   const cardStyle = { borderRadius: '20px' };
@@ -26,9 +26,9 @@ const UIServiceCard = ({
   );
 };
 
-export default UIServiceCard;
+export default PersonCard;
 
-UIServiceCard.propTypes = {
+PersonCard.propTypes = {
   name: PropTypes.string.isRequired,
   age: PropTypes.string.isRequired,
   gender: PropTypes.string.isRequired,
