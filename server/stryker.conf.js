@@ -2,14 +2,10 @@ module.exports = function(config) {
     config.set({
         mutate: [
             'src/**/*.js',
-            '!src/**/middleware/*.js',
             '!src/**/routes/*.js',
             '!src/**/controllers/*.js',
-            '!src/**/services/index.js',
-            '!src/**/config/*.js',
+            '!src/**/models/*.js',
             '!src/app.js',
-            '!src/v2/models/*.js',
-            '!src/v2/services/*.js',
         ],
         mutator: 'javascript',
         packageManager: 'npm',

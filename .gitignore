@@ -6,7 +6,8 @@
 .pnp.js
 
 # testing
-/coverage
+/**/coverage
+.nyc_output
 
 # production
 /build
@@ -22,3 +23,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# top level
+package-lock.json 

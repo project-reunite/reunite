@@ -1,4 +1,4 @@
-const { personsService } = require('../services');
+const personsService = require('../services/persons.service');
 
 module.exports = {
     getPerson: personsService.getPerson,

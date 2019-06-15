@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { personsController } = require('../controllers');
+const personsController = require('../controllers/persons.controller');
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.get('/:id', async (req, res) => {
     const id = req.params.id;
     const person = await personsController.getPerson(id);
     if (!person) {
-        res.status(404).send(`persons ${id} not found`);
+        res.status(404).send({ error: `person ${id} not found` });
     } else {
         res.status(200).send(person);
     }
