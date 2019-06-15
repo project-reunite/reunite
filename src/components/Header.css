@@ -1,0 +1,12 @@
+.header-container {
+  background-color: rgb(40, 10, 150);
+  position: relative;    
+  bottom: 20px;
+  height: 50px;
+  padding: 10px;
+  padding-left: 30px;
+}
+
+.h2 {    
+  color: 'white'
+}

@@ -1,53 +1,52 @@
 import React from 'react';
-import UIServiceCard from './UIServiceCard';
 import Grid, { GridItem } from 'mineral-ui/Grid';
+import UIServiceCard from './UIServiceCard';
 import Data from '../data';
 import MatchCard from './MatchCard';
+
 class Deck extends React.Component {
   constructor() {
     super();
     this.state = {
-      deckIndex: 0
+      deckIndex: 0,
     };
   }
 
   renderChildren(data) {
     const children = [];
-    data.forEach((person, index) => {
+    data.forEach((person) => {
       children.push(
-        <GridItem key={index}>
+        <GridItem key={person.name}>
           <UIServiceCard
             name={person.name}
             age={person.age}
             gender={person.gender}
             img={person.img}
-            key={index}
             onClick={() => {
-              this.setState({ deckIndex: this.state.deckIndex + 1 });
+              this.setState(prevState => ({ deckIndex: prevState.deckIndex + 1 }));
             }}
           />
-        </GridItem>
+        </GridItem>,
       );
     });
     return children;
   }
 
   render() {
-    if (this.state.deckIndex < Data.length) {
-      const data = Data[this.state.deckIndex];
+    const gridStyle = { padding: '30px' };
+    const { deckIndex } = this.state;
+    if (deckIndex < Data.length) {
+      const data = Data[deckIndex];
       return (
         <Grid
-          gutterWidth='lg'
-          style={{
-            padding: '30px'
-          }}
+          gutterWidth="lg"
+          style={gridStyle}
         >
           {this.renderChildren(data)}
         </Grid>
       );
-    } else {
-      return <MatchCard />;
     }
+    return <MatchCard />;
   }
 }
 
