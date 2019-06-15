@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Deck from './Deck';
-import Header from './Header';
+import Deck from '../deck';
+import Header from '../header/header';
 
 const Dashboard = () => ([
   <Header key="1" />,

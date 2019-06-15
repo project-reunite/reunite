@@ -1,8 +1,8 @@
 import React from 'react';
 import Grid, { GridItem } from 'mineral-ui/Grid';
-import UIServiceCard from './UIServiceCard';
-import Data from '../data';
-import MatchCard from './MatchCard';
+import UIServiceCard from '../ui-service-card';
+import Data from '../../data';
+import MatchCard from '../match-card';
 
 class Deck extends React.Component {
   constructor() {
