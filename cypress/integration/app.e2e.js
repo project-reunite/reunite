@@ -12,12 +12,4 @@ describe('e2e app test', () => {
     cy.getElementByDataCy('deck-1').should('exist');
     cy.checkNumberOfPersonCardsIs(3);
   });
-  it('renders renders matching card when match is found', () => {
-    cy.clickPersonCard();
-    cy.clickPersonCard();
-    cy.clickPersonCard();
-    cy.clickPersonCard();
-    cy.checkNumberOfPersonCardsIs(0);
-    cy.getElementByDataCy('match-card').should('exist');
-  });
 });
