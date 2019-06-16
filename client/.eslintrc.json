@@ -3,7 +3,8 @@
         "browser": true,
         "es6": true,
         "node": true,
-        "jest": true
+        "jest": true,
+        "cypress/globals":true
     },
     "extends": "airbnb",
     "globals": {
@@ -18,7 +19,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "cypress"
     ],
     "rules": {
     }

@@ -12,6 +12,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
+    "eslint-plugin-cypress": "^2.2.1",
     "identity-obj-proxy": "^3.0.0",
     "mineral-ui": "^0.58.0",
     "prop-types": "^15.7.2",
@@ -24,7 +25,9 @@
     "start": "PORT=41002 react-scripts start",
     "build": "babel src -d lib",
     "test": "jest",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -44,11 +47,13 @@
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
+    "cypress": "^3.3.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.13.0"
+    "eslint-plugin-react": "^7.13.0",
+    "start-server-and-test": "^1.9.1"
   },
   "jest": {
     "verbose": true,

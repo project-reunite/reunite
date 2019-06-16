@@ -7,7 +7,7 @@ const divStyle = {
 
 export default function MatchCard() {
   return (
-    <div style={divStyle}>
+    <div style={divStyle} data-cy="match-card">
       <Firework />
       <h1> MATCH! Please find an aid worker as soon as possible</h1>
     </div>
