@@ -10,6 +10,3 @@ install:
   - npm i
 script:
   - npm run test:full
-  - npm run start:client
-  - npm run cypress:run 
-  - kill $(jobs -p) || true
