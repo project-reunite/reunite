@@ -12,7 +12,6 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
-    "eslint-plugin-cypress": "^2.2.1",
     "identity-obj-proxy": "^3.0.0",
     "mineral-ui": "^0.58.0",
     "prop-types": "^15.7.2",
@@ -24,7 +23,7 @@
   "scripts": {
     "start": "PORT=41002 react-scripts start",
     "build": "babel src -d lib",
-    "test": "jest && cypress run",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
