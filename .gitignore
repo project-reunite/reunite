@@ -12,8 +12,10 @@
 # production
 /build
 
-# misc
+# babel 
 /client/lib
+
+# misc
 .DS_Store
 .env.local
 .env.development.local

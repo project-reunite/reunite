@@ -1,4 +1,4 @@
-describe('Selecting card', () => {
+describe('e2e app test', () => {
   before(() => {
     cy.visit('/');
   });
