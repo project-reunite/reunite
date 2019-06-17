@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:41002');
     const id = req.params.id;
     const person = await personsController.getPerson(id);
     if (!person) {

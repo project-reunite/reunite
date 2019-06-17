@@ -1,5 +1,6 @@
 import React from 'react';
 import Grid, { GridItem } from 'mineral-ui/Grid';
+import axios from 'axios';
 import PersonCard from '../person-card';
 import Data from '../../data';
 import MatchCard from '../match-card';
@@ -12,7 +13,7 @@ class Deck extends React.Component {
     };
   }
 
-  renderChildren(data) {
+  renderChildren = (data) => {
     const children = [];
     const { deckIndex } = this.state;
     data.forEach((person) => {
@@ -33,11 +34,20 @@ class Deck extends React.Component {
     return children;
   }
 
+  getData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:9100/api/v1/persons/d-trump`);
+      this.data = response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   render() {
     const gridStyle = { padding: '30px' };
     const { deckIndex } = this.state;
     if (deckIndex < Data.length) {
-      const data = Data[deckIndex];
+      const data = this.getData();
       return (
         <Grid
           gutterWidth="lg"
