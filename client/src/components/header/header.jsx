@@ -1,14 +1,10 @@
 import React from 'react';
-import './header.css';
-
-const headerStyle = {
-  color: 'white',
-};
+import './header.scss';
 
 const Header = () => (
 
   <div className="header-container">
-    <h2 style={headerStyle}>
+    <h2>
       Reunite
     </h2>
 

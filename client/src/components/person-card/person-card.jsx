@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './person-card.css';
+import './person-card.scss';
 
 import Card, { CardBlock, CardImage, CardTitle } from 'mineral-ui/Card';
 
