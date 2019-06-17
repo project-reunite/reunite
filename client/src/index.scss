@@ -1,10 +1,4 @@
-@import '../node_modules/carbon-components/scss/globals/scss/vendor/@carbon/elements/scss/themes/theme-maps';
-// Theme refers to carbon theme here https://www.carbondesignsystem.com/guidelines/color/usage
-$carbon--theme: $carbon--theme--g10;
-
-// import Carbon styles here
-@import 'carbon-components/scss/globals/scss/styles.scss';
-
+@import 'app/app.scss';
 
 body {
     margin: 0;

@@ -1,17 +1,13 @@
 import React from 'react';
-
-const divStyle = {
-  color: 'black',
-  fontSize: '40px',
-};
+import './match-card.scss';
 
 export default function MatchCard() {
   return (
-    <div style={divStyle} data-cy="match-card">
+    <div data-cy="match-card">
       <Firework />
-      <h1> MATCH! Please find an aid worker as soon as possible</h1>
+      <h1 className="matchFound"> MATCH! Please find an aid worker as soon as possible</h1>
     </div>
   );
 }
 
-const Firework = () => <img src="firework.jpg" alt="" />;
+const Firework = () => <img src="firework.jpg" alt="" className="firework" />;

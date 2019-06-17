@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'mineral-ui/themes';
 import Dashboard from '../components/dashboard';
-import './app.css';
+import './app.scss';
 
 const App = () => (
   <ThemeProvider>
