@@ -14,9 +14,10 @@ class Deck extends React.Component {
 
   renderChildren(data) {
     const children = [];
+    const { deckIndex } = this.state;
     data.forEach((person) => {
       children.push(
-        <GridItem key={person.name}>
+        <GridItem key={person.name} data-cy={`deck-${deckIndex}`}>
           <PersonCard
             name={person.name}
             age={person.age}

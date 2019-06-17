@@ -11,7 +11,7 @@ const PersonCard = ({
   const image = `/img/${img}`;
 
   return (
-    <Card onClick={onClick} style={cardStyle}>
+    <Card onClick={onClick} style={cardStyle} data-cy="person-card">
       <CardTitle>{name}</CardTitle>
       <div>
         <CardImage
