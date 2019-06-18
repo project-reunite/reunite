@@ -8,10 +8,6 @@ const PersonCard = ({
   name, age, gender, img, onClick,
 }) => {
   const cardStyle = { borderRadius: '20px' };
-
-  console.log('name');
-  console.log(name);
-
   return (
     <Card onClick={onClick} style={cardStyle} data-cy="person-card">
       <CardTitle>{name}</CardTitle>

@@ -2,7 +2,6 @@ import React from 'react';
 import Grid, { GridItem } from 'mineral-ui/Grid';
 import axios from 'axios';
 import PersonCard from '../person-card';
-import Data from '../../data';
 import MatchCard from '../match-card';
 
 class Deck extends React.Component {
@@ -10,35 +9,38 @@ class Deck extends React.Component {
     super();
     this.state = {
       deckIndex: 0,
+      cardInfo: [],
     };
-    this.cardInfo = [];
     this.renderChildren = this.renderChildren.bind(this);
+    this.reactToCardClick = this.reactToCardClick.bind(this);
   }
 
-  async componentDidMount() {
-    this.cardInfo = await this.getData();
-    this.setState({});
-  }
-
-  async getData() {
+  componentDidMount() {
     const { deckIndex } = this.state;
+    this.setCardInfo(deckIndex);
+  }
+
+  setCardInfo(deckIndex) {
     try {
-      console.log(deckIndex);
-      const response = await axios.get(`http://localhost:9100/api/v1/persons/pairs/${deckIndex}`);
-      console.log(response.data);
-      return response.data;
+      axios.get(`http://localhost:9100/api/v1/persons/pairs/${deckIndex}`)
+        .then(response => this.setState({ cardInfo: response.data }));
     } catch (error) {
       throw new Error(error);
     }
   }
 
+  reactToCardClick() {
+    const { deckIndex } = this.state;
+    const newDeckIndex = deckIndex + 1;
+    this.setState({ deckIndex: newDeckIndex });
+    this.setCardInfo(newDeckIndex);
+  }
+
   renderChildren(data) {
     const children = [];
     const { deckIndex } = this.state;
-    // console.log(data);
     data.forEach((person) => {
       children.push(
-
         <GridItem key={person.name} data-cy={`deck-${deckIndex}`}>
           <PersonCard
             name={person.name}
@@ -46,7 +48,7 @@ class Deck extends React.Component {
             gender={person.gender}
             img={person.img_url}
             onClick={() => {
-              this.setState(prevState => ({ deckIndex: prevState.deckIndex + 1 }));
+              this.reactToCardClick();
             }}
           />
         </GridItem>,
@@ -57,15 +59,14 @@ class Deck extends React.Component {
 
   render() {
     const gridStyle = { padding: '30px' };
-    const { deckIndex } = this.state;
-
-    if (deckIndex < Data.length) {
+    const { deckIndex, cardInfo } = this.state;
+    if (deckIndex < 8) {
       return (
         <Grid
           gutterWidth="lg"
           style={gridStyle}
         >
-          {this.renderChildren(this.cardInfo)}
+          {this.renderChildren(cardInfo)}
         </Grid>
       );
     }
