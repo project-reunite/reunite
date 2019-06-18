@@ -11,19 +11,40 @@ class Deck extends React.Component {
     this.state = {
       deckIndex: 0,
     };
+    this.cardInfo = [];
+    this.renderChildren = this.renderChildren.bind(this);
   }
 
-  renderChildren = (data) => {
+  async componentDidMount() {
+    this.cardInfo = await this.getData();
+    this.setState({});
+  }
+
+  async getData() {
+    const { deckIndex } = this.state;
+    try {
+      console.log(deckIndex);
+      const response = await axios.get(`http://localhost:9100/api/v1/persons/pairs/${deckIndex}`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  renderChildren(data) {
     const children = [];
     const { deckIndex } = this.state;
+    // console.log(data);
     data.forEach((person) => {
       children.push(
+
         <GridItem key={person.name} data-cy={`deck-${deckIndex}`}>
           <PersonCard
             name={person.name}
             age={person.age}
             gender={person.gender}
-            img={person.img}
+            img={person.img_url}
             onClick={() => {
               this.setState(prevState => ({ deckIndex: prevState.deckIndex + 1 }));
             }}
@@ -34,26 +55,17 @@ class Deck extends React.Component {
     return children;
   }
 
-  getData = async () => {
-    try {
-      const response = await axios.get(`http://localhost:9100/api/v1/persons/d-trump`);
-      this.data = response;
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   render() {
     const gridStyle = { padding: '30px' };
     const { deckIndex } = this.state;
+
     if (deckIndex < Data.length) {
-      const data = this.getData();
       return (
         <Grid
           gutterWidth="lg"
           style={gridStyle}
         >
-          {this.renderChildren(data)}
+          {this.renderChildren(this.cardInfo)}
         </Grid>
       );
     }
