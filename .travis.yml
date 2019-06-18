@@ -9,4 +9,5 @@ addons:
 install:
   - npm i
 script:
+  - npm start
   - npm run test:full

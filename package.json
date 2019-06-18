@@ -4,12 +4,12 @@
   "description": "App for reuniting families separated by natural disasters",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd server && npm start\" \"cd client && npm start & wait-on http://localhost:41002\"",
+    "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
     "test": "(cd server && npm test) && (cd client && npm test)",
     "test:full": "npm run test:components && npm run test:integration",
     "test:components": "(cd server && npm run test:full) && (cd client && npm test)",
-    "test:integration": "npm start && cypress run",
-    "install": "(cd server && npm install); (cd client && npm install)",
+    "test:integration": "cypress run",
+    "install": "concurrently \"(cd server && npm install)\" \"(cd client && npm install)\"",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
   },
