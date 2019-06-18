@@ -15,6 +15,12 @@ npm start
 
 ```
 
+### App
+
+```bash
+npm start
+```
+
 #### Client
 
 ```bash
@@ -35,7 +41,7 @@ npm test
 
 ```bash
 # Cypress Tests
-Make sure the client is running on localhost:41002
+Make sure the app is running
 npm run cypress:open
 
 # Unit Tests
