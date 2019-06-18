@@ -6,6 +6,14 @@ Reuniting families separated by natural disaster, using an intelligent filtering
 
 ### Running Code
 
+#### App
+
+```bash
+
+npm start
+
+```
+
 #### Server
 
 ```bash
@@ -13,12 +21,6 @@ Reuniting families separated by natural disaster, using an intelligent filtering
 cd server
 npm start
 
-```
-
-### App
-
-```bash
-npm start
 ```
 
 #### Client
