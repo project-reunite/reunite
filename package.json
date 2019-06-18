@@ -7,7 +7,7 @@
     "test": "(cd server && npm test) && (cd client && npm test)",
     "test:full": "npm run test:components && npm run test:integration",
     "test:components": "(cd server && npm run test:full) && (cd client && npm test)",
-    "test:integration": "(cd client && npm start & wait-on http://localhost:41002) && cypress run",
+    "test:integration": "(cd client && npm start & wait-on http://localhost:41002) && (cd server && npm start) && cypress run",
     "install": "(cd server && npm install); (cd client && npm install)",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
