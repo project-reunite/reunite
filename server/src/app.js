@@ -13,7 +13,6 @@ app.use(function (req, res, next) {
 app.use('/api/v1/', v1Routes);
 app.use('/images', express.static('public'));
 
-
 app.listen(9100, () => {
     console.log(`App running on port 9100`);
 });
