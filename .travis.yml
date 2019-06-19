@@ -10,7 +10,6 @@ install:
   - npm i
 script:
   - npm run test:full
-  - killall node
   - kill $(jobs -p) || true
 matrix:
   fast_finish: true
