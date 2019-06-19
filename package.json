@@ -6,9 +6,10 @@
   "scripts": {
     "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
     "test": "(cd server && npm test) && (cd client && npm test)",
+    "stop": "killall node",
     "test:full": "npm run test:components && npm run test:integration",
     "test:components": "(cd server && npm run test:full) && (cd client && npm test)",
-    "test:integration": "concurrently \"npm start\" \"wait-on http://localhost:41002 && cypress run\"",
+    "test:integration": "concurrently \"npm start\" \"wait-on http://localhost:41002 && cypress run && npm stop\"",
     "install": "(cd server && npm install); (cd client && npm install)",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
