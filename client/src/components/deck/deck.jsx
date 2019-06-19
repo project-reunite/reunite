@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid, { GridItem } from 'mineral-ui/Grid';
+import axios from 'axios';
 import PersonCard from '../person-card';
-import Data from '../../data';
 import MatchCard from '../match-card';
 
 class Deck extends React.Component {
@@ -9,7 +9,31 @@ class Deck extends React.Component {
     super();
     this.state = {
       deckIndex: 0,
+      cardInfo: [],
     };
+    this.renderChildren = this.renderChildren.bind(this);
+    this.reactToCardClick = this.reactToCardClick.bind(this);
+  }
+
+  componentDidMount() {
+    const { deckIndex } = this.state;
+    this.setCardInfo(deckIndex);
+  }
+
+  setCardInfo(deckIndex) {
+    try {
+      axios.get(`http://localhost:9100/api/v1/persons/pairs/${deckIndex}`)
+        .then(response => this.setState({ cardInfo: response.data }));
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  reactToCardClick() {
+    const { deckIndex } = this.state;
+    const newDeckIndex = deckIndex + 1;
+    this.setState({ deckIndex: newDeckIndex });
+    this.setCardInfo(newDeckIndex);
   }
 
   renderChildren(data) {
@@ -22,9 +46,9 @@ class Deck extends React.Component {
             name={person.name}
             age={person.age}
             gender={person.gender}
-            img={person.img}
+            img={person.img_url}
             onClick={() => {
-              this.setState(prevState => ({ deckIndex: prevState.deckIndex + 1 }));
+              this.reactToCardClick();
             }}
           />
         </GridItem>,
@@ -35,15 +59,14 @@ class Deck extends React.Component {
 
   render() {
     const gridStyle = { padding: '30px' };
-    const { deckIndex } = this.state;
-    if (deckIndex < Data.length) {
-      const data = Data[deckIndex];
+    const { deckIndex, cardInfo } = this.state;
+    if (deckIndex < 8) {
       return (
         <Grid
           gutterWidth="lg"
           style={gridStyle}
         >
-          {this.renderChildren(data)}
+          {this.renderChildren(cardInfo)}
         </Grid>
       );
     }

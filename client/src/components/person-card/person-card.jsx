@@ -8,15 +8,13 @@ const PersonCard = ({
   name, age, gender, img, onClick,
 }) => {
   const cardStyle = { borderRadius: '20px' };
-  const image = `/img/${img}`;
-
   return (
     <Card onClick={onClick} style={cardStyle} data-cy="person-card">
       <CardTitle>{name}</CardTitle>
       <div>
         <CardImage
           className="cardImage"
-          src={image}
+          src={img}
           alt="gradient placeholder"
         />
       </div>
