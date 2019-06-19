@@ -6,6 +6,14 @@ Reuniting families separated by natural disaster, using an intelligent filtering
 
 ### Running Code
 
+#### App
+
+```bash
+
+npm start
+
+```
+
 #### Server
 
 ```bash
@@ -35,7 +43,7 @@ npm test
 
 ```bash
 # Cypress Tests
-Make sure the client is running on localhost:41002
+Make sure the app is running
 npm run cypress:open
 
 # Unit Tests
