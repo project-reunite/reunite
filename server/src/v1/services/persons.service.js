@@ -1,14 +1,23 @@
-const Persons = require('../../../data/Persons');
+const Database = require('./database.service');
+const config = require('../../config');
 
-const getPersons = () => Persons;
+const database = config.database.persons;
 
-const getPerson = (id) => getPersons()
-    .find(person => person.id === id);
+const getPersons = () => Database.getAllDocuments({ database });
 
-const getPair = (index) => [
-    getPersons()[index*2],
-    getPersons()[index*2 + 1],
-];
+const getPerson = (id) => Database.getDocument({ database, id });
+
+const getPair = async (index) => {
+    const persons = (await getPersons()).rows;
+    if(index*2 + 1 < persons.length) {
+        return Promise.all([
+            getPerson(persons[index*2].id),
+            getPerson(persons[index*2 + 1].id),
+        ]);
+    } else {
+        throw new Error('Index invalid');
+    }
+};
 
 module.exports = {
     getPersons,
