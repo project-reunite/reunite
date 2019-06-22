@@ -3,31 +3,24 @@ const app = require('../../setup/app.setup');
 const { expect } = require('../../setup/chai.setup');
 const { jsonSchemas, fitsSchema } = require('../../setup/jsonSchemas.setup');
 const persons = require('../../../data/Persons');
-const databaseService = require('../../../src/v1/services/database.service');
+const databaseSetup = require('../../setup/database.setup');
 const config = require('../../../src/config');
 
 const personsDb = config.database.persons;
 
 describe('/api/v1', function () {
-    beforeEach(async function() {
+    before(async function() {
         this.timeout(10000);
-        if(await databaseService.databaseExists({ database: personsDb })){
-            await databaseService.destroyDatabase({ database: personsDb });
-        }
-        await databaseService.createDatabase({ database: personsDb });
-        await Promise.all(persons.map(person => databaseService.insertDocument({
-            database: personsDb,
-            doc: person,
-        })));
+        await databaseSetup.initialiseDatabase({ database: personsDb, documents: persons });
     });
     describe('/persons', function () {
         describe('GET', function () {
             it('returns 200 and a body listing all persons', async function () {
                 const res = await app().get('/api/v1/persons');
                 expect(res.status).to.equal(200);
-                expect(res.body.rows).to.be.an('array').of.length(persons.length);
-                for(const member of res.body.rows) {
-                    expect(fitsSchema(member, jsonSchemas.CloudantObject)).to.be.true;
+                expect(res.body.docs).to.be.an('array').of.length(persons.length);
+                for(const member of res.body.docs) {
+                    expect(fitsSchema(member, jsonSchemas.Person)).to.be.true;
                 }
             });
         });
@@ -35,8 +28,8 @@ describe('/api/v1', function () {
             describe('GET', function () {
                 describe(`with valid 'id' param`, function () {
                     it('returns 200 and a body describing the person requested', async function () {
-                        const persons = (await app().get('/api/v1/persons')).body.rows;
-                        const res = await app().get(`/api/v1/persons/${persons[0].id}`);
+                        const persons = (await app().get('/api/v1/persons')).body.docs;
+                        const res = await app().get(`/api/v1/persons/${persons[0]._id}`);
                         expect(res.status).to.equal(200);
                         expect(fitsSchema(res.body, jsonSchemas.Person)).to.be.true;
                     });

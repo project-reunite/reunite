@@ -29,6 +29,29 @@ const jsonSchemas = {
             name: { type: 'string' },
         },
     },
+    Tree: {
+        id: 'Tree',
+        type: 'object',
+        required: ['_id', '_rev', 'initialDecision_id'],
+        properties: {
+            _id: { type: 'string' },
+            _rev: { type: 'string' },
+            initialDecision_id: { type: 'string' },
+            gender: { type: 'string' },
+            minAge: { type: 'integer' },
+            maxAge: { type: 'integer' },
+        },
+    },
+    Decision: {
+        id: 'Decision',
+        type: 'object',
+        required: ['_id', '_rev', 'choices'],
+        properties: {
+            _id: { type: 'string' },
+            _rev: { type: 'string' },
+            choices: { type: 'array' },
+        },
+    },
 };
 
 function fitsSchema(obj, schema) {

@@ -16,7 +16,7 @@ const cloudant = new Cloudant({
 
 const getDocument = ({ database, id }) => cloudant.db.use(database).get(id);
 
-const getAllDocuments = ({ database }) => cloudant.db.use(database).list();
+const getAllDocuments = ({ database, filters }) => cloudant.db.use(database).find(filters);
 
 const insertDocument = ({ database, doc }) => cloudant.db.use(database).insert(doc);
 

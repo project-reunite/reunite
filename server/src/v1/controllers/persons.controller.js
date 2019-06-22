@@ -2,7 +2,7 @@ const personsService = require('../services/persons.service');
 
 const getPersons = async function(req, res, next) {
     try {
-        const persons = await personsService.getPersons();
+        const persons = await personsService.getPersons({ filters: { selector: {} } });
         res.status(200).send(persons);
     } catch(err) {
         next(err);

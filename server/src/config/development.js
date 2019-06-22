@@ -4,5 +4,7 @@ module.exports = {
     port,
     database: {
         persons: 'persons',
+        trees: 'trees',
+        decisions: 'decisions',
     },
 };
