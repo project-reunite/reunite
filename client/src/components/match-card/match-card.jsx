@@ -10,4 +10,4 @@ export default function MatchCard() {
   );
 }
 
-const Firework = () => <img src="firework.jpg" alt="" className="firework" />;
+const Firework = () => <img src="firework.svg" alt="" className="firework" />;

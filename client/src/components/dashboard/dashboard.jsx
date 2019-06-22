@@ -7,6 +7,7 @@ import genders from '../../utils/genders';
 import ages from '../../utils/ages';
 
 import SelectionCard from '../selection-card';
+import WelcomePanel from '../welcome-panel'
 import Deck from '../deck';
 import Header from '../header';
 
@@ -26,7 +27,7 @@ class Dashboard extends React.Component {
   constructor() {
     super();
     this.state = {
-      appState: appStatus.SELECT_GENDER,
+      appState: appStatus.WELCOME,
       gender: null,
       age: null,
     };
@@ -70,10 +71,16 @@ class Dashboard extends React.Component {
     return <Grid>{items}</Grid>;
   }
 
+  // showMoreInfo = () => {
+  // }
+
   getMainPanel = () => {
     const { appState } = this.state;
     let content;
     switch (appState) {
+      case appStatus.WELCOME:
+        content = <WelcomePanel startSearch={this.startSearch} />
+        break;
       case appStatus.SELECT_GENDER:
         content = this.getGenderSelectionCards();
         break;
@@ -89,6 +96,12 @@ class Dashboard extends React.Component {
         break;
     }
     return content;
+  }
+
+  startSearch = () => {
+    this.setState({
+      appState: appStatus.SELECT_GENDER,
+    });
   }
 
   setGender = (gender) => {
