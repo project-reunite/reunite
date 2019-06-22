@@ -6,6 +6,7 @@ import appStatus from '../../utils/appStatus';
 import genders from '../../utils/genders';
 import ages from '../../utils/ages';
 
+import UploadPicPanel from '../upload-pic-panel'
 import SelectionCard from '../selection-card';
 import WelcomePanel from '../welcome-panel'
 import Deck from '../deck';
@@ -19,8 +20,8 @@ const ageUrls = {
 };
 
 const genderUrls = {
-  MALE: 'adult.svg',
-  FEMALE: 'woman-icon.svg',
+  MALE: 'man-icon-blue.svg',
+  FEMALE: 'woman-icon-red.svg',
 };
 
 class Dashboard extends React.Component {
@@ -79,7 +80,14 @@ class Dashboard extends React.Component {
     let content;
     switch (appState) {
       case appStatus.WELCOME:
-        content = <WelcomePanel startSearch={this.startSearch} />
+        content = <WelcomePanel 
+        startSearch={() => this.setState({appState: appStatus.UPLOAD_PIC})} />
+        break;
+      case appStatus.UPLOAD_PIC:
+        content = <UploadPicPanel 
+          UploadPicPanel={this.uploadPicture}
+          moveOn={() => this.setState({appState: appStatus.SELECT_GENDER})}
+        />
         break;
       case appStatus.SELECT_GENDER:
         content = this.getGenderSelectionCards();
@@ -96,13 +104,7 @@ class Dashboard extends React.Component {
         break;
     }
     return content;
-  }
-
-  startSearch = () => {
-    this.setState({
-      appState: appStatus.SELECT_GENDER,
-    });
-  }
+  } 
 
   setGender = (gender) => {
     this.setState({

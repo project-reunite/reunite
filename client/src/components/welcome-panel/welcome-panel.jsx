@@ -5,10 +5,14 @@ const MatchCard = (props) =>{
   const { startSearch, moreInfo } = props;
   return (
     <div data-cy="welcomePanel">
-      <WelcomeButton onClick={startSearch} src='play.svg' className="playButton"/>
+      <WelcomeButton onClick={startSearch} style={playStyle} src='play.svg' className="playButton"/>
       <WelcomeButton onClick={moreInfo} src='question-mark.svg' className="infoButton"/>
     </div>
   );
+}
+
+const playStyle = {
+  fill: 'red',
 }
 
 const WelcomeButton = (props) => {
