@@ -1,35 +1,56 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import axios from 'axios';
+
 import './person-card.scss';
 
-import Card, { CardBlock, CardImage, CardTitle } from 'mineral-ui/Card';
+import Card, { CardImage, CardTitle } from 'mineral-ui/Card';
 
-const PersonCard = ({
-  name, age, gender, img, onClick,
-}) => {
-  const cardStyle = { borderRadius: '20px' };
-  return (
-    <Card onClick={onClick} style={cardStyle} data-cy="person-card">
-      <CardTitle>{name}</CardTitle>
-      <div>
-        <CardImage
-          className="cardImage"
-          src={img}
-          alt="gradient placeholder"
-        />
-      </div>
-      <CardBlock>{age}</CardBlock>
-      <CardBlock>{gender}</CardBlock>
-    </Card>
-  );
+class PersonCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      details: [],
+    };
+  }
+
+  async componentDidMount() {
+    const { id } = this.props;
+    const details = await this.getDetails(id);
+    this.setState({
+      details,
+    });
+  }
+
+getDetails = async (personId) => {
+  try {
+    const response = await axios.get(`http://localhost:9100/api/v1/persons/${personId}`);
+    return response;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
 };
+
+render() {
+  const { details } = this.state;
+  const { onClick } = this.props;
+  const cardStyle = { borderRadius: '20px' };
+  if (details.data) {
+    return (
+      <div>
+        <Card onClick={onClick} style={cardStyle}>
+          <CardTitle>{details.data.name}</CardTitle>
+          <CardImage
+            className="cardImage"
+            src={details.data.img_url}
+            alt="gradient placeholder"
+          />
+        </Card>
+      </div>
+    );
+  }
+  return null;
+}
+}
 
 export default PersonCard;
-
-PersonCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  age: PropTypes.string.isRequired,
-  gender: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-};

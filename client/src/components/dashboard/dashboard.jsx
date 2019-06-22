@@ -6,9 +6,10 @@ import appStatus from '../../utils/appStatus';
 import genders from '../../utils/genders';
 import ages from '../../utils/ages';
 
-import UploadPicPanel from '../upload-pic-panel'
+import UploadPicPanel from '../upload-pic-panel';
 import SelectionCard from '../selection-card';
-import WelcomePanel from '../welcome-panel'
+import WelcomePanel from '../welcome-panel';
+import RestartScreen from '../restart-screen';
 import Deck from '../deck';
 import Header from '../header';
 
@@ -20,8 +21,8 @@ const ageUrls = {
 };
 
 const genderUrls = {
-  MALE: 'man-icon-blue.svg',
-  FEMALE: 'woman-icon-red.svg',
+  Male: 'man-icon-blue.svg',
+  Female: 'woman-icon-red.svg',
 };
 
 class Dashboard extends React.Component {
@@ -31,6 +32,7 @@ class Dashboard extends React.Component {
       appState: appStatus.WELCOME,
       gender: null,
       age: null,
+      treeDetails: null,
     };
   }
 
@@ -40,10 +42,10 @@ class Dashboard extends React.Component {
     for (let i = 0; i < genderList.length; i += 1) {
       const props = {
         setSelection: this.setGender,
-        selection:genderList[i],
-        urls:genderUrls,
-        cyTag:"gender-selection-card",
-      }
+        selection: genderList[i],
+        urls: genderUrls,
+        cyTag: 'gender-selection-card',
+      };
       items.push(
         <GridItem>
           <SelectionCard {...props} />
@@ -61,8 +63,8 @@ class Dashboard extends React.Component {
         setSelection: this.setAge,
         selection: ageList[i],
         urls: ageUrls,
-        cyTag:"age-selection-card",
-      }
+        cyTag: 'age-selection-card',
+      };
       items.push(
         <GridItem>
           <SelectionCard {...props} />
@@ -72,22 +74,24 @@ class Dashboard extends React.Component {
     return <Grid>{items}</Grid>;
   }
 
-  // showMoreInfo = () => {
-  // }
-
   getMainPanel = () => {
-    const { appState } = this.state;
+    const { appState, treeDetails } = this.state;
     let content;
     switch (appState) {
       case appStatus.WELCOME:
-        content = <WelcomePanel 
-        startSearch={() => this.setState({appState: appStatus.UPLOAD_PIC})} />
+        content = (
+          <WelcomePanel
+            startSearch={() => this.setState({ appState: appStatus.UPLOAD_PIC })}
+          />
+        );
         break;
       case appStatus.UPLOAD_PIC:
-        content = <UploadPicPanel 
-          UploadPicPanel={this.uploadPicture}
-          moveOn={() => this.setState({appState: appStatus.SELECT_GENDER})}
-        />
+        content = (
+          <UploadPicPanel
+            UploadPicPanel={this.uploadPicture}
+            moveOn={() => this.setState({ appState: appStatus.SELECT_GENDER })}
+          />
+        );
         break;
       case appStatus.SELECT_GENDER:
         content = this.getGenderSelectionCards();
@@ -95,16 +99,21 @@ class Dashboard extends React.Component {
       case appStatus.SELECT_AGES:
         content = this.getAgeSelectionCards();
         break;
+      case appStatus.SUBMIT_CHOICES:
+        this.submitChoices();
+        break;
       case appStatus.PIC_COMPARISON:
-        // this.submitChoices();
-        content = <Deck />;
+        content = <Deck startingDecisionID={treeDetails} onFailure={() => this.setState({ appState: appStatus.FAILURE })} />;
+        break;
+      case appStatus.FAILURE:
+        content = <RestartScreen />;
         break;
       default:
         content = <Deck />;
         break;
     }
     return content;
-  } 
+  }
 
   setGender = (gender) => {
     this.setState({
@@ -116,25 +125,27 @@ class Dashboard extends React.Component {
   setAge = (age) => {
     this.setState({
       age,
-      appState: appStatus.PIC_COMPARISON,
+      appState: appStatus.SUBMIT_CHOICES,
     });
   }
 
   getAgeQueryString = () => {
     const { age } = this.state;
-    if (age === ages.BABY) return 'age>=0&age<=4';
-    if (age === ages.CHILD) return 'age>=5&age<=18';
-    if (age === ages.ADULT) return 'age>=19&age<=59';
-    if (age === ages.ELDERLY) return 'age>=60';
+    if (age === ages.BABY) return 'minAge=0&maxAge=4';
+    if (age === ages.CHILD) return 'minAge=5&maxAge=18';
+    if (age === ages.ADULT) return 'minAge=19&maxAge=60';
+    if (age === ages.ELDERLY) return 'minAge=61&maxAge=100';
     return '';
   }
 
-  // TODO: get tree from backend
   submitChoices = () => {
     const { gender } = this.state;
     const ageQuery = this.getAgeQueryString();
-    axios.get(`http://localhost:9100/api/v1/persons/trees/?gender=${gender}&${ageQuery}`)
-      .then(response => this.setState({startingDecisionID: response.trees.decisionId}));
+    axios.get(`http://localhost:9100/api/v1/trees?gender=${gender}&${ageQuery}`)
+      .then(response => this.setState({
+        treeDetails: response.data.docs[0].initialDecision_id,
+        appState: appStatus.PIC_COMPARISON,
+      }));
   }
 
   render() {

@@ -5,49 +5,51 @@ import PersonCard from '../person-card';
 import MatchCard from '../match-card';
 
 class Deck extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      deckIndex: 0,
-      cardInfo: [],
+      deckIndex: null,
+      choices: [],
+      deckStatus: 0,
     };
   }
 
   componentDidMount = () => {
-    const { deckIndex } = this.state;
-    this.setCardInfo(deckIndex);
+    const { startingDecisionID } = this.props;
+    this.setDeckChoices(startingDecisionID);
   }
 
-  // TODO: Update the deckIndex in here from the API response
-  setCardInfo = (deckIndex) => {
+  setDeckChoices = (deckIndex) => {
     try {
-      axios.get(`http://localhost:9100/api/v1/persons/pairs/${deckIndex}`)
-        .then(response => this.setState({ cardInfo: response.data }));
+      axios.get(`http://localhost:9100/api/v1/decisions/${deckIndex}`)
+        .then(response => this.setState({ choices: response.data.choices }));
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  reactToCardClick = () => {
-    const { deckIndex } = this.state;
-    const newDeckIndex = deckIndex + 1;
-    this.setState({ deckIndex: newDeckIndex });
-    this.setCardInfo(newDeckIndex);
+  reactToCardClick = (nextId) => {
+    const { onFailure } = this.props;
+    if (!nextId) {
+      onFailure();
+    } else {
+      this.setState({
+        deckIndex: nextId,
+      });
+      this.setDeckChoices(nextId);
+    }
   }
 
-  renderChildren = (data) => {
+  renderChildren = (choices) => {
     const children = [];
-    const { deckIndex } = this.state;
-    data.forEach((person) => {
+    choices.forEach((choice) => {
+      const { persons_id, next_decision_id } = choice;
       children.push(
-        <GridItem key={person.name} data-cy={`deck-${deckIndex}`}>
+        <GridItem key={persons_id} data-cy={`deck-${persons_id}`}>
           <PersonCard
-            name={person.name}
-            age={person.age}
-            gender={person.gender}
-            img={person.img_url}
+            id={persons_id}
             onClick={() => {
-              this.reactToCardClick();
+              this.reactToCardClick(next_decision_id);
             }}
           />
         </GridItem>,
@@ -58,18 +60,15 @@ class Deck extends React.Component {
 
   render() {
     const gridStyle = { padding: '30px' };
-    const { deckIndex, cardInfo } = this.state;
-    if (deckIndex < 8) {
-      return (
-        <Grid
-          gutterWidth="lg"
-          style={gridStyle}
-        >
-          {this.renderChildren(cardInfo)}
-        </Grid>
-      );
-    }
-    return <MatchCard />;
+    const { choices } = this.state;
+    return (
+      <Grid
+        gutterWidth="lg"
+        style={gridStyle}
+      >
+        {this.renderChildren(choices)}
+      </Grid>
+    );
   }
 }
 
