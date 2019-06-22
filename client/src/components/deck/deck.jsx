@@ -11,16 +11,15 @@ class Deck extends React.Component {
       deckIndex: 0,
       cardInfo: [],
     };
-    this.renderChildren = this.renderChildren.bind(this);
-    this.reactToCardClick = this.reactToCardClick.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     const { deckIndex } = this.state;
     this.setCardInfo(deckIndex);
   }
 
-  setCardInfo(deckIndex) {
+  // TODO: Update the deckIndex in here from the API response
+  setCardInfo = (deckIndex) => {
     try {
       axios.get(`http://localhost:9100/api/v1/persons/pairs/${deckIndex}`)
         .then(response => this.setState({ cardInfo: response.data }));
@@ -29,14 +28,14 @@ class Deck extends React.Component {
     }
   }
 
-  reactToCardClick() {
+  reactToCardClick = () => {
     const { deckIndex } = this.state;
     const newDeckIndex = deckIndex + 1;
     this.setState({ deckIndex: newDeckIndex });
     this.setCardInfo(newDeckIndex);
   }
 
-  renderChildren(data) {
+  renderChildren = (data) => {
     const children = [];
     const { deckIndex } = this.state;
     data.forEach((person) => {

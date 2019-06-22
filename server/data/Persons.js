@@ -31,7 +31,7 @@ const Ed = {
 const Hilary = {
     name: 'Hilary Clinton',
     age: '23',
-    gender: 'Male',
+    gender: 'Female',
     img_url: '/images/H-Clinton.jpg',
 };
 const Jeremy = {
@@ -55,7 +55,7 @@ const Matt = {
 const Michelle = {
     name: 'Michelle Obama',
     age: '23',
-    gender: 'Male',
+    gender: 'FEMALE',
     img_url: '/images/M-Obama.jpg',
 };
 const Rory = {
@@ -79,13 +79,13 @@ const Sadiq = {
 const Andrea = {
     name: 'Andrea Leadsom',
     age: '23',
-    gender: 'Male',
+    gender: 'Female',
     img_url: '/images/A-Leadsom.png',
 };
 const Ester = {
     name: 'Ester McVey',
     age: '23',
-    gender: 'Male',
+    gender: 'FEMALE',
     img_url: '/images/E-McVey.png',
 };
 module.exports = [

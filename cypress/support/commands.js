@@ -14,9 +14,14 @@ Cypress.Commands.add('clickPersonCard', () => {
   cy.getElementByDataCy('person-card').first().click();
 });
 
-Cypress.Commands.add('checkNumberOfPersonCardsIs', (expectedNumber) => {
-  cy.getElementByDataCy('person-card')
+Cypress.Commands.add('clickFirstCard', (id) => {
+  cy.getElementByDataCy(id).first().click();
+});
+
+Cypress.Commands.add('checkNumberOfCardsIs', (id, expectedNumber) => {
+  cy.getElementByDataCy(id)
     .should(($cards) => {
       expect($cards).to.have.length(expectedNumber);
     });
 });
+;
