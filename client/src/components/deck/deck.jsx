@@ -2,15 +2,12 @@ import React from 'react';
 import Grid, { GridItem } from 'mineral-ui/Grid';
 import axios from 'axios';
 import PersonCard from '../person-card';
-import MatchCard from '../match-card';
 
 class Deck extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      deckIndex: null,
       choices: [],
-      deckStatus: 0,
     };
   }
 
@@ -30,27 +27,27 @@ class Deck extends React.Component {
 
   reactToCardClick = (nextId) => {
     const { onFailure } = this.props;
-    if (!nextId) {
-      onFailure();
-    } else {
-      this.setState({
-        deckIndex: nextId,
-      });
+    if (nextId) {
       this.setDeckChoices(nextId);
+    } else {
+      onFailure();
     }
   }
 
   renderChildren = (choices) => {
+    const { onMatch } = this.props;
     const children = [];
     choices.forEach((choice) => {
-      const { persons_id, next_decision_id } = choice;
+      const personId = choice.persons_id;
+      const nextDecisionId = choice.next_decision_id;
       children.push(
-        <GridItem key={persons_id} data-cy={`deck-${persons_id}`}>
+        <GridItem key={personId} data-cy="deck">
           <PersonCard
-            id={persons_id}
+            id={personId}
             onClick={() => {
-              this.reactToCardClick(next_decision_id);
+              this.reactToCardClick(nextDecisionId);
             }}
+            onMatch={onMatch}
           />
         </GridItem>,
       );

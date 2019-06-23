@@ -7,7 +7,6 @@ const Header = () => (
     <h2>
       Reunite
     </h2>
-
   </div>
 );
 

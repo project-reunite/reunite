@@ -10,6 +10,7 @@ import UploadPicPanel from '../upload-pic-panel';
 import SelectionCard from '../selection-card';
 import WelcomePanel from '../welcome-panel';
 import RestartScreen from '../restart-screen';
+import MatchCard from '../match-card';
 import Deck from '../deck';
 import Header from '../header';
 
@@ -24,6 +25,8 @@ const genderUrls = {
   Male: 'man-icon-blue.svg',
   Female: 'woman-icon-red.svg',
 };
+
+const gridStyle = { padding: '30px' };
 
 class Dashboard extends React.Component {
   constructor() {
@@ -44,7 +47,7 @@ class Dashboard extends React.Component {
         setSelection: this.setGender,
         selection: genderList[i],
         urls: genderUrls,
-        cyTag: 'gender-selection-card',
+        cyTag: `gender-selection-card-${genderList[i]}`,
       };
       items.push(
         <GridItem>
@@ -52,7 +55,7 @@ class Dashboard extends React.Component {
         </GridItem>,
       );
     }
-    return <Grid>{items}</Grid>;
+    return <Grid gutterWidth="lg" style={gridStyle}>{items}</Grid>;
   }
 
   getAgeSelectionCards = () => {
@@ -63,7 +66,7 @@ class Dashboard extends React.Component {
         setSelection: this.setAge,
         selection: ageList[i],
         urls: ageUrls,
-        cyTag: 'age-selection-card',
+        cyTag: `age-selection-card-${ageList[i]}`,
       };
       items.push(
         <GridItem>
@@ -71,7 +74,7 @@ class Dashboard extends React.Component {
         </GridItem>,
       );
     }
-    return <Grid>{items}</Grid>;
+    return <Grid gutterWidth="lg" style={gridStyle}>{items}</Grid>;
   }
 
   getMainPanel = () => {
@@ -103,10 +106,19 @@ class Dashboard extends React.Component {
         this.submitChoices();
         break;
       case appStatus.PIC_COMPARISON:
-        content = <Deck startingDecisionID={treeDetails} onFailure={() => this.setState({ appState: appStatus.FAILURE })} />;
+        content = (
+          <Deck
+            startingDecisionID={treeDetails}
+            onFailure={() => this.setState({ appState: appStatus.FAILURE })}
+            onMatch={() => this.setState({ appState: appStatus.MATCH_FOUND })}
+          />
+        );
         break;
       case appStatus.FAILURE:
-        content = <RestartScreen />;
+        content = <RestartScreen restart={() => this.setState({ appState: appStatus.WELCOME })} />;
+        break;
+      case appStatus.MATCH_FOUND:
+        content = <MatchCard />;
         break;
       default:
         content = <Deck />;
@@ -148,7 +160,7 @@ class Dashboard extends React.Component {
       }));
   }
 
-  render() {
+  render = () => {
     const deckComponent = this.getMainPanel();
     return (
       <div>

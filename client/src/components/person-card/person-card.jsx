@@ -3,7 +3,10 @@ import axios from 'axios';
 
 import './person-card.scss';
 
-import Card, { CardImage, CardTitle } from 'mineral-ui/Card';
+import Card, {
+  CardImage, CardTitle, CardActions, CardBlock,
+} from 'mineral-ui/Card';
+import Button from 'mineral-ui/Button';
 
 class PersonCard extends React.Component {
   constructor(props) {
@@ -33,18 +36,21 @@ getDetails = async (personId) => {
 
 render() {
   const { details } = this.state;
-  const { onClick } = this.props;
+  const { onClick, onMatch } = this.props;
   const cardStyle = { borderRadius: '20px' };
   if (details.data) {
     return (
       <div>
-        <Card onClick={onClick} style={cardStyle}>
+        <Card onClick={onClick} style={cardStyle} data-cy="person-card">
           <CardTitle>{details.data.name}</CardTitle>
           <CardImage
             className="cardImage"
             src={details.data.img_url}
             alt="gradient placeholder"
           />
+          <CardBlock>
+            <Button fullWidth onClick={onMatch}>Select Match</Button>
+          </CardBlock>
         </Card>
       </div>
     );

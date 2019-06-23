@@ -1,25 +1,25 @@
 import React from 'react';
 import './welcome-panel.scss';
 
-const MatchCard = (props) => {
+const WelcomePanel = (props) => {
   const { startSearch, moreInfo } = props;
   return (
-    <div data-cy="welcomePanel">
-      <WelcomeButton onClick={startSearch} style={playStyle} src="play.svg" className="playButton" />
-      <WelcomeButton onClick={moreInfo} src="question-mark.svg" className="infoButton" />
+    <div data-cy="welcome-panel">
+      <WelcomeButton onClick={startSearch} src="play.svg" className="playButton" dataCy="play-button" />
+      <WelcomeButton onClick={moreInfo} src="question-mark.svg" className="infoButton" dataCy="info-button" />
     </div>
   );
 };
 
-const playStyle = {
-  fill: 'red',
-};
-
 const WelcomeButton = (props) => {
-  const { onClick, src, className } = props;
+  const {
+    onClick, src, className, dataCy,
+  } = props;
   return (
-    <img onClick={onClick} src={src} alt="" className={className} />
+    <div onClick={onClick} onKeyDown={onClick} tabIndex={0} role="button" data-cy={dataCy}>
+      <img src={src} alt="" className={className} />
+    </div>
   );
 };
 
-export default MatchCard;
+export default WelcomePanel;
