@@ -10,6 +10,17 @@ const getPerson = async (id) => {
   }
 };
 
+const getChoices = async (decisionId) => {
+  try {
+    const response = await axios.get(`http://localhost:9100/api/v1/decisions/${decisionId}`);
+    return response;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
 export default {
   getPerson,
+  getChoices,
 };

@@ -2,35 +2,38 @@ import React from 'react';
 import Grid, { GridItem } from 'mineral-ui/Grid';
 import PropTypes from 'prop-types';
 
-import axios from 'axios';
 import PersonCard from '../person-card';
+import apiRequests from '../../utils/apiRequests';
 
 class Deck extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       choices: [],
+      decisionId: null,
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const { startingDecisionID } = this.props;
-    this.setDeckChoices(startingDecisionID);
+    const response = await this.getDeckChoices(startingDecisionID);
+    this.setState({ choices: response.data.choices });
   }
 
-  setDeckChoices = (deckIndex) => {
-    try {
-      axios.get(`http://localhost:9100/api/v1/decisions/${deckIndex}`)
-        .then(response => this.setState({ choices: response.data.choices }));
-    } catch (error) {
-      throw new Error(error);
+  componentDidUpdate = async (prevProps, prevState) => {
+    const { decisionId } = this.state;
+    if (prevState && prevState.decisionId !== decisionId) {
+      const response = await this.getDeckChoices(decisionId);
+      this.setState({ choices: response.data.choices });
     }
   }
 
-  reactToCardClick = (nextId) => {
+  getDeckChoices = async decisionId => apiRequests.getChoices(decisionId)
+
+  reactToCardClick = (nextDecisionId) => {
     const { onFailure } = this.props;
-    if (nextId) {
-      this.setDeckChoices(nextId);
+    if (nextDecisionId) {
+      this.setState({ decisionId: nextDecisionId });
     } else {
       onFailure();
     }
