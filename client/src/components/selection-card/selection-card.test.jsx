@@ -4,9 +4,7 @@ import SelectionCard from './selection-card';
 
 const props = {
   selection: 'test',
-  urls: {
-    test: 'test'
-  }
+  urls: ['test'],
 };
 
 describe('<SelectionCard />', () => {

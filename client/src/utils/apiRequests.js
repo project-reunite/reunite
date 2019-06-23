@@ -1,0 +1,15 @@
+import axios from 'axios';
+
+const getPerson = async (id) => {
+  try {
+    const response = await axios.get(`http://localhost:9100/api/v1/persons/${id}`);
+    return response;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
+export default {
+  getPerson,
+};

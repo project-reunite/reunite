@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 
 import './person-card.scss';
@@ -8,6 +7,7 @@ import Card, {
   CardImage, CardTitle, CardBlock,
 } from 'mineral-ui/Card';
 import Button from 'mineral-ui/Button';
+import apiRequests from '../../utils/apiRequests';
 
 class PersonCard extends React.Component {
   constructor(props) {
@@ -25,15 +25,7 @@ class PersonCard extends React.Component {
     });
   }
 
-  getDetails = async (personId) => {
-    try {
-      const response = await axios.get(`http://localhost:9100/api/v1/persons/${personId}`);
-      return response;
-    } catch (err) {
-      console.error(err);
-      return null;
-    }
-  };
+  getDetails = async personId => apiRequests.getPerson(personId);
 
   render = () => {
     const { details } = this.state;
