@@ -16,7 +16,6 @@ const RestartScreen = (props) => {
 
 RestartScreen.defaultProps = {
   restart: () => console.log('restart prop not found'),
-
 };
 
 RestartScreen.propTypes = {

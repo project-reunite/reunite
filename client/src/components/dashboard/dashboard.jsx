@@ -118,7 +118,7 @@ class Dashboard extends React.Component {
         content = <RestartScreen restart={() => this.setState({ appState: appStatus.WELCOME })} />;
         break;
       case appStatus.MATCH_FOUND:
-        content = <MatchCard />;
+        content = <MatchCard restart={() => this.setState({ appState: appStatus.WELCOME })} />;
         break;
       default:
         content = <Deck />;
