@@ -22,8 +22,8 @@ const ageUrls = {
 };
 
 const genderUrls = {
-  Male: 'man-icon-blue.svg',
-  Female: 'woman-icon-red.svg',
+  Male: 'man-icon.svg',
+  Female: 'woman-icon.svg',
 };
 
 const getAgeQueryString = (age) => {

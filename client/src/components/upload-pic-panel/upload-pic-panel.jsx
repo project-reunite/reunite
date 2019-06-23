@@ -7,8 +7,8 @@ const UploadPicPanel = (props) => {
   const { moveOn } = props;
   return (
     <div data-cy="upload-pic-panel">
-      <PictureButton onClick={moveOn} src="camera.svg" className="pictureButton" dataCy="picture-button" />
-      <PictureButton onClick={moveOn} src="no-photo.png" className="pictureButton" dataCy="no-picture-button" />
+      <PictureButton onClick={moveOn} src="photo.svg" className="pictureButton" dataCy="picture-button" />
+      <PictureButton onClick={moveOn} src="no-photo.svg" className="pictureButton" dataCy="no-picture-button" />
     </div>
   );
 };
