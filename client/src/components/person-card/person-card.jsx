@@ -34,12 +34,13 @@ class PersonCard extends React.Component {
     if (details.data) {
       return (
         <div>
-          <Card onClick={onClick} style={cardStyle} data-cy="person-card">
+          <Card style={cardStyle} data-cy="person-card">
             <CardTitle>{details.data.name}</CardTitle>
             <CardImage
               className="cardImage"
               src={details.data.img_url}
               alt="gradient placeholder"
+              onClick={onClick}
             />
             <CardBlock>
               <Button fullWidth onClick={onMatch}>Select Match</Button>

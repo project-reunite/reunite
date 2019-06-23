@@ -49,10 +49,10 @@ class Deck extends React.Component {
         <GridItem key={personId} data-cy="deck">
           <PersonCard
             id={personId}
+            onMatch={(onMatch)}
             onClick={() => {
               this.reactToCardClick(nextDecisionId);
             }}
-            onMatch={onMatch}
           />
         </GridItem>,
       );
@@ -77,7 +77,6 @@ class Deck extends React.Component {
 Deck.defaultProps = {
   onFailure: () => console.log('onFailure prop not found'),
   onMatch: () => console.log('onMatch prop not found'),
-
 };
 
 Deck.propTypes = {
