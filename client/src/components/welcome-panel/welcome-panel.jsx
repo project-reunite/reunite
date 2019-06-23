@@ -6,7 +6,7 @@ import Grid, { GridItem } from 'mineral-ui/Grid';
 const WelcomePanel = (props) => {
   const { startSearch, moreInfo } = props;
   return (
-    <div className="welcomePanel">
+    <div className="welcomePanel" data-cy="welcome-panel">
       <Grid>
         <GridItem>
           <WelcomeButton onClick={startSearch} src="play.svg" className="playButton" dataCy="play-button" />

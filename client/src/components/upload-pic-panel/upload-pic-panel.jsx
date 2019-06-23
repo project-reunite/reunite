@@ -7,7 +7,7 @@ import Grid, { GridItem } from 'mineral-ui/Grid';
 const UploadPicPanel = (props) => {
   const { moveOn } = props;
   return (
-    <div className="uploadPicPanel">
+    <div className="uploadPicPanel" data-cy="upload-pic-panel">
       <Grid>
         <GridItem>
           <PictureButton onClick={moveOn} src="photo.svg" className="pictureButton" dataCy="picture-button" />
