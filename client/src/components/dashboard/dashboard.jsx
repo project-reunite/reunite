@@ -9,7 +9,7 @@ import ages from '../../utils/ages';
 import UploadPicPanel from '../upload-pic-panel';
 import SelectionCard from '../selection-card';
 import WelcomePanel from '../welcome-panel';
-import RestartScreen from '../restart-screen';
+import RestartPanel from '../restart-panel';
 import MatchCard from '../match-card';
 import Deck from '../deck';
 import Header from '../header';
@@ -115,7 +115,7 @@ class Dashboard extends React.Component {
         );
         break;
       case appStatus.FAILURE:
-        content = <RestartScreen restart={() => this.setState({ appState: appStatus.WELCOME })} />;
+        content = <RestartPanel restart={() => this.setState({ appState: appStatus.WELCOME })} />;
         break;
       case appStatus.MATCH_FOUND:
         content = <MatchCard restart={() => this.setState({ appState: appStatus.WELCOME })} />;
