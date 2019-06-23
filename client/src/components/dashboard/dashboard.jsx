@@ -5,6 +5,7 @@ import Grid, { GridItem } from 'mineral-ui/Grid';
 import appStatus from '../../utils/appStatus';
 import genders from '../../utils/genders';
 import ages from '../../utils/ages';
+import apiRequests from '../../utils/apiRequests.js';
 
 import UploadPicPanel from '../upload-pic-panel';
 import SelectionCard from '../selection-card';
@@ -26,7 +27,13 @@ const genderUrls = {
   Female: 'woman-icon-red.svg',
 };
 
-const gridStyle = { padding: '30px' };
+const getAgeQueryString = (age) => {
+  if (age === ages.BABY) return 'minAge=0&maxAge=4';
+  if (age === ages.CHILD) return 'minAge=5&maxAge=18';
+  if (age === ages.ADULT) return 'minAge=19&maxAge=60';
+  if (age === ages.ELDERLY) return 'minAge=61&maxAge=100';
+  return '';
+};
 
 class Dashboard extends React.Component {
   constructor() {
@@ -35,13 +42,33 @@ class Dashboard extends React.Component {
       appState: appStatus.WELCOME,
       gender: null,
       age: null,
-      treeDetails: null,
+      initialDecisionId: null,
     };
+  }
+
+  componentDidUpdate = async () => {
+    const { appState } = this.state;
+    if (appState === appStatus.SUBMIT_CHOICES) {
+      const response = await this.submitFilters();
+      this.setState({
+        initialDecisionId: response.data.docs[0].initialDecision_id,
+        appState: appStatus.PIC_COMPARISON,
+      });
+    }
+  }
+
+  submitFilters = async () => {
+    const { gender, age } = this.state;
+    const ageQuery = getAgeQueryString(age);
+    const queryString = `gender=${gender}&${ageQuery}`;
+    const response = await apiRequests.getTree(queryString);
+    return response;
   }
 
   getGenderSelectionCards = () => {
     const genderList = Object.values(genders);
     const items = [];
+    const gridStyle = { padding: '30px' };
     for (let i = 0; i < genderList.length; i += 1) {
       const props = {
         setSelection: this.setGender,
@@ -61,6 +88,7 @@ class Dashboard extends React.Component {
   getAgeSelectionCards = () => {
     const ageList = Object.values(ages);
     const items = [];
+    const gridStyle = { padding: '30px' };
     for (let i = 0; i < ageList.length; i += 1) {
       const props = {
         setSelection: this.setAge,
@@ -78,7 +106,7 @@ class Dashboard extends React.Component {
   }
 
   getMainPanel = () => {
-    const { appState, treeDetails } = this.state;
+    const { appState, initialDecisionId } = this.state;
     let content;
     switch (appState) {
       case appStatus.WELCOME:
@@ -103,12 +131,11 @@ class Dashboard extends React.Component {
         content = this.getAgeSelectionCards();
         break;
       case appStatus.SUBMIT_CHOICES:
-        this.submitChoices();
         break;
       case appStatus.PIC_COMPARISON:
         content = (
           <Deck
-            startingDecisionID={treeDetails}
+            startingDecisionID={initialDecisionId}
             onFailure={() => this.setState({ appState: appStatus.FAILURE })}
             onMatch={() => this.setState({ appState: appStatus.MATCH_FOUND })}
           />
@@ -139,25 +166,6 @@ class Dashboard extends React.Component {
       age,
       appState: appStatus.SUBMIT_CHOICES,
     });
-  }
-
-  getAgeQueryString = () => {
-    const { age } = this.state;
-    if (age === ages.BABY) return 'minAge=0&maxAge=4';
-    if (age === ages.CHILD) return 'minAge=5&maxAge=18';
-    if (age === ages.ADULT) return 'minAge=19&maxAge=60';
-    if (age === ages.ELDERLY) return 'minAge=61&maxAge=100';
-    return '';
-  }
-
-  submitChoices = () => {
-    const { gender } = this.state;
-    const ageQuery = this.getAgeQueryString();
-    axios.get(`http://localhost:9100/api/v1/trees?gender=${gender}&${ageQuery}`)
-      .then(response => this.setState({
-        treeDetails: response.data.docs[0].initialDecision_id,
-        appState: appStatus.PIC_COMPARISON,
-      }));
   }
 
   render = () => {

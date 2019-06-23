@@ -24,7 +24,7 @@ const mockedDecision = {
 
 describe('<Deck />', () => {
   beforeAll(() => {
-    apiRequests.getPerson = jest.fn().mockImplementation(() => Promise.resolve({
+    apiRequests.getChoices = jest.fn().mockImplementation(() => Promise.resolve({
       mockedDecision,
     }));
   });

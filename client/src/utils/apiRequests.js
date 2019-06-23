@@ -20,7 +20,18 @@ const getChoices = async (decisionId) => {
   }
 };
 
+const getTree = async (queryString) => {
+  try {
+    const response = await axios.get(`http://localhost:9100/api/v1/trees?${queryString}`);
+    return response;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
 export default {
   getPerson,
   getChoices,
+  getTree,
 };
