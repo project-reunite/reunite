@@ -156,6 +156,7 @@ class Dashboard extends React.Component {
     switch (appState) {
       case appStatus.WELCOME:
         content = this.getWelcomePanel();
+        // content = this.getDeck();
         break;
       case appStatus.UPLOAD_PIC:
         content = this.getUploadPicPanel();
@@ -188,7 +189,7 @@ class Dashboard extends React.Component {
   render = () => {
     const deckComponent = this.getMainPanel();
     return (
-      <div>
+      <div className>
         <Header />
         {deckComponent}
       </div>

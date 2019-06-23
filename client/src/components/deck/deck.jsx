@@ -64,12 +64,15 @@ class Deck extends React.Component {
     const gridStyle = { padding: '30px' };
     const { choices } = this.state;
     return (
-      <Grid
-        gutterWidth="lg"
-        style={gridStyle}
-      >
-        {this.renderChildren(choices)}
-      </Grid>
+      <div className="deck">
+        <Grid
+          gutterWidth="lg"
+          containerSpacing={10}
+          style={gridStyle}
+        >
+          {this.renderChildren(choices)}
+        </Grid>
+      </div>
     );
   }
 }

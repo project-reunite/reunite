@@ -4,10 +4,20 @@ import PropTypes from 'prop-types';
 import './person-card.scss';
 
 import Card, {
-  CardImage, CardTitle, CardBlock,
+  CardImage, CardBlock,
 } from 'mineral-ui/Card';
 import Button from 'mineral-ui/Button';
 import apiRequests from '../../utils/apiRequests';
+
+const cardStyle = {
+  borderRadius: '20px',
+};
+
+const buttonStyle = {
+  color: 'white',
+  backgroundColor: '#0062ff',
+  backgroundColor_hover: '#054ada',
+};
 
 class PersonCard extends React.Component {
   constructor(props) {
@@ -30,12 +40,10 @@ class PersonCard extends React.Component {
   render = () => {
     const { details } = this.state;
     const { onClick, onMatch } = this.props;
-    const cardStyle = { borderRadius: '20px' };
     if (details.data) {
       return (
         <div>
           <Card style={cardStyle} data-cy="person-card">
-            <CardTitle>{details.data.name}</CardTitle>
             <CardImage
               className="cardImage"
               src={details.data.img_url}
@@ -43,7 +51,7 @@ class PersonCard extends React.Component {
               onClick={onClick}
             />
             <CardBlock>
-              <Button fullWidth onClick={onMatch}>Select Match</Button>
+              <Button fullWidth style={buttonStyle} src="play.svg" onClick={onMatch}>Select Match</Button>
             </CardBlock>
           </Card>
         </div>

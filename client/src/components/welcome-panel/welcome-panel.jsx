@@ -1,13 +1,22 @@
 import React from 'react';
 import './welcome-panel.scss';
 import PropTypes from 'prop-types';
+import Grid, { GridItem } from 'mineral-ui/Grid';
 
 const WelcomePanel = (props) => {
   const { startSearch, moreInfo } = props;
   return (
-    <div data-cy="welcome-panel">
-      <WelcomeButton onClick={startSearch} src="play.svg" className="playButton" dataCy="play-button" />
-      <WelcomeButton onClick={moreInfo} src="question-mark.svg" className="infoButton" dataCy="info-button" />
+    <div className="welcomePanel">
+      <Grid>
+        <GridItem>
+          <WelcomeButton onClick={startSearch} src="play.svg" className="playButton" dataCy="play-button" />
+          <h1> Start </h1>
+        </GridItem>
+        <GridItem>
+          <WelcomeButton onClick={moreInfo} src="question-mark.svg" className="infoButton" dataCy="info-button" />
+          <h1> More Info </h1>
+        </GridItem>
+      </Grid>
     </div>
   );
 };

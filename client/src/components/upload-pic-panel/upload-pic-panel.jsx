@@ -2,13 +2,22 @@ import React from 'react';
 import './upload-pic-panel.scss';
 
 import PropTypes from 'prop-types';
+import Grid, { GridItem } from 'mineral-ui/Grid';
 
 const UploadPicPanel = (props) => {
   const { moveOn } = props;
   return (
-    <div data-cy="upload-pic-panel">
-      <PictureButton onClick={moveOn} src="photo.svg" className="pictureButton" dataCy="picture-button" />
-      <PictureButton onClick={moveOn} src="no-photo.svg" className="pictureButton" dataCy="no-picture-button" />
+    <div className="uploadPicPanel">
+      <Grid>
+        <GridItem>
+          <PictureButton onClick={moveOn} src="photo.svg" className="pictureButton" dataCy="picture-button" />
+          <h1>I have a photo</h1>
+        </GridItem>
+        <GridItem>
+          <PictureButton onClick={moveOn} src="no-photo.svg" className="pictureButton" dataCy="no-picture-button" />
+          <h1>I don&apos;t have a photo</h1>
+        </GridItem>
+      </Grid>
     </div>
   );
 };
