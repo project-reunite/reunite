@@ -1,11 +1,10 @@
 import React from 'react';
-import axios from 'axios';
 
 import Grid, { GridItem } from 'mineral-ui/Grid';
 import appStatus from '../../utils/appStatus';
 import genders from '../../utils/genders';
 import ages from '../../utils/ages';
-import apiRequests from '../../utils/apiRequests.js';
+import apiRequests from '../../utils/apiRequests';
 
 import UploadPicPanel from '../upload-pic-panel';
 import SelectionCard from '../selection-card';
@@ -65,6 +64,20 @@ class Dashboard extends React.Component {
     return response;
   }
 
+  setGender = (gender) => {
+    this.setState({
+      gender,
+      appState: appStatus.SELECT_AGES,
+    });
+  }
+
+  setAge = (age) => {
+    this.setState({
+      age,
+      appState: appStatus.SUBMIT_CHOICES,
+    });
+  }
+
   getGenderSelectionCards = () => {
     const genderList = Object.values(genders);
     const items = [];
@@ -105,24 +118,47 @@ class Dashboard extends React.Component {
     return <Grid gutterWidth="lg" style={gridStyle}>{items}</Grid>;
   }
 
+  getWelcomePanel = () => (
+    <WelcomePanel
+      startSearch={() => this.setState({ appState: appStatus.UPLOAD_PIC })}
+    />
+  )
+
+  getUploadPicPanel = () => (
+    <UploadPicPanel
+      UploadPicPanel={this.uploadPicture}
+      moveOn={() => this.setState({ appState: appStatus.SELECT_GENDER })}
+    />
+  )
+
+  getDeck = () => {
+    const { initialDecisionId } = this.state;
+    return (
+      <Deck
+        startingDecisionID={initialDecisionId}
+        onFailure={() => this.setState({ appState: appStatus.FAILURE })}
+        onMatch={() => this.setState({ appState: appStatus.MATCH_FOUND })}
+      />
+    );
+  }
+
+  getRestartPanel = () => (
+    <RestartPanel restart={() => this.setState({ appState: appStatus.WELCOME })} />
+  )
+
+  getMatchCard = () => (
+    <MatchCard restart={() => this.setState({ appState: appStatus.WELCOME })} />
+  )
+
   getMainPanel = () => {
-    const { appState, initialDecisionId } = this.state;
+    const { appState } = this.state;
     let content;
     switch (appState) {
       case appStatus.WELCOME:
-        content = (
-          <WelcomePanel
-            startSearch={() => this.setState({ appState: appStatus.UPLOAD_PIC })}
-          />
-        );
+        content = this.getWelcomePanel();
         break;
       case appStatus.UPLOAD_PIC:
-        content = (
-          <UploadPicPanel
-            UploadPicPanel={this.uploadPicture}
-            moveOn={() => this.setState({ appState: appStatus.SELECT_GENDER })}
-          />
-        );
+        content = this.getUploadPicPanel();
         break;
       case appStatus.SELECT_GENDER:
         content = this.getGenderSelectionCards();
@@ -131,41 +167,22 @@ class Dashboard extends React.Component {
         content = this.getAgeSelectionCards();
         break;
       case appStatus.SUBMIT_CHOICES:
+      // ComponentDidMount makes async call to submit choices
         break;
       case appStatus.PIC_COMPARISON:
-        content = (
-          <Deck
-            startingDecisionID={initialDecisionId}
-            onFailure={() => this.setState({ appState: appStatus.FAILURE })}
-            onMatch={() => this.setState({ appState: appStatus.MATCH_FOUND })}
-          />
-        );
+        content = this.getDeck();
         break;
       case appStatus.FAILURE:
-        content = <RestartPanel restart={() => this.setState({ appState: appStatus.WELCOME })} />;
+        content = this.getRestartPanel();
         break;
       case appStatus.MATCH_FOUND:
-        content = <MatchCard restart={() => this.setState({ appState: appStatus.WELCOME })} />;
+        content = this.getMatchCard();
         break;
       default:
         content = <Deck />;
         break;
     }
     return content;
-  }
-
-  setGender = (gender) => {
-    this.setState({
-      gender,
-      appState: appStatus.SELECT_AGES,
-    });
-  }
-
-  setAge = (age) => {
-    this.setState({
-      age,
-      appState: appStatus.SUBMIT_CHOICES,
-    });
   }
 
   render = () => {
