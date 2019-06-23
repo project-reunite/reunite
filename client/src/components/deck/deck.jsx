@@ -1,5 +1,6 @@
 import React from 'react';
-import Grid, { GridItem } from 'mineral-ui/Grid';
+import './deck.scss';
+import Flex, { FlexItem } from 'mineral-ui/Flex';
 import PropTypes from 'prop-types';
 
 import PersonCard from '../person-card';
@@ -46,7 +47,7 @@ class Deck extends React.Component {
       const personId = choice.persons_id;
       const nextDecisionId = choice.next_decision_id;
       children.push(
-        <GridItem key={personId} data-cy="deck">
+        <FlexItem key={personId} data-cy="deck">
           <PersonCard
             id={personId}
             onMatch={(onMatch)}
@@ -54,24 +55,23 @@ class Deck extends React.Component {
               this.reactToCardClick(nextDecisionId);
             }}
           />
-        </GridItem>,
+        </FlexItem>,
       );
     });
     return children;
   }
 
   render() {
-    const gridStyle = { padding: '30px' };
     const { choices } = this.state;
     return (
       <div className="deck">
-        <Grid
-          gutterWidth="lg"
-          containerSpacing={10}
-          style={gridStyle}
+        <Flex
+          wrap
+          justifyContent="evenly"
+          alignItems="center"
         >
           {this.renderChildren(choices)}
-        </Grid>
+        </Flex>
       </div>
     );
   }

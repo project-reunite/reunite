@@ -11,6 +11,7 @@ import apiRequests from '../../utils/apiRequests';
 
 const cardStyle = {
   borderRadius: '20px',
+  boxShadow: true,
 };
 
 const buttonStyle = {
@@ -42,8 +43,8 @@ class PersonCard extends React.Component {
     const { onClick, onMatch } = this.props;
     if (details.data) {
       return (
-        <div>
-          <Card style={cardStyle} data-cy="person-card">
+        <div className="cardContainer">
+          <Card style={cardStyle} className="personCard" data-cy="person-card">
             <CardImage
               className="cardImage"
               src={details.data.img_url}
@@ -64,7 +65,6 @@ class PersonCard extends React.Component {
 PersonCard.defaultProps = {
   onClick: () => console.log('onClick prop not found'),
   onMatch: () => console.log('onMatch prop not found'),
-
 };
 
 PersonCard.propTypes = {

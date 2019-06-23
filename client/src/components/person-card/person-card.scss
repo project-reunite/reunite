@@ -1,12 +1,17 @@
 @import '../../app/app.scss';
 
 .cardImage {
-    min-height: 100%;
-    min-width: 100%;
+   min-height: 100%;
+   min-width: 100%;
     padding: 10px;
+    border-radius: 4px;
+    object-fit: contain;
+}
+
+.cardContainer {
+  padding: 10px;
 }
 
 .personCard {
-  text-align: center;
-  border-radius: '20px';
+  border-radius: 20px;
 }
