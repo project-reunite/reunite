@@ -1,5 +1,6 @@
 import React from 'react';
 import Card, { CardImage, CardTitle } from 'mineral-ui/Card';
+import PropTypes from 'prop-types';
 
 const SelectionCard = (props) => {
   const {
@@ -25,3 +26,17 @@ const SelectionCard = (props) => {
   );
 };
 export default SelectionCard;
+
+SelectionCard.defaultProps = {
+  setSelection: () => console.log('setSelection prop not found'),
+  selection: '',
+  urls: [],
+  cyTag: '',
+};
+
+SelectionCard.propTypes = {
+  setSelection: PropTypes.func,
+  selection: PropTypes.string,
+  urls: PropTypes.arrayOf(PropTypes.string),
+  cyTag: PropTypes.string,
+};

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './restart-screen.scss';
 import Button from 'mineral-ui/Button';
 
@@ -10,6 +12,15 @@ const RestartScreen = (props) => {
       <Button onClick={restart}>Restart</Button>
     </div>
   );
+};
+
+RestartScreen.defaultProps = {
+  restart: () => console.log('restart prop not found'),
+
+};
+
+RestartScreen.propTypes = {
+  restart: PropTypes.func,
 };
 
 export default RestartScreen;

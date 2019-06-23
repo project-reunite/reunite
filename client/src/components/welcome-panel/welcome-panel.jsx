@@ -1,5 +1,6 @@
 import React from 'react';
 import './welcome-panel.scss';
+import PropTypes from 'prop-types';
 
 const WelcomePanel = (props) => {
   const { startSearch, moreInfo } = props;
@@ -20,6 +21,30 @@ const WelcomeButton = (props) => {
       <img src={src} alt="" className={className} />
     </div>
   );
+};
+
+WelcomePanel.defaultProps = {
+  startSearch: () => console.log('startSearch prop not found'),
+  moreInfo: () => console.log('moreInfo prop not found'),
+};
+
+WelcomePanel.propTypes = {
+  startSearch: PropTypes.func,
+  moreInfo: PropTypes.func,
+};
+
+WelcomeButton.defaultProps = {
+  onClick: () => console.log('restart prop not found'),
+  src: '',
+  className: '',
+  dataCy: '',
+};
+
+WelcomeButton.propTypes = {
+  onClick: PropTypes.func,
+  src: PropTypes.string,
+  className: PropTypes.string,
+  dataCy: PropTypes.string,
 };
 
 export default WelcomePanel;

@@ -1,6 +1,8 @@
 import React from 'react';
 import './upload-pic-panel.scss';
 
+import PropTypes from 'prop-types';
+
 const UploadPicPanel = (props) => {
   const { uploadPic, moveOn } = props;
   return (

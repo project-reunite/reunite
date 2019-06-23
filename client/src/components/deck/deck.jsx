@@ -1,5 +1,7 @@
 import React from 'react';
 import Grid, { GridItem } from 'mineral-ui/Grid';
+import PropTypes from 'prop-types';
+
 import axios from 'axios';
 import PersonCard from '../person-card';
 
@@ -68,5 +70,17 @@ class Deck extends React.Component {
     );
   }
 }
+
+Deck.defaultProps = {
+  onFailure: () => console.log('onFailure prop not found'),
+  onMatch: () => console.log('onMatch prop not found'),
+
+};
+
+Deck.propTypes = {
+  onFailure: PropTypes.func,
+  onMatch: PropTypes.func,
+  startingDecisionID: PropTypes.string.isRequired,
+};
 
 export default Deck;
