@@ -1,6 +1,6 @@
 module.exports = {
-  BABY: 'BABY',
-  CHILD: 'CHILD',
+  // BABY: 'BABY',
+  // CHILD: 'CHILD',
   ADULT: 'ADULT',
   ELDERLY: 'ELDERLY',
 };
