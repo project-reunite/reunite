@@ -2,10 +2,15 @@
 
 .header-container {
   background-color: #171717;
-  padding: 2px;
+  padding: 1px;
 }
 
-h2 {    
-  color: white;;
-  padding: 3px;
+h2 {   
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  h2 {
+    font-size: 18px; 
+  }
 }
