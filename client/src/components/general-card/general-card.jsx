@@ -6,7 +6,7 @@ const GeneralCard = (props) => {
   const { title, img, onClick } = props;
   const cardStyle = { borderRadius: '20px' };
   return (
-    <Card onClick={onClick} className="optionCard" style={cardStyle}>
+    <Card onClick={onClick} className="generalCard" style={cardStyle}>
       <CardTitle className="cardTitle">{title}</CardTitle>
       <CardImage
         className="cardImage"
