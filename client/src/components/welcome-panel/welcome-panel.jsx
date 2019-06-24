@@ -1,22 +1,26 @@
 import React from 'react';
 import './welcome-panel.scss';
 import PropTypes from 'prop-types';
-import Grid, { GridItem } from 'mineral-ui/Grid';
+import Flex, { FlexItem } from 'mineral-ui/Flex';
 
 const WelcomePanel = (props) => {
   const { startSearch, moreInfo } = props;
   return (
     <div className="welcomePanel" data-cy="welcome-panel">
-      <Grid>
-        <GridItem>
+      <Flex
+        wrap
+        justifyContent="evenly"
+        alignItems="center"
+      >
+        <FlexItem className="startButton">
           <WelcomeButton onClick={startSearch} src="play.svg" className="playButton" dataCy="play-button" />
           <h1> Start </h1>
-        </GridItem>
-        <GridItem>
+        </FlexItem>
+        <FlexItem className="startButton">
           <WelcomeButton onClick={moreInfo} src="question-mark.svg" className="infoButton" dataCy="info-button" />
           <h1> More Info </h1>
-        </GridItem>
-      </Grid>
+        </FlexItem>
+      </Flex>
     </div>
   );
 };

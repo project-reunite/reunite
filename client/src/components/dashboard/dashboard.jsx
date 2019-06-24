@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Grid, { GridItem } from 'mineral-ui/Grid';
+import Flex, { FlexItem } from 'mineral-ui/Flex';
 import appStatus from '../../utils/appStatus';
 import genders from '../../utils/genders';
 import ages from '../../utils/ages';
@@ -90,18 +91,25 @@ class Dashboard extends React.Component {
         cyTag: `gender-selection-card-${genderList[i]}`,
       };
       items.push(
-        <GridItem>
+        <FlexItem>
           <SelectionCard {...props} />
-        </GridItem>,
+        </FlexItem>,
       );
     }
-    return <Grid gutterWidth="lg" style={gridStyle}>{items}</Grid>;
+    return (
+      <Flex
+        wrap
+        justifyContent="evenly"
+        alignItems="center"
+      >
+        {items}
+      </Flex>
+    );
   }
 
   getAgeSelectionCards = () => {
     const ageList = Object.values(ages);
     const items = [];
-    const gridStyle = { padding: '30px' };
     for (let i = 0; i < ageList.length; i += 1) {
       const props = {
         setSelection: this.setAge,
@@ -110,12 +118,20 @@ class Dashboard extends React.Component {
         cyTag: `age-selection-card-${ageList[i]}`,
       };
       items.push(
-        <GridItem>
+        <FlexItem>
           <SelectionCard {...props} />
-        </GridItem>,
+        </FlexItem>,
       );
     }
-    return <Grid gutterWidth="lg" style={gridStyle}>{items}</Grid>;
+    return (
+      <Flex
+        wrap
+        justifyContent="evenly"
+        alignItems="center"
+      >
+        {items}
+      </Flex>
+    );
   }
 
   getWelcomePanel = () => (

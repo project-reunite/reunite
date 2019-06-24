@@ -1,24 +1,24 @@
 @import '../../app/app.scss';
 
 .welcomePanel {
+  // text-align: center;
+}
+
+.startButton {
   text-align: center;
-  padding: 20px;
 }
 
 .playButton {
     padding: 5px;
-    width: 50%;
-    display: block;
+    width: 200%;
     margin-left: auto;
     margin-right: auto;
-    border: 3px solid black;
 }
 
 .infoButton {
   padding: 5px;
-  width: 50%;
-  display: block;
+  width: 200%;
   margin-left: auto;
   margin-right: auto;
-  border:3px solid black;
 }
+
