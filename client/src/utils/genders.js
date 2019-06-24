@@ -1,4 +1,4 @@
 module.exports = {
-  MALE: 'MALE',
-  FEMALE: 'FEMALE',
+  MALE: 'Male',
+  FEMALE: 'Female',
 };

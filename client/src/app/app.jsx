@@ -5,10 +5,7 @@ import './app.scss';
 
 const App = () => (
   <ThemeProvider>
-    <Dashboard css={{
-      padding: '300px',
-    }}
-    />
+    <Dashboard />
   </ThemeProvider>
 );
 

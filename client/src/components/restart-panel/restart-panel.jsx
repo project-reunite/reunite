@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './match-card.scss';
 
+import './restart-panel.scss';
 import Button from 'mineral-ui/Button';
 
 const buttonStyle = {
@@ -10,26 +10,22 @@ const buttonStyle = {
   backgroundColor_hover: '#054ada',
 };
 
-const MatchCard = (props) => {
+const RestartPanel = (props) => {
   const { restart } = props;
   return (
-    <div className="matchCard" data-cy="match-card">
-      <Firework />
-      <h1 className="matchFound"> MATCH! Please find an aid worker as soon as possible</h1>
+    <div className="restartPanel">
+      <h1 className="restartMessage"> No Match found, restart to try again </h1>
       <Button style={buttonStyle} onClick={restart}>Restart</Button>
     </div>
   );
 };
 
-const Firework = () => <img src="firework.svg" alt="" className="firework" />;
-
-MatchCard.defaultProps = {
+RestartPanel.defaultProps = {
   restart: () => console.log('restart prop not found'),
 };
 
-MatchCard.propTypes = {
+RestartPanel.propTypes = {
   restart: PropTypes.func,
 };
 
-
-export default MatchCard;
+export default RestartPanel;

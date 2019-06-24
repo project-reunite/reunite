@@ -18,6 +18,10 @@ Cypress.Commands.add('clickFirstCard', (id) => {
   cy.getElementByDataCy(id).first().click();
 });
 
+Cypress.Commands.add('clickThirdCard', (id) => {
+  cy.getElementByDataCy(id).third().click();
+});
+
 Cypress.Commands.add('checkNumberOfCardsIs', (id, expectedNumber) => {
   cy.getElementByDataCy(id)
     .should(($cards) => {

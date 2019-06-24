@@ -1,35 +1,76 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import './person-card.scss';
 
-import Card, { CardBlock, CardImage, CardTitle } from 'mineral-ui/Card';
+import Card, {
+  CardImage, CardBlock,
+} from 'mineral-ui/Card';
+import Button from 'mineral-ui/Button';
+import apiRequests from '../../utils/apiRequests';
 
-const PersonCard = ({
-  name, age, gender, img, onClick,
-}) => {
-  const cardStyle = { borderRadius: '20px' };
-  return (
-    <Card onClick={onClick} style={cardStyle} data-cy="person-card">
-      <CardTitle>{name}</CardTitle>
-      <div>
-        <CardImage
-          className="cardImage"
-          src={img}
-          alt="gradient placeholder"
-        />
-      </div>
-      <CardBlock>{age}</CardBlock>
-      <CardBlock>{gender}</CardBlock>
-    </Card>
-  );
+const cardStyle = {
+  borderRadius: '20px',
+  boxShadow: true,
+};
+
+const buttonStyle = {
+  color: 'black',
+  backgroundColor: 'white',
+  backgroundColor_hover: '#054ada',
+};
+
+class PersonCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      details: [],
+    };
+  }
+
+  componentDidMount = async () => {
+    const { id } = this.props;
+    const details = await this.getDetails(id);
+    this.setState({
+      details,
+    });
+  }
+
+  getDetails = async personId => apiRequests.getPerson(personId);
+
+  render = () => {
+    const { details } = this.state;
+    const { onClick, onMatch } = this.props;
+    if (details.data) {
+      return (
+        <div className="cardContainer">
+          <Card style={cardStyle} className="personCard" data-cy="person-card">
+            <CardImage
+              className="cardImage"
+              src={details.data.img_url}
+              alt="gradient placeholder"
+              onClick={onClick}
+            />
+            <CardBlock>
+              <Button fullWidth style={buttonStyle} src="play.svg" onClick={onMatch}>Select Match</Button>
+            </CardBlock>
+          </Card>
+        </div>
+      );
+    }
+    return null;
+  }
+}
+
+PersonCard.defaultProps = {
+  onClick: () => console.log('onClick prop not found'),
+  onMatch: () => console.log('onMatch prop not found'),
+};
+
+PersonCard.propTypes = {
+  onClick: PropTypes.func,
+  onMatch: PropTypes.func,
+  id: PropTypes.string.isRequired,
 };
 
 export default PersonCard;
-
-PersonCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  age: PropTypes.string.isRequired,
-  gender: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-};

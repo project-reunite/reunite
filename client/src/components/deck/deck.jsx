@@ -1,76 +1,91 @@
 import React from 'react';
-import Grid, { GridItem } from 'mineral-ui/Grid';
-import axios from 'axios';
+import './deck.scss';
+import Flex, { FlexItem } from 'mineral-ui/Flex';
+import PropTypes from 'prop-types';
+
 import PersonCard from '../person-card';
-import MatchCard from '../match-card';
+import apiRequests from '../../utils/apiRequests';
 
 class Deck extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      deckIndex: 0,
-      cardInfo: [],
+      choices: [],
+      decisionId: null,
     };
   }
 
-  componentDidMount = () => {
-    const { deckIndex } = this.state;
-    this.setCardInfo(deckIndex);
+  componentDidMount = async () => {
+    const { startingDecisionID } = this.props;
+    const response = await this.getDeckChoices(startingDecisionID);
+    this.setState({ choices: response.data.choices });
   }
 
-  // TODO: Update the deckIndex in here from the API response
-  setCardInfo = (deckIndex) => {
-    try {
-      axios.get(`http://localhost:9100/api/v1/persons/pairs/${deckIndex}`)
-        .then(response => this.setState({ cardInfo: response.data }));
-    } catch (error) {
-      throw new Error(error);
+  componentDidUpdate = async (prevProps, prevState) => {
+    const { decisionId } = this.state;
+    if (prevState && prevState.decisionId !== decisionId) {
+      const response = await this.getDeckChoices(decisionId);
+      this.setState({ choices: response.data.choices });
     }
   }
 
-  reactToCardClick = () => {
-    const { deckIndex } = this.state;
-    const newDeckIndex = deckIndex + 1;
-    this.setState({ deckIndex: newDeckIndex });
-    this.setCardInfo(newDeckIndex);
+  getDeckChoices = async decisionId => apiRequests.getChoices(decisionId)
+
+  reactToCardClick = (nextDecisionId) => {
+    const { onFailure } = this.props;
+    if (nextDecisionId) {
+      this.setState({ decisionId: nextDecisionId });
+    } else {
+      onFailure();
+    }
   }
 
-  renderChildren = (data) => {
+  renderChildren = (choices) => {
+    const { onMatch } = this.props;
     const children = [];
-    const { deckIndex } = this.state;
-    data.forEach((person) => {
+    choices.forEach((choice) => {
+      const personId = choice.persons_id;
+      const nextDecisionId = choice.next_decision_id;
       children.push(
-        <GridItem key={person.name} data-cy={`deck-${deckIndex}`}>
+        <FlexItem key={personId} data-cy="deck">
           <PersonCard
-            name={person.name}
-            age={person.age}
-            gender={person.gender}
-            img={person.img_url}
+            id={personId}
+            onMatch={(onMatch)}
             onClick={() => {
-              this.reactToCardClick();
+              this.reactToCardClick(nextDecisionId);
             }}
           />
-        </GridItem>,
+        </FlexItem>,
       );
     });
     return children;
   }
 
   render() {
-    const gridStyle = { padding: '30px' };
-    const { deckIndex, cardInfo } = this.state;
-    if (deckIndex < 8) {
-      return (
-        <Grid
-          gutterWidth="lg"
-          style={gridStyle}
+    const { choices } = this.state;
+    return (
+      <div className="deck">
+        <Flex
+          wrap
+          justifyContent="evenly"
+          alignItems="center"
         >
-          {this.renderChildren(cardInfo)}
-        </Grid>
-      );
-    }
-    return <MatchCard />;
+          {this.renderChildren(choices)}
+        </Flex>
+      </div>
+    );
   }
 }
+
+Deck.defaultProps = {
+  onFailure: () => console.log('onFailure prop not found'),
+  onMatch: () => console.log('onMatch prop not found'),
+};
+
+Deck.propTypes = {
+  onFailure: PropTypes.func,
+  onMatch: PropTypes.func,
+  startingDecisionID: PropTypes.string.isRequired,
+};
 
 export default Deck;

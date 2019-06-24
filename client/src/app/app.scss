@@ -1,5 +1,6 @@
-@import '../../node_modules/carbon-components/scss/globals/scss/vendor/@carbon/elements/scss/themes/theme-maps';
-// Theme refers to carbon theme here https://www.carbondesignsystem.com/guidelines/color/usage
-$carbon--theme: $carbon--theme--g10;
+// @import '../../node_modules/carbon-components/scss/globals/scss/vendor/@carbon/elements/scss/themes/theme-maps';
+// // Theme refers to carbon theme here https://www.carbondesignsystem.com/guidelines/color/usage
+// $carbon--theme: $carbon--theme--g10;
 
-@import 'carbon-components/scss/globals/scss/styles.scss';
+// Removing unless we make this efficient, it was waiting over 10 seconds to compile after any scss change.
+// @import 'carbon-components/scss/globals/scss/styles.scss';
