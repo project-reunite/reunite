@@ -1,15 +1,10 @@
 @import '../../app/app.scss';
 
-.cardImage {
-  width: 400px;
-  height: 400px;
-  object-fit: contain;
-}
-
 .cardContainer {
-  padding: 10px;
+  margin: 10px;
 }
 
 .personCard {
   border-radius: 20px;
+  margin: 10px;
 }

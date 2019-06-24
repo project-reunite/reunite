@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './match-card.scss';
-
 import Button from 'mineral-ui/Button';
+import Card, {
+  CardImage, CardBlock, CardTitle,
+} from 'mineral-ui/Card';
+
+const cardStyle = {
+  borderRadius: '20px',
+  boxShadow: true,
+};
 
 const buttonStyle = {
   color: 'white',
@@ -14,14 +21,20 @@ const MatchCard = (props) => {
   const { restart } = props;
   return (
     <div className="matchCard" data-cy="match-card">
-      <Firework />
-      <h1 className="matchFound"> MATCH! Please find an aid worker as soon as possible</h1>
-      <Button style={buttonStyle} onClick={restart}>Restart</Button>
+      <Card style={cardStyle} data-cy="person-card">
+        <CardTitle className="cardTitle">Match Found!</CardTitle>
+        <CardImage
+          className="cardImage"
+          src="firework.svg"
+          alt="gradient placeholder"
+        />
+        <CardBlock>
+          <Button fullWidth style={buttonStyle} onClick={restart}>Restart</Button>
+        </CardBlock>
+      </Card>
     </div>
   );
 };
-
-const Firework = () => <img src="firework.svg" alt="" className="firework" />;
 
 MatchCard.defaultProps = {
   restart: () => console.log('restart prop not found'),
