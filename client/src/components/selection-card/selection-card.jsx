@@ -13,8 +13,9 @@ const SelectionCard = (props) => {
       onClick={() => setSelection(selection)}
       style={cardStyle}
       data-cy={cyTag}
+      alignItems="center"
     >
-      <CardTitle>{selection}</CardTitle>
+      <CardTitle className="cardTitle">{selection}</CardTitle>
       <div>
         <CardImage
           className="cardImage"

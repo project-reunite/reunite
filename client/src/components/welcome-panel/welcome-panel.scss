@@ -1,24 +1,16 @@
 @import '../../app/app.scss';
 
 .welcomePanel {
-  // text-align: center;
-}
-
-.startButton {
   text-align: center;
+  padding: 20px;
 }
 
-.playButton {
-    padding: 5px;
-    width: 200%;
-    margin-left: auto;
-    margin-right: auto;
+.welcomeButton {
+    margin: 10px;
 }
 
-.infoButton {
-  padding: 5px;
-  width: 200%;
-  margin-left: auto;
-  margin-right: auto;
+.cardTitle {
+  font-size: 40px;
 }
+
 

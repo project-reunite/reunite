@@ -1,6 +1,7 @@
 import React from 'react';
 
-import Grid, { GridItem } from 'mineral-ui/Grid';
+import './dashboard.scss';
+
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 import appStatus from '../../utils/appStatus';
 import genders from '../../utils/genders';
@@ -82,7 +83,6 @@ class Dashboard extends React.Component {
   getGenderSelectionCards = () => {
     const genderList = Object.values(genders);
     const items = [];
-    const gridStyle = { padding: '30px' };
     for (let i = 0; i < genderList.length; i += 1) {
       const props = {
         setSelection: this.setGender,
@@ -97,13 +97,15 @@ class Dashboard extends React.Component {
       );
     }
     return (
-      <Flex
-        wrap
-        justifyContent="evenly"
-        alignItems="center"
-      >
-        {items}
-      </Flex>
+      <div className="selectionPanel">
+        <Flex
+          wrap
+          justifyContent="evenly"
+          alignItems="center"
+        >
+          {items}
+        </Flex>
+      </div>
     );
   }
 
@@ -124,13 +126,15 @@ class Dashboard extends React.Component {
       );
     }
     return (
-      <Flex
-        wrap
-        justifyContent="evenly"
-        alignItems="center"
-      >
-        {items}
-      </Flex>
+      <div className="selectionPanel">
+        <Flex
+          wrap
+          justifyContent="evenly"
+          alignItems="center"
+        >
+          {items}
+        </Flex>
+      </div>
     );
   }
 
