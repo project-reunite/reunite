@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './restart-panel.scss';
 import Button from 'mineral-ui/Button';
 import Card, {
   CardBlock, CardTitle, CardActions,
@@ -21,7 +20,7 @@ const cardStyle = {
 const RestartPanel = (props) => {
   const { restart } = props;
   return (
-    <div className="restartPanel">
+    <div className="cardContainer">
       <Card style={cardStyle} data-cy="restart-card">
         <CardTitle className="cardTitle">No Match Found</CardTitle>
         <CardBlock fontSize="30px">

@@ -4,3 +4,16 @@
 
 // Removing unless we make this efficient, it was waiting over 10 seconds to compile after any scss change.
 // @import 'carbon-components/scss/globals/scss/styles.scss';
+
+.cardContainer {
+  text-align: center;
+  padding: 10px;
+}
+
+.cardTitle {
+  font-size: 40px;
+}
+
+img {
+  
+}

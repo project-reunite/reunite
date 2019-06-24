@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './match-card.scss';
 import Button from 'mineral-ui/Button';
 import Card, {
   CardImage, CardBlock, CardTitle,
@@ -14,13 +13,12 @@ const cardStyle = {
 const buttonStyle = {
   color: 'white',
   backgroundColor: '#0062ff',
-  backgroundColor_hover: '#054ada',
 };
 
 const MatchCard = (props) => {
   const { restart } = props;
   return (
-    <div className="matchCard" data-cy="match-card">
+    <div className="cardContainer" data-cy="match-card">
       <Card style={cardStyle} data-cy="person-card">
         <CardTitle className="cardTitle">Match Found!</CardTitle>
         <CardImage

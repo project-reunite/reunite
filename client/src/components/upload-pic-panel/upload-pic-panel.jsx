@@ -1,5 +1,4 @@
 import React from 'react';
-import './upload-pic-panel.scss';
 
 import PropTypes from 'prop-types';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
@@ -8,7 +7,7 @@ import GeneralCard from '../general-card';
 const UploadPicPanel = (props) => {
   const { moveOn } = props;
   return (
-    <div className="uploadPicPanel" data-cy="upload-pic-panel">
+    <div className="cardContainer" data-cy="upload-pic-panel">
       <Flex
         wrap
         justifyContent="evenly"
