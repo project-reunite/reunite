@@ -16,6 +16,8 @@ import MatchCard from '../match-card';
 import Deck from '../deck';
 import Header from '../header';
 
+const { flexStyle } = require('../../styles/flex-styles');
+
 const ageUrls = {
   BABY: 'baby.svg',
   CHILD: 'child.svg',
@@ -101,8 +103,7 @@ class Dashboard extends React.Component {
       <div className="selectionPanel">
         <Flex
           wrap
-          justifyContent="evenly"
-          alignItems="center"
+          {...flexStyle}
         >
           {items}
         </Flex>
@@ -131,8 +132,7 @@ class Dashboard extends React.Component {
       <div className="selectionPanel">
         <Flex
           wrap
-          justifyContent="evenly"
-          alignItems="center"
+          {...flexStyle}
         >
           {items}
         </Flex>
@@ -166,8 +166,7 @@ class Dashboard extends React.Component {
 
   getRestartPanel = () => (
     <Flex
-      justifyContent="evenly"
-      alignItems="center"
+      {...flexStyle}
     >
       <RestartPanel restart={() => this.setState({ appState: appStatus.WELCOME })} />
     </Flex>
@@ -175,8 +174,7 @@ class Dashboard extends React.Component {
 
   getMatchCard = () => (
     <Flex
-      justifyContent="evenly"
-      alignItems="center"
+      {...flexStyle}
     >
       <MatchCard restart={() => this.setState({ appState: appStatus.WELCOME })} />
     </Flex>

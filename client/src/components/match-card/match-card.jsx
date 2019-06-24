@@ -1,33 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'mineral-ui/Button';
+import IconRestart from 'mineral-ui-icons/IconRefresh';
 import Card, {
   CardImage, CardBlock, CardTitle,
 } from 'mineral-ui/Card';
 
-const cardStyle = {
-  borderRadius: '20px',
-  boxShadow: true,
-};
 
-const buttonStyle = {
-  color: 'white',
-  backgroundColor: '#0062ff',
-};
+const { cardStyle, cardImageStyle } = require('../../styles/card-styles');
 
 const MatchCard = (props) => {
   const { restart } = props;
+  const icon = <IconRestart />;
   return (
     <div className="cardContainer" data-cy="match-card">
       <Card style={cardStyle} data-cy="person-card">
         <CardTitle className="cardTitle">Match Found!</CardTitle>
         <CardImage
+          style={cardImageStyle}
           className="cardImage"
           src="firework.svg"
           alt="gradient placeholder"
         />
         <CardBlock>
-          <Button fullWidth style={buttonStyle} onClick={restart}>Restart</Button>
+          <Button iconStart={icon} primary onClick={restart}>Restart</Button>
         </CardBlock>
       </Card>
     </div>

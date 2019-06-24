@@ -2,10 +2,16 @@
 
 .generalCard {
   margin: 10px;
+  justify-content: center;
 }
 
 .cardImage {
-  width: 400px;
-  height: 400px;
+  padding: 10px;
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   object-fit: contain;
 }
