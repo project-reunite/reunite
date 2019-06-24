@@ -46,7 +46,7 @@ class PersonCard extends React.Component {
               onClick={onClick}
             />
             <CardActions>
-              <Button iconStart={moreInfoIcon} onClick={onMatch}>More Info</Button>
+              <Button className="cardButton" iconStart={moreInfoIcon}>More Info</Button>
               <Button iconStart={successIcon} onClick={onMatch} primary>Select Match</Button>
             </CardActions>
           </Card>

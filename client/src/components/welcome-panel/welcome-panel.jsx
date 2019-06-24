@@ -18,7 +18,7 @@ const WelcomePanel = (props) => {
           <GeneralCard onClick={startSearch} img="play.svg" title="Start" />
         </FlexItem>
         <FlexItem className="startButton">
-          <GeneralCard onClick={startSearch} img="question-mark.svg" title="More Info" />
+          <GeneralCard onClick img="question-mark.svg" title="More Info" />
         </FlexItem>
       </Flex>
     </div>

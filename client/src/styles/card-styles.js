@@ -10,8 +10,13 @@ const cardImageStyle = {
   borderRadius: '20px',
 };
 
+const cardBlockStyle = {
+  fontSize: '30px',
+};
+
 module.exports = {
   cardStyle,
   cardFooterStyle,
   cardImageStyle,
+  cardBlockStyle,
 };

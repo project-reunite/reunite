@@ -15,7 +15,7 @@ const UploadPicPanel = (props) => {
         {...flexStyle}
       >
         <FlexItem className="startButton" data-cy="picture-button">
-          <GeneralCard onClick={moveOn} title="Photo" img="photo.svg" />
+          <GeneralCard onClick title="Photo" img="photo.svg" />
         </FlexItem>
         <FlexItem className="startButton" data-cy="no-picture-button">
           <GeneralCard onClick={moveOn} title="No Photo" img="no-photo.svg" />

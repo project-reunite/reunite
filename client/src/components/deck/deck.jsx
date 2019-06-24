@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import PersonCard from '../person-card';
 import apiRequests from '../../utils/apiRequests';
 
-const { flexStyle } = require('../../styles/flex-styles');
-
 class Deck extends React.Component {
   constructor(props) {
     super(props);
@@ -41,8 +39,12 @@ class Deck extends React.Component {
     }
   }
 
-  renderChildren = (choices) => {
+  reactToMatch = (personId) => {
     const { onMatch } = this.props;
+    onMatch(personId);
+  }
+
+  renderChildren = (choices) => {
     const children = [];
     choices.forEach((choice) => {
       const personId = choice.persons_id;
@@ -51,10 +53,8 @@ class Deck extends React.Component {
         <FlexItem key={personId} data-cy="deck">
           <PersonCard
             id={personId}
-            onMatch={(onMatch)}
-            onClick={() => {
-              this.reactToCardClick(nextDecisionId);
-            }}
+            onMatch={(() => this.reactToMatch(personId))}
+            onClick={() => this.reactToCardClick(nextDecisionId)}
           />
         </FlexItem>,
       );
@@ -68,7 +68,8 @@ class Deck extends React.Component {
       <div className="cardContainer">
         <Flex
           wrap
-          {...flexStyle}
+          justifyContent="evenly"
+          alignItems="center"
         >
           {this.renderChildren(choices)}
         </Flex>

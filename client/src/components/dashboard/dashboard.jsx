@@ -19,10 +19,10 @@ import Header from '../header';
 const { flexStyle } = require('../../styles/flex-styles');
 
 const ageUrls = {
-  BABY: 'baby.svg',
-  CHILD: 'child.svg',
-  ADULT: 'adult.svg',
-  ELDERLY: 'elderly.svg',
+  Baby: 'baby.svg',
+  Child: 'child.svg',
+  Adult: 'adult.svg',
+  Elderly: 'elderly.svg',
 };
 
 const genderUrls = {
@@ -46,6 +46,7 @@ class Dashboard extends React.Component {
       gender: null,
       age: null,
       initialDecisionId: null,
+      personId: null,
     };
   }
 
@@ -155,11 +156,15 @@ class Dashboard extends React.Component {
 
   getDeck = () => {
     const { initialDecisionId } = this.state;
+    // const initialDecisionId = '63e667f6d8cc11d219851bce64f8da2d';
     return (
       <Deck
         startingDecisionID={initialDecisionId}
         onFailure={() => this.setState({ appState: appStatus.FAILURE })}
-        onMatch={() => this.setState({ appState: appStatus.MATCH_FOUND })}
+        onMatch={id => this.setState({
+          personId: id,
+          appState: appStatus.MATCH_FOUND,
+        })}
       />
     );
   }
@@ -172,13 +177,19 @@ class Dashboard extends React.Component {
     </Flex>
   )
 
-  getMatchCard = () => (
-    <Flex
-      {...flexStyle}
-    >
-      <MatchCard restart={() => this.setState({ appState: appStatus.WELCOME })} />
-    </Flex>
-  )
+  getMatchCard = () => {
+    const { personId } = this.state;
+    return (
+      <Flex
+        {...flexStyle}
+      >
+        <MatchCard
+          restart={() => this.setState({ appState: appStatus.WELCOME })}
+          id={personId}
+        />
+      </Flex>
+    );
+  }
 
   getMainPanel = () => {
     const { appState } = this.state;
