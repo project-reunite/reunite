@@ -165,11 +165,21 @@ class Dashboard extends React.Component {
   }
 
   getRestartPanel = () => (
-    <RestartPanel restart={() => this.setState({ appState: appStatus.WELCOME })} />
+    <Flex
+      justifyContent="evenly"
+      alignItems="center"
+    >
+      <RestartPanel restart={() => this.setState({ appState: appStatus.WELCOME })} />
+    </Flex>
   )
 
   getMatchCard = () => (
-    <MatchCard restart={() => this.setState({ appState: appStatus.WELCOME })} />
+    <Flex
+      justifyContent="evenly"
+      alignItems="center"
+    >
+      <MatchCard restart={() => this.setState({ appState: appStatus.WELCOME })} />
+    </Flex>
   )
 
   getMainPanel = () => {

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './person-card.scss';
-
 import Card, {
   CardImage, CardBlock,
 } from 'mineral-ui/Card';
@@ -15,9 +13,7 @@ const cardStyle = {
 };
 
 const buttonStyle = {
-  color: 'black',
   backgroundColor: 'white',
-  backgroundColor_hover: '#054ada',
 };
 
 class PersonCard extends React.Component {

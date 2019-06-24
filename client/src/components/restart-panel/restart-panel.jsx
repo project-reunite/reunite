@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './restart-panel.scss';
 import Button from 'mineral-ui/Button';
+import Card, {
+  CardBlock, CardTitle, CardActions,
+} from 'mineral-ui/Card';
 
 const buttonStyle = {
   color: 'white',
@@ -10,12 +12,24 @@ const buttonStyle = {
   backgroundColor_hover: '#054ada',
 };
 
+const cardStyle = {
+  borderRadius: '20px',
+  boxShadow: true,
+};
+
 const RestartPanel = (props) => {
   const { restart } = props;
   return (
-    <div className="restartPanel">
-      <h1 className="restartMessage"> No Match found, restart to try again </h1>
-      <Button style={buttonStyle} onClick={restart}>Restart</Button>
+    <div className="cardContainer">
+      <Card style={cardStyle} data-cy="restart-card">
+        <CardTitle className="cardTitle">No Match Found</CardTitle>
+        <CardBlock fontSize="30px">
+          No match was found, restart to try again
+        </CardBlock>
+        <CardActions>
+          <Button Large fullWidth style={buttonStyle} onClick={restart}>Restart</Button>
+        </CardActions>
+      </Card>
     </div>
   );
 };

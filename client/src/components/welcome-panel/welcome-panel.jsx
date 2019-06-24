@@ -1,5 +1,4 @@
 import React from 'react';
-import './welcome-panel.scss';
 
 import PropTypes from 'prop-types';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
@@ -8,7 +7,7 @@ import GeneralCard from '../general-card';
 const WelcomePanel = (props) => {
   const { startSearch } = props;
   return (
-    <div className="welcomePanel" data-cy="welcome-panel">
+    <div className="cardContainer" data-cy="welcome-panel">
       <Flex
         wrap
         justifyContent="evenly"

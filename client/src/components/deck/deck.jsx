@@ -1,5 +1,4 @@
 import React from 'react';
-import './deck.scss';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 import PropTypes from 'prop-types';
 
@@ -64,7 +63,7 @@ class Deck extends React.Component {
   render() {
     const { choices } = this.state;
     return (
-      <div className="deck">
+      <div className="cardContainer">
         <Flex
           wrap
           justifyContent="evenly"
