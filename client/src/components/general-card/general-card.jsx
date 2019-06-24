@@ -3,10 +3,12 @@ import './general-card.scss';
 import Card, { CardImage, CardTitle } from 'mineral-ui/Card';
 
 const GeneralCard = (props) => {
-  const { title, img, onClick } = props;
+  const {
+    title, img, onClick, dataCy,
+  } = props;
   const cardStyle = { borderRadius: '20px' };
   return (
-    <Card onClick={onClick} className="generalCard" style={cardStyle}>
+    <Card onClick={onClick} className="generalCard" data-cy={dataCy} style={cardStyle}>
       <CardTitle className="cardTitle">{title}</CardTitle>
       <CardImage
         className="cardImage"

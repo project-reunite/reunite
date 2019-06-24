@@ -89,6 +89,7 @@ class Dashboard extends React.Component {
         onClick: () => this.setGender(selection),
         title: selection,
         img: genderUrls[selection],
+        dataCy: `gender-selection-card-${selection}`,
       };
       items.push(
         <FlexItem>
@@ -118,6 +119,7 @@ class Dashboard extends React.Component {
         onClick: () => this.setAge(selection),
         title: selection,
         img: ageUrls[selection],
+        dataCy: `age-selection-card-${selection}`,
       };
       items.push(
         <FlexItem>

@@ -15,8 +15,8 @@ const cardStyle = {
 };
 
 const buttonStyle = {
-  color: 'white',
-  backgroundColor: '#0062ff',
+  color: 'black',
+  backgroundColor: 'white',
   backgroundColor_hover: '#054ada',
 };
 
