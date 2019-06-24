@@ -1,4 +1,5 @@
 import React from 'react';
+import './selection-card.scss';
 import Card, { CardImage, CardTitle } from 'mineral-ui/Card';
 import PropTypes from 'prop-types';
 
@@ -10,6 +11,7 @@ const SelectionCard = (props) => {
   const cardStyle = { borderRadius: '20px' };
   return (
     <Card
+      className="selectionCard"
       onClick={() => setSelection(selection)}
       style={cardStyle}
       data-cy={cyTag}

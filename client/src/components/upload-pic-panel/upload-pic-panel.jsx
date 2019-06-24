@@ -3,7 +3,7 @@ import './upload-pic-panel.scss';
 
 import PropTypes from 'prop-types';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
-import Card, { CardImage, CardTitle } from 'mineral-ui/Card';
+import GeneralCard from '../general-card';
 
 const UploadPicPanel = (props) => {
   const { moveOn } = props;
@@ -15,24 +15,10 @@ const UploadPicPanel = (props) => {
         alignItems="center"
       >
         <FlexItem className="startButton" data-cy="picture-button">
-          <Card onClick={moveOn} className="photoButton" margin="10">
-            <CardTitle className="cardTitle">Photo</CardTitle>
-            <CardImage
-              className="cardImage"
-              src="photo.svg"
-              alt="gradient placeholder"
-            />
-          </Card>
+          <GeneralCard onClick={moveOn} title="Photo" img="photo.svg" />
         </FlexItem>
         <FlexItem className="startButton" data-cy="no-picture-button">
-          <Card onClick={moveOn} className="photoButton" margin="10">
-            <CardTitle className="cardTitle">No photo</CardTitle>
-            <CardImage
-              className="cardImage"
-              src="no-photo.svg"
-              alt="gradient placeholder"
-            />
-          </Card>
+          <GeneralCard onClick={moveOn} title="No Photo" img="no-photo.svg" />
         </FlexItem>
       </Flex>
     </div>
