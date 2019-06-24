@@ -8,8 +8,8 @@ import genders from '../../utils/genders';
 import ages from '../../utils/ages';
 import apiRequests from '../../utils/apiRequests';
 
+import GeneralCard from '../general-card';
 import UploadPicPanel from '../upload-pic-panel';
-import SelectionCard from '../selection-card';
 import WelcomePanel from '../welcome-panel';
 import RestartPanel from '../restart-panel';
 import MatchCard from '../match-card';
@@ -84,15 +84,15 @@ class Dashboard extends React.Component {
     const genderList = Object.values(genders);
     const items = [];
     for (let i = 0; i < genderList.length; i += 1) {
+      const selection = genderList[i];
       const props = {
-        setSelection: this.setGender,
-        selection: genderList[i],
-        urls: genderUrls,
-        cyTag: `gender-selection-card-${genderList[i]}`,
+        onClick: () => this.setGender(selection),
+        title: selection,
+        img: genderUrls[selection],
       };
       items.push(
         <FlexItem>
-          <SelectionCard {...props} />
+          <GeneralCard {...props} />
         </FlexItem>,
       );
     }
@@ -113,15 +113,15 @@ class Dashboard extends React.Component {
     const ageList = Object.values(ages);
     const items = [];
     for (let i = 0; i < ageList.length; i += 1) {
+      const selection = ageList[i];
       const props = {
-        setSelection: this.setAge,
-        selection: ageList[i],
-        urls: ageUrls,
-        cyTag: `age-selection-card-${ageList[i]}`,
+        onClick: () => this.setAge(selection),
+        title: selection,
+        img: ageUrls[selection],
       };
       items.push(
         <FlexItem>
-          <SelectionCard {...props} />
+          <GeneralCard {...props} />
         </FlexItem>,
       );
     }
