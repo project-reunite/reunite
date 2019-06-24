@@ -13,7 +13,7 @@ const WelcomePanel = (props) => {
         justifyContent="evenly"
         alignItems="center"
       >
-        <FlexItem className="startButton">
+        <FlexItem className="startButton" data-cy="play-button">
           <Card onClick={startSearch}>
             <CardImage
               className="cardImage"

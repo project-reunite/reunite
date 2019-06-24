@@ -14,7 +14,7 @@ const UploadPicPanel = (props) => {
         justifyContent="evenly"
         alignItems="center"
       >
-        <FlexItem className="startButton">
+        <FlexItem className="startButton" data-cy="picture-button">
           <Card onClick={moveOn}>
             <CardImage
               className="cardImage"
@@ -23,7 +23,7 @@ const UploadPicPanel = (props) => {
             />
           </Card>
         </FlexItem>
-        <FlexItem className="startButton">
+        <FlexItem className="startButton" data-cy="no-picture-button">
           <Card onClick={moveOn}>
             <CardImage
               className="cardImage"
