@@ -2,32 +2,38 @@ import React from 'react';
 import './upload-pic-panel.scss';
 
 import PropTypes from 'prop-types';
-import Grid, { GridItem } from 'mineral-ui/Grid';
+import Flex, { FlexItem } from 'mineral-ui/Flex';
+import Card, { CardImage } from 'mineral-ui/Card';
 
 const UploadPicPanel = (props) => {
   const { moveOn } = props;
   return (
     <div className="uploadPicPanel" data-cy="upload-pic-panel">
-      <Grid>
-        <GridItem>
-          <PictureButton onClick={moveOn} src="photo.svg" className="pictureButton" dataCy="picture-button" />
-          <h1>I have a photo</h1>
-        </GridItem>
-        <GridItem>
-          <PictureButton onClick={moveOn} src="no-photo.svg" className="pictureButton" dataCy="no-picture-button" />
-          <h1>I don&apos;t have a photo</h1>
-        </GridItem>
-      </Grid>
+      <Flex
+        wrap
+        justifyContent="evenly"
+        alignItems="center"
+      >
+        <FlexItem className="startButton">
+          <Card onClick={moveOn}>
+            <CardImage
+              className="cardImage"
+              src="photo.svg"
+              alt="gradient placeholder"
+            />
+          </Card>
+        </FlexItem>
+        <FlexItem className="startButton">
+          <Card onClick={moveOn}>
+            <CardImage
+              className="cardImage"
+              src="no-photo.svg"
+              alt="gradient placeholder"
+            />
+          </Card>
+        </FlexItem>
+      </Flex>
     </div>
-  );
-};
-
-const PictureButton = (props) => {
-  const {
-    onClick, src, dataCy,
-  } = props;
-  return (
-    <img onClick={onClick} src={src} alt="" className="pictureButton" data-cy={dataCy} />
   );
 };
 
@@ -37,18 +43,6 @@ UploadPicPanel.defaultProps = {
 
 UploadPicPanel.propTypes = {
   moveOn: PropTypes.func,
-};
-
-PictureButton.defaultProps = {
-  onClick: () => console.log('onClick prop not found'),
-  src: '',
-  dataCy: '',
-};
-
-PictureButton.propTypes = {
-  onClick: PropTypes.func,
-  src: PropTypes.string,
-  dataCy: PropTypes.string,
 };
 
 export default UploadPicPanel;
