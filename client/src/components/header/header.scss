@@ -2,10 +2,29 @@
 
 .header-container {
   background-color: #171717;
-  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 40px;
+  border:0;
+  padding:0;
 }
 
-h2 {    
+.logo {
+  width: 30px
+}
+
+h2 {   
   color: white;
-  padding: 3px;
+}
+
+@media only screen and (max-width: 600px) {
+
+  .logo {
+    width: 30px
+  }
+
+  h2 {
+    font-size: 18px; 
+  }
 }
