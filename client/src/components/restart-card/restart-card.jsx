@@ -9,7 +9,7 @@ import Card, {
 
 const { cardStyle } = require('../../styles/card-styles');
 
-const RestartPanel = (props) => {
+const RestartCard = (props) => {
   const { restart } = props;
   const icon = <IconRestart />;
   return (
@@ -27,12 +27,12 @@ const RestartPanel = (props) => {
   );
 };
 
-RestartPanel.defaultProps = {
+RestartCard.defaultProps = {
   restart: () => console.log('restart prop not found'),
 };
 
-RestartPanel.propTypes = {
+RestartCard.propTypes = {
   restart: PropTypes.func,
 };
 
-export default RestartPanel;
+export default RestartCard;

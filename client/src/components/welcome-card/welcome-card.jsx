@@ -6,10 +6,10 @@ import GeneralCard from '../general-card';
 
 const { flexStyle } = require('../../styles/flex-styles');
 
-const WelcomePanel = (props) => {
+const WelcomeCard = (props) => {
   const { startSearch } = props;
   return (
-    <div className="cardContainer" data-cy="welcome-panel">
+    <div className="cardContainer" data-cy="welcome-card">
       <Flex
         wrap
         {...flexStyle}
@@ -25,12 +25,12 @@ const WelcomePanel = (props) => {
   );
 };
 
-WelcomePanel.defaultProps = {
+WelcomeCard.defaultProps = {
   startSearch: () => console.log('startSearch prop not found'),
 };
 
-WelcomePanel.propTypes = {
+WelcomeCard.propTypes = {
   startSearch: PropTypes.func,
 };
 
-export default WelcomePanel;
+export default WelcomeCard;

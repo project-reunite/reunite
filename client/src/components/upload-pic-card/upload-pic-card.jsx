@@ -9,7 +9,7 @@ const { flexStyle } = require('../../styles/flex-styles');
 const UploadPicPanel = (props) => {
   const { moveOn } = props;
   return (
-    <div className="cardContainer" data-cy="upload-pic-panel">
+    <div className="cardContainer" data-cy="upload-pic-card">
       <Flex
         wrap
         {...flexStyle}

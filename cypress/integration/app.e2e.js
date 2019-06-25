@@ -4,12 +4,12 @@ describe('e2e app test', () => {
     cy.clearCookies();
   });
   it('renders welcome panel', () => {
-    cy.getElementByDataCy('welcome-panel').should('exist');
+    cy.getElementByDataCy('welcome-card').should('exist');
     cy.getElementByDataCy('play-button').click();
   });
   it('renders photo-upload panel', () => {
     cy.getElementByDataCy('play-button').click();
-    cy.getElementByDataCy('upload-pic-panel').should('exist');
+    cy.getElementByDataCy('upload-pic-card').should('exist');
     cy.getElementByDataCy('no-picture-button').click();
   })
   it('renders selection options', () => {

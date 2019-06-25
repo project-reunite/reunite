@@ -9,9 +9,9 @@ import ages from '../../utils/ages';
 import apiRequests from '../../utils/apiRequests';
 
 import GeneralCard from '../general-card';
-import UploadPicPanel from '../upload-pic-panel';
-import WelcomePanel from '../welcome-panel';
-import RestartPanel from '../restart-panel';
+import UploadPicPanel from '../upload-pic-card';
+import WelcomeCard from '../welcome-card';
+import RestartCard from '../restart-card';
 import MatchCard from '../match-card';
 import Deck from '../deck';
 import Header from '../header';
@@ -141,8 +141,8 @@ class Dashboard extends React.Component {
     );
   }
 
-  getWelcomePanel = () => (
-    <WelcomePanel
+  getWelcomeCard = () => (
+    <WelcomeCard
       startSearch={() => this.setState({ appState: appStatus.UPLOAD_PIC })}
     />
   )
@@ -169,11 +169,11 @@ class Dashboard extends React.Component {
     );
   }
 
-  getRestartPanel = () => (
+  getRestartCard = () => (
     <Flex
       {...flexStyle}
     >
-      <RestartPanel restart={() => this.setState({ appState: appStatus.WELCOME })} />
+      <RestartCard restart={() => this.setState({ appState: appStatus.WELCOME })} />
     </Flex>
   )
 
@@ -196,7 +196,7 @@ class Dashboard extends React.Component {
     let content;
     switch (appState) {
       case appStatus.WELCOME:
-        content = this.getWelcomePanel();
+        content = this.getWelcomeCard();
         break;
       case appStatus.UPLOAD_PIC:
         content = this.getUploadPicPanel();
@@ -214,7 +214,7 @@ class Dashboard extends React.Component {
         content = this.getDeck();
         break;
       case appStatus.FAILURE:
-        content = this.getRestartPanel();
+        content = this.getRestartCard();
         break;
       case appStatus.MATCH_FOUND:
         content = this.getMatchCard();

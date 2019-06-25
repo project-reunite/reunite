@@ -1,4 +1,5 @@
 const cardStyle = {
+  borderColor: '#8c8c8c',
   borderRadius: '20px',
 };
 

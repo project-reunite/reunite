@@ -17,7 +17,7 @@
 } 
 
 .cardImage {
-  padding: 10px;
+  padding: 5px;
   width: 400px;
   height: 400px;
   border-radius: 20px;
@@ -31,5 +31,10 @@
   .cardImage {
     width: 250px;
     height: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    object-fit: contain;
   }
 }
