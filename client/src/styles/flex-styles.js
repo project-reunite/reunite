@@ -1,6 +1,7 @@
 const flexStyle = {
   justifyContent: 'evenly',
-  alignItems: 'center',
+  alignItems: 'around',
+  gutter: 0,
 };
 
 module.exports = {

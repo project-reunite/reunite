@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card, {
-  CardImage, CardActions,
+  CardImage, CardFooter,
 } from 'mineral-ui/Card';
 import Button from 'mineral-ui/Button';
 import IconSuccess from 'mineral-ui-icons/IconSuccess';
 import IconMoreInfo from 'mineral-ui-icons/IconPersonOutline';
 import apiRequests from '../../utils/apiRequests';
 
-const { cardStyle, cardImageStyle } = require('../../styles/card-styles');
+const { cardStyle, cardImageStyle, cardFooterStyle } = require('../../styles/card-styles');
+const { buttonStyle } = require('../../styles/button-styles');
 
 class PersonCard extends React.Component {
   constructor(props) {
@@ -45,10 +46,10 @@ class PersonCard extends React.Component {
               alt="gradient placeholder"
               onClick={onClick}
             />
-            <CardActions>
-              <Button className="cardButton" iconStart={moreInfoIcon}>More Info</Button>
-              <Button iconStart={successIcon} onClick={onMatch} primary>Select Match</Button>
-            </CardActions>
+            <CardFooter style={cardFooterStyle}>
+              <Button style={buttonStyle} iconStart={successIcon} onClick={onMatch}>My Person</Button>
+              <Button style={buttonStyle} className="cardButton" iconStart={moreInfoIcon} onClick={onClick} primary>More Like</Button>
+            </CardFooter>
           </Card>
         </div>
       );

@@ -21,7 +21,7 @@ const { flexStyle } = require('../../styles/flex-styles');
 const ageUrls = {
   Baby: 'baby.svg',
   Child: 'child.svg',
-  Adult: 'adult.svg',
+  Adult: 'man-icon.svg',
   Elderly: 'elderly.svg',
 };
 
@@ -122,6 +122,7 @@ class Dashboard extends React.Component {
         title: selection,
         img: ageUrls[selection],
         dataCy: `age-selection-card-${selection}`,
+        imageClassName: 'ageSelectCardImage',
       };
       items.push(
         <FlexItem>

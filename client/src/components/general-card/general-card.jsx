@@ -1,18 +1,18 @@
 import React from 'react';
 import './general-card.scss';
-import Card, { CardImage, CardTitle } from 'mineral-ui/Card';
+import Card, { CardImage, CardTitle  } from 'mineral-ui/Card';
 
 const { cardStyle } = require('../../styles/card-styles');
 
 const GeneralCard = (props) => {
   const {
-    title, img, onClick, dataCy,
+    title, img, onClick, dataCy, imageClassName,
   } = props;
   return (
     <Card onClick={onClick} className="generalCard" data-cy={dataCy} style={cardStyle}>
       <CardTitle className="cardTitle">{title}</CardTitle>
       <CardImage
-        className="cardImage"
+        className={imageClassName || 'cardImage'}
         src={img}
         alt="gradient placeholder"
       />

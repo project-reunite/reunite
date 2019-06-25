@@ -1,10 +1,12 @@
 const cardStyle = {
-  borderColor: '#8c8c8c',
   borderRadius: '20px',
+  paddingHorizontal: '10px',
 };
 
 const cardFooterStyle = {
   borderRadius: '20px',
+  backgroundColor: 'white',
+  borderColor: 'white',
 };
 
 const cardImageStyle = {
@@ -12,7 +14,7 @@ const cardImageStyle = {
 };
 
 const cardBlockStyle = {
-  fontSize: '30px',
+  fontSize: '20px',
 };
 
 module.exports = {
