@@ -2,7 +2,10 @@ const personsService = require('../services/persons.service');
 
 const getPersons = async function(req, res, next) {
     try {
-        const persons = await personsService.getPersons({ filters: { selector: {} } });
+        const persons = await personsService.getPersons({ 
+            filters: { selector: {} }, 
+            host: req.protocol + '://' + req.get('host'),
+        });
         res.status(200).send(persons);
     } catch(err) {
         next(err);
@@ -12,18 +15,18 @@ const getPersons = async function(req, res, next) {
 const getPerson = async function(req, res, next) {
     let id = req.params.id;
     try {
-        const person = await personsService.getPerson(id);
-        res.status(200).send(person);
-    } catch(err) {
-        if(err.error === 'not_found') {
+        const person = await personsService.getPerson(id, req.protocol + '://' + req.get('host') );
+        if(person.statusCode === 404) {
             const error = {
                 message: `person ${id} not found`,
                 statusCode: 404,
             };
             next(error);
         } else {
-            next(err);
+            res.status(200).send(person);
         }
+    } catch(err) {
+        next(err);
     }
 };
 
