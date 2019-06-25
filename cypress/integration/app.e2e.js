@@ -17,7 +17,7 @@ describe('e2e app test', () => {
     cy.getElementByDataCy('no-picture-button').click();
     cy.getElementByDataCy('gender-selection-card-Male').should('exist');
     cy.getElementByDataCy('gender-selection-card-Female').click()
-    cy.getElementByDataCy('age-selection-card-ELDERLY').should('exist');
+    cy.getElementByDataCy('age-selection-card-Elderly').should('exist');
   });
   // TODO: Refactor API Calls, and then add back in
   // it('renders 2 cards in a deck', () => {
