@@ -9,18 +9,20 @@ import ages from '../../utils/ages';
 import apiRequests from '../../utils/apiRequests';
 
 import GeneralCard from '../general-card';
-import UploadPicPanel from '../upload-pic-panel';
-import WelcomePanel from '../welcome-panel';
-import RestartPanel from '../restart-panel';
+import UploadPicPanel from '../upload-pic-card';
+import WelcomeCard from '../welcome-card';
+import RestartCard from '../restart-card';
 import MatchCard from '../match-card';
 import Deck from '../deck';
 import Header from '../header';
 
+const { flexStyle } = require('../../styles/flex-styles');
+
 const ageUrls = {
-  BABY: 'baby.svg',
-  CHILD: 'child.svg',
-  ADULT: 'adult.svg',
-  ELDERLY: 'elderly.svg',
+  Baby: 'baby.svg',
+  Child: 'child.svg',
+  Adult: 'adult.svg',
+  Elderly: 'elderly.svg',
 };
 
 const genderUrls = {
@@ -44,6 +46,7 @@ class Dashboard extends React.Component {
       gender: null,
       age: null,
       initialDecisionId: null,
+      personId: null,
     };
   }
 
@@ -101,8 +104,7 @@ class Dashboard extends React.Component {
       <div className="selectionPanel">
         <Flex
           wrap
-          justifyContent="evenly"
-          alignItems="center"
+          {...flexStyle}
         >
           {items}
         </Flex>
@@ -131,8 +133,7 @@ class Dashboard extends React.Component {
       <div className="selectionPanel">
         <Flex
           wrap
-          justifyContent="evenly"
-          alignItems="center"
+          {...flexStyle}
         >
           {items}
         </Flex>
@@ -140,8 +141,8 @@ class Dashboard extends React.Component {
     );
   }
 
-  getWelcomePanel = () => (
-    <WelcomePanel
+  getWelcomeCard = () => (
+    <WelcomeCard
       startSearch={() => this.setState({ appState: appStatus.UPLOAD_PIC })}
     />
   )
@@ -155,39 +156,47 @@ class Dashboard extends React.Component {
 
   getDeck = () => {
     const { initialDecisionId } = this.state;
+    // const initialDecisionId = '63e667f6d8cc11d219851bce64f8da2d';
     return (
       <Deck
         startingDecisionID={initialDecisionId}
         onFailure={() => this.setState({ appState: appStatus.FAILURE })}
-        onMatch={() => this.setState({ appState: appStatus.MATCH_FOUND })}
+        onMatch={id => this.setState({
+          personId: id,
+          appState: appStatus.MATCH_FOUND,
+        })}
       />
     );
   }
 
-  getRestartPanel = () => (
+  getRestartCard = () => (
     <Flex
-      justifyContent="evenly"
-      alignItems="center"
+      {...flexStyle}
     >
-      <RestartPanel restart={() => this.setState({ appState: appStatus.WELCOME })} />
+      <RestartCard restart={() => this.setState({ appState: appStatus.WELCOME })} />
     </Flex>
   )
 
-  getMatchCard = () => (
-    <Flex
-      justifyContent="evenly"
-      alignItems="center"
-    >
-      <MatchCard restart={() => this.setState({ appState: appStatus.WELCOME })} />
-    </Flex>
-  )
+  getMatchCard = () => {
+    const { personId } = this.state;
+    return (
+      <Flex
+        {...flexStyle}
+      >
+        <MatchCard
+          restart={() => this.setState({ appState: appStatus.WELCOME })}
+          id={personId}
+        />
+      </Flex>
+    );
+  }
 
   getMainPanel = () => {
     const { appState } = this.state;
     let content;
     switch (appState) {
       case appStatus.WELCOME:
-        content = this.getWelcomePanel();
+        content = this.getWelcomeCard();
         break;
       case appStatus.UPLOAD_PIC:
         content = this.getUploadPicPanel();
@@ -205,7 +214,7 @@ class Dashboard extends React.Component {
         content = this.getDeck();
         break;
       case appStatus.FAILURE:
-        content = this.getRestartPanel();
+        content = this.getRestartCard();
         break;
       case appStatus.MATCH_FOUND:
         content = this.getMatchCard();

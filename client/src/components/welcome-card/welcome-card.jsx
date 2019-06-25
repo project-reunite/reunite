@@ -4,32 +4,33 @@ import PropTypes from 'prop-types';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 import GeneralCard from '../general-card';
 
-const WelcomePanel = (props) => {
+const { flexStyle } = require('../../styles/flex-styles');
+
+const WelcomeCard = (props) => {
   const { startSearch } = props;
   return (
-    <div className="cardContainer" data-cy="welcome-panel">
+    <div className="cardContainer" data-cy="welcome-card">
       <Flex
         wrap
-        justifyContent="evenly"
-        alignItems="center"
+        {...flexStyle}
       >
         <FlexItem data-cy="play-button">
           <GeneralCard onClick={startSearch} img="play.svg" title="Start" />
         </FlexItem>
         <FlexItem className="startButton">
-          <GeneralCard onClick={startSearch} img="question-mark.svg" title="More Info" />
+          <GeneralCard onClick img="question-mark.svg" title="More Info" />
         </FlexItem>
       </Flex>
     </div>
   );
 };
 
-WelcomePanel.defaultProps = {
+WelcomeCard.defaultProps = {
   startSearch: () => console.log('startSearch prop not found'),
 };
 
-WelcomePanel.propTypes = {
+WelcomeCard.propTypes = {
   startSearch: PropTypes.func,
 };
 
-export default WelcomePanel;
+export default WelcomeCard;
