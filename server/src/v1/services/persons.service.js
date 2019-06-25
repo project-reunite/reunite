@@ -3,10 +3,25 @@ const config = require('../../config');
 
 const database = config.database.persons;
 
-const getPerson = (id) => Database.getDocument({ database, id });
+const getPerson = async(id, host) => {
+    try {
+        const person = await Database.getDocument({ database, id });
+        person.img_url = host + person.img_url;
+        return person;
+    } catch(err) {
+        return err;
+    }
+};
 
-const getPersons = async ({ filters }) => 
-    await Database.getAllDocuments({ database, filters });
+const getPersons = async ({ filters, host }) => {
+    try {
+        const persons = await Database.getAllDocuments({ database, filters });
+        persons.docs.forEach((person) => person.img_url = host + person.img_url);
+        return persons;
+    } catch(err) {
+        return err;
+    }
+};
 
 const getPair = async (index) => {
     const persons = (await getPersons({ filters: { selector: {} } })).docs;

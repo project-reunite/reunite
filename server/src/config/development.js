@@ -3,8 +3,8 @@ const port = process.env.PORT || 9100;
 module.exports = {
     port,
     database: {
-        persons: 'persons',
-        trees: 'trees',
-        decisions: 'decisions',
+        persons: 'persons_migrants',
+        trees: 'trees_migrants',
+        decisions: 'decisions_migrants',
     },
 };
