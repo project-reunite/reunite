@@ -2,19 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card, {
-  CardImage, CardBlock,
+  CardImage, CardActions,
 } from 'mineral-ui/Card';
 import Button from 'mineral-ui/Button';
+import IconSuccess from 'mineral-ui-icons/IconSuccess';
+import IconMoreInfo from 'mineral-ui-icons/IconPersonOutline';
 import apiRequests from '../../utils/apiRequests';
 
-const cardStyle = {
-  borderRadius: '20px',
-  boxShadow: true,
-};
-
-const buttonStyle = {
-  backgroundColor: 'white',
-};
+const { cardStyle, cardImageStyle } = require('../../styles/card-styles');
 
 class PersonCard extends React.Component {
   constructor(props) {
@@ -37,19 +32,23 @@ class PersonCard extends React.Component {
   render = () => {
     const { details } = this.state;
     const { onClick, onMatch } = this.props;
+    const successIcon = <IconSuccess />;
+    const moreInfoIcon = <IconMoreInfo />;
     if (details.data) {
       return (
         <div className="cardContainer">
           <Card style={cardStyle} className="personCard" data-cy="person-card">
             <CardImage
+              style={cardImageStyle}
               className="cardImage"
               src={details.data.img_url}
               alt="gradient placeholder"
               onClick={onClick}
             />
-            <CardBlock>
-              <Button fullWidth style={buttonStyle} src="play.svg" onClick={onMatch}>Select Match</Button>
-            </CardBlock>
+            <CardActions>
+              <Button className="cardButton" iconStart={moreInfoIcon}>More Info</Button>
+              <Button iconStart={successIcon} onClick={onMatch} primary>Select Match</Button>
+            </CardActions>
           </Card>
         </div>
       );

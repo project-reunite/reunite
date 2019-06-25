@@ -39,8 +39,12 @@ class Deck extends React.Component {
     }
   }
 
-  renderChildren = (choices) => {
+  reactToMatch = (personId) => {
     const { onMatch } = this.props;
+    onMatch(personId);
+  }
+
+  renderChildren = (choices) => {
     const children = [];
     choices.forEach((choice) => {
       const personId = choice.persons_id;
@@ -49,10 +53,8 @@ class Deck extends React.Component {
         <FlexItem key={personId} data-cy="deck">
           <PersonCard
             id={personId}
-            onMatch={(onMatch)}
-            onClick={() => {
-              this.reactToCardClick(nextDecisionId);
-            }}
+            onMatch={(() => this.reactToMatch(personId))}
+            onClick={() => this.reactToCardClick(nextDecisionId)}
           />
         </FlexItem>,
       );

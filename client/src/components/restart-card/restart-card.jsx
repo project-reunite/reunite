@@ -1,24 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import IconRestart from 'mineral-ui-icons/IconRefresh';
 import Button from 'mineral-ui/Button';
 import Card, {
   CardBlock, CardTitle, CardActions,
 } from 'mineral-ui/Card';
 
-const buttonStyle = {
-  color: 'white',
-  backgroundColor: '#0062ff',
-  backgroundColor_hover: '#054ada',
-};
+const { cardStyle } = require('../../styles/card-styles');
 
-const cardStyle = {
-  borderRadius: '20px',
-  boxShadow: true,
-};
-
-const RestartPanel = (props) => {
+const RestartCard = (props) => {
   const { restart } = props;
+  const icon = <IconRestart />;
   return (
     <div className="cardContainer">
       <Card style={cardStyle} data-cy="restart-card">
@@ -27,19 +20,19 @@ const RestartPanel = (props) => {
           No match was found, restart to try again
         </CardBlock>
         <CardActions>
-          <Button Large fullWidth style={buttonStyle} onClick={restart}>Restart</Button>
+          <Button primary iconStart={icon} onClick={restart}>Restart</Button>
         </CardActions>
       </Card>
     </div>
   );
 };
 
-RestartPanel.defaultProps = {
+RestartCard.defaultProps = {
   restart: () => console.log('restart prop not found'),
 };
 
-RestartPanel.propTypes = {
+RestartCard.propTypes = {
   restart: PropTypes.func,
 };
 
-export default RestartPanel;
+export default RestartCard;
