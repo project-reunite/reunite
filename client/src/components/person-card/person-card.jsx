@@ -9,7 +9,7 @@ import IconSuccess from 'mineral-ui-icons/IconSuccess';
 import IconMoreInfo from 'mineral-ui-icons/IconPersonOutline';
 import apiRequests from '../../utils/apiRequests';
 
-const { cardStyle, cardImageStyle, cardFooterStyle } = require('../../styles/card-styles');
+const { regularCardStyle, cardImageStyle, cardFooterStyle } = require('../../styles/card-styles');
 const { buttonStyle } = require('../../styles/button-styles');
 
 class PersonCard extends React.Component {
@@ -38,7 +38,7 @@ class PersonCard extends React.Component {
     if (details.data) {
       return (
         <div className="cardContainer">
-          <Card style={cardStyle} className="personCard" data-cy="person-card">
+          <Card style={regularCardStyle} className="personCard" data-cy="person-card">
             <CardImage
               style={cardImageStyle}
               className="cardImage"
@@ -48,7 +48,7 @@ class PersonCard extends React.Component {
             />
             <CardFooter style={cardFooterStyle}>
               <Button style={buttonStyle} iconStart={successIcon} onClick={onMatch}>My Person</Button>
-              <Button style={buttonStyle} className="cardButton" iconStart={moreInfoIcon} onClick={onClick} primary>More Like</Button>
+              <Button style={buttonStyle} className="cardButton" iconStart={moreInfoIcon} onClick={onClick} primary>Similar</Button>
             </CardFooter>
           </Card>
         </div>

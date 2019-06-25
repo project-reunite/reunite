@@ -9,7 +9,7 @@ import Card, {
 import apiRequests from '../../utils/apiRequests';
 
 
-const { cardStyle, cardImageStyle, cardBlockStyle } = require('../../styles/card-styles');
+const { regularCardStyle, cardImageStyle, cardBlockStyle } = require('../../styles/card-styles');
 const { buttonStyle } = require('../../styles/button-styles');
 
 class MatchCard extends React.Component {
@@ -36,7 +36,7 @@ class MatchCard extends React.Component {
     if (details.data) {
       return (
         <div className="cardContainer" data-cy="match-card">
-          <Card style={cardStyle} data-cy="person-card">
+          <Card style={regularCardStyle} data-cy="person-card">
             <CardTitle className="cardTitle">Match Found</CardTitle>
             <CardImage
               style={cardImageStyle}
@@ -44,7 +44,7 @@ class MatchCard extends React.Component {
               src={details.data.img_url}
               alt="gradient placeholder"
             />
-            <CardBlock style={cardBlockStyle}>{details.data.name}</CardBlock>
+            <CardBlock style={cardBlockStyle}>{`${details.data.name}, ${details.data.age}`}</CardBlock>
             <CardBlock style={cardBlockStyle}>Please contact an aid worker</CardBlock>
             <CardBlock>
               <Button style={buttonStyle} iconStart={<IconSuccess />} primary>Confirm</Button>
