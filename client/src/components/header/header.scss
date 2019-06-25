@@ -3,6 +3,13 @@
 .header-container {
   background-color: #171717;
   padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.logo {
+  width: 10%
 }
 
 h2 {   
