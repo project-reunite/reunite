@@ -14,6 +14,7 @@
 
 .cardTitle {
   font-size: 20px;
+  color: black;
 } 
 
 .cardImage {
@@ -35,8 +36,16 @@
   margin-right: auto;
 }
 
+.genderSelectCardImage {
+  width: 350px;
+  height: 350px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
+}
+
 .ageSelectCardImage {
-  padding: 2%;
   width: 350px;
   height: 350px;
   border-radius: 20px;
@@ -47,9 +56,25 @@
 }
 
 @media only screen and (max-width: 600px) {
+
+  .cardContainer {
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    padding: 1px;
+  }
   .cardImage {
-    width: 250px;
-    height: 240px;
+    width: 190px;
+    height: 190px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+  }
+
+  .genderSelectCardImage {
+    width: 180px;
+    height: 160px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -57,8 +82,8 @@
   }
 
   .ageSelectCardImage {
-    width: 140px;
-    height: 220px;
+    width: 120px;
+    height: 160px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -67,6 +92,56 @@
   .smallerCardImage {
     width: 130px;
     height:130px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .cardImage {
+    width: 130px;
+    height: 130px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+  }
+
+  .cardTitle {
+    font-size: 15px;
+    color: black;
+  } 
+
+  .genderSelectCardImage {
+    width: 140px;
+    height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+  }
+
+  .ageSelectCardImage {
+    width: 100px;
+    height: 120px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .genderSelectCardImage {
+    width: 140px;
+    height: 130px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+  }
+
+  .smallerCardImage {
+    width: 100px;
+    height:100px;
     display: block;
     margin-left: auto;
     margin-right: auto;

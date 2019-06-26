@@ -1,15 +1,14 @@
 const buttonStyle = {
   borderRadius: '20px',
-  margin: '10px',
+  margin: '1px',
   backgroundColor: '#132832',
   color: '#61B7E1',
+
 };
 
 const secondButtonStyle = {
   borderRadius: '20px',
-  margin: '10px',
-  // color: '#132832',
-  // backgroundColor: '#61B7E1',
+  margin: '1px',
 };
 
 module.exports = {

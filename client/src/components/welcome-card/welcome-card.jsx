@@ -19,7 +19,7 @@ const WelcomeCard = (props) => {
           <GeneralCard onClick={startSearch} inputCardStyle={smallCardStyle} imageClassName="smallerCardImage" img="play.svg" title="Start" />
         </FlexItem>
         <FlexItem className="startButton">
-          <GeneralCard onClick imageClassName="smallerCardImage" inputCardStyle={smallCardStyle} img="question-mark.svg" title="Info" />
+          <GeneralCard onClick={() => console.log('more info')} imageClassName="smallerCardImage" inputCardStyle={smallCardStyle} img="question-mark.svg" title="Info" />
         </FlexItem>
       </Flex>
     </div>

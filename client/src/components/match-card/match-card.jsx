@@ -1,13 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from 'mineral-ui/Button';
-import IconRestart from 'mineral-ui-icons/IconRefresh';
 import IconSuccess from 'mineral-ui-icons/IconSuccess';
 import Card, {
   CardImage, CardBlock, CardTitle,
 } from 'mineral-ui/Card';
 import apiRequests from '../../utils/apiRequests';
-
 
 const { regularCardStyle, cardImageStyle, cardBlockStyle } = require('../../styles/card-styles');
 const { buttonStyle } = require('../../styles/button-styles');
@@ -32,7 +29,6 @@ class MatchCard extends React.Component {
 
   render = () => {
     const { details } = this.state;
-    const { restart } = this.props;
     if (details.data) {
       return (
         <div className="cardContainer" data-cy="match-card">
@@ -45,10 +41,9 @@ class MatchCard extends React.Component {
               alt="gradient placeholder"
             />
             <CardBlock style={cardBlockStyle}>{`${details.data.name}, ${details.data.age}`}</CardBlock>
-            <CardBlock style={cardBlockStyle}>Please contact an aid worker</CardBlock>
+            <CardBlock style={cardBlockStyle}>Press below to contact an aid worker, if this is correct </CardBlock>
             <CardBlock>
-              <Button style={buttonStyle} iconStart={<IconSuccess />} primary>Confirm</Button>
-              <Button style={buttonStyle} iconStart={<IconRestart />} onClick={restart}>Restart</Button>
+              <Button style={buttonStyle} iconStart={<IconSuccess />} primary>Contact Aid Worker</Button>
             </CardBlock>
           </Card>
         </div>
@@ -61,10 +56,5 @@ class MatchCard extends React.Component {
 MatchCard.defaultProps = {
   restart: () => console.log('restart prop not found'),
 };
-
-MatchCard.propTypes = {
-  restart: PropTypes.func,
-};
-
 
 export default MatchCard;
