@@ -5,6 +5,7 @@ import Flex, { FlexItem } from 'mineral-ui/Flex';
 import GeneralCard from '../general-card';
 
 const { flexStyle } = require('../../styles/flex-styles');
+const { smallCardStyle } = require('../../styles/card-styles');
 
 const WelcomeCard = (props) => {
   const { startSearch } = props;
@@ -15,10 +16,10 @@ const WelcomeCard = (props) => {
         {...flexStyle}
       >
         <FlexItem data-cy="play-button">
-          <GeneralCard onClick={startSearch} img="play.svg" title="Start" />
+          <GeneralCard onClick={startSearch} inputCardStyle={smallCardStyle} imageClassName="smallerCardImage" img="play.svg" title="Start" />
         </FlexItem>
         <FlexItem className="startButton">
-          <GeneralCard onClick img="question-mark.svg" title="More Info" />
+          <GeneralCard onClick imageClassName="smallerCardImage" inputCardStyle={smallCardStyle} img="question-mark.svg" title="Info" />
         </FlexItem>
       </Flex>
     </div>

@@ -7,14 +7,14 @@ import Card, {
   CardBlock, CardTitle, CardActions,
 } from 'mineral-ui/Card';
 
-const { cardStyle } = require('../../styles/card-styles');
+const { regularCardStyle } = require('../../styles/card-styles');
 
 const RestartCard = (props) => {
   const { restart } = props;
   const icon = <IconRestart />;
   return (
     <div className="cardContainer">
-      <Card style={cardStyle} data-cy="restart-card">
+      <Card style={regularCardStyle} data-cy="restart-card">
         <CardTitle className="cardTitle">No Match Found</CardTitle>
         <CardBlock fontSize="30px">
           No match was found, restart to try again

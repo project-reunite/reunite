@@ -5,6 +5,7 @@ import Flex, { FlexItem } from 'mineral-ui/Flex';
 import GeneralCard from '../general-card';
 
 const { flexStyle } = require('../../styles/flex-styles');
+const { smallCardStyle } = require('../../styles/card-styles');
 
 const UploadPicPanel = (props) => {
   const { moveOn } = props;
@@ -14,11 +15,11 @@ const UploadPicPanel = (props) => {
         wrap
         {...flexStyle}
       >
-        <FlexItem className="startButton" data-cy="picture-button">
-          <GeneralCard onClick title="Photo" img="photo.svg" />
+        <FlexItem data-cy="picture-button">
+          <GeneralCard onClick inputCardStyle={smallCardStyle} imageClassName="smallerCardImage" title="Photo" img="photo.svg" />
         </FlexItem>
-        <FlexItem className="startButton" data-cy="no-picture-button">
-          <GeneralCard onClick={moveOn} title="No Photo" img="no-photo.svg" />
+        <FlexItem data-cy="no-picture-button">
+          <GeneralCard onClick={moveOn} inputCardStyle={smallCardStyle} imageClassName="smallerCardImage" title="No Photo" img="no-photo.svg" />
         </FlexItem>
       </Flex>
     </div>

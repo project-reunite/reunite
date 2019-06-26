@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import PersonCard from '../person-card';
 import apiRequests from '../../utils/apiRequests';
 
+const { flexStyle } = require('../../styles/flex-styles');
+
 class Deck extends React.Component {
   constructor(props) {
     super(props);
@@ -68,8 +70,7 @@ class Deck extends React.Component {
       <div className="cardContainer">
         <Flex
           wrap
-          justifyContent="evenly"
-          alignItems="center"
+          {...flexStyle}
         >
           {this.renderChildren(choices)}
         </Flex>
