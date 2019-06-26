@@ -12,7 +12,7 @@ const { flexStyle } = require('../../styles/flex-styles');
 const LanguageSelectionCard = (props) => {
   const { submitLanguage } = props;
   return (
-    <div className="cardContainer">
+    <div className="cardContainer" data-cy="language-selection-panel">
       <Flex
         wrap
         {...flexStyle}
@@ -23,7 +23,7 @@ const LanguageSelectionCard = (props) => {
             <Menu
               style={languageMenuStyle}
             >
-              <MenuItem iconEnd={<FlagIcon code="gb-eng" />} onClick={submitLanguage}>
+              <MenuItem iconEnd={<FlagIcon code="gb-eng" />} data-cy="language-english" onClick={submitLanguage}>
             English
               </MenuItem>
               <MenuItem iconEnd={<FlagIcon code="fr" />} onClick={submitLanguage}>
