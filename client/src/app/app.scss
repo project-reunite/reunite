@@ -1,10 +1,3 @@
-// @import '../../node_modules/carbon-components/scss/globals/scss/vendor/@carbon/elements/scss/themes/theme-maps';
-// // Theme refers to carbon theme here https://www.carbondesignsystem.com/guidelines/color/usage
-// $carbon--theme: $carbon--theme--g10;
-
-// Removing unless we make this efficient, it was waiting over 10 seconds to compile after any scss change.
-// @import 'carbon-components/scss/globals/scss/styles.scss';
-
 .cardContainer {
   text-align: center;
   font-weight: bold;
@@ -15,7 +8,7 @@
 .cardTitle {
   font-size: 20px;
   color: black;
-} 
+}
 
 .cardImage {
   padding: 2%;
@@ -30,7 +23,7 @@
 
 .smallerCardImage {
   width: 300px;
-  height:300px;
+  height: 300px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -56,13 +49,13 @@
 }
 
 @media only screen and (max-width: 600px) {
-
   .cardContainer {
     text-align: center;
     font-weight: bold;
     align-items: center;
     padding: 1px;
   }
+
   .cardImage {
     width: 190px;
     height: 190px;
@@ -91,7 +84,7 @@
 
   .smallerCardImage {
     width: 130px;
-    height:130px;
+    height: 130px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -111,15 +104,6 @@
   .cardTitle {
     font-size: 15px;
     color: black;
-  } 
-
-  .genderSelectCardImage {
-    width: 140px;
-    height: 100px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    object-fit: contain;
   }
 
   .ageSelectCardImage {
@@ -141,7 +125,7 @@
 
   .smallerCardImage {
     width: 100px;
-    height:100px;
+    height: 100px;
     display: block;
     margin-left: auto;
     margin-right: auto;

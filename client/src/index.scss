@@ -1,14 +1,13 @@
 @import 'app/app.scss';
 
 body {
-    margin: 0;
-    font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-  
+
 code {
-    font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono',
-  'Bitstream Vera Sans Mono', Courier, monospace;
+  font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono',
+    'Bitstream Vera Sans Mono', Courier, monospace;
 }
-  
