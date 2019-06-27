@@ -11,7 +11,8 @@ const headerStyle = {
 };
 
 const navItemStyle = {
-  color: '#61B7E1',
+  // color: '#61B7E1',
+  color: 'white',
 };
 
 const Header = (props) => {
