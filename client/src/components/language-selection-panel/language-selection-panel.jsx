@@ -35,6 +35,12 @@ const LanguageSelectionCard = (props) => {
               <MenuItem iconEnd={<FlagIcon code="de" />} onClick={submitLanguage}>
             Alemand
               </MenuItem>
+              <MenuItem iconEnd={<FlagIcon code="ae" />} onClick={submitLanguage}>
+              عرب
+              </MenuItem>
+              <MenuItem iconEnd={<FlagIcon code="cn" />} onClick={submitLanguage}>
+              中文
+              </MenuItem>
             </Menu>
           </Card>
         </FlexItem>

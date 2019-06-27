@@ -1,5 +1,5 @@
 const languageMenuStyle = {
-  fontSize: '30px',
+  fontSize: '20px',
 };
 
 module.exports = {
