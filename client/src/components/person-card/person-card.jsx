@@ -12,6 +12,10 @@ import apiRequests from '../../utils/apiRequests';
 const { regularCardStyle, cardImageStyle, cardFooterStyle } = require('../../styles/card-styles');
 const { buttonStyle, secondButtonStyle } = require('../../styles/button-styles');
 
+const iconStyle = {
+  color: '#61B7E1',
+};
+
 class PersonCard extends React.Component {
   constructor(props) {
     super(props);
@@ -33,8 +37,8 @@ class PersonCard extends React.Component {
   render = () => {
     const { details } = this.state;
     const { onClick, onMatch } = this.props;
-    const successIcon = <IconSuccess />;
-    const moreInfoIcon = <IconMoreInfo />;
+    const successIcon = <IconSuccess style={iconStyle} />;
+    const moreInfoIcon = <IconMoreInfo style={iconStyle} />;
     if (details.data) {
       return (
         <div className="cardContainer">

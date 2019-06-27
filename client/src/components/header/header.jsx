@@ -1,7 +1,7 @@
 import React from 'react';
 import { PrimaryNav, NavItem } from 'mineral-ui/Navigation';
 
-import IconRestart from 'mineral-ui-icons/IconRefresh';
+import IconRestart from 'mineral-ui-icons/IconArrowBack';
 import IconExpandMore from 'mineral-ui-icons/IconExpandMore';
 
 import './header.scss';
@@ -22,7 +22,7 @@ const Header = (props) => {
       style={headerStyle}
       align="justify"
     >
-      <NavItem onClick={restart} style={navItemStyle} color="#61B7E1" icon={<IconRestart />}>Restart</NavItem>
+      <NavItem onClick={restart} style={navItemStyle} color="#61B7E1" icon={<IconRestart />}>Back</NavItem>
       <NavItem style={navItemStyle} color="#61B7E1" icon={<IconExpandMore />}>Language</NavItem>
     </PrimaryNav>
   );

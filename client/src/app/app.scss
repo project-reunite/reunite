@@ -22,8 +22,8 @@
 }
 
 .smallerCardImage {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -42,6 +42,15 @@
   width: 350px;
   height: 350px;
   border-radius: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
+}
+
+.matchCardImage {
+  width: 400px;
+  height: 400px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -89,6 +98,15 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  .matchCardImage {
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
+  }
 }
 
 @media only screen and (max-width: 330px) {
@@ -129,5 +147,14 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+
+    .matchCardImage {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain;
   }
 }

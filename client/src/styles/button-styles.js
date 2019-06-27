@@ -10,6 +10,7 @@ const buttonStyle = {
 const secondButtonStyle = {
   borderRadius: '20px',
   margin: '1px',
+  color: '#132832',
 };
 
 module.exports = {

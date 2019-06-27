@@ -27,7 +27,7 @@ const GenderSelectionPanel = (props) => {
           <GeneralCard
             onClick={() => setGender(genders.FEMALE)}
             title={genders.FEMALE}
-            img="man-icon.svg"
+            img="woman-icon.svg"
             dataCy={`gender-selection-card-${genders.FEMALE}`}
             imageClassName="genderSelectCardImage"
           />

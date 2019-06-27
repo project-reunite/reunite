@@ -6,6 +6,11 @@ const smallCardStyle = {
   paddingBottom: '1em',
 };
 
+const matchCardStyle = {
+  margin: '2px',
+  borderRadius: '20px',
+};
+
 const regularCardStyle = {
   margin: '4px',
   borderRadius: '20px',
@@ -38,6 +43,7 @@ const cardBlockStyle = {
 
 module.exports = {
   smallCardStyle,
+  matchCardStyle,
   languageCardStyle,
   regularCardStyle,
   cardFooterStyle,
