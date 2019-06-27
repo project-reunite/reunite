@@ -1,5 +1,4 @@
 import React from 'react';
-import './general-card.scss';
 import Card, { CardImage, CardTitle } from 'mineral-ui/Card';
 
 const { regularCardStyle } = require('../../styles/card-styles');

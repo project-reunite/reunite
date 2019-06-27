@@ -2,13 +2,14 @@ import React from 'react';
 
 import './dashboard.scss';
 
-import Flex, { FlexItem } from 'mineral-ui/Flex';
+import Flex from 'mineral-ui/Flex';
 import appStatus from '../../utils/appStatus';
-import genders from '../../utils/genders';
 import ages from '../../utils/ages';
 import apiRequests from '../../utils/apiRequests';
 
-import GeneralCard from '../general-card';
+import AgeSelectionPanel from '../age-selection-panel';
+import GenderSelectionPanel from '../gender-selection-panel';
+import LanguageSelectionPanel from '../language-selection-panel';
 import UploadPicPanel from '../upload-pic-card';
 import WelcomeCard from '../welcome-card';
 import RestartCard from '../restart-card';
@@ -17,18 +18,6 @@ import Deck from '../deck';
 import Header from '../header';
 
 const { flexStyle } = require('../../styles/flex-styles');
-
-const ageUrls = {
-  Baby: 'baby.svg',
-  Child: 'child.svg',
-  Adult: 'man-icon.svg',
-  Elderly: 'elderly.svg',
-};
-
-const genderUrls = {
-  Male: 'man-icon.svg',
-  Female: 'woman-icon.svg',
-};
 
 const getAgeQueryString = (age) => {
   if (age === ages.BABY) return 'minAge=0&maxAge=4';
@@ -42,7 +31,7 @@ class Dashboard extends React.Component {
   constructor() {
     super();
     this.state = {
-      appState: appStatus.WELCOME,
+      appState: appStatus.SELECT_LANGUAGE,
       gender: null,
       age: null,
       initialDecisionId: null,
@@ -59,6 +48,12 @@ class Dashboard extends React.Component {
         appState: appStatus.PIC_COMPARISON,
       });
     }
+  }
+
+  restart = () => {
+    this.setState({
+      appState: appStatus.WELCOME,
+    });
   }
 
   submitFilters = async () => {
@@ -83,64 +78,23 @@ class Dashboard extends React.Component {
     });
   }
 
-  getGenderSelectionCards = () => {
-    const genderList = Object.values(genders);
-    const items = [];
-    for (let i = 0; i < genderList.length; i += 1) {
-      const selection = genderList[i];
-      const props = {
-        onClick: () => this.setGender(selection),
-        title: selection,
-        img: genderUrls[selection],
-        dataCy: `gender-selection-card-${selection}`,
-      };
-      items.push(
-        <FlexItem>
-          <GeneralCard {...props} />
-        </FlexItem>,
-      );
-    }
-    return (
-      <div className="selectionPanel">
-        <Flex
-          wrap
-          {...flexStyle}
-        >
-          {items}
-        </Flex>
-      </div>
-    );
-  }
+  getLanguageSelectionPanel = () => (
+    <LanguageSelectionPanel
+      submitLanguage={() => this.setState({ appState: appStatus.WELCOME })}
+    />
+  );
 
-  getAgeSelectionCards = () => {
-    const ageList = Object.values(ages);
-    const items = [];
-    for (let i = 0; i < ageList.length; i += 1) {
-      const selection = ageList[i];
-      const props = {
-        onClick: () => this.setAge(selection),
-        title: selection,
-        img: ageUrls[selection],
-        dataCy: `age-selection-card-${selection}`,
-        imageClassName: 'ageSelectCardImage',
-      };
-      items.push(
-        <FlexItem>
-          <GeneralCard {...props} />
-        </FlexItem>,
-      );
-    }
-    return (
-      <div className="selectionPanel">
-        <Flex
-          wrap
-          {...flexStyle}
-        >
-          {items}
-        </Flex>
-      </div>
-    );
-  }
+  getGenderSelectionCards = () => (
+    <GenderSelectionPanel
+      setGender={gender => this.setGender(gender)}
+    />
+  )
+
+  getAgeSelectionCards = () => (
+    <AgeSelectionPanel
+      setAge={age => this.setAge(age)}
+    />
+  )
 
   getWelcomeCard = () => (
     <WelcomeCard
@@ -195,7 +149,11 @@ class Dashboard extends React.Component {
   getMainPanel = () => {
     const { appState } = this.state;
     let content;
+    console.log(appState);
     switch (appState) {
+      case appStatus.SELECT_LANGUAGE:
+        content = this.getLanguageSelectionPanel();
+        break;
       case appStatus.WELCOME:
         content = this.getWelcomeCard();
         break;
@@ -221,7 +179,7 @@ class Dashboard extends React.Component {
         content = this.getMatchCard();
         break;
       default:
-        content = <Deck />;
+        content = null;
         break;
     }
     return content;
@@ -231,7 +189,7 @@ class Dashboard extends React.Component {
     const deckComponent = this.getMainPanel();
     return (
       <div>
-        <Header />
+        <Header restart={() => this.restart()} />
         {deckComponent}
       </div>
     );

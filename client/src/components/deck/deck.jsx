@@ -64,7 +64,7 @@ class Deck extends React.Component {
     return children;
   }
 
-  render() {
+  render = () => {
     const { choices } = this.state;
     return (
       <div className="cardContainer">

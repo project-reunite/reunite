@@ -16,7 +16,7 @@ const UploadPicPanel = (props) => {
         {...flexStyle}
       >
         <FlexItem data-cy="picture-button">
-          <GeneralCard onClick inputCardStyle={smallCardStyle} imageClassName="smallerCardImage" title="Photo" img="photo.svg" />
+          <GeneralCard onClick={() => console.log('upload picture')} inputCardStyle={smallCardStyle} imageClassName="smallerCardImage" title="Photo" img="photo.svg" />
         </FlexItem>
         <FlexItem data-cy="no-picture-button">
           <GeneralCard onClick={moveOn} inputCardStyle={smallCardStyle} imageClassName="smallerCardImage" title="No Photo" img="no-photo.svg" />

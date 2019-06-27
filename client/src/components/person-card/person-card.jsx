@@ -10,7 +10,11 @@ import IconMoreInfo from 'mineral-ui-icons/IconPersonOutline';
 import apiRequests from '../../utils/apiRequests';
 
 const { regularCardStyle, cardImageStyle, cardFooterStyle } = require('../../styles/card-styles');
-const { buttonStyle } = require('../../styles/button-styles');
+const { buttonStyle, secondButtonStyle } = require('../../styles/button-styles');
+
+const iconStyle = {
+  color: '#61B7E1',
+};
 
 class PersonCard extends React.Component {
   constructor(props) {
@@ -33,8 +37,8 @@ class PersonCard extends React.Component {
   render = () => {
     const { details } = this.state;
     const { onClick, onMatch } = this.props;
-    const successIcon = <IconSuccess />;
-    const moreInfoIcon = <IconMoreInfo />;
+    const successIcon = <IconSuccess style={iconStyle} />;
+    const moreInfoIcon = <IconMoreInfo style={iconStyle} />;
     if (details.data) {
       return (
         <div className="cardContainer">
@@ -47,8 +51,8 @@ class PersonCard extends React.Component {
               onClick={onClick}
             />
             <CardFooter style={cardFooterStyle}>
-              <Button style={buttonStyle} iconStart={successIcon} onClick={onMatch}>My Person</Button>
-              <Button style={buttonStyle} className="cardButton" iconStart={moreInfoIcon} onClick={onClick} primary>Similar</Button>
+              <Button style={secondButtonStyle} iconStart={successIcon} onClick={onMatch}>My Person</Button>
+              <Button style={buttonStyle} className="cardButton" iconStart={moreInfoIcon} onClick={onClick}>Similar</Button>
             </CardFooter>
           </Card>
         </div>
