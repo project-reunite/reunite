@@ -1,10 +1,11 @@
 import React from 'react';
 
+import Flex from 'mineral-ui/Flex';
+
 import './dashboard.scss';
 
-import Flex from 'mineral-ui/Flex';
 import appStatus from '../../utils/appStatus';
-import ages from '../../utils/ages';
+
 import apiRequests from '../../utils/apiRequests';
 
 import AgeSelectionPanel from '../age-selection-panel';
@@ -16,16 +17,9 @@ import RestartCard from '../restart-card';
 import MatchCard from '../match-card';
 import Deck from '../deck';
 import Header from '../header';
+import utilFunctions from '../../utils/util-functions';
 
 const { flexStyle } = require('../../styles/flex-styles');
-
-const getAgeQueryString = (age) => {
-  if (age === ages.BABY) return 'minAge=0&maxAge=4';
-  if (age === ages.CHILD) return 'minAge=5&maxAge=18';
-  if (age === ages.ADULT) return 'minAge=19&maxAge=60';
-  if (age === ages.ELDERLY) return 'minAge=61&maxAge=100';
-  return '';
-};
 
 class Dashboard extends React.Component {
   constructor() {
@@ -58,7 +52,7 @@ class Dashboard extends React.Component {
 
   submitFilters = async () => {
     const { gender, age } = this.state;
-    const ageQuery = getAgeQueryString(age);
+    const ageQuery = utilFunctions.getAgeQueryString(age);
     const queryString = `gender=${gender}&${ageQuery}`;
     const response = await apiRequests.getTree(queryString);
     return response;
@@ -111,7 +105,6 @@ class Dashboard extends React.Component {
 
   getDeck = () => {
     const { initialDecisionId } = this.state;
-    // const initialDecisionId = '63e667f6d8cc11d219851bce64f8da2d';
     return (
       <Deck
         startingDecisionID={initialDecisionId}
@@ -149,7 +142,6 @@ class Dashboard extends React.Component {
   getMainPanel = () => {
     const { appState } = this.state;
     let content;
-    console.log(appState);
     switch (appState) {
       case appStatus.SELECT_LANGUAGE:
         content = this.getLanguageSelectionPanel();
@@ -167,7 +159,6 @@ class Dashboard extends React.Component {
         content = this.getAgeSelectionCards();
         break;
       case appStatus.SUBMIT_CHOICES:
-      // ComponentDidMount makes async call to submit choices
         break;
       case appStatus.PIC_COMPARISON:
         content = this.getDeck();

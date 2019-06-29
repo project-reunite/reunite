@@ -1,6 +1,7 @@
 import React from 'react';
-import Flex, { FlexItem } from 'mineral-ui/Flex';
 import PropTypes from 'prop-types';
+
+import Flex, { FlexItem } from 'mineral-ui/Flex';
 
 import PersonCard from '../person-card';
 import apiRequests from '../../utils/apiRequests';
@@ -80,8 +81,8 @@ class Deck extends React.Component {
 }
 
 Deck.defaultProps = {
-  onFailure: () => console.log('onFailure prop not found'),
-  onMatch: () => console.log('onMatch prop not found'),
+  onFailure: () => {},
+  onMatch: () => {},
 };
 
 Deck.propTypes = {

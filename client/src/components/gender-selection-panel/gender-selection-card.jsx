@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 import GeneralCard from '../general-card';
@@ -35,6 +36,14 @@ const GenderSelectionPanel = (props) => {
       </Flex>
     </div>
   );
+};
+
+GenderSelectionPanel.defaultProps = {
+  setGender: () => {},
+};
+
+GenderSelectionPanel.propTypes = {
+  setGender: PropTypes.func,
 };
 
 export default GenderSelectionPanel;

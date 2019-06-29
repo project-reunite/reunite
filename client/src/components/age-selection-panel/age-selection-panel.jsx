@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 import GeneralCard from '../general-card';
@@ -17,7 +18,7 @@ const AgeSelectionPanel = (props) => {
         <FlexItem>
           <GeneralCard
             title={ages.BABY}
-            onClick={() => console.log('baby tree')}
+            onClick={() => {}}
             img="baby.svg"
             dataCy={`age-selection-card-${ages.BABY}`}
             imageClassName="ageSelectCardImage"
@@ -26,7 +27,7 @@ const AgeSelectionPanel = (props) => {
         <FlexItem>
           <GeneralCard
             title={ages.CHILD}
-            onClick={() => console.log('child')}
+            onClick={() => {}}
             img="child.svg"
             dataCy={`age-selection-card-${ages.CHILD}`}
             imageClassName="ageSelectCardImage"
@@ -53,6 +54,14 @@ const AgeSelectionPanel = (props) => {
       </Flex>
     </div>
   );
+};
+
+AgeSelectionPanel.defaultProps = {
+  setAge: () => {},
+};
+
+AgeSelectionPanel.propTypes = {
+  setAge: PropTypes.func,
 };
 
 export default AgeSelectionPanel;

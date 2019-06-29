@@ -11,10 +11,7 @@ import apiRequests from '../../utils/apiRequests';
 
 const { regularCardStyle, cardImageStyle, cardFooterStyle } = require('../../styles/card-styles');
 const { buttonStyle, secondButtonStyle } = require('../../styles/button-styles');
-
-const iconStyle = {
-  color: '#61B7E1',
-};
+const { iconStyle } = require('../../styles/icon-styles');
 
 class PersonCard extends React.Component {
   constructor(props) {
@@ -51,8 +48,21 @@ class PersonCard extends React.Component {
               onClick={onClick}
             />
             <CardFooter style={cardFooterStyle}>
-              <Button style={secondButtonStyle} iconStart={successIcon} onClick={onMatch}>My Person</Button>
-              <Button style={buttonStyle} className="cardButton" iconStart={moreInfoIcon} onClick={onClick}>Similar</Button>
+              <Button
+                style={secondButtonStyle}
+                iconStart={successIcon}
+                onClick={onMatch}
+              >
+              My Person
+              </Button>
+              <Button
+                style={buttonStyle}
+                className="cardButton"
+                iconStart={moreInfoIcon}
+                onClick={onClick}
+              >
+                Similar
+              </Button>
             </CardFooter>
           </Card>
         </div>
@@ -63,8 +73,8 @@ class PersonCard extends React.Component {
 }
 
 PersonCard.defaultProps = {
-  onClick: () => console.log('onClick prop not found'),
-  onMatch: () => console.log('onMatch prop not found'),
+  onClick: () => {},
+  onMatch: () => {},
 };
 
 PersonCard.propTypes = {

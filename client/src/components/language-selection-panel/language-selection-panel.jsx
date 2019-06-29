@@ -1,9 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Menu, { MenuItem } from 'mineral-ui/Menu';
 import Card, { CardTitle } from 'mineral-ui/Card';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
-import FlagIcon from '../flag-icons';
 
 const { languageCardStyle } = require('../../styles/card-styles');
 const { languageMenuStyle } = require('../../styles/menu-styles');
@@ -23,22 +23,22 @@ const LanguageSelectionCard = (props) => {
             <Menu
               style={languageMenuStyle}
             >
-              <MenuItem iconEnd={<FlagIcon code="gb-eng" />} data-cy="language-english" onClick={submitLanguage}>
+              <MenuItem data-cy="language-english" onClick={submitLanguage}>
             English
               </MenuItem>
-              <MenuItem iconEnd={<FlagIcon code="fr" />} onClick={submitLanguage}>
+              <MenuItem onClick={submitLanguage}>
             Français
               </MenuItem>
-              <MenuItem iconEnd={<FlagIcon code="es" />} onClick={submitLanguage}>
+              <MenuItem onClick={submitLanguage}>
             Espanol
               </MenuItem>
-              <MenuItem iconEnd={<FlagIcon code="de" />} onClick={submitLanguage}>
+              <MenuItem onClick={submitLanguage}>
             Alemand
               </MenuItem>
-              <MenuItem iconEnd={<FlagIcon code="ae" />} onClick={submitLanguage}>
+              <MenuItem onClick={submitLanguage}>
               عرب
               </MenuItem>
-              <MenuItem iconEnd={<FlagIcon code="cn" />} onClick={submitLanguage}>
+              <MenuItem onClick={submitLanguage}>
               中文
               </MenuItem>
             </Menu>
@@ -47,6 +47,14 @@ const LanguageSelectionCard = (props) => {
       </Flex>
     </div>
   );
+};
+
+LanguageSelectionCard.defaultProps = {
+  submitLanguage: () => {},
+};
+
+LanguageSelectionCard.propTypes = {
+  submitLanguage: PropTypes.func,
 };
 
 export default LanguageSelectionCard;

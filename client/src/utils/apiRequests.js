@@ -5,8 +5,7 @@ const getPerson = async (id) => {
     const response = await axios.get(`http://localhost:9100/api/v1/persons/${id}`);
     return response;
   } catch (err) {
-    console.error(err);
-    return null;
+    throw err;
   }
 };
 
@@ -15,8 +14,7 @@ const getChoices = async (decisionId) => {
     const response = await axios.get(`http://localhost:9100/api/v1/decisions/${decisionId}`);
     return response;
   } catch (err) {
-    console.error(err);
-    return null;
+    throw err;
   }
 };
 
@@ -25,8 +23,7 @@ const getTree = async (queryString) => {
     const response = await axios.get(`http://localhost:9100/api/v1/trees?${queryString}`);
     return response;
   } catch (err) {
-    console.error(err);
-    return null;
+    throw err;
   }
 };
 

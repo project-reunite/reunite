@@ -28,7 +28,7 @@ const RestartCard = (props) => {
 };
 
 RestartCard.defaultProps = {
-  restart: () => console.log('restart prop not found'),
+  restart: () => {},
 };
 
 RestartCard.propTypes = {
