@@ -17,6 +17,7 @@ import RestartCard from '../restart-card';
 import MatchCard from '../match-card';
 import Deck from '../deck';
 import Header from '../header';
+import ErrorDialog from '../error-dialog';
 import utilFunctions from '../../utils/util-functions';
 
 const { flexStyle } = require('../../styles/flex-styles');
@@ -168,6 +169,9 @@ class Dashboard extends React.Component {
         break;
       case appStatus.MATCH_FOUND:
         content = this.getMatchCard();
+        break;
+      case appStatus.ERROR:
+        content = <ErrorDialog />;
         break;
       default:
         content = null;

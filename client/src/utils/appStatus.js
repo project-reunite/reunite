@@ -8,4 +8,5 @@ module.exports = {
   PIC_COMPARISON: 'PIC_COMPARISON',
   FAILURE: 'FAILURE',
   MATCH_FOUND: 'MATCH_FOUND',
+  ERROR: 'ERROR',
 };
