@@ -58,19 +58,19 @@ npm install
 npm start
 ```
 
-Run this from: 
+Run this from:
+
 - the root directory to start both the client and server
 - `/server` to start only the server
 - `/client` to start only the client
 
-
-The client app will be running at `http://localhost:41002`. 
+The client app will be running at `http://localhost:41002`.
 
 The server will be listening at `http://localhost:9100`.
 
 ## Running the Tests
 
-### All ests
+### All tests
 
 ```bash
 npm run test:full
@@ -78,8 +78,7 @@ npm run test:full
 
 Run this from the root directory to run integration and component tests for both the client and server.
 
-
-### End-to-end tests 
+### End-to-end tests
 
 We use [Cypress](https://www.cypress.io/) to perform client-server integration tests. Cypress manipulates our client, checking that calling the server's API renders the correct components.
 
