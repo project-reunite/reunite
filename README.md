@@ -38,9 +38,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 [Download Node.js v8 or above](https://github.com/nodejs/node#download)
 
-### Installing
+### Installing and Running App
 
-1. Clone this repo
+1. Clone the repo
 
     ```bash
     git clone git@github.ibm.com:ProjectReunite/reunite.git
@@ -60,13 +60,15 @@ These instructions will get you a copy of the project up and running on your loc
     npm start
     ```
 
-4. Interact with the app
+4. Develop and test app
 
-    The app will be available on ```http:localhost:41002```. API calls can be made to the server on ```http:localhost:9100```.
+    The app will be available on ```http://localhost:41002```. API calls can be made to the server on ```http://localhost:9100```.
 
-## Running the tests
+## Running the Tests
 
-To following command from the root directory will run the full test suite.
+### All tests
+
+The following command, from the root directory, will run the full test suite.
 
 ```bash
 npm run test:full
@@ -74,7 +76,9 @@ npm run test:full
 
 ### Integration tests
 
-Cypress is used for end-to-end testing of the app. If the app is running, these tests can be run with the following commands from the root directory.
+Cypress is used for end-to-end integration testing of the app, manipulating the frontend to make API calls the server and asserting the correct components are then rendered.
+
+If the app is running, these tests can be run with the following commands.
 
 ```bash
 # With Cypress UI
@@ -83,7 +87,7 @@ npm run cypress:open
 npm run cypress:run
 ```
 
-If the app is not running. The following command will start the app, run the integration tests and then stop the app.
+If the app is not running. The following command will start the app, run the integration tests and then clean up.
 
 ```bash
 npm run test:integration
@@ -91,7 +95,9 @@ npm run test:integration
 
 ### Component tests
 
-The client uses Jest testing each of its components renders correctly, and do not require the app to be running.
+The client uses Jest to test that each of its components renders correctly in isolation.
+
+These do not require the app to be running.
 
 ```bash
 cd client
@@ -103,7 +109,7 @@ jest --watch
 
 ### API tests
 
-The server uses mocha to test its API's.
+The server uses mocha to test its API's, and will also report test coverage.
 
 ```bash
 cd server
