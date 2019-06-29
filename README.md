@@ -129,10 +129,6 @@ npm run test:coverage
 - [Mineral UI](https://github.com/mineral-ui/mineral-ui)
 - [Cypress](https://www.cypress.io/)
 
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## Authors
 
 - **[James Cockbain](https://github.ibm.com/James-Cockbain)**
@@ -140,10 +136,6 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 - **[Liam Hampton](https://github.ibm.com/Liam-Hampton)**
 - **[Richard Waller](https://github.ibm.com/Richard-Waller)**
 - **[Michael Westerby](https://github.ibm.com/Michael-Westerby)**
-
-## License
-
-This project is licensed under the Apache 2 License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
