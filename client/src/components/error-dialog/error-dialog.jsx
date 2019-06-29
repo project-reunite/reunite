@@ -1,24 +1,42 @@
 import React from 'react';
-import Dialog from 'mineral-ui/Dialog';
+import PropTypes from 'prop-types';
+
+import Dialog, {
+  DialogActions, DialogHeader, DialogTitle,
+} from 'mineral-ui/Dialog';
 import Text from 'mineral-ui/Text';
+import Button from 'mineral-ui/Button';
+
 
 const ErrorDialog = (props) => {
-  const { onClick } = props;
+  const { error, restart } = props;
   return (
     <Dialog
+      isOpen
       variant="danger"
-      title="ipsum dolor sit amet"
-      actions={[
-        { text: 'Cancel' },
-        { text: 'Action' },
-      ]}
+      onClose={restart}
     >
+      <DialogHeader>
+        <DialogTitle>Error</DialogTitle>
+      </DialogHeader>
       <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        {error}
       </Text>
+      <DialogActions>
+        <Button onClick={restart} size="medium">Restart App</Button>
+      </DialogActions>
     </Dialog>
   );
+};
+
+ErrorDialog.defaultProps = {
+  error: '',
+  restart: () => {},
+};
+
+ErrorDialog.propTypes = {
+  error: PropTypes.string,
+  restart: PropTypes.func,
 };
 
 export default ErrorDialog;

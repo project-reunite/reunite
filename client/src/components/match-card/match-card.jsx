@@ -24,11 +24,15 @@ class MatchCard extends React.Component {
   }
 
   componentDidMount = async () => {
-    const { id } = this.props;
-    const details = await this.getDetails(id);
-    this.setState({
-      details,
-    });
+    const { id, onError } = this.props;
+    try {
+      const details = await this.getDetails(id);
+      this.setState({
+        details,
+      });
+    } catch (err) {
+      onError();
+    }
   }
 
   getDetails = async personId => apiRequests.getPerson(personId);
@@ -77,9 +81,11 @@ class MatchCard extends React.Component {
 
 MatchCard.defaultProps = {
   restart: () => {},
+  onError: () => {},
 };
 
 MatchCard.propTypes = {
+  onError: PropTypes.func,
   restart: PropTypes.func,
   id: PropTypes.string.isRequired,
 };

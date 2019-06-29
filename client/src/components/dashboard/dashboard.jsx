@@ -7,6 +7,7 @@ import './dashboard.scss';
 import appStatus from '../../utils/appStatus';
 
 import apiRequests from '../../utils/apiRequests';
+import errorMessages from '../../utils/errorMessages';
 
 import AgeSelectionPanel from '../age-selection-panel';
 import GenderSelectionPanel from '../gender-selection-panel';
@@ -31,17 +32,22 @@ class Dashboard extends React.Component {
       age: null,
       initialDecisionId: null,
       personId: null,
+      error: null,
     };
   }
 
   componentDidUpdate = async () => {
     const { appState } = this.state;
-    if (appState === appStatus.SUBMIT_CHOICES) {
-      const response = await this.submitFilters();
-      this.setState({
-        initialDecisionId: response.data.docs[0].initialDecision_id,
-        appState: appStatus.PIC_COMPARISON,
-      });
+    try {
+      if (appState === appStatus.SUBMIT_CHOICES) {
+        const response = await this.submitFilters();
+        this.setState({
+          initialDecisionId: response.data.docs[0].initialDecision_id,
+          appState: appStatus.PIC_COMPARISON,
+        });
+      }
+    } catch (err) {
+      this.setServerError();
     }
   }
 
@@ -57,6 +63,13 @@ class Dashboard extends React.Component {
     const queryString = `gender=${gender}&${ageQuery}`;
     const response = await apiRequests.getTree(queryString);
     return response;
+  }
+
+  setServerError = () => {
+    this.setState({
+      appState: appStatus.ERROR,
+      error: errorMessages.serverError,
+    });
   }
 
   setGender = (gender) => {
@@ -114,6 +127,7 @@ class Dashboard extends React.Component {
           personId: id,
           appState: appStatus.MATCH_FOUND,
         })}
+        onError={() => this.setServerError()}
       />
     );
   }
@@ -135,13 +149,14 @@ class Dashboard extends React.Component {
         <MatchCard
           restart={() => this.setState({ appState: appStatus.WELCOME })}
           id={personId}
+          onError={() => this.setServerError()}
         />
       </Flex>
     );
   }
 
   getMainPanel = () => {
-    const { appState } = this.state;
+    const { appState, error } = this.state;
     let content;
     switch (appState) {
       case appStatus.SELECT_LANGUAGE:
@@ -171,7 +186,12 @@ class Dashboard extends React.Component {
         content = this.getMatchCard();
         break;
       case appStatus.ERROR:
-        content = <ErrorDialog />;
+        content = (
+          <ErrorDialog
+            error={error}
+            restart={() => this.restart()}
+          />
+        );
         break;
       default:
         content = null;

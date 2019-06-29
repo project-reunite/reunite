@@ -25,9 +25,14 @@ class Deck extends React.Component {
 
   componentDidUpdate = async (prevProps, prevState) => {
     const { decisionId } = this.state;
-    if (prevState && prevState.decisionId !== decisionId) {
-      const response = await this.getDeckChoices(decisionId);
-      this.setState({ choices: response.data.choices });
+    const { onError } = this.props;
+    try {
+      if (prevState && prevState.decisionId !== decisionId) {
+        const response = await this.getDeckChoices(decisionId);
+        this.setState({ choices: response.data.choices });
+      }
+    } catch (err) {
+      onError();
     }
   }
 
@@ -48,6 +53,7 @@ class Deck extends React.Component {
   }
 
   renderChildren = (choices) => {
+    const { onError } = this.props;
     const children = [];
     choices.forEach((choice) => {
       const personId = choice.persons_id;
@@ -58,6 +64,7 @@ class Deck extends React.Component {
             id={personId}
             onMatch={(() => this.reactToMatch(personId))}
             onClick={() => this.reactToCardClick(nextDecisionId)}
+            onError={onError}
           />
         </FlexItem>,
       );
@@ -83,9 +90,11 @@ class Deck extends React.Component {
 Deck.defaultProps = {
   onFailure: () => {},
   onMatch: () => {},
+  onError: () => {},
 };
 
 Deck.propTypes = {
+  onError: PropTypes.func,
   onFailure: PropTypes.func,
   onMatch: PropTypes.func,
   startingDecisionID: PropTypes.string.isRequired,

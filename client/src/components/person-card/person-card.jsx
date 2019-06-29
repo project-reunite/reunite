@@ -22,11 +22,15 @@ class PersonCard extends React.Component {
   }
 
   componentDidMount = async () => {
-    const { id } = this.props;
-    const details = await this.getDetails(id);
-    this.setState({
-      details,
-    });
+    const { id, onError } = this.props;
+    try {
+      const details = await this.getDetails(id);
+      this.setState({
+        details,
+      });
+    } catch (err) {
+      onError();
+    }
   }
 
   getDetails = async personId => apiRequests.getPerson(personId);
@@ -75,9 +79,11 @@ class PersonCard extends React.Component {
 PersonCard.defaultProps = {
   onClick: () => {},
   onMatch: () => {},
+  onError: () => {},
 };
 
 PersonCard.propTypes = {
+  onError: PropTypes.func,
   onClick: PropTypes.func,
   onMatch: PropTypes.func,
   id: PropTypes.string.isRequired,
