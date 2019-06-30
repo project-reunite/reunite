@@ -16,8 +16,23 @@ const Header = (props) => {
       style={headerStyle}
       align="justify"
     >
-      <NavItem onClick={goBack} style={navItemStyle} color="#61B7E1" icon={<IconRestart />}>Back</NavItem>
-      <NavItem style={navItemStyle} color="#61B7E1" icon={<IconExpandMore />}>Language</NavItem>
+      <NavItem
+        onClick={goBack}
+        style={navItemStyle}
+        color="#61B7E1"
+        icon={<IconRestart />}
+        data-cy="back-button"
+      >
+      Back
+
+      </NavItem>
+      <NavItem
+        style={navItemStyle}
+        color="#61B7E1"
+        icon={<IconExpandMore />}
+      >
+      Language
+      </NavItem>
     </PrimaryNav>
   );
 };
