@@ -29,13 +29,4 @@ describe('e2e app test', () => {
     cy.getElementByDataCy('back-button').click();
     cy.getElementByDataCy('gender-selection-card-Female').should('exist');
   });
-  it('goes back to age selection panel', () => {
-    cy.getElementByDataCy('language-english').click();
-    cy.getElementByDataCy('play-button').click();
-    cy.getElementByDataCy('no-picture-button').click();
-    cy.getElementByDataCy('gender-selection-card-Female').click()
-    cy.getElementByDataCy('age-selection-card-Adult').click()
-    cy.getElementByDataCy('back-button').click();
-    cy.getElementByDataCy('age-selection-card-Adult').should('exist');
-  });
 });
