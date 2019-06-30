@@ -1,1 +1,1 @@
-export { default } from './gender-selection-card';
+export { default } from './gender-selection-panel';
