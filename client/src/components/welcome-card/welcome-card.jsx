@@ -16,10 +16,22 @@ const WelcomeCard = (props) => {
         {...flexStyle}
       >
         <FlexItem data-cy="play-button">
-          <GeneralCard onClick={startSearch} inputCardStyle={smallCardStyle} imageClassName="smallerCardImage" img="play.svg" title="Start" />
+          <GeneralCard
+            onClick={startSearch}
+            inputCardStyle={smallCardStyle}
+            imageClassName="smallerCardImage"
+            img="play.svg"
+            title="Start"
+          />
         </FlexItem>
         <FlexItem className="startButton">
-          <GeneralCard onClick={() => console.log('more info')} imageClassName="smallerCardImage" inputCardStyle={smallCardStyle} img="question-mark.svg" title="Info" />
+          <GeneralCard
+            onClick={() => {}}
+            imageClassName="smallerCardImage"
+            inputCardStyle={smallCardStyle}
+            img="question-mark.svg"
+            title="Info"
+          />
         </FlexItem>
       </Flex>
     </div>
@@ -27,7 +39,7 @@ const WelcomeCard = (props) => {
 };
 
 WelcomeCard.defaultProps = {
-  startSearch: () => console.log('startSearch prop not found'),
+  startSearch: () => {},
 };
 
 WelcomeCard.propTypes = {

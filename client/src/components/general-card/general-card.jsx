@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Card, { CardImage, CardTitle } from 'mineral-ui/Card';
 
 const { regularCardStyle } = require('../../styles/card-styles');
@@ -17,6 +19,24 @@ const GeneralCard = (props) => {
       />
     </Card>
   );
+};
+
+GeneralCard.defaultProps = {
+  title: '',
+  img: '',
+  dataCy: '',
+  imageClassName: '',
+  inputCardStyle: '',
+  onClick: () => {},
+};
+
+GeneralCard.propTypes = {
+  title: PropTypes.string,
+  img: PropTypes.string,
+  dataCy: PropTypes.string,
+  imageClassName: PropTypes.string,
+  inputCardStyle: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default GeneralCard;

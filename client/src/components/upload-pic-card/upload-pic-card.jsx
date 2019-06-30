@@ -1,7 +1,8 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
+
 import Flex, { FlexItem } from 'mineral-ui/Flex';
+
 import GeneralCard from '../general-card';
 
 const { flexStyle } = require('../../styles/flex-styles');
@@ -16,10 +17,22 @@ const UploadPicPanel = (props) => {
         {...flexStyle}
       >
         <FlexItem data-cy="picture-button">
-          <GeneralCard onClick={() => console.log('upload picture')} inputCardStyle={smallCardStyle} imageClassName="smallerCardImage" title="Photo" img="photo.svg" />
+          <GeneralCard
+            onClick={() => {}}
+            inputCardStyle={smallCardStyle}
+            imageClassName="smallerCardImage"
+            title="Photo"
+            img="photo.svg"
+          />
         </FlexItem>
         <FlexItem data-cy="no-picture-button">
-          <GeneralCard onClick={moveOn} inputCardStyle={smallCardStyle} imageClassName="smallerCardImage" title="No Photo" img="no-photo.svg" />
+          <GeneralCard
+            onClick={moveOn}
+            inputCardStyle={smallCardStyle}
+            imageClassName="smallerCardImage"
+            title="No Photo"
+            img="no-photo.svg"
+          />
         </FlexItem>
       </Flex>
     </div>
@@ -27,7 +40,7 @@ const UploadPicPanel = (props) => {
 };
 
 UploadPicPanel.defaultProps = {
-  moveOn: () => console.log('moveOn prop not found'),
+  moveOn: () => {},
 };
 
 UploadPicPanel.propTypes = {
