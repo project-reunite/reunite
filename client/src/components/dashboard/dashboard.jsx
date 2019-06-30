@@ -5,7 +5,7 @@ import Flex from 'mineral-ui/Flex';
 import './dashboard.scss';
 
 import appStatus from '../../utils/appStatus';
-
+import appOrder from '../../utils/appOrder';
 import apiRequests from '../../utils/apiRequests';
 import errorMessages from '../../utils/errorMessages';
 
@@ -48,6 +48,16 @@ class Dashboard extends React.Component {
       }
     } catch (err) {
       this.setServerError();
+    }
+  }
+
+  goBack = () => {
+    const { appState } = this.state;
+    const index = appOrder.indexOf(appState);
+    if (index && index > 0) {
+      this.setState({
+        appState: appOrder[index - 1],
+      });
     }
   }
 
@@ -204,7 +214,10 @@ class Dashboard extends React.Component {
     const deckComponent = this.getMainPanel();
     return (
       <div>
-        <Header restart={() => this.restart()} />
+        <Header
+          restart={() => this.restart()}
+          goBack={() => this.goBack()}
+        />
         {deckComponent}
       </div>
     );
