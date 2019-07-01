@@ -13,7 +13,7 @@ class PersonSelectionPanel extends React.Component {
     super(props);
     this.state = {
       choices: [],
-      decisionId: null,
+      decisionId: undefined,
     };
   }
 
@@ -50,8 +50,10 @@ class PersonSelectionPanel extends React.Component {
   }
 
   reactToMatch = (personId) => {
-    const { onMatch } = this.props;
-    onMatch(personId);
+    const { onMatch, startingDecisionID } = this.props;
+    const { decisionId } = this.state;
+    const currentDecisionId = (decisionId || startingDecisionID);
+    onMatch(personId, currentDecisionId);
   }
 
   renderChildren = (choices) => {

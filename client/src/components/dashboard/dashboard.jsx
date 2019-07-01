@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
       appState: appStatus.LANGUAGE_SELECT,
       gender: null,
       age: null,
-      initialDecisionId: null,
+      currentDecisionId: null,
       personId: null,
       error: null,
     };
@@ -42,7 +42,7 @@ class Dashboard extends React.Component {
       if (appState === appStatus.SUBMIT_CHOICES) {
         const response = await this.submitFilters();
         this.setState({
-          initialDecisionId: response.data.docs[0].initialDecision_id,
+          currentDecisionId: response.data.docs[0].initialDecision_id,
           appState: appStatus.COMPARE_PICTURES,
         });
       }
@@ -128,13 +128,14 @@ class Dashboard extends React.Component {
   )
 
   getPersonSelectionPanel = () => {
-    const { initialDecisionId } = this.state;
+    const { currentDecisionId } = this.state;
     return (
       <PersonSelectionPanel
-        startingDecisionID={initialDecisionId}
+        startingDecisionID={currentDecisionId}
         onFailure={() => this.setState({ appState: appStatus.NO_MATCH_FOUND })}
-        onMatch={id => this.setState({
-          personId: id,
+        onMatch={(personId, decisionId) => this.setState({
+          personId,
+          currentDecisionId: decisionId,
           appState: appStatus.MATCH_FOUND,
         })}
         onError={() => this.setServerError()}
@@ -152,6 +153,7 @@ class Dashboard extends React.Component {
           restart={() => this.setState({ appState: appStatus.WELCOME_PANEL })}
           id={personId}
           onError={() => this.setServerError()}
+          continueSearch={() => this.setState({ appState: appStatus.COMPARE_PICTURES })}
         />
       </Flex>
     );
@@ -174,7 +176,6 @@ class Dashboard extends React.Component {
       />
     );
   }
-
 
   getMainPanel = () => {
     const { appState } = this.state;

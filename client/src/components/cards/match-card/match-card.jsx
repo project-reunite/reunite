@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Button from 'mineral-ui/Button';
 import IconSuccess from 'mineral-ui-icons/IconSuccess';
-import IconRestart from 'mineral-ui-icons/IconRefresh';
+import IconCancel from 'mineral-ui-icons/IconCancel';
 import Card, {
   CardImage, CardBlock, CardTitle,
 } from 'mineral-ui/Card';
@@ -38,7 +38,7 @@ class MatchCard extends React.Component {
   getDetails = async personId => apiRequests.getPerson(personId);
 
   render = () => {
-    const { restart } = this.props;
+    const { continueSearch } = this.props;
     const { details } = this.state;
     if (details.data) {
       const successMessage = `Yes, please reunite me with ${details.data.name}`;
@@ -64,8 +64,8 @@ class MatchCard extends React.Component {
                 </Button>
                 <Button
                   style={buttonStyle}
-                  onClick={restart}
-                  iconStart={<IconRestart style={iconStyle} />}
+                  onClick={continueSearch}
+                  iconStart={<IconCancel style={iconStyle} />}
                 >
                 No, keep searching
                 </Button>
@@ -80,14 +80,14 @@ class MatchCard extends React.Component {
 }
 
 MatchCard.defaultProps = {
-  restart: () => {},
+  continueSearch: () => {},
   onError: () => {},
   id: '0',
 };
 
 MatchCard.propTypes = {
   onError: PropTypes.func,
-  restart: PropTypes.func,
+  continueSearch: PropTypes.func,
   id: PropTypes.string,
 };
 
