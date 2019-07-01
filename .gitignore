@@ -8,6 +8,7 @@
 # testing
 /**/coverage
 .nyc_output
+/server/.stryker-tmp
 
 # production
 /build

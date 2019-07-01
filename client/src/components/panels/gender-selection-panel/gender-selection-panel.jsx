@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Flex, { FlexItem } from 'mineral-ui/Flex';
-import GeneralCard from '../../general-card';
+import GeneralCard from '../../cards/general-card';
 import genders from '../../../utils/genders';
 
 const { flexStyle } = require('../../../styles/flex-styles');

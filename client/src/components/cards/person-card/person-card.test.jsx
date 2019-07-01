@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import PersonCard from './person-card';
-import apiRequests from '../../utils/apiRequests';
+import apiRequests from '../../../utils/apiRequests';
 
 const props = {
   id: 'John',
