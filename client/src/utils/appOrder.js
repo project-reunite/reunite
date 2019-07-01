@@ -1,10 +1,11 @@
 import appStatus from './appStatus';
 
 export default [
-  appStatus.SELECT_LANGUAGE,
-  appStatus.WELCOME,
-  appStatus.UPLOAD_PIC,
+  appStatus.LANGUAGE_SELECT,
+  appStatus.WELCOME_PANEL,
+  appStatus.UPLOAD_PICTURE,
   appStatus.SELECT_GENDER,
   appStatus.SELECT_AGES,
-  appStatus.PIC_COMPARISON,
+  appStatus.COMPARE_PICTURES,
+  appStatus.MATCH_FOUND,
 ];

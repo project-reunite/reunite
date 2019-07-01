@@ -9,7 +9,7 @@ import Card, {
 
 const { regularCardStyle } = require('../../../styles/card-styles');
 
-const RestartCard = (props) => {
+const NoMatchCard = (props) => {
   const { restart } = props;
   const icon = <IconRestart />;
   return (
@@ -27,12 +27,12 @@ const RestartCard = (props) => {
   );
 };
 
-RestartCard.defaultProps = {
+NoMatchCard.defaultProps = {
   restart: () => {},
 };
 
-RestartCard.propTypes = {
+NoMatchCard.propTypes = {
   restart: PropTypes.func,
 };
 
-export default RestartCard;
+export default NoMatchCard;

@@ -14,7 +14,7 @@ import GenderSelectionPanel from '../panels/gender-selection-panel';
 import LanguageSelectionPanel from '../panels/language-selection-panel';
 import UploadPicPanel from '../panels/upload-pic-panel';
 import WelcomeCard from '../panels/welcome-panel';
-import RestartCard from '../cards/restart-card';
+import NoMatchCard from '../cards/no-match-card';
 import MatchCard from '../cards/match-card';
 import PersonSelectionPanel from '../panels/person-selection-panel';
 import Header from '../header';
@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
   constructor() {
     super();
     this.state = {
-      appState: appStatus.SELECT_LANGUAGE,
+      appState: appStatus.LANGUAGE_SELECT,
       gender: null,
       age: null,
       initialDecisionId: null,
@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
         const response = await this.submitFilters();
         this.setState({
           initialDecisionId: response.data.docs[0].initialDecision_id,
-          appState: appStatus.PIC_COMPARISON,
+          appState: appStatus.COMPARE_PICTURES,
         });
       }
     } catch (err) {
@@ -63,7 +63,7 @@ class Dashboard extends React.Component {
 
   restart = () => {
     this.setState({
-      appState: appStatus.WELCOME,
+      appState: appStatus.WELCOME_PANEL,
     });
   }
 
@@ -98,7 +98,7 @@ class Dashboard extends React.Component {
 
   getLanguageSelectionPanel = () => (
     <LanguageSelectionPanel
-      submitLanguage={() => this.setState({ appState: appStatus.WELCOME })}
+      submitLanguage={() => this.setState({ appState: appStatus.WELCOME_PANEL })}
     />
   );
 
@@ -116,7 +116,7 @@ class Dashboard extends React.Component {
 
   getWelcomeCard = () => (
     <WelcomeCard
-      startSearch={() => this.setState({ appState: appStatus.UPLOAD_PIC })}
+      startSearch={() => this.setState({ appState: appStatus.UPLOAD_PICTURE })}
     />
   )
 
@@ -132,7 +132,7 @@ class Dashboard extends React.Component {
     return (
       <PersonSelectionPanel
         startingDecisionID={initialDecisionId}
-        onFailure={() => this.setState({ appState: appStatus.FAILURE })}
+        onFailure={() => this.setState({ appState: appStatus.NO_MATCH_FOUND })}
         onMatch={id => this.setState({
           personId: id,
           appState: appStatus.MATCH_FOUND,
@@ -142,14 +142,6 @@ class Dashboard extends React.Component {
     );
   }
 
-  getRestartCard = () => (
-    <Flex
-      {...flexStyle}
-    >
-      <RestartCard restart={() => this.setState({ appState: appStatus.WELCOME })} />
-    </Flex>
-  )
-
   getMatchCard = () => {
     const { personId } = this.state;
     return (
@@ -157,7 +149,7 @@ class Dashboard extends React.Component {
         {...flexStyle}
       >
         <MatchCard
-          restart={() => this.setState({ appState: appStatus.WELCOME })}
+          restart={() => this.setState({ appState: appStatus.WELCOME_PANEL })}
           id={personId}
           onError={() => this.setServerError()}
         />
@@ -165,60 +157,53 @@ class Dashboard extends React.Component {
     );
   }
 
+  getNoMatchCard = () => (
+    <Flex
+      {...flexStyle}
+    >
+      <NoMatchCard restart={() => this.setState({ appState: appStatus.WELCOME_PANEL })} />
+    </Flex>
+  )
+
+  getErrorDialog = () => {
+    const { error } = this.state;
+    return (
+      <ErrorDialog
+        error={error}
+        restart={() => this.restart()}
+      />
+    );
+  }
+
+
   getMainPanel = () => {
-    const { appState, error } = this.state;
-    let content;
-    switch (appState) {
-      case appStatus.SELECT_LANGUAGE:
-        content = this.getLanguageSelectionPanel();
-        break;
-      case appStatus.WELCOME:
-        content = this.getWelcomeCard();
-        break;
-      case appStatus.UPLOAD_PIC:
-        content = this.getUploadPicPanel();
-        break;
-      case appStatus.SELECT_GENDER:
-        content = this.getGenderSelectionCards();
-        break;
-      case appStatus.SELECT_AGES:
-        content = this.getAgeSelectionCards();
-        break;
-      case appStatus.SUBMIT_CHOICES:
-        break;
-      case appStatus.PIC_COMPARISON:
-        content = this.getPersonSelectionPanel();
-        break;
-      case appStatus.FAILURE:
-        content = this.getRestartCard();
-        break;
-      case appStatus.MATCH_FOUND:
-        content = this.getMatchCard();
-        break;
-      case appStatus.ERROR:
-        content = (
-          <ErrorDialog
-            error={error}
-            restart={() => this.restart()}
-          />
-        );
-        break;
-      default:
-        content = null;
-        break;
-    }
-    return content;
+    const { appState } = this.state;
+    return (
+      <div>
+        {{
+          [appStatus.LANGUAGE_SELECT]: this.getLanguageSelectionPanel(),
+          [appStatus.WELCOME_PANEL]: this.getWelcomeCard(),
+          [appStatus.UPLOAD_PICTURE]: this.getUploadPicPanel(),
+          [appStatus.SELECT_GENDER]: this.getGenderSelectionCards(),
+          [appStatus.SELECT_AGES]: this.getAgeSelectionCards(),
+          [appStatus.COMPARE_PICTURES]: this.getPersonSelectionPanel(),
+          [appStatus.MATCH_FOUND]: this.getMatchCard(),
+          [appStatus.NO_MATCH_FOUND]: this.getNoMatchCard(),
+          [appStatus.ERROR]: this.getNoMatchCard(),
+        }[appState]}
+      </div>
+    );
   }
 
   render = () => {
-    const PersonSelectionPanelComponent = this.getMainPanel();
+    const MainPanel = this.getMainPanel();
     return (
       <div>
         <Header
           restart={() => this.restart()}
           goBack={() => this.goBack()}
         />
-        {PersonSelectionPanelComponent}
+        {MainPanel}
       </div>
     );
   }

@@ -93,13 +93,14 @@ PersonSelectionPanel.defaultProps = {
   onFailure: () => {},
   onMatch: () => {},
   onError: () => {},
+  startingDecisionID: '0',
 };
 
 PersonSelectionPanel.propTypes = {
   onError: PropTypes.func,
   onFailure: PropTypes.func,
   onMatch: PropTypes.func,
-  startingDecisionID: PropTypes.string.isRequired,
+  startingDecisionID: PropTypes.string,
 };
 
 export default PersonSelectionPanel;

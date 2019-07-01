@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import RestartCard from './restart-card';
+import NoMatchCard from './no-match-card';
 
-describe('<RestartCard />', () => {
+describe('<NoMatchCard />', () => {
   it('renders without crashing', () => {
-    const wrapper = shallow(<RestartCard />);
+    const wrapper = shallow(<NoMatchCard />);
     expect(wrapper).toHaveLength(1);
   });
 });
