@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 
-import GeneralCard from '../general-card';
+import GeneralCard from '../../cards/general-card';
 
-const { flexStyle } = require('../../styles/flex-styles');
-const { smallCardStyle } = require('../../styles/card-styles');
+const { flexStyle } = require('../../../styles/flex-styles');
+const { smallCardStyle } = require('../../../styles/card-styles');
 
 const UploadPicPanel = (props) => {
   const { moveOn } = props;

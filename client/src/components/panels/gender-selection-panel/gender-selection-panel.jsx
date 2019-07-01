@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Flex, { FlexItem } from 'mineral-ui/Flex';
-import GeneralCard from '../general-card';
-import genders from '../../utils/genders';
+import GeneralCard from '../../general-card';
+import genders from '../../../utils/genders';
 
-const { flexStyle } = require('../../styles/flex-styles');
+const { flexStyle } = require('../../../styles/flex-styles');
 
 const GenderSelectionPanel = (props) => {
   const { setGender } = props;

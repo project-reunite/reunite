@@ -9,11 +9,11 @@ import Card, {
 } from 'mineral-ui/Card';
 import { FlexItem } from 'mineral-ui/Flex';
 
-import apiRequests from '../../utils/apiRequests';
+import apiRequests from '../../../utils/apiRequests';
 
-const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../styles/card-styles');
-const { buttonStyle } = require('../../styles/button-styles');
-const { iconStyle } = require('../../styles/icon-styles');
+const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../../styles/card-styles');
+const { buttonStyle } = require('../../../styles/button-styles');
+const { iconStyle } = require('../../../styles/icon-styles');
 
 class MatchCard extends React.Component {
   constructor(props) {

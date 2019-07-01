@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Deck from './deck';
-import apiRequests from '../../utils/apiRequests';
+import PersonSelectionPanel from './person-selection-panel';
+import apiRequests from '../../../utils/apiRequests';
 
 const props = {
   startingDecisionID: '0',
@@ -22,14 +22,14 @@ const mockedDecision = {
   },
 };
 
-describe('<Deck />', () => {
+describe('<PersonSelectionPanel />', () => {
   beforeAll(() => {
     apiRequests.getChoices = jest.fn().mockImplementation(() => Promise.resolve({
       mockedDecision,
     }));
   });
   it('renders without crashing', () => {
-    const wrapper = shallow(<Deck {...props} />);
+    const wrapper = shallow(<PersonSelectionPanel {...props} />);
     expect(wrapper).toHaveLength(1);
   });
 });

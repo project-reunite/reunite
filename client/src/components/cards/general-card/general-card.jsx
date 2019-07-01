@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Card, { CardImage, CardTitle } from 'mineral-ui/Card';
 
-const { regularCardStyle } = require('../../styles/card-styles');
+const { regularCardStyle } = require('../../../styles/card-styles');
 
 const GeneralCard = (props) => {
   const {

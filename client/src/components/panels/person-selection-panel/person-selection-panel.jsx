@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 
-import PersonCard from '../person-card';
-import apiRequests from '../../utils/apiRequests';
+import PersonCard from '../../cards/person-card';
+import apiRequests from '../../../utils/apiRequests';
 
-const { flexStyle } = require('../../styles/flex-styles');
+const { flexStyle } = require('../../../styles/flex-styles');
 
-class Deck extends React.Component {
+class PersonSelectionPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +19,7 @@ class Deck extends React.Component {
 
   componentDidMount = async () => {
     const { startingDecisionID } = this.props;
-    const response = await this.getDeckChoices(startingDecisionID);
+    const response = await this.getPersonSelectionPanelChoices(startingDecisionID);
     if (response.data) {
       this.setState({ choices: response.data.choices });
     }
@@ -30,7 +30,7 @@ class Deck extends React.Component {
     const { onError } = this.props;
     try {
       if (prevState && prevState.decisionId !== decisionId) {
-        const response = await this.getDeckChoices(decisionId);
+        const response = await this.getPersonSelectionPanelChoices(decisionId);
         this.setState({ choices: response.data.choices });
       }
     } catch (err) {
@@ -38,7 +38,7 @@ class Deck extends React.Component {
     }
   }
 
-  getDeckChoices = async decisionId => apiRequests.getChoices(decisionId)
+  getPersonSelectionPanelChoices = async decisionId => apiRequests.getChoices(decisionId)
 
   reactToCardClick = (nextDecisionId) => {
     const { onFailure } = this.props;
@@ -61,7 +61,7 @@ class Deck extends React.Component {
       const personId = choice.persons_id;
       const nextDecisionId = choice.next_decision_id;
       children.push(
-        <FlexItem key={personId} data-cy="deck">
+        <FlexItem key={personId} data-cy="PersonSelectionPanel">
           <PersonCard
             id={personId}
             onMatch={(() => this.reactToMatch(personId))}
@@ -89,17 +89,17 @@ class Deck extends React.Component {
   }
 }
 
-Deck.defaultProps = {
+PersonSelectionPanel.defaultProps = {
   onFailure: () => {},
   onMatch: () => {},
   onError: () => {},
 };
 
-Deck.propTypes = {
+PersonSelectionPanel.propTypes = {
   onError: PropTypes.func,
   onFailure: PropTypes.func,
   onMatch: PropTypes.func,
   startingDecisionID: PropTypes.string.isRequired,
 };
 
-export default Deck;
+export default PersonSelectionPanel;

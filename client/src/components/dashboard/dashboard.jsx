@@ -9,14 +9,14 @@ import appOrder from '../../utils/appOrder';
 import apiRequests from '../../utils/apiRequests';
 import errorMessages from '../../utils/errorMessages';
 
-import AgeSelectionPanel from '../age-selection-panel';
-import GenderSelectionPanel from '../gender-selection-panel';
-import LanguageSelectionPanel from '../language-selection-panel';
-import UploadPicPanel from '../upload-pic-panel';
-import WelcomeCard from '../welcome-panel';
-import RestartCard from '../restart-card';
-import MatchCard from '../match-card';
-import Deck from '../deck';
+import AgeSelectionPanel from '../panels/age-selection-panel';
+import GenderSelectionPanel from '../panels/gender-selection-panel';
+import LanguageSelectionPanel from '../panels/language-selection-panel';
+import UploadPicPanel from '../panels/upload-pic-panel';
+import WelcomeCard from '../panels/welcome-panel';
+import RestartCard from '../cards/restart-card';
+import MatchCard from '../cards/match-card';
+import PersonSelectionPanel from '../panels/person-selection-panel';
 import Header from '../header';
 import ErrorDialog from '../error-dialog';
 import utilFunctions from '../../utils/util-functions';
@@ -127,10 +127,10 @@ class Dashboard extends React.Component {
     />
   )
 
-  getDeck = () => {
+  getPersonSelectionPanel = () => {
     const { initialDecisionId } = this.state;
     return (
-      <Deck
+      <PersonSelectionPanel
         startingDecisionID={initialDecisionId}
         onFailure={() => this.setState({ appState: appStatus.FAILURE })}
         onMatch={id => this.setState({
@@ -187,7 +187,7 @@ class Dashboard extends React.Component {
       case appStatus.SUBMIT_CHOICES:
         break;
       case appStatus.PIC_COMPARISON:
-        content = this.getDeck();
+        content = this.getPersonSelectionPanel();
         break;
       case appStatus.FAILURE:
         content = this.getRestartCard();
@@ -211,14 +211,14 @@ class Dashboard extends React.Component {
   }
 
   render = () => {
-    const deckComponent = this.getMainPanel();
+    const PersonSelectionPanelComponent = this.getMainPanel();
     return (
       <div>
         <Header
           restart={() => this.restart()}
           goBack={() => this.goBack()}
         />
-        {deckComponent}
+        {PersonSelectionPanelComponent}
       </div>
     );
   }

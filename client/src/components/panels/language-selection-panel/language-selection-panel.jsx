@@ -5,9 +5,9 @@ import Menu, { MenuItem } from 'mineral-ui/Menu';
 import Card, { CardTitle } from 'mineral-ui/Card';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 
-const { languageCardStyle } = require('../../styles/card-styles');
-const { languageMenuStyle } = require('../../styles/menu-styles');
-const { flexStyle } = require('../../styles/flex-styles');
+const { languageCardStyle } = require('../../../styles/card-styles');
+const { languageMenuStyle } = require('../../../styles/menu-styles');
+const { flexStyle } = require('../../../styles/flex-styles');
 
 const LanguageSelectionPanel = (props) => {
   const { submitLanguage } = props;

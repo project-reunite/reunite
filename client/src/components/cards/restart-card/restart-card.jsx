@@ -7,7 +7,7 @@ import Card, {
   CardBlock, CardTitle, CardActions,
 } from 'mineral-ui/Card';
 
-const { regularCardStyle } = require('../../styles/card-styles');
+const { regularCardStyle } = require('../../../styles/card-styles');
 
 const RestartCard = (props) => {
   const { restart } = props;

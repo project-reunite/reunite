@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MatchCard from './match-card';
-import apiRequests from '../../utils/apiRequests';
+import apiRequests from '../../../utils/apiRequests';
 
 const mockedPerson = {
   data: {
