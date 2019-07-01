@@ -20,7 +20,9 @@ class Deck extends React.Component {
   componentDidMount = async () => {
     const { startingDecisionID } = this.props;
     const response = await this.getDeckChoices(startingDecisionID);
-    this.setState({ choices: response.data.choices });
+    if (response.data) {
+      this.setState({ choices: response.data.choices });
+    }
   }
 
   componentDidUpdate = async (prevProps, prevState) => {

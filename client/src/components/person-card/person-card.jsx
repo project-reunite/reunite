@@ -56,6 +56,7 @@ class PersonCard extends React.Component {
                 style={secondButtonStyle}
                 iconStart={successIcon}
                 onClick={onMatch}
+                data-cy="select-match"
               >
               My Person
               </Button>

@@ -82,12 +82,13 @@ class MatchCard extends React.Component {
 MatchCard.defaultProps = {
   restart: () => {},
   onError: () => {},
+  id: '0',
 };
 
 MatchCard.propTypes = {
   onError: PropTypes.func,
   restart: PropTypes.func,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
 };
 
 export default MatchCard;

@@ -10,7 +10,7 @@ const GeneralCard = (props) => {
     title, img, onClick, dataCy, imageClassName, inputCardStyle,
   } = props;
   return (
-    <Card onClick={onClick} className="generalCard" data-cy={dataCy} style={inputCardStyle || regularCardStyle}>
+    <Card onClick={onClick} className="generalCard" data-cy={dataCy} style={inputCardStyle}>
       <CardTitle className="cardTitle">{title}</CardTitle>
       <CardImage
         className={imageClassName || 'cardImage'}
@@ -26,7 +26,7 @@ GeneralCard.defaultProps = {
   img: '',
   dataCy: '',
   imageClassName: '',
-  inputCardStyle: '',
+  inputCardStyle: regularCardStyle,
   onClick: () => {},
 };
 
@@ -35,7 +35,7 @@ GeneralCard.propTypes = {
   img: PropTypes.string,
   dataCy: PropTypes.string,
   imageClassName: PropTypes.string,
-  inputCardStyle: PropTypes.string,
+  inputCardStyle: PropTypes.objectOf(PropTypes.string),
   onClick: PropTypes.func,
 };
 

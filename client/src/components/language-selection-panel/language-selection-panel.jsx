@@ -9,7 +9,7 @@ const { languageCardStyle } = require('../../styles/card-styles');
 const { languageMenuStyle } = require('../../styles/menu-styles');
 const { flexStyle } = require('../../styles/flex-styles');
 
-const LanguageSelectionCard = (props) => {
+const LanguageSelectionPanel = (props) => {
   const { submitLanguage } = props;
   return (
     <div className="cardContainer" data-cy="language-selection-panel">
@@ -49,12 +49,12 @@ const LanguageSelectionCard = (props) => {
   );
 };
 
-LanguageSelectionCard.defaultProps = {
+LanguageSelectionPanel.defaultProps = {
   submitLanguage: () => {},
 };
 
-LanguageSelectionCard.propTypes = {
+LanguageSelectionPanel.propTypes = {
   submitLanguage: PropTypes.func,
 };
 
-export default LanguageSelectionCard;
+export default LanguageSelectionPanel;
