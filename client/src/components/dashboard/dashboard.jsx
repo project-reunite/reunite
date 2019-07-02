@@ -115,11 +115,9 @@ class Dashboard extends React.Component {
   )
 
   getWelcomeCard = () => (
-    <div>
-      <WelcomeCard
-        startSearch={() => this.setState({ appState: appStatus.UPLOAD_PICTURE })}
-      />
-    </div>
+    <WelcomeCard
+      startSearch={() => this.setState({ appState: appStatus.UPLOAD_PICTURE })}
+    />
   )
 
   getUploadPicPanel = () => (

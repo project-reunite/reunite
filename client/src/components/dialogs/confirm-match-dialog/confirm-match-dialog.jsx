@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Dialog from 'mineral-ui/Dialog';
 import Text from 'mineral-ui/Text';
 
-const GeneralDialog = (props) => {
+const ConfirmMatchDialog = (props) => {
   const { isOpen, closeDialog } = props;
   return (
     <div>
@@ -25,14 +25,14 @@ const GeneralDialog = (props) => {
   );
 };
 
-GeneralDialog.defaultProps = {
+ConfirmMatchDialog.defaultProps = {
   closeDialog: () => {},
   isOpen: false,
 };
 
-GeneralDialog.propTypes = {
+ConfirmMatchDialog.propTypes = {
   isOpen: PropTypes.bool,
   closeDialog: PropTypes.func,
 };
 
-export default GeneralDialog;
+export default ConfirmMatchDialog;

@@ -9,7 +9,7 @@ import Card, {
 } from 'mineral-ui/Card';
 import { FlexItem } from 'mineral-ui/Flex';
 import apiRequests from '../../../utils/apiRequests';
-import GeneralDialog from '../../dialogs/confirm-match-dialog';
+import ConfirmMatchDialog from '../../dialogs/confirm-match-dialog';
 
 const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../../styles/card-styles');
 const { buttonStyle } = require('../../../styles/button-styles');
@@ -51,7 +51,7 @@ class MatchCard extends React.Component {
       const successMessage = `Yes, please reunite me with ${details.data.name}`;
       const matchCard = (
         <div>
-          <GeneralDialog
+          <ConfirmMatchDialog
             isOpen={isMatchConfirmed}
             closeDialog={() => this.handleClose()}
             message="Aid worker contacted!"
