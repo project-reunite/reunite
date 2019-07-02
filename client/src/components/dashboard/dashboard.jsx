@@ -18,7 +18,7 @@ import NoMatchCard from '../cards/no-match-card';
 import MatchCard from '../cards/match-card';
 import PersonSelectionPanel from '../panels/person-selection-panel';
 import Header from '../header';
-import ErrorDialog from '../error-dialog';
+import ErrorDialog from '../dialogs/error-dialog';
 import utilFunctions from '../../utils/util-functions';
 
 const { flexStyle } = require('../../styles/flex-styles');
@@ -115,9 +115,11 @@ class Dashboard extends React.Component {
   )
 
   getWelcomeCard = () => (
-    <WelcomeCard
-      startSearch={() => this.setState({ appState: appStatus.UPLOAD_PICTURE })}
-    />
+    <div>
+      <WelcomeCard
+        startSearch={() => this.setState({ appState: appStatus.UPLOAD_PICTURE })}
+      />
+    </div>
   )
 
   getUploadPicPanel = () => (
@@ -190,7 +192,7 @@ class Dashboard extends React.Component {
           [appStatus.COMPARE_PICTURES]: this.getPersonSelectionPanel(),
           [appStatus.MATCH_FOUND]: this.getMatchCard(),
           [appStatus.NO_MATCH_FOUND]: this.getNoMatchCard(),
-          [appStatus.ERROR]: this.getNoMatchCard(),
+          [appStatus.ERROR]: this.getErrorDialog(),
         }[appState]}
       </div>
     );
