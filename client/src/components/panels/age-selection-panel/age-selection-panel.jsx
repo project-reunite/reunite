@@ -18,7 +18,7 @@ const AgeSelectionPanel = (props) => {
         <FlexItem>
           <GeneralCard
             title={ages.BABY}
-            onClick={() => {}}
+            onClick={() => setAge(ages.BABY)}
             img="baby.svg"
             dataCy={`age-selection-card-${ages.BABY}`}
             imageClassName="ageSelectCardImage"
@@ -27,7 +27,7 @@ const AgeSelectionPanel = (props) => {
         <FlexItem>
           <GeneralCard
             title={ages.CHILD}
-            onClick={() => {}}
+            onClick={() => setAge(ages.CHILD)}
             img="child.svg"
             dataCy={`age-selection-card-${ages.CHILD}`}
             imageClassName="ageSelectCardImage"
