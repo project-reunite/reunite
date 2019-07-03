@@ -4,35 +4,38 @@ import PropTypes from 'prop-types';
 import Dialog from 'mineral-ui/Dialog';
 import Text from 'mineral-ui/Text';
 
-const ConfirmMatchDialog = (props) => {
-  const { isOpen, closeDialog } = props;
+const NoMatchDialog = (props) => {
+  const { isOpen, closeDialog, restartApp } = props;
   return (
     <div>
       <Dialog
-        title="Aid worker contacted"
+        title="No more choices"
         actions={[
           { onClick: closeDialog, text: 'Close' },
+          { onClick: restartApp, text: 'Restart App' },
+
         ]}
         isOpen={isOpen}
         onClose={closeDialog}
       >
         <Text>
-          An aid worker has been contacted and is verifying the match, you will be
-          contacted with further information.
+           No match was found, your choices will be stored and you
+           will be contacted if a potential match is added to the
+           system.
         </Text>
       </Dialog>
     </div>
   );
 };
 
-ConfirmMatchDialog.defaultProps = {
+NoMatchDialog.defaultProps = {
   closeDialog: () => {},
   isOpen: false,
 };
 
-ConfirmMatchDialog.propTypes = {
+NoMatchDialog.propTypes = {
   isOpen: PropTypes.bool,
   closeDialog: PropTypes.func,
 };
 
-export default ConfirmMatchDialog;
+export default NoMatchDialog;

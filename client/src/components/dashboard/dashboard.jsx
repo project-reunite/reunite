@@ -14,7 +14,6 @@ import GenderSelectionPanel from '../panels/gender-selection-panel';
 import LanguageSelectionPanel from '../panels/language-selection-panel';
 import UploadPicPanel from '../panels/upload-pic-panel';
 import WelcomeCard from '../panels/welcome-panel';
-import NoMatchCard from '../cards/no-match-card';
 import MatchCard from '../cards/match-card';
 import PersonSelectionPanel from '../panels/person-selection-panel';
 import Header from '../header';
@@ -139,6 +138,7 @@ class Dashboard extends React.Component {
           appState: appStatus.MATCH_FOUND,
         })}
         onError={() => this.setServerError()}
+        restart={() => this.setState({ appState: appStatus.WELCOME_PANEL })}
       />
     );
   }
@@ -158,14 +158,6 @@ class Dashboard extends React.Component {
       </Flex>
     );
   }
-
-  getNoMatchCard = () => (
-    <Flex
-      {...flexStyle}
-    >
-      <NoMatchCard restart={() => this.setState({ appState: appStatus.WELCOME_PANEL })} />
-    </Flex>
-  )
 
   getErrorDialog = () => {
     const { error } = this.state;
@@ -189,7 +181,6 @@ class Dashboard extends React.Component {
           [appStatus.SELECT_AGES]: this.getAgeSelectionCards(),
           [appStatus.COMPARE_PICTURES]: this.getPersonSelectionPanel(),
           [appStatus.MATCH_FOUND]: this.getMatchCard(),
-          [appStatus.NO_MATCH_FOUND]: this.getNoMatchCard(),
           [appStatus.ERROR]: this.getErrorDialog(),
         }[appState]}
       </div>

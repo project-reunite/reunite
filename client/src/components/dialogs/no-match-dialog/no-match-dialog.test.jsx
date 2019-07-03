@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import NoMatchCard from './no-match-card';
+import NoMatchDialog from './no-match-dialog';
 
-describe('<NoMatchCard />', () => {
+describe('<NoMatchDialog  />', () => {
   it('renders without crashing', () => {
-    const wrapper = shallow(<NoMatchCard />);
+    const wrapper = shallow(<NoMatchDialog />);
     expect(wrapper).toHaveLength(1);
   });
 });

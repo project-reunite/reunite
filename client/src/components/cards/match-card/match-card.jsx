@@ -84,7 +84,7 @@ class MatchCard extends React.Component {
                     onClick={continueSearch}
                     iconStart={<IconCancel style={iconStyle} />}
                   >
-                No, keep searching
+                  No, keep searching
                   </Button>
                 </CardBlock>
               </Card>

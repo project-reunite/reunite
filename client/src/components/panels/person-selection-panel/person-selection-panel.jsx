@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 
 import PersonCard from '../../cards/person-card';
+import NoMatchDialog from '../../dialogs/no-match-dialog';
 import apiRequests from '../../../utils/apiRequests';
 
 const { flexStyle } = require('../../../styles/flex-styles');
@@ -14,12 +15,13 @@ class PersonSelectionPanel extends React.Component {
     this.state = {
       choices: [],
       decisionId: undefined,
+      noDecisionsLeft: false,
     };
   }
 
   componentDidMount = async () => {
     const { startingDecisionID } = this.props;
-    const response = await this.getPersonSelectionPanelChoices(startingDecisionID);
+    const response = await this.getChoices(startingDecisionID);
     if (response.data) {
       this.setState({ choices: response.data.choices });
     }
@@ -30,7 +32,7 @@ class PersonSelectionPanel extends React.Component {
     const { onError } = this.props;
     try {
       if (prevState && prevState.decisionId !== decisionId) {
-        const response = await this.getPersonSelectionPanelChoices(decisionId);
+        const response = await this.getChoices(decisionId);
         this.setState({ choices: response.data.choices });
       }
     } catch (err) {
@@ -38,14 +40,15 @@ class PersonSelectionPanel extends React.Component {
     }
   }
 
-  getPersonSelectionPanelChoices = async decisionId => apiRequests.getChoices(decisionId)
+  getChoices = async decisionId => apiRequests.getChoices(decisionId)
 
   reactToCardClick = (nextDecisionId) => {
-    const { onFailure } = this.props;
     if (nextDecisionId) {
       this.setState({ decisionId: nextDecisionId });
     } else {
-      onFailure();
+      this.setState({
+        noDecisionsLeft: true,
+      });
     }
   }
 
@@ -77,9 +80,15 @@ class PersonSelectionPanel extends React.Component {
   }
 
   render = () => {
-    const { choices } = this.state;
+    const { choices, noDecisionsLeft } = this.state;
+    const { restart } = this.props;
     return (
       <div className="cardContainer">
+        <NoMatchDialog
+          isOpen={noDecisionsLeft}
+          closeDialog={() => this.setState({ noDecisionsLeft: false })}
+          restartApp={restart}
+        />
         <Flex
           wrap
           {...flexStyle}
