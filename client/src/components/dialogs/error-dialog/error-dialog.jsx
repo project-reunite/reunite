@@ -9,12 +9,14 @@ import Button from 'mineral-ui/Button';
 
 
 const ErrorDialog = (props) => {
-  const { error, restart } = props;
+  const {
+    error, restart, close,
+  } = props;
   return (
     <Dialog
       isOpen
       variant="danger"
-      onClose={restart}
+      onClose={close}
     >
       <DialogHeader>
         <DialogTitle>Error</DialogTitle>
@@ -32,11 +34,13 @@ const ErrorDialog = (props) => {
 ErrorDialog.defaultProps = {
   error: '',
   restart: () => {},
+  close: () => {},
 };
 
 ErrorDialog.propTypes = {
   error: PropTypes.string,
   restart: PropTypes.func,
+  close: PropTypes.func,
 };
 
 export default ErrorDialog;

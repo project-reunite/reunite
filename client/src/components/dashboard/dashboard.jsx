@@ -8,18 +8,17 @@ import appStatus from '../../utils/appStatus';
 import appOrder from '../../utils/appOrder';
 import apiRequests from '../../utils/apiRequests';
 import errorMessages from '../../utils/errorMessages';
+import utilFunctions from '../../utils/util-functions';
 
 import AgeSelectionPanel from '../panels/age-selection-panel';
+import ErrorDialog from '../dialogs/error-dialog';
 import GenderSelectionPanel from '../panels/gender-selection-panel';
+import Header from '../header';
 import LanguageSelectionPanel from '../panels/language-selection-panel';
-import UploadPicPanel from '../panels/upload-pic-panel';
-import WelcomeCard from '../panels/welcome-panel';
-import NoMatchCard from '../cards/no-match-card';
 import MatchCard from '../cards/match-card';
 import PersonSelectionPanel from '../panels/person-selection-panel';
-import Header from '../header';
-import ErrorDialog from '../error-dialog';
-import utilFunctions from '../../utils/util-functions';
+import WelcomeCard from '../panels/welcome-panel';
+import UploadPicPanel from '../panels/upload-pic-panel';
 
 const { flexStyle } = require('../../styles/flex-styles');
 
@@ -41,10 +40,14 @@ class Dashboard extends React.Component {
     try {
       if (appState === appStatus.SUBMIT_CHOICES) {
         const response = await this.submitFilters();
-        this.setState({
-          currentDecisionId: response.data.docs[0].initialDecision_id,
-          appState: appStatus.COMPARE_PICTURES,
-        });
+        if (response.data.docs.length === 0) {
+          this.setDataError();
+        } else {
+          this.setState({
+            currentDecisionId: response.data.docs[0].initialDecision_id,
+            appState: appStatus.COMPARE_PICTURES,
+          });
+        }
       }
     } catch (err) {
       this.setServerError();
@@ -73,6 +76,13 @@ class Dashboard extends React.Component {
     const queryString = `gender=${gender}&${ageQuery}`;
     const response = await apiRequests.getTree(queryString);
     return response;
+  }
+
+  setDataError = () => {
+    this.setState({
+      appState: appStatus.ERROR,
+      error: errorMessages.dataError,
+    });
   }
 
   setServerError = () => {
@@ -139,6 +149,7 @@ class Dashboard extends React.Component {
           appState: appStatus.MATCH_FOUND,
         })}
         onError={() => this.setServerError()}
+        restart={() => this.setState({ appState: appStatus.WELCOME_PANEL })}
       />
     );
   }
@@ -159,20 +170,13 @@ class Dashboard extends React.Component {
     );
   }
 
-  getNoMatchCard = () => (
-    <Flex
-      {...flexStyle}
-    >
-      <NoMatchCard restart={() => this.setState({ appState: appStatus.WELCOME_PANEL })} />
-    </Flex>
-  )
-
   getErrorDialog = () => {
     const { error } = this.state;
     return (
       <ErrorDialog
         error={error}
         restart={() => this.restart()}
+        close={() => this.restart()}
       />
     );
   }
@@ -189,8 +193,7 @@ class Dashboard extends React.Component {
           [appStatus.SELECT_AGES]: this.getAgeSelectionCards(),
           [appStatus.COMPARE_PICTURES]: this.getPersonSelectionPanel(),
           [appStatus.MATCH_FOUND]: this.getMatchCard(),
-          [appStatus.NO_MATCH_FOUND]: this.getNoMatchCard(),
-          [appStatus.ERROR]: this.getNoMatchCard(),
+          [appStatus.ERROR]: this.getErrorDialog(),
         }[appState]}
       </div>
     );
