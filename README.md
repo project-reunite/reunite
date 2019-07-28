@@ -1,5 +1,16 @@
 # Project Reunite
 
+## Table of Contents
+
+- [Our Target Problem](#our-target-problem)
+- [Our Solution](#our-solution)
+- [FAQs](#faqs)
+- [Getting Started](#getting-started)
+- [Running the Tests](#running-the-tests)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgments)
+
+
 ## Our Target Problem
 
 Over 40,000 people are currently separated from their families by natural disasters, with that number rising every year.
@@ -29,6 +40,23 @@ By dividing the search area repeatedly, we divide Arame's search time too:
 - And if there were 50,000 survivor's photos, she'd have to look though 25,000 of them on Red Cross' website, but only *40* on ours.
 
 So our prioritization algorithm makes searching really fast, and reunites Arame with her son quicker. Watch [our 3-minute demo](https://ibm.box.com/s/qcqnxj41ksf20uft365zxp1ryxm2xx9j) to see it in action.
+
+## FAQs
+
+### Privacy
+#### Why doesn't our app just let Arame search for missing people by name?
+We want Arame to be able find her son even if he could not or did not want to give his name (e.g. if he was frightened). Moreover, charities' privacy policies may prohibit them from releasing refugees' names publicly. Further, many refugees might share the same name; some may spell their name incorrectly, and aid workers may record their names incorrectly.
+#### Is anyone's privacy being violated?
+No, because charities are already letting searchers look through all these photos - we are simply leading searchers through them more efficiently, which will allow us to show only a small subset of photos. Therefore, we will always adhere to the charities' privacy policies, for example, using only photos taken with people's permission, using the photos only to reunite people, and deleting the photos immediately after confirming reunification.
+
+### User experience
+#### How does Arame know about our website, and know how to use it?
+Charities such as Red Cross already direct Arame and other searchers to their existing search sites; searchers will now find our app on those sites. We designed the site to be intuitive enough to use even if aid workers are unavailable to guide users through it.
+#### What happens if Arame doesn't find a match after viewing all relevant photos?
+We would then show her less relevant photos. Our system prioritises photos rather than filtering them, so that no photo is ever hidden. Therefore, in the worst case our system still matches the existing system, and in the best case our system far outperforms it. 
+
+If after viewing all (relevant & irrelevant) photos collected by the charity, then we apologise for the photo not being present, and present her with a button to easily contact a relevant aid worker for advice. We also analyse and save the features of her final choice, so that can notify her when new relevant photos are added.
+
 
 ## Getting Started
 
