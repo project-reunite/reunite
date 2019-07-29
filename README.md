@@ -5,6 +5,7 @@
 - [Our Target Problem](#our-target-problem)
 - [Our Solution](#our-solution)
 - [FAQs](#faqs)
+- [Project Roadmap](#project-roadmap)
 - [Getting Started](#getting-started)
 - [Running the Tests](#running-the-tests)
 - [Authors](#authors)
@@ -56,6 +57,10 @@ Charities such as Red Cross already direct Arame and other searchers to their ex
 We would then show her less relevant photos. Our system prioritises photos rather than filtering them, so that no photo is ever hidden. Therefore, in the worst case our system still matches the existing system, and in the best case our system far outperforms it. 
 
 If after viewing all (relevant & irrelevant) photos collected by the charity, then we apologise for the photo not being present, and present her with a button to easily contact a relevant aid worker for advice. We also analyse and save the features of her final choice, so that can notify her when new relevant photos are added.
+
+## Project Roadmap
+
+<img src="https://media.github.ibm.com/user/186211/files/60c5e380-b1fb-11e9-8650-fe5d0b817f45" align="center" width="65%" height="65%">
 
 
 ## Getting Started
