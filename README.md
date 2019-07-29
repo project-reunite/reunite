@@ -40,7 +40,10 @@ By dividing the search area repeatedly, we divide Arame's search time too:
 
 - And if there were 50,000 survivor's photos, she'd have to look though 25,000 of them on Red Cross' website, but only *40* on ours.
 
-So our prioritization algorithm makes searching really fast, and reunites Arame with her son quicker. Watch [our 3-minute demo](https://ibm.box.com/s/qcqnxj41ksf20uft365zxp1ryxm2xx9j) to see it in action.
+So our prioritization algorithm makes searching really fast, and reunites Arame with her son quicker. Watch our 3-minute demo to see it in action:
+
+[<img width="1275" alt="reunitethumbnail" src="https://media.github.ibm.com/user/186207/files/0b91ce00-b20b-11e9-9eff-05a9cfda3d50">
+](https://ibm.box.com/s/qcqnxj41ksf20uft365zxp1ryxm2xx9j)
 
 ## FAQs
 
