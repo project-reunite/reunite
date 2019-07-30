@@ -63,7 +63,7 @@ If after viewing all (relevant & irrelevant) photos collected by the charity, th
 
 ## Project Roadmap
 
-<img src="https://media.github.ibm.com/user/186211/files/60c5e380-b1fb-11e9-8650-fe5d0b817f45" align="center" width="65%" height="65%">
+<p align="center"><img src="https://media.github.ibm.com/user/186211/files/60c5e380-b1fb-11e9-8650-fe5d0b817f45" align="center" width="65%" height="65%"></p>
 
 
 ## Getting Started
