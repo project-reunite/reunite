@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Flex, { FlexItem } from 'mineral-ui/Flex';
@@ -9,58 +9,52 @@ import apiRequests from '../../../utils/apiRequests';
 
 const { flexStyle } = require('../../../styles/flex-styles');
 
-class PersonSelectionPanel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      choices: [],
-      decisionId: undefined,
-      noDecisionsLeft: false,
-    };
-  }
+const PersonSelectionPanel = (props) => {
+  const [choices, setChoices] = useState([]);
+  const [decisionId, setDecisionId] = useState(undefined);
+  const [noDecisionsLeft, setNoDecisionsLeft] = useState(false);
+  const {
+    restart, startingDecisionID, onError, onMatch,
+  } = props;
 
-  componentDidMount = async () => {
-    const { startingDecisionID } = this.props;
-    const response = await this.getChoices(startingDecisionID);
-    if (response.data) {
-      this.setState({ choices: response.data.choices });
-    }
-  }
-
-  componentDidUpdate = async (prevProps, prevState) => {
-    const { decisionId } = this.state;
-    const { onError } = this.props;
-    try {
-      if (prevState && prevState.decisionId !== decisionId) {
-        const response = await this.getChoices(decisionId);
-        this.setState({ choices: response.data.choices });
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await apiRequests.getChoices(decisionId);
+        setChoices(response.data.choices);
+      } catch (err) {
+        onError();
       }
-    } catch (err) {
-      onError();
     }
-  }
+    if (decisionId) {
+      fetchData();
+    }
+  }, [decisionId, onError]);
 
-  getChoices = async decisionId => apiRequests.getChoices(decisionId)
+  useEffect(() => {
+    async function fetchData() {
+      const response = await apiRequests.getChoices(startingDecisionID);
+      if (response.data) {
+        setChoices(response.data.choices);
+      }
+    }
+    fetchData();
+  }, [startingDecisionID]);
 
-  reactToCardClick = (nextDecisionId) => {
+  const reactToCardClick = (nextDecisionId) => {
     if (nextDecisionId) {
-      this.setState({ decisionId: nextDecisionId });
+      setDecisionId(nextDecisionId);
     } else {
-      this.setState({
-        noDecisionsLeft: true,
-      });
+      setNoDecisionsLeft(true);
     }
-  }
+  };
 
-  reactToMatch = (personId) => {
-    const { onMatch, startingDecisionID } = this.props;
-    const { decisionId } = this.state;
-    const currentDecisionId = (decisionId || startingDecisionID);
+  const reactToMatch = (personId) => {
+    const currentDecisionId = decisionId || startingDecisionID;
     onMatch(personId, currentDecisionId);
-  }
+  };
 
-  renderChildren = (choices) => {
-    const { onError } = this.props;
+  const renderChildren = () => {
     const children = [];
     choices.forEach((choice) => {
       const personId = choice.persons_id;
@@ -69,46 +63,41 @@ class PersonSelectionPanel extends React.Component {
         <FlexItem key={personId} data-cy="PersonSelectionPanel">
           <PersonCard
             id={personId}
-            onMatch={(() => this.reactToMatch(personId))}
-            onClick={() => this.reactToCardClick(nextDecisionId)}
+            onMatch={() => reactToMatch(personId)}
+            onClick={() => reactToCardClick(nextDecisionId)}
             onError={onError}
           />
         </FlexItem>,
       );
     });
     return children;
-  }
+  };
 
-  render = () => {
-    const { choices, noDecisionsLeft } = this.state;
-    const { restart } = this.props;
-    return (
-      <div className="cardContainer">
-        <NoMatchDialog
-          isOpen={noDecisionsLeft}
-          closeDialog={() => this.setState({ noDecisionsLeft: false })}
-          restartApp={restart}
-        />
-        <Flex
-          wrap
-          {...flexStyle}
-        >
-          {this.renderChildren(choices)}
-        </Flex>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="cardContainer">
+      <NoMatchDialog
+        isOpen={noDecisionsLeft}
+        closeDialog={() => setNoDecisionsLeft(false)}
+        restartApp={restart}
+      />
+      <Flex wrap {...flexStyle}>
+        {renderChildren()}
+      </Flex>
+    </div>
+  );
+};
 
 PersonSelectionPanel.defaultProps = {
   onFailure: () => {},
   onMatch: () => {},
   onError: () => {},
+  restart: () => {},
   startingDecisionID: '0',
 };
 
 PersonSelectionPanel.propTypes = {
   onError: PropTypes.func,
+  restart: PropTypes.func,
   onFailure: PropTypes.func,
   onMatch: PropTypes.func,
   startingDecisionID: PropTypes.string,
