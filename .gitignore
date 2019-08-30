@@ -11,9 +11,9 @@
 /server/.stryker-tmp
 
 # production
-/build
+/client/build
 
-# babel 
+# babel
 /client/lib
 
 # misc
@@ -31,3 +31,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # top level
+.ibm-project
