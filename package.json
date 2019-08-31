@@ -4,24 +4,36 @@
   "description": "App for reuniting families separated by natural disasters",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
+    "start": "(cd server && npm start)",
+    "start:dev": "concurrently \"cd server && npm run nodemon\" \"cd client && npm start\"",
+    "start:test": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
     "test": "(cd server && npm test) && (cd client && npm test)",
     "stop": "killall node",
     "test:full": "(npm run test:components && npm run test:integration)",
     "test:components": "(cd server && npm run test:full) && (cd client && npm test)",
-    "test:integration": "npm start & (wait-on http://localhost:41002 && cypress run && npm stop)",
-    "install": "(cd server && npm install); (cd client && npm install)",
+    "test:integration": "npm run start:test & (wait-on http://localhost:41002 && cypress run && npm stop)",
+    "install": "(cd server && npm install) && (cd client && npm install)",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "build": "(cd client && npm run build)",
+    "deploy":  "npm run build && ibmcloud dev deploy"
   },
   "repository": {
     "type": "git",
     "url": "git@github.ibm.com:ProjectReunite/reunite.git"
   },
   "keywords": [
-    "Watson"
+    "Watson",
+    "Call For Code"
   ],
-  "author": "Project Reunite",
+  "author": "Project Reunite <project.reunited@gmail.com>",
+  "contributors": [
+    "James Cockbain <jcockbain96@gmail.com>",
+    "Craig Forrest <craforrest97@gmail.com >",
+    "Liam Hampton <liam.hampton@ibm.com>",
+    "rwalle61 <richard.lh.waller@gmail.com>",
+    "Michael Westerby <michael.westerby@ibm.com>"
+  ],
   "license": "Apache-2.0",
   "devDependencies": {
     "cypress": "^3.3.1"
