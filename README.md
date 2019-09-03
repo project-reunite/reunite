@@ -40,7 +40,7 @@ By dividing the search area repeatedly, we divide Arame's search time too:
 
 - And if there were 50,000 survivor's photos, she'd have to look though 25,000 of them on Red Cross' website, but only *40* on ours.
 
-So our prioritization algorithm makes searching really fast, and reunites Arame with her son quicker. Watch our 3-minute demo to see it in action:
+So our prioritization algorithm makes searching really fast, and reunites Arame with her son quicker. Try it yourself at https://reunite.eu-gb.cf.appdomain.cloud, or watch our 3-minute demo:
 
 [<img width="1275" alt="reunitethumbnail" src="https://media.github.ibm.com/user/186207/files/0b91ce00-b20b-11e9-9eff-05a9cfda3d50">
 ](https://ibm.box.com/s/qcqnxj41ksf20uft365zxp1ryxm2xx9j)
@@ -64,7 +64,6 @@ If after viewing all (relevant & irrelevant) photos collected by the charity, th
 ## Project Roadmap
 
 <p align="center"><img src="https://media.github.ibm.com/user/186211/files/60c5e380-b1fb-11e9-8650-fe5d0b817f45" align="center" width="65%" height="65%"></p>
-
 
 ## Getting Started
 
@@ -91,18 +90,24 @@ npm install
 ### Run the app
 
 ```bash
+npm run build
+
 npm start
 ```
 
-Run this from:
+The app will be running at `http://localhost:9100`.
 
-- the root directory to start both the client and server
+Alternatively, you can run `npm start` from
 - `/server` to start only the server
 - `/client` to start only the client
 
+### Run the app in development mode
+
+Run `npm run start:dev` from the root directory to start both the client and server in 'hot-restart' mode. Editing the client code will restart the client; editing the server code will restart the server
+
 The client app will be running at `http://localhost:41002`.
 
-The server will be listening at `http://localhost:9100`.
+The server will be running at `http://localhost:9100`.
 
 ## Running the Tests
 
@@ -172,6 +177,7 @@ npm run test:coverage
   - [Watson Visual Recognition](https://www.ibm.com/watson/services/visual-recognition/)
   - [Cloudant Database](https://www.ibm.com/cloud/cloudant)
   - [Cloud Object Storage](https://www.ibm.com/cloud/object-storage)
+  - [Cloud Foundry](https://www.ibm.com/uk-en/cloud/cloud-foundry)
 - [React](https://reactjs.org/docs/react-api.html#react.createelement)
 - [Mineral UI](https://github.com/mineral-ui/mineral-ui)
 - [Cypress](https://www.cypress.io/)
