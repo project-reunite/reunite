@@ -4,6 +4,6 @@ const decisionsController = require('../controllers/decisions.controller');
 
 const router = express.Router();
 
-router.get('/', decisionsController.getDecision);
+router.post('/', decisionsController.getDecision);
 
 module.exports = router;
