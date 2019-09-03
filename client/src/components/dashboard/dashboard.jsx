@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Flex from 'mineral-ui/Flex';
 
@@ -22,195 +22,139 @@ import UploadPicPanel from '../panels/upload-pic-panel';
 
 const { flexStyle } = require('../../styles/flex-styles');
 
-class Dashboard extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      appState: appStatus.LANGUAGE_SELECT,
-      gender: null,
-      age: null,
-      currentDecisionId: null,
-      personId: null,
-      error: null,
-    };
-  }
+const Dashboard = () => {
+  const [appState, setAppState] = useState(appStatus.LANGUAGE_SELECT);
+  const [gender, setGender] = useState(null);
+  const [age, setAge] = useState(null);
+  const [currentDecisionId, setCurrentDecisionId] = useState(null);
+  const [personId, setPersonId] = useState(null);
+  const [error, setError] = useState(null);
 
-  componentDidUpdate = async () => {
-    const { appState } = this.state;
-    try {
-      if (appState === appStatus.SUBMIT_CHOICES) {
-        const response = await this.submitFilters();
-        if (response.data.docs.length === 0) {
-          this.setDataError();
-        } else {
-          this.setState({
-            currentDecisionId: response.data.docs[0].initialDecision_id,
-            appState: appStatus.COMPARE_PICTURES,
-          });
-        }
-      }
-    } catch (err) {
-      this.setServerError();
-    }
-  }
-
-  goBack = () => {
-    const { appState } = this.state;
+  const goBack = () => {
     const index = appOrder.indexOf(appState);
     if (index && index > 0) {
-      this.setState({
-        appState: appOrder[index - 1],
-      });
+      setAppState(appOrder[index - 1]);
     }
-  }
+  };
 
-  restart = () => {
-    this.setState({
-      appState: appStatus.WELCOME_PANEL,
-    });
-  }
+  const restart = () => {
+    setAppState(appStatus.WELCOME_PANEL);
+  };
 
-  submitFilters = async () => {
-    const { gender, age } = this.state;
-    const ageQuery = utilFunctions.getAgeQueryString(age);
-    const queryString = `gender=${gender}&${ageQuery}`;
-    const response = await apiRequests.getTree(queryString);
-    return response;
-  }
+  const setDataError = () => {
+    setAppState(appStatus.ERROR);
+    setError(errorMessages.dataError);
+  };
 
-  setDataError = () => {
-    this.setState({
-      appState: appStatus.ERROR,
-      error: errorMessages.dataError,
-    });
-  }
+  const setServerError = () => {
+    setAppState(appStatus.ERROR);
+    setError(errorMessages.serverError);
+  };
 
-  setServerError = () => {
-    this.setState({
-      appState: appStatus.ERROR,
-      error: errorMessages.serverError,
-    });
-  }
+  const setGenderChoice = (genderChoice) => {
+    setGender(genderChoice);
+    setAppState(appStatus.SELECT_AGES);
+  };
 
-  setGender = (gender) => {
-    this.setState({
-      gender,
-      appState: appStatus.SELECT_AGES,
-    });
-  }
+  const setAgeChoice = (ageChoice) => {
+    setAge(ageChoice);
+    setAppState(appStatus.SUBMIT_CHOICES);
+  };
 
-  setAge = (age) => {
-    this.setState({
-      age,
-      appState: appStatus.SUBMIT_CHOICES,
-    });
-  }
+  const getLanguageSelectionPanel = () => (
+    <LanguageSelectionPanel submitLanguage={() => setAppState(appStatus.WELCOME_PANEL)} />
+  );
 
-  getLanguageSelectionPanel = () => (
-    <LanguageSelectionPanel
-      submitLanguage={() => this.setState({ appState: appStatus.WELCOME_PANEL })}
+  const getGenderSelectionCards = () => (
+    <GenderSelectionPanel setGender={genderChoice => setGenderChoice(genderChoice)} />
+  );
+
+  const getAgeSelectionCards = () => (
+    <AgeSelectionPanel setAge={ageChoice => setAgeChoice(ageChoice)} />
+  );
+
+  const getWelcomeCard = () => (
+    <WelcomeCard startSearch={() => setAppState(appStatus.UPLOAD_PICTURE)} />
+  );
+
+  const getUploadPicPanel = () => (
+    <UploadPicPanel moveOn={() => setAppState(appStatus.SELECT_GENDER)} />
+  );
+
+  const getPersonSelectionPanel = () => (
+    <PersonSelectionPanel
+      startingDecisionID={currentDecisionId}
+      onFailure={() => setAppState(appStatus.NO_MATCH_FOUND)}
+      onMatch={(person, decisionId) => {
+        setPersonId(person);
+        setCurrentDecisionId(decisionId);
+        setAppState(appStatus.MATCH_FOUND);
+      }}
+      onError={() => setServerError()}
+      restart={() => setAppState(appStatus.WELCOME_PANEL)}
     />
   );
 
-  getGenderSelectionCards = () => (
-    <GenderSelectionPanel
-      setGender={gender => this.setGender(gender)}
-    />
-  )
-
-  getAgeSelectionCards = () => (
-    <AgeSelectionPanel
-      setAge={age => this.setAge(age)}
-    />
-  )
-
-  getWelcomeCard = () => (
-    <WelcomeCard
-      startSearch={() => this.setState({ appState: appStatus.UPLOAD_PICTURE })}
-    />
-  )
-
-  getUploadPicPanel = () => (
-    <UploadPicPanel
-      UploadPicPanel={this.uploadPicture}
-      moveOn={() => this.setState({ appState: appStatus.SELECT_GENDER })}
-    />
-  )
-
-  getPersonSelectionPanel = () => {
-    const { currentDecisionId } = this.state;
-    return (
-      <PersonSelectionPanel
-        startingDecisionID={currentDecisionId}
-        onFailure={() => this.setState({ appState: appStatus.NO_MATCH_FOUND })}
-        onMatch={(personId, decisionId) => this.setState({
-          personId,
-          currentDecisionId: decisionId,
-          appState: appStatus.MATCH_FOUND,
-        })}
-        onError={() => this.setServerError()}
-        restart={() => this.setState({ appState: appStatus.WELCOME_PANEL })}
+  const getMatchCard = () => (
+    <Flex {...flexStyle}>
+      <MatchCard
+        restart={() => setAppState(appStatus.WELCOME_PANEL)}
+        id={personId}
+        onError={() => setServerError()}
+        continueSearch={() => setAppState(appStatus.COMPARE_PICTURES)}
       />
-    );
-  }
+    </Flex>
+  );
 
-  getMatchCard = () => {
-    const { personId } = this.state;
-    return (
-      <Flex
-        {...flexStyle}
-      >
-        <MatchCard
-          restart={() => this.setState({ appState: appStatus.WELCOME_PANEL })}
-          id={personId}
-          onError={() => this.setServerError()}
-          continueSearch={() => this.setState({ appState: appStatus.COMPARE_PICTURES })}
-        />
-      </Flex>
-    );
-  }
+  const getErrorDialog = () => <ErrorDialog error={error} restart={restart} close={restart} />;
 
-  getErrorDialog = () => {
-    const { error } = this.state;
-    return (
-      <ErrorDialog
-        error={error}
-        restart={() => this.restart()}
-        close={() => this.restart()}
-      />
-    );
-  }
+  // Called to submit choices of age and gender
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const ageQuery = utilFunctions.getAgeQueryString(age);
+        const queryString = `gender=${gender}&${ageQuery}`;
+        const response = await apiRequests.getTree(queryString);
+        if (response.data.docs.length === 0) {
+          setDataError();
+        } else {
+          setCurrentDecisionId(response.data.docs[0].initialDecision_id);
+          setAppState(appStatus.COMPARE_PICTURES);
+        }
+      } catch (err) {
+        setServerError();
+      }
+    }
+    if (appState === appStatus.SUBMIT_CHOICES) {
+      fetchData();
+    }
+  }, [appState, age, gender]);
 
-  getMainPanel = () => {
-    const { appState } = this.state;
-    return (
-      <div>
-        {{
-          [appStatus.LANGUAGE_SELECT]: this.getLanguageSelectionPanel(),
-          [appStatus.WELCOME_PANEL]: this.getWelcomeCard(),
-          [appStatus.UPLOAD_PICTURE]: this.getUploadPicPanel(),
-          [appStatus.SELECT_GENDER]: this.getGenderSelectionCards(),
-          [appStatus.SELECT_AGES]: this.getAgeSelectionCards(),
-          [appStatus.COMPARE_PICTURES]: this.getPersonSelectionPanel(),
-          [appStatus.MATCH_FOUND]: this.getMatchCard(),
-          [appStatus.ERROR]: this.getErrorDialog(),
-        }[appState]}
-      </div>
-    );
-  }
+  const getMainPanel = () => (
+    <div>
+      {
+        {
+          [appStatus.LANGUAGE_SELECT]: getLanguageSelectionPanel(),
+          [appStatus.WELCOME_PANEL]: getWelcomeCard(),
+          [appStatus.UPLOAD_PICTURE]: getUploadPicPanel(),
+          [appStatus.SELECT_GENDER]: getGenderSelectionCards(),
+          [appStatus.SELECT_AGES]: getAgeSelectionCards(),
+          [appStatus.COMPARE_PICTURES]: getPersonSelectionPanel(),
+          [appStatus.MATCH_FOUND]: getMatchCard(),
+          [appStatus.ERROR]: getErrorDialog(),
+        }[appState]
+      }
+    </div>
+  );
 
-  render = () => {
-    const MainPanel = this.getMainPanel();
-    return (
-      <div>
-        <Header
-          restart={() => this.restart()}
-          goBack={() => this.goBack()}
-        />
-        {MainPanel}
-      </div>
-    );
-  }
-}
+  const MainPanel = getMainPanel();
+
+  return (
+    <div>
+      <Header restart={restart} goBack={goBack} />
+      {MainPanel}
+    </div>
+  );
+};
 
 export default Dashboard;
