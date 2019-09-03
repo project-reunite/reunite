@@ -13,10 +13,23 @@ const PersonSelectionPanel = (props) => {
   const [choices, setChoices] = useState([]);
   const [decisionId, setDecisionId] = useState(undefined);
   const [noDecisionsLeft, setNoDecisionsLeft] = useState(false);
+
   const {
     restart, startingDecisionID, onError, onMatch,
   } = props;
 
+  // Runs when component first renders
+  useEffect(() => {
+    async function fetchData() {
+      const response = await apiRequests.getChoices(startingDecisionID);
+      if (response.data) {
+        setChoices(response.data.choices);
+      }
+    }
+    fetchData();
+  }, [startingDecisionID]);
+
+  // Runs whenever decisionID is changed
   useEffect(() => {
     async function fetchData() {
       try {
@@ -30,16 +43,6 @@ const PersonSelectionPanel = (props) => {
       fetchData();
     }
   }, [decisionId, onError]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const response = await apiRequests.getChoices(startingDecisionID);
-      if (response.data) {
-        setChoices(response.data.choices);
-      }
-    }
-    fetchData();
-  }, [startingDecisionID]);
 
   const reactToCardClick = (nextDecisionId) => {
     if (nextDecisionId) {
