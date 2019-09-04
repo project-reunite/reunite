@@ -6,25 +6,29 @@
   align-items: center;
   justify-content: left;
   height: 40px;
-  border:0;
-  padding:0;
+  border: 0;
+  padding: 0;
+}
+
+.back-button a:hover {
+  border: 10px;
+  background-color: green
 }
 
 .logo {
   width: 30px
 }
 
-h2 {   
+h2 {
   color: white;
 }
 
 @media only screen and (max-width: 600px) {
-
   .logo {
     width: 30px
   }
 
   h2 {
-    font-size: 18px; 
+    font-size: 18px;
   }
 }

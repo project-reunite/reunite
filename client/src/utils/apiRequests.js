@@ -12,9 +12,9 @@ const getPerson = async (id) => {
   }
 };
 
-const getChoices = async (decisionId) => {
+const getChoices = async (body) => {
   try {
-    const response = await axios.get(`${origin}/api/v1/decisions/${decisionId}`);
+    const response = await axios.post(`${origin}/api/v2/decisions/`, body);
     return response;
   } catch (err) {
     throw err;

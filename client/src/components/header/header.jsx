@@ -13,25 +13,25 @@ const Header = (props) => {
   const { goBack } = props;
   return (
     <PrimaryNav
+      PrimaryNavItem_backgroundColor_hover="green"
+      PrimaryNavItem_backgroundColor_selected="green"
+      className="headerBar"
       style={headerStyle}
       align="justify"
     >
       <NavItem
+        className="back-button"
+        backgroundColor_hover="green"
+        backgroundColor_selected="green"
         onClick={goBack}
         style={navItemStyle}
-        color="#61B7E1"
         icon={<IconRestart />}
         data-cy="back-button"
       >
-      Back
-
+        Back
       </NavItem>
-      <NavItem
-        style={navItemStyle}
-        color="#61B7E1"
-        icon={<IconExpandMore />}
-      >
-      Language
+      <NavItem style={navItemStyle} color="#61B7E1" icon={<IconExpandMore />}>
+        Language
       </NavItem>
     </PrimaryNav>
   );

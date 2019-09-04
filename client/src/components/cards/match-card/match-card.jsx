@@ -17,7 +17,9 @@ const MatchCard = (props) => {
   const [details, setDetails] = useState([]);
   const [isMatchConfirmed, setIsMatchConfirmed] = useState(false);
 
-  const { onError, continueSearch, id } = props;
+  const {
+    onError, continueSearch, restartApp, id,
+  } = props;
 
   useEffect(() => {
     async function fetchData() {
@@ -42,6 +44,7 @@ const MatchCard = (props) => {
       <ConfirmMatchDialog
         isOpen={isMatchConfirmed}
         closeDialog={() => setIsMatchConfirmed(false)}
+        restartApp={restartApp}
         message="Aid worker contacted!"
         title="Success"
       />
@@ -83,6 +86,7 @@ const MatchCard = (props) => {
 };
 
 MatchCard.defaultProps = {
+  restartApp: () => {},
   continueSearch: () => {},
   onError: () => {},
   id: '0',
@@ -90,6 +94,7 @@ MatchCard.defaultProps = {
 
 MatchCard.propTypes = {
   onError: PropTypes.func,
+  restartApp: PropTypes.func,
   continueSearch: PropTypes.func,
   id: PropTypes.string,
 };

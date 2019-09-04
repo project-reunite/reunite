@@ -24,16 +24,16 @@ const LanguageSelectionPanel = (props) => {
               style={languageMenuStyle}
             >
               <MenuItem data-cy="language-english" onClick={submitLanguage}>
-            English
+                English
               </MenuItem>
               <MenuItem onClick={submitLanguage}>
-            Français
+                Français
               </MenuItem>
               <MenuItem onClick={submitLanguage}>
-            Espanol
+                Espanol
               </MenuItem>
               <MenuItem onClick={submitLanguage}>
-            Alemand
+                Alemand
               </MenuItem>
               <MenuItem onClick={submitLanguage}>
               عرب
