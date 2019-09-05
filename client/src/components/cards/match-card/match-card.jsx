@@ -68,7 +68,7 @@ const MatchCard = (props) => {
                 primary
                 onClick={() => {
                   setIsMatchConfirmed(true);
-                  apiRequests.postStatistics();
+                  apiRequests.postStatistics(id);
                 }}
               >
                 {successMessage}
