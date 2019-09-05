@@ -5,8 +5,8 @@ const { origin } = config;
 
 let latestInputSent = {};
 
-const postStatistics = (id) => {
-  axios.post(`${origin}/api/v2/statistics/`, { ...latestInputSent, personId: id });
+const postStatistics = (personId) => {
+  axios.post(`${origin}/api/v2/statistics/`, { ...latestInputSent, personId });
 };
 
 const getPerson = async (id) => {
