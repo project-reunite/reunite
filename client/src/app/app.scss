@@ -1,3 +1,7 @@
+h1 {
+  color: #58606e;
+}
+
 .cardContainer {
   text-align: center;
   font-weight: bold;
@@ -8,6 +12,10 @@
 .cardTitle {
   font-size: 20px;
   color: black;
+}
+
+.languageCardTitle {
+  font-size: 20px;
 }
 
 .cardImage {
@@ -57,12 +65,20 @@
   object-fit: contain;
 }
 
+.flagImage {
+  margin: 10px 10px 0px 10px;
+}
+
 @media only screen and (max-width: 600px) {
   .cardContainer {
     text-align: center;
     font-weight: bold;
     align-items: center;
     padding: 1px;
+  }
+
+  .languageCardTitle {
+    font-size: 15px;
   }
 
   .cardImage {
@@ -149,7 +165,7 @@
     margin-right: auto;
   }
 
-    .matchCardImage {
+  .matchCardImage {
     width: 150px;
     height: 150px;
     display: block;

@@ -5,17 +5,23 @@ import Dialog, { DialogActions, DialogHeader, DialogTitle } from 'mineral-ui/Dia
 import Text from 'mineral-ui/Text';
 import Button from 'mineral-ui/Button';
 
+import Translate from '../../../locales/translate';
+
 const ErrorDialog = (props) => {
-  const { error, restartApp, close } = props;
+  const { restartApp, close } = props;
   return (
     <Dialog isOpen variant="danger" onClose={close}>
       <DialogHeader>
-        <DialogTitle>Error</DialogTitle>
+        <DialogTitle>
+          <Translate string="error-dialog.title" />
+        </DialogTitle>
       </DialogHeader>
-      <Text>{error}</Text>
+      <Text>
+        <Translate string="server-error" />
+      </Text>
       <DialogActions>
         <Button onClick={restartApp} size="medium">
-          Restart App
+          <Translate string="restart-app" />
         </Button>
       </DialogActions>
     </Dialog>

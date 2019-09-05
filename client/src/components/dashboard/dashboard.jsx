@@ -6,7 +6,6 @@ import './dashboard.scss';
 
 import appStatus from '../../utils/appStatus';
 import appOrder from '../../utils/appOrder';
-import errorMessages from '../../utils/errorMessages';
 
 import LanguageSelectionPanel from '../panels/language-selection-panel';
 import WelcomeCard from '../panels/welcome-panel';
@@ -17,12 +16,13 @@ import MatchCard from '../cards/match-card';
 
 const { flexStyle } = require('../../styles/flex-styles');
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const [appState, setAppState] = useState(appStatus.LANGUAGE_SELECT);
   const [personId, setPersonId] = useState(null);
   const [decisions, setDecisions] = useState([{}]);
   const [viewedPeople, setViewedPeople] = useState([]);
-  const [error, setError] = useState(null);
+
+  const { changeLanguage } = props;
 
   const removeLastChoice = () => {
     setViewedPeople(viewedPeople.slice(0, -2));
@@ -49,12 +49,16 @@ const Dashboard = () => {
   };
 
   const setServerError = () => {
-    setError(errorMessages.serverError);
     setAppState(appStatus.ERROR);
   };
 
   const getLanguageSelectionPanel = () => (
-    <LanguageSelectionPanel submitLanguage={() => setAppState(appStatus.WELCOME_PANEL)} />
+    <LanguageSelectionPanel
+      submitLanguage={(code) => {
+        changeLanguage(code);
+        setAppState(appStatus.WELCOME_PANEL);
+      }}
+    />
   );
 
   const getWelcomeCard = () => (
@@ -73,7 +77,7 @@ const Dashboard = () => {
         setPersonId(person);
         setAppState(appStatus.MATCH_FOUND);
       }}
-      onError={() => setServerError()}
+      onError={() => setAppState(appStatus.ERROR)}
       restartApp={restartApp}
     />
   );
@@ -91,9 +95,7 @@ const Dashboard = () => {
     </Flex>
   );
 
-  const getErrorDialog = () => (
-    <ErrorDialog error={error} restartApp={restartApp} close={restartApp} />
-  );
+  const getErrorDialog = () => <ErrorDialog restartApp={restartApp} close={restartApp} />;
 
   const getMainPanel = () => (
     <div>
@@ -113,7 +115,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Header restartApp={restartApp} goBack={goBack} />
+      <Header submitLanguage={changeLanguage} restartApp={restartApp} goBack={goBack} />
       {MainPanel}
     </div>
   );

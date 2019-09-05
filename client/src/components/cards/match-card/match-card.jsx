@@ -9,6 +9,8 @@ import { FlexItem } from 'mineral-ui/Flex';
 import apiRequests from '../../../utils/apiRequests';
 import ConfirmMatchDialog from '../../dialogs/confirm-match-dialog';
 
+import Translate from '../../../locales/translate';
+
 const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../../styles/card-styles');
 const { buttonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
@@ -37,7 +39,7 @@ const MatchCard = (props) => {
     return null;
   }
 
-  const successMessage = `Yes, please reunite me with ${details.data.name}`;
+  const successMessage = <Translate string="match-card.match-accept" />;
 
   return (
     <div>
@@ -51,7 +53,9 @@ const MatchCard = (props) => {
       <div className="cardContainer" data-cy="match-card">
         <FlexItem>
           <Card style={matchCardStyle} data-cy="person-card">
-            <CardTitle className="cardTitle">Is this your relative?</CardTitle>
+            <CardTitle className="cardTitle">
+              <Translate string="match-card.title" />
+            </CardTitle>
             <CardImage
               style={cardImageStyle}
               className="matchCardImage"
@@ -78,7 +82,7 @@ const MatchCard = (props) => {
                 onClick={continueSearch}
                 iconStart={<IconCancel style={iconStyle} />}
               >
-                No, keep searching
+                <Translate string="match-card.match-reject" />
               </Button>
             </CardBlock>
           </Card>

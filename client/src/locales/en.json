@@ -1,0 +1,19 @@
+{
+  "header.back": "Back",
+  "header.language": "Language",
+  "welcome.start": "Start",
+  "welcome.info": "Info",
+  "person-card.my-person": "My Person",
+  "person-card.similar": "Similar",
+  "match-card.title": "Is this your relative?",
+  "match-card.match-reject": "No, keep searching",
+  "match-card.match-accept": "Yes, please reunite me",
+  "language-select.translate": "Select Language",
+  "confirm-match-dialog.title": "Aid worker contacted",
+  "confirm-match-dialog.message": "An aid worker has been contacted and is verifying the match, you will be contacted with further information.",
+  "no-match-dialog.message": "No match was found, your choices will be stored and you will be contacted if a potential match is added to the system.",
+  "server-error": "Error receiving information from the server. Please check the server is running. If problem persists, contact a system admin.",
+  "error-dialog.title": "Error",
+  "close-dialog": "Close",
+  "restart-app": "Restart App"
+}

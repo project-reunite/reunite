@@ -7,6 +7,8 @@ import IconSuccess from 'mineral-ui-icons/IconSuccess';
 import IconMoreInfo from 'mineral-ui-icons/IconPersonOutline';
 import apiRequests from '../../../utils/apiRequests';
 
+import Translate from '../../../locales/translate';
+
 const {
   regularCardStyle,
   cardImageStyle,
@@ -83,7 +85,7 @@ const PersonCard = (props) => {
             onClick={onMatch}
             data-cy="select-match"
           >
-            My Person
+            <Translate string="person-card.my-person" />
           </Button>
           <Button
             style={buttonStyle}
@@ -91,7 +93,7 @@ const PersonCard = (props) => {
             iconStart={moreInfoIcon}
             onClick={onClick}
           >
-            Similar
+            <Translate string="person-card.similar" />
           </Button>
         </CardFooter>
       </Card>

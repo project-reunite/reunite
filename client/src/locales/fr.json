@@ -1,0 +1,19 @@
+{
+  "header.back": "Retour",
+  "header.language": "Langue",
+  "welcome.start": "Début",
+  "welcome.info": "Info",
+  "person-card.my-person": "Ma personne",
+  "person-card.similar": "Similaire",
+  "match-card.title": "Est-ce votre parent?",
+  "match-card.match-reject": "Non, continuez à chercher",
+  "match-card.match-accept": "Oui, je vous en prie",
+  "language-select.translate": "Choisir la langue",
+  "confirm-match-dialog.title": "Travailleur humanitaire contacté",
+  "confirm-match-dialog.message": "Un travailleur humanitaire a été contacté et est en train de vérifier le match. Vous recevrez de plus amples informations à ce sujet.",
+  "no-match-dialog.message": "Aucune correspondance n'a été trouvée, vos choix seront enregistrés et vous serez contacté si une correspondance potentielle est ajoutée au système.",
+  "server-error": "Erreur lors de la réception des informations du serveur. Veuillez vérifier que le serveur est en cours d'exécution. Si le problème persiste, contactez un administrateur système.",
+  "error-dialog.title": "Erreur",
+  "close-dialog": "Fermer",
+  "restart-app": "Redémarrer l'application"
+}
