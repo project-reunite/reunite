@@ -3,6 +3,10 @@ import config from '../config';
 
 const { origin } = config;
 
+let latestInputSent = {};
+
+const postStatistics = () => axios.post(`${origin}/api/v2/statistics/`, latestInputSent);
+
 const getPerson = async (id) => {
   try {
     const response = await axios.get(`${origin}/api/v1/persons/${id}`);
@@ -15,6 +19,7 @@ const getPerson = async (id) => {
 const getChoices = async (body) => {
   try {
     const response = await axios.post(`${origin}/api/v2/decisions/`, body);
+    latestInputSent = body;
     return response;
   } catch (err) {
     throw err;
@@ -31,6 +36,7 @@ const getTree = async (queryString) => {
 };
 
 export default {
+  postStatistics,
   getPerson,
   getChoices,
   getTree,

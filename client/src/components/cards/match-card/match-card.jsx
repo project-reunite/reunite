@@ -66,7 +66,10 @@ const MatchCard = (props) => {
                 style={buttonStyle}
                 iconStart={<IconSuccess style={iconStyle} />}
                 primary
-                onClick={() => setIsMatchConfirmed(true)}
+                onClick={() => {
+                  setIsMatchConfirmed(true);
+                  apiRequests.postStatistics();
+                }}
               >
                 {successMessage}
               </Button>
