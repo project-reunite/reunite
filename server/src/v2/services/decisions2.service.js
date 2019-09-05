@@ -1,6 +1,6 @@
 const numberOfFeatures = 6;
 const featureConfidence = [
-    0.5,
+    0.8,
     0.5,
     0.5,
     0.5,
