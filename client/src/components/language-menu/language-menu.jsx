@@ -35,7 +35,7 @@ const LanguageMenu = (props) => {
         <MenuItem iconStart={<FrIcon />} onClick={() => submit('fr')}>
           Français
         </MenuItem>
-        <MenuItem iconStart={<EsIcon />}>Espanol</MenuItem>
+        <MenuItem iconStart={<EsIcon />}>Español</MenuItem>
         <MenuItem iconStart={<DeIcon />}>Deutsche</MenuItem>
       </Menu>
     </div>
