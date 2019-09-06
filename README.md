@@ -59,7 +59,11 @@ Charities such as Red Cross already direct Arame and other searchers to their ex
 #### What happens if Arame doesn't find a match after viewing all relevant photos?
 We would then show her less relevant photos. Our system prioritises photos rather than filtering them, so that no photo is ever hidden. Therefore, in the worst case our system still matches the existing system, and in the best case our system far outperforms it. 
 
-If after viewing all (relevant & irrelevant) photos collected by the charity, then we apologise for the photo not being present, and present her with a button to easily contact a relevant aid worker for advice. We also analyse and save the features of her final choice, so that can notify her when new relevant photos are added.
+If Arame still doesn't find a match after viewing all (relevant & irrelevant) photos collected by the charity, then we apologise for the photo not being present, and present her with a button to easily contact a relevant aid worker for advice. She can choose to be notified when new photos are added.
+
+### Deployment
+#### What if refugees don't have smartphones or access to a stable internet connection?
+Our app still improves on existing charities' sites, because refugees will complete their search in far fewer photos. This means a much shorter search time, so a few shared devices and limited mobile data will serve many more refugees than before.
 
 ## Project Roadmap
 
