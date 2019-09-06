@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { PrimaryNav, NavItem } from 'mineral-ui/Navigation';
@@ -7,6 +7,7 @@ import IconExpandMore from 'mineral-ui-icons/IconExpandMore';
 import Menu, { MenuItem } from 'mineral-ui/Menu';
 
 import Translate from '../../locales/translate';
+import useOutsideClick from '../../hooks/useOutsideClick';
 import './header.scss';
 
 const { headerStyle, navItemStyle } = require('../../styles/header-styles');
@@ -18,9 +19,7 @@ const Header = (props) => {
 
   const languageMenu = openLanguageMenu ? (
     <LanguageMenu submitLanguage={submitLanguage} onClose={() => setOpenLanguageMenu(false)} />
-  ) : (
-    <null />
-  );
+  ) : null;
 
   return (
     <div>
@@ -50,14 +49,19 @@ const Header = (props) => {
 
 const LanguageMenu = (props) => {
   const { submitLanguage, onClose } = props;
+  const ref = useRef();
 
   const submit = (code) => {
     submitLanguage(code);
     onClose();
   };
 
+  useOutsideClick(ref, () => {
+    onClose();
+  });
+
   return (
-    <div>
+    <div ref={ref}>
       <Menu style={languageMenuStyle} className="languageMenu">
         <MenuItem onClick={() => submit('en')}>English</MenuItem>
         <MenuItem onClick={() => submit('fr')}>Français</MenuItem>
