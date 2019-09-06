@@ -8,32 +8,11 @@ h1 {
   font-weight: bold;
   align-items: center;
   padding: 3px;
-  // z-index: 0;
 }
 
 .cardTitle {
   font-size: 20px;
   color: black;
-}
-
-.languageCard {
-  width: 150px;
-}
-
-.languageCardTitle {
-  font-size: 25px;
-}
-
-.languageCardBlock {
-  font-size: 20px;
-  color: #58606e;
-}
-
-.languageMenu {
-  position: absolute;
-  z-index: 10;
-  left: 65%;
-  border-radius: 5px;
 }
 
 .cardImage {
@@ -93,14 +72,6 @@ h1 {
     font-weight: bold;
     align-items: center;
     padding: 1px;
-  }
-
-  .languageMenu {
-    left: 50%;
-  }
-
-  .languageCardTitle {
-    font-size: 15px;
   }
 
   .cardImage {

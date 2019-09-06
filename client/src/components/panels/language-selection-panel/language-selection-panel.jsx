@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './language-selection-panel.scss';
 import Card, { CardBlock } from 'mineral-ui/Card';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 
