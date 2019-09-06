@@ -24,7 +24,7 @@ const LanguageSelectionPanel = (props) => {
             className="languageCard"
             img="gb-eng.svg"
           >
-            <span className="flag-icon flag-icon-gr flag-icon-squared" />
+            <span className="flag-icon flag-icon-gb-eng flag-icon-squared" />
             <img className="flagImage" src="gb-eng.svg" />
             <span />
 
@@ -39,7 +39,7 @@ const LanguageSelectionPanel = (props) => {
             className="languageCard"
             data-cy="restart-card"
           >
-            <span className="flag-icon flag-icon-gr flag-icon-squared" />
+            <span className="flag-icon flag-icon-fr flag-icon-squared" />
             <img className="flagImage" src="fr.svg" />
             <span />
             <CardBlock className="languageCardBlock">French</CardBlock>
@@ -52,7 +52,7 @@ const LanguageSelectionPanel = (props) => {
             // onClick={() => submitLanguage('es')}
             className="languageCard"
           >
-            <span className="flag-icon flag-icon-gr flag-icon-squared" />
+            <span className="flag-icon flag-icon-es flag-icon-squared" />
             <img className="flagImage" src="es.svg" />
             <span />
             <CardBlock className="languageCardBlock">Español</CardBlock>
@@ -65,7 +65,7 @@ const LanguageSelectionPanel = (props) => {
             // onClick={() => submitLanguage('de')}
             className="languageCard"
           >
-            <span className="flag-icon flag-icon-gr flag-icon-squared" />
+            <span className="flag-icon flag-icon-de flag-icon-squared" />
             <img className="flagImage" src="de.svg" />
             <span />
             <CardBlock className="languageCardBlock">Deutsche</CardBlock>
@@ -76,8 +76,6 @@ const LanguageSelectionPanel = (props) => {
     </div>
   );
 };
-
-
 
 LanguageSelectionPanel.defaultProps = {
   submitLanguage: () => {},
