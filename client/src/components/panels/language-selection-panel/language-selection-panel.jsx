@@ -28,7 +28,7 @@ const LanguageSelectionPanel = (props) => {
             <img className="flagImage" src="gb-eng.svg" />
             <span />
 
-            <CardBlock>English</CardBlock>
+            <CardBlock className="languageCardBlock">English</CardBlock>
             {/* <CardTitle className="languageCardTitle">English</CardTitle> */}
           </Card>
         </FlexItem>
@@ -42,7 +42,7 @@ const LanguageSelectionPanel = (props) => {
             <span className="flag-icon flag-icon-gr flag-icon-squared" />
             <img className="flagImage" src="fr.svg" />
             <span />
-            <CardBlock>French</CardBlock>
+            <CardBlock className="languageCardBlock">French</CardBlock>
             {/* <CardTitle className="languageCardTitle">Francais</CardTitle> */}
           </Card>
         </FlexItem>
@@ -55,7 +55,7 @@ const LanguageSelectionPanel = (props) => {
             <span className="flag-icon flag-icon-gr flag-icon-squared" />
             <img className="flagImage" src="es.svg" />
             <span />
-            <CardBlock>Español</CardBlock>
+            <CardBlock className="languageCardBlock">Español</CardBlock>
             {/* <CardTitle className="languageCardTitle">Español</CardTitle> */}
           </Card>
         </FlexItem>
@@ -68,7 +68,7 @@ const LanguageSelectionPanel = (props) => {
             <span className="flag-icon flag-icon-gr flag-icon-squared" />
             <img className="flagImage" src="de.svg" />
             <span />
-            <CardBlock>Deutsche</CardBlock>
+            <CardBlock className="languageCardBlock">Deutsche</CardBlock>
             {/* <CardTitle className="languageCardTitle">Deutsche</CardTitle> */}
           </Card>
         </FlexItem>
