@@ -1,17 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { PrimaryNav, NavItem } from 'mineral-ui/Navigation';
 import IconRestart from 'mineral-ui-icons/IconArrowBack';
 import IconExpandMore from 'mineral-ui-icons/IconExpandMore';
-import Menu, { MenuItem } from 'mineral-ui/Menu';
 
+import LanguageMenu from '../language-menu';
 import Translate from '../../locales/translate';
-import useOutsideClick from '../../hooks/useOutsideClick';
 import './header.scss';
 
 const { headerStyle, navItemStyle } = require('../../styles/header-styles');
-const { languageMenuStyle } = require('../../styles/menu-styles');
 
 const Header = (props) => {
   const [openLanguageMenu, setOpenLanguageMenu] = useState(false);
@@ -47,37 +45,14 @@ const Header = (props) => {
   );
 };
 
-const LanguageMenu = (props) => {
-  const { submitLanguage, onClose } = props;
-  const ref = useRef();
-
-  const submit = (code) => {
-    submitLanguage(code);
-    onClose();
-  };
-
-  useOutsideClick(ref, () => {
-    onClose();
-  });
-
-  return (
-    <div ref={ref}>
-      <Menu style={languageMenuStyle} className="languageMenu">
-        <MenuItem onClick={() => submit('en')}>English</MenuItem>
-        <MenuItem onClick={() => submit('fr')}>Français</MenuItem>
-        <MenuItem>Espanol</MenuItem>
-        <MenuItem>Deutsche</MenuItem>
-      </Menu>
-    </div>
-  );
-};
-
 Header.defaultProps = {
   goBack: () => {},
+  submitLanguage: () => {},
 };
 
 Header.propTypes = {
   goBack: PropTypes.func,
+  submitLanguage: PropTypes.func,
 };
 
 export default Header;
