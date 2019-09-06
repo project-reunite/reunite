@@ -2,6 +2,12 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import Menu, { MenuItem } from 'mineral-ui/Menu';
+import GbEngIcon from '../icons/gb-icon';
+
+import EsIcon from '../icons/es-icon';
+import FrIcon from '../icons/fr-icon';
+import DeIcon from '../icons/de-icon';
+
 import useOutsideClick from '../../hooks/useOutsideClick';
 
 const { languageMenuStyle } = require('../../styles/menu-styles');
@@ -22,10 +28,22 @@ const LanguageMenu = (props) => {
   return (
     <div ref={ref}>
       <Menu style={languageMenuStyle} className="languageMenu">
-        <MenuItem onClick={() => submit('en')}>English</MenuItem>
-        <MenuItem onClick={() => submit('fr')}>Français</MenuItem>
-        <MenuItem>Espanol</MenuItem>
-        <MenuItem>Deutsche</MenuItem>
+        <MenuItem
+          iconStart={<GbEngIcon />}
+          className="languageMenuRow"
+          onClick={() => submit('en')}
+        >
+          English
+        </MenuItem>
+        <MenuItem className="languageMenuRow" iconStart={<FrIcon />} onClick={() => submit('fr')}>
+          Français
+        </MenuItem>
+        <MenuItem className="languageMenuRow" iconStart={<EsIcon />}>
+          Espanol
+        </MenuItem>
+        <MenuItem className="languageMenuRow" iconStart={<DeIcon />}>
+          Deutsche
+        </MenuItem>
       </Menu>
     </div>
   );
