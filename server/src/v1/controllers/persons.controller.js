@@ -2,8 +2,8 @@ const personsService = require('../services/persons.service');
 
 const getPersons = async function(req, res, next) {
     try {
-        const persons = await personsService.getPersons({ 
-            filters: { selector: {} }, 
+        const persons = await personsService.getPersons({
+            filters: { selector: {} },
             host: req.protocol + '://' + req.get('host'),
         });
         res.status(200).send(persons);
@@ -30,6 +30,15 @@ const getPerson = async function(req, res, next) {
     }
 };
 
+const getPersonUrls = async function(req, res, next) {
+    try {
+        const personUrls = await personsService.getPersonUrls();
+        res.status(200).send(personUrls);
+    } catch(err) {
+        next(err);
+    }
+};
+
 const getPair = async function(req, res, next) {
     try {
         const pairIndex = req.params.index;
@@ -43,5 +52,6 @@ const getPair = async function(req, res, next) {
 module.exports = {
     getPerson,
     getPersons,
+    getPersonUrls,
     getPair,
 };

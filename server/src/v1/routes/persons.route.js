@@ -5,7 +5,9 @@ const personsController = require('../controllers/persons.controller');
 const router = express.Router();
 
 router.get('/', personsController.getPersons);
-    
+
+router.get('/urls', personsController.getPersonUrls);
+
 router.get('/:id', personsController.getPerson);
 
 router.get('/pairs/:index', personsController.getPair);

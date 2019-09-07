@@ -23,6 +23,13 @@ const getPersons = async ({ filters, host }) => {
     }
 };
 
+const getPersonUrls = async() => {
+    const persons = (await getPersons({ filters: { selector: {} } })).docs;
+    const personsWith6Features = persons.filter(person => person._id.length === 6);
+    const urls = personsWith6Features.map(person => person.img_url);
+    return urls;
+};
+
 const getPair = async (index) => {
     const persons = (await getPersons({ filters: { selector: {} } })).docs;
     if(index*2 + 1 < persons.length) {
@@ -36,7 +43,8 @@ const getPair = async (index) => {
 };
 
 module.exports = {
-    getPersons,
     getPerson,
+    getPersons,
+    getPersonUrls,
     getPair,
 };

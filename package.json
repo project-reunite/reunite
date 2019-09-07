@@ -15,8 +15,10 @@
     "install": "(cd server && npm install) && (cd client && npm install)",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "build": "(cd client && npm run build)",
-    "deploy":  "npm run build && ibmcloud dev deploy"
+    "build": "npm run build:client && npm run build:visualiser",
+    "build:client": "(cd client && npm run build)",
+    "build:visualiser": "(cd visualiser-client && npm run build)",
+    "deploy": "npm run build && ibmcloud dev deploy"
   },
   "repository": {
     "type": "git",
