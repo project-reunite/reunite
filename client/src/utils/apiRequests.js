@@ -3,10 +3,10 @@ import config from '../config';
 
 const { origin } = config;
 
-let latestInputSent = {};
+let savedData = { viewedPeople: [], decisions: [] };
 
 const postStatistics = (personId) => {
-  axios.post(`${origin}/api/v2/statistics/`, { ...latestInputSent, personId });
+  axios.post(`${origin}/api/v2/statistics/`, { ...savedData, personId });
 };
 
 const getPerson = async (id) => {
@@ -21,7 +21,10 @@ const getPerson = async (id) => {
 const getChoices = async (body) => {
   try {
     const response = await axios.post(`${origin}/api/v2/decisions/`, body);
-    latestInputSent = body;
+    if (response.data.choices.length > 0) {
+      const { decisions, viewedPeople } = response.data.choices[0].nextInput;
+      savedData = { decisions: decisions.slice(1, decisions.length - 1), viewedPeople };
+    }
     return response;
   } catch (err) {
     throw err;
