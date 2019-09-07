@@ -9,20 +9,18 @@ const getUrls = async () => {
   return urls;
 }
 
-const Page = (props) => {
-  const [urls, setUrls] = useState(['asdf', 'fdsa']);
-
-  useEffect(() => {
-    async function fetchUrls() {
-      try {
-        const urls = await getUrls();
-        setUrls(urls);
-      } catch (err) {
-        console.log(err);
-      }
+const Page = () => {
+  const [urls, setUrls] = useState([]);
+  
+  async function fetchUrls() {
+    try {
+      const urls = await getUrls();
+      setUrls(urls);
+    } catch (err) {
+      console.log(err);
     }
-    fetchUrls();
-  }, []);
+  }
+  useEffect(() => fetchUrls(), []);
 
   const faces = urls.map(url => (
     <Face src={url}></Face>
@@ -31,9 +29,7 @@ const Page = (props) => {
 }
 
 const Face = (props) => (
-  <p>{props.src}</p>
-  // TODO: use this render images
-  // <img src={props.src}></img>
+  <img className="face" src={props.src}></img>
 )
 
 
