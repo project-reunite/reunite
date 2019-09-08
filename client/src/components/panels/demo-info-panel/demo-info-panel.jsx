@@ -10,14 +10,18 @@ import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
 
 const { flexStyle } = require('../../../styles/flex-styles');
 const { smallCardStyle } = require('../../../styles/card-styles');
-const { nextButtonStyle, secondButtonStyle } = require('../../../styles/button-styles');
+const {
+  secondButtonStyle,
+  nextButtonStyle,
+  buttonStyle,
+} = require('../../../styles/button-styles');
 const { iconStyle, nextIconStyle } = require('../../../styles/icon-styles');
 
 const DemoInfoPanel = (props) => {
   const { moveOn } = props;
 
   const moreInfoIcon = <IconMoreInfo style={iconStyle} />;
-  const nextIcon = <IconNext style={nextIconStyle} />;
+  const nextIcon = <IconNext style={iconStyle} />;
   return (
     <div className="cardContainer" data-cy="welcome-card">
       <Flex wrap {...flexStyle}>
@@ -27,7 +31,7 @@ const DemoInfoPanel = (props) => {
               Tap here to see the 64 people, and choose (in your head) who you are looking for.
             </CardBlock>
             <CardBlock>
-              <Button style={secondButtonStyle} fullWidth iconStart={moreInfoIcon} onClick={moveOn}>
+              <Button style={buttonStyle} fullWidth iconStart={moreInfoIcon} onClick={moveOn}>
                 Open Photos
               </Button>
             </CardBlock>
@@ -37,7 +41,7 @@ const DemoInfoPanel = (props) => {
           <Card className="generalCard" style={smallCardStyle}>
             <CardBlock>When you are ready, hit start</CardBlock>
             <CardBlock>
-              <Button style={nextButtonStyle} fullWidth iconStart={nextIcon} onClick={moveOn}>
+              <Button style={secondButtonStyle} fullWidth iconStart={nextIcon} onClick={moveOn}>
                 Start
               </Button>
             </CardBlock>

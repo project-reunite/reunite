@@ -11,13 +11,13 @@ import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
 
 const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../../styles/card-styles');
 const { flexStyle } = require('../../../styles/flex-styles');
-const { nextButtonStyle } = require('../../../styles/button-styles');
+const { nextButtonStyle, buttonStyle } = require('../../../styles/button-styles');
 
-const { nextIconStyle } = require('../../../styles/icon-styles');
+const { nextIconStyle, iconStyle } = require('../../../styles/icon-styles');
 
 const DemoSummaryPanel = (props) => {
   const { foundPersonDetails, moveOn, decisions } = props;
-  const nextIcon = <IconNext style={nextIconStyle} />;
+  const nextIcon = <IconNext style={iconStyle} />;
 
   const numberOfChoices = decisions.length;
   const numberOfPhotosSeen = numberOfChoices * 2;
@@ -49,7 +49,7 @@ const DemoSummaryPanel = (props) => {
               %.
             </CardBlock>
             <CardBlock>
-              <Button style={nextButtonStyle} fullWidth iconStart={nextIcon} onClick={moveOn}>
+              <Button style={buttonStyle} fullWidth iconStart={nextIcon} onClick={moveOn}>
                 Next
               </Button>
             </CardBlock>
