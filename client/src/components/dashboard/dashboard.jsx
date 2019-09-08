@@ -14,6 +14,7 @@ import Header from '../header';
 import PersonSelectionPanel from '../panels/person-selection-panel';
 import MatchCard from '../cards/match-card';
 import DemoInfoPanel from '../panels/demo-info-panel';
+import DemoSummaryPanel from '../panels/demo-summary-panel';
 import Footer from '../footer';
 
 const { flexStyle } = require('../../styles/flex-styles');
@@ -23,6 +24,7 @@ const Dashboard = (props) => {
   const [personId, setPersonId] = useState(null);
   const [decisions, setDecisions] = useState([{}]);
   const [viewedPeople, setViewedPeople] = useState([]);
+  const [foundPersonDetails, setFoundPersonDetails] = useState({});
 
   const { changeLanguage } = props;
 
@@ -63,6 +65,8 @@ const Dashboard = (props) => {
     />
   );
 
+  const getDemoSummaryPanel = () => <DemoSummaryPanel foundPersonDetails={foundPersonDetails} />;
+
   const getWelcomeCard = () => (
     <WelcomeCard moveOn={() => setAppState(appStatus.DEMO_INFO_PANEL)} />
   );
@@ -90,6 +94,10 @@ const Dashboard = (props) => {
         restartApp={restartApp}
         id={personId}
         onError={() => setServerError()}
+        confirmMatch={(info) => {
+          setFoundPersonDetails(info);
+          setAppState(appStatus.DEMO_COMPLETE);
+        }}
         continueSearch={() => {
           setAppState(appStatus.COMPARE_PICTURES);
         }}
@@ -112,6 +120,7 @@ const Dashboard = (props) => {
           [appStatus.DEMO_INFO_PANEL]: getDemoInfoPanel(),
           [appStatus.COMPARE_PICTURES]: getPersonSelectionPanel(),
           [appStatus.MATCH_FOUND]: getMatchCard(),
+          [appStatus.DEMO_COMPLETE]: getDemoSummaryPanel(),
           [appStatus.ERROR]: getErrorDialog(),
         }[appState]
       }

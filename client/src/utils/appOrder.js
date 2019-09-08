@@ -6,4 +6,5 @@ export default [
   appStatus.DEMO_INFO_PANEL,
   appStatus.COMPARE_PICTURES,
   appStatus.MATCH_FOUND,
+  appStatus.DEMO_COMPLETE,
 ];

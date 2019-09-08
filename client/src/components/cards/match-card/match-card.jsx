@@ -20,7 +20,7 @@ const MatchCard = (props) => {
   const [isMatchConfirmed, setIsMatchConfirmed] = useState(false);
 
   const {
-    onError, continueSearch, restartApp, id,
+    onError, continueSearch, restartApp, id, confirmMatch,
   } = props;
 
   useEffect(() => {
@@ -71,8 +71,8 @@ const MatchCard = (props) => {
                 iconStart={<IconSuccess style={iconStyle} />}
                 primary
                 onClick={() => {
-                  setIsMatchConfirmed(true);
-                  apiRequests.postStatistics(id);
+                  confirmMatch(details);
+                  // apiRequests.postStatistics(id);
                 }}
               >
                 {successMessage}
