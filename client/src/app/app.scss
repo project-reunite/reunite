@@ -78,6 +78,15 @@ h1 {
 }
 
 @media only screen and (max-width: 600px) {
+
+  p {
+    font-size: 0.7em
+  }
+
+  h1 {
+    font-size: 1.5em
+  }
+
   .cardContainer {
     text-align: center;
     font-weight: bold;

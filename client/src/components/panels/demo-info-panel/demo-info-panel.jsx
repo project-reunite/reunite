@@ -5,9 +5,10 @@ import Card, {
   CardImage, CardTitle, CardActions, CardBlock,
 } from 'mineral-ui/Card';
 import Button from 'mineral-ui/Button';
-import IconMoreInfo from 'mineral-ui-icons/IconPersonOutline';
-import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
 
+import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
+import IconMoreInfo from 'mineral-ui-icons/IconPersonOutline';
+import Translate from '../../../locales/translate';
 import GithubIcon from '../../icons/github';
 
 const { flexStyle } = require('../../../styles/flex-styles');
@@ -31,28 +32,38 @@ const DemoInfoPanel = (props) => {
         <FlexItem data-cy="play-button">
           <Card onClick={moveOn} className="generalCard" style={regularCardStyle}>
             <CardBlock>
-              Tap here to see the 64 people, and choose (in your head) who you are looking for.
+              <p>
+                <Translate string="demo-info.open-pictures" />
+              </p>
             </CardBlock>
             <CardBlock>
               <a href="https://github.ibm.com/ProjectReunite/reunite">
                 <Button style={buttonStyle} iconStart={moreInfoIcon} onClick={moveOn}>
-                  Open Photos
+                  <Translate string="button.open-photos" />
                 </Button>
               </a>
             </CardBlock>
             <CardBlock>
-              To give feedback, drop us an email at project.reunited@gmail.com. Or if you find a
-              bug, feel free to raise an issue on our github repo.
+              <p>
+                <Translate string="demo-info.feedback" />
+              </p>
+              <p>
+                <Translate string="demo-info.raise-issue" />
+              </p>
             </CardBlock>
             <CardBlock>
               <Button style={buttonStyle} iconStart={githubIcon} onClick={moveOn}>
-                Github Repo
+                <Translate string="button.github-repo" />
               </Button>
             </CardBlock>
-            <CardBlock>When you are ready to try the app, hit start.</CardBlock>
             <CardBlock>
-              <Button style={secondButtonStyle} iconStart={nextIcon} onClick={moveOn}>
-                Start
+              <p>
+                <Translate string="demo-info.start-message" />
+              </p>
+            </CardBlock>
+            <CardBlock>
+              <Button style={buttonStyle} iconStart={nextIcon} onClick={moveOn}>
+                <Translate string="button.start" />
               </Button>
             </CardBlock>
           </Card>

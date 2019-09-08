@@ -9,14 +9,14 @@ import Button from 'mineral-ui/Button';
 
 import Translate from '../../../locales/translate';
 
-const { nextIconStyle } = require('../../../styles/icon-styles');
+const { nextIconStyle, iconStyle } = require('../../../styles/icon-styles');
 const { flexStyle } = require('../../../styles/flex-styles');
 const { matchCardStyle } = require('../../../styles/card-styles');
-const { nextButtonStyle } = require('../../../styles/button-styles');
+const { nextButtonStyle, buttonStyle } = require('../../../styles/button-styles');
 
 const WelcomeCard = (props) => {
   const { moveOn } = props;
-  const nextIcon = <IconNext style={nextIconStyle} />;
+  const nextIcon = <IconNext style={iconStyle} />;
 
   return (
     <div className="cardContainer" data-cy="welcome-card">
@@ -24,19 +24,24 @@ const WelcomeCard = (props) => {
         <FlexItem>
           <Card onClick={moveOn} className="generalCard" style={matchCardStyle}>
             <CardBlock>
-              Imagine there are 64 missing people, and you need to find one of them.
+              <p>
+                <Translate string="welcomePanel.message-1" />
+              </p>
             </CardBlock>
             <CardBlock>
-              If you had to scroll through each photo one-by-one, you would find them after 32
-              photos on average.
+              <p>
+                <Translate string="welcomePanel.message-2" />
+              </p>
             </CardBlock>
             <CardImage className="cardImage" src="reunite-dark.svg" alt="gradient placeholder" />
             <CardBlock>
-              Let&apos;s see how many photos it takes to find your person using our app!
+              <p>
+                <Translate string="welcomePanel.message-3" />
+              </p>
             </CardBlock>
             <CardBlock>
-              <Button style={nextButtonStyle} iconStart={nextIcon} onClick={moveOn}>
-                Begin
+              <Button style={buttonStyle} iconStart={nextIcon} onClick={moveOn}>
+                <Translate string="button.begin" />
               </Button>
             </CardBlock>
           </Card>
