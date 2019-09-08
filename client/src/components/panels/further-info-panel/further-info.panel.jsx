@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Card, { CardImage, CardBlock, CardTitle } from 'mineral-ui/Card';
 import { FlexItem } from 'mineral-ui/Flex';
@@ -35,14 +34,14 @@ const FurtherInfoPanel = () => (
             </p>
           </CardBlock>
           <CardBlock>
-            <a href="https://github.ibm.com/ProjectReunite/reunite">
+            <a href="https://ibm.ent.box.com/file/483338314391/reunite">
               <Button iconStart={<IconVideo style={iconStyle} />} style={buttonStyle}>
                 <Translate string="further-info.more-information" />
               </Button>
             </a>
           </CardBlock>
           <CardBlock>
-            <a href="https://www.bbc.co.uk/sport">
+            <a href="https://w3.ibm.com/w3publisher/cognitive-applications/updates-from-bob/a7222250-cf31-11e9-8f65-2d7c559e6321">
               <Button iconStart={<IconEye style={iconStyle} />} style={buttonStyle}>
                 <Translate string="further-info.link-to-cfc" />
               </Button>

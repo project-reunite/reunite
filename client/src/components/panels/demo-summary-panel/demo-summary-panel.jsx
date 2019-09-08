@@ -52,7 +52,7 @@ const DemoSummaryPanel = (props) => {
                 So you found them in
                 {` ${numberOfPhotosQuicker} `}
                 photos quicker, or
-                {` ${percentagePhotosQuicker} `}
+                {` ${percentagePhotosQuicker}`}
                 %.
               </p>
             </CardBlock>

@@ -12,13 +12,9 @@ import Translate from '../../../locales/translate';
 import GithubIcon from '../../icons/github';
 
 const { flexStyle } = require('../../../styles/flex-styles');
-const { regularCardStyle, smallCardStyle } = require('../../../styles/card-styles');
-const {
-  secondButtonStyle,
-  nextButtonStyle,
-  buttonStyle,
-} = require('../../../styles/button-styles');
-const { iconStyle, nextIconStyle } = require('../../../styles/icon-styles');
+const { regularCardStyle } = require('../../../styles/card-styles');
+const { buttonStyle } = require('../../../styles/button-styles');
+const { iconStyle } = require('../../../styles/icon-styles');
 
 const DemoInfoPanel = (props) => {
   const { moveOn } = props;
@@ -37,11 +33,9 @@ const DemoInfoPanel = (props) => {
               </p>
             </CardBlock>
             <CardBlock>
-              <a href="https://github.ibm.com/ProjectReunite/reunite">
-                <Button style={buttonStyle} iconStart={moreInfoIcon} onClick={moveOn}>
-                  <Translate string="button.open-photos" />
-                </Button>
-              </a>
+              <Button style={buttonStyle} iconStart={moreInfoIcon} onClick={moveOn}>
+                <Translate string="button.open-photos" />
+              </Button>
             </CardBlock>
             <CardBlock>
               <p>
@@ -52,9 +46,11 @@ const DemoInfoPanel = (props) => {
               </p>
             </CardBlock>
             <CardBlock>
-              <Button style={buttonStyle} iconStart={githubIcon} onClick={moveOn}>
-                <Translate string="button.github-repo" />
-              </Button>
+              <a href="https://github.ibm.com/ProjectReunite/reunite">
+                <Button style={buttonStyle} iconStart={githubIcon} onClick={moveOn}>
+                  <Translate string="button.github-repo" />
+                </Button>
+              </a>
             </CardBlock>
             <CardBlock>
               <p>
