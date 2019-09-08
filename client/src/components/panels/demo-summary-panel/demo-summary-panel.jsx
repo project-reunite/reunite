@@ -30,6 +30,14 @@ const DemoSummaryPanel = (props) => {
         <FlexItem>
           <Card style={matchCardStyle}>
             <CardTitle className="cardTitle">Person found!</CardTitle>
+            <p>
+              Number of steps to find your person:
+              {` ${numberOfChoices}`}
+            </p>
+            <p>
+              Number of photos viewed:
+              {` ${numberOfPhotosSeen} `}
+            </p>
             <CardImage
               style={cardImageStyle}
               className="matchCardImage"
@@ -38,22 +46,13 @@ const DemoSummaryPanel = (props) => {
             />
             <CardBlock style={cardBlockStyle}>
               <p>
-                You found your person in
-                {` ${numberOfChoices} `}
-                steps, which is
-                {` ${numberOfPhotosSeen} `}
-                photos.
+                Average number of photos to find them by scrolling through each one-by-one: 32
               </p>
               <p>
-                It would have taken an average of 32 photos to find them by scrolling through each
-                photo one-by-one.
-              </p>
-              <p>
-                So you found them in
-                {` ${numberOfPhotosQuicker} `}
-                photos quicker, or
-                {` ${percentagePhotosQuicker}`}
-                %.
+                So, the number of photos fewer you had to scroll through:
+                {` ${numberOfPhotosQuicker}`}
+                {` (${percentagePhotosQuicker}% `}
+                quicker)
               </p>
             </CardBlock>
             <CardBlock>
