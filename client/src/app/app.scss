@@ -10,7 +10,6 @@ h1 {
 .dashboardContainer {
   position: relative;
   min-height: 100vh;
-  // padding-bottom: 60px;
 }
 
 .cardContainer {
@@ -23,12 +22,6 @@ h1 {
 .cardTitle {
   font-size: 20px;
   color: black;
-}
-
-.welcomeCard {
-  width: 50%;
-  height: 100%;
-  margin: 20px;
 }
 
 .cardImage {
@@ -84,13 +77,14 @@ h1 {
 
 @media only screen and (max-width: 600px) {
 
-  p {
-    font-size: 0.9em
-  }
-
   h1 {
     font-size: 1.5em
   }
+
+  .demoSummaryCard p {
+    font-size: 0.8em
+  }
+
 
   .cardContainer {
     text-align: center;
@@ -134,8 +128,8 @@ h1 {
   }
 
   .matchCardImage {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     display: block;
     margin-left: auto;
     margin-right: auto;

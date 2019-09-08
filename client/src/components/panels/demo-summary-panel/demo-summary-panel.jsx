@@ -28,31 +28,33 @@ const DemoSummaryPanel = (props) => {
     <div className="cardContainer">
       <Flex {...flexStyle}>
         <FlexItem>
-          <Card style={matchCardStyle}>
+          <Card style={matchCardStyle} className="demoSummaryCard">
             <CardTitle className="cardTitle">Person found!</CardTitle>
             <p>
-              Number of steps to find your person:
+              <Translate string="demo-summary.message-1" />
               {` ${numberOfChoices}`}
             </p>
             <p>
-              Number of photos viewed:
+              <Translate string="demo-summary.message-2" />
               {` ${numberOfPhotosSeen} `}
             </p>
             <CardImage
-              style={cardImageStyle}
               className="matchCardImage"
+              style={cardImageStyle}
               src={foundPersonDetails.data.img_url}
               alt="gradient placeholder"
             />
             <CardBlock style={cardBlockStyle}>
               <p>
-                Average number of photos to find them by scrolling through each one-by-one: 32
+                <Translate string="demo-summary.message-3" />
+                32
               </p>
               <p>
-                So, the number of photos fewer you had to scroll through:
+                <Translate string="demo-summary.message-4" />
                 {` ${numberOfPhotosQuicker}`}
                 {` (${percentagePhotosQuicker}% `}
-                quicker)
+                <Translate string="demo-summary.quicker" />
+)
               </p>
             </CardBlock>
             <CardBlock>
@@ -67,6 +69,16 @@ const DemoSummaryPanel = (props) => {
   );
 };
 
-DemoSummaryPanel.propTypes = {};
+DemoSummaryPanel.defaultProps = {
+  foundPersonDetails: {},
+  moveOn: () => {},
+  decisions: [{}],
+};
+
+DemoSummaryPanel.propTypes = {
+  foundPersonDetails: PropTypes.objectOf(PropTypes.string),
+  moveOn: PropTypes.func,
+  decisions: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+};
 
 export default DemoSummaryPanel;

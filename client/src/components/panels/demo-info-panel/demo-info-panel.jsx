@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
-import Card, {
-  CardImage, CardTitle, CardActions, CardBlock,
-} from 'mineral-ui/Card';
+import Card, { CardBlock } from 'mineral-ui/Card';
 import Button from 'mineral-ui/Button';
 
 import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
