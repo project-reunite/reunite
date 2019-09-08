@@ -14,7 +14,13 @@ const { buttonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
 
 const DemoSummaryPanel = (props) => {
-  const { foundPersonDetails } = props;
+  const { foundPersonDetails, moveOn, decisions } = props;
+
+  const numberOfChoices = decisions.length;
+  const numberOfPhotosSeen = numberOfChoices * 2;
+  const numberOfPhotosQuicker = 32 - numberOfPhotosSeen;
+  const percentagePhotosQuicker = (100 * (32 / numberOfPhotosSeen)).toFixed(0);
+
   return (
     <div className="cardContainer">
       <Flex {...flexStyle}>
@@ -28,16 +34,19 @@ const DemoSummaryPanel = (props) => {
               alt="gradient placeholder"
             />
             <CardBlock style={cardBlockStyle}>
-              You found your person in A steps, which is B photos. It would have taken an average of
-              32 photos to find them by scrolling through each photo one-by-one. So you found them
-              in D photos quicker, or E%.
+              You found your person in
+              {` ${numberOfChoices} `}
+              steps, which is
+              {` ${numberOfPhotosSeen} `}
+              photos. It would have taken an average of 32 photos to find them by scrolling through
+              each photo one-by-one. So you found them in
+              {` ${numberOfPhotosQuicker} `}
+              photos quicker, or
+              {` ${percentagePhotosQuicker} `}
+              %.
             </CardBlock>
             <CardBlock>
-              <Button
-                style={buttonStyle}
-                onClick={() => alert('next')}
-                iconStart={<IconSuccess style={iconStyle} />}
-              >
+              <Button style={buttonStyle} onClick={moveOn} iconStart={<IconSuccess mov />}>
                 Next
               </Button>
             </CardBlock>

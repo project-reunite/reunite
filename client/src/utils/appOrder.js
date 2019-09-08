@@ -7,4 +7,5 @@ export default [
   appStatus.COMPARE_PICTURES,
   appStatus.MATCH_FOUND,
   appStatus.DEMO_COMPLETE,
+  appStatus.FURTHER_INFO,
 ];
