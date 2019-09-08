@@ -4,39 +4,27 @@ import PropTypes from 'prop-types';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 import Card, { CardImage, CardTitle, CardBlock } from 'mineral-ui/Card';
 
+import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
+import Button from 'mineral-ui/Button';
+
 import GeneralCard from '../../cards/general-card';
 
 import Translate from '../../../locales/translate';
 
+const { nextIconStyle } = require('../../../styles/icon-styles');
 const { flexStyle } = require('../../../styles/flex-styles');
-const { smallCardStyle } = require('../../../styles/card-styles');
+const { matchCardStyle } = require('../../../styles/card-styles');
+const { nextButtonStyle } = require('../../../styles/button-styles');
 
 const WelcomeCard = (props) => {
   const { moveOn } = props;
+  const nextIcon = <IconNext style={nextIconStyle} />;
+
   return (
     <div className="cardContainer" data-cy="welcome-card">
       <Flex wrap {...flexStyle}>
-        {/* <FlexItem className="startButton">
-          <GeneralCard
-            onClick={() => {}}
-            imageClassName="smallerCardImage"
-            inputCardStyle={smallCardStyle}
-            img="question-mark.svg"
-            title={<Translate string="welcome.info" />}
-          />
-        </FlexItem> */}
-        {/* <FlexItem data-cy="play-button">
-          <GeneralCard
-            onClick={moveOn}
-            inputCardStyle={smallCardStyle}
-            imageClassName="smallerCardImage"
-            img="play.svg"
-            title="When you are readt "
-            title={<Translate string="welcome.start" />}
-          />
-        </FlexItem> */}
-        <FlexItem data-cy="play-button">
-          <Card onClick={moveOn} className="generalCard" style={smallCardStyle}>
+        <FlexItem>
+          <Card onClick={moveOn} className="generalCard" style={matchCardStyle}>
             <CardBlock>
               Imagine there are 64 missing people,and you need to find one of them.
             </CardBlock>
@@ -44,13 +32,14 @@ const WelcomeCard = (props) => {
               If you had to scroll through each photo one-by-one, you would find them after 32
               photos on average.
             </CardBlock>
-          </Card>
-        </FlexItem>
-        <FlexItem data-cy="play-button">
-          <Card onClick={moveOn} className="generalCard" style={smallCardStyle}>
-            <CardImage className="cardImage" src="start.svg" alt="gradient placeholder" />
+            <CardImage className="cardImage" src="reunite-dark.svg" alt="gradient placeholder" />
             <CardBlock>
-              Let's see how many photos it takes to find your person using our app!
+              Let&apos;s see how many photos it takes to find your person using our app!
+            </CardBlock>
+            <CardBlock>
+              <Button style={nextButtonStyle} iconStart={nextIcon} onClick={moveOn}>
+                Begin
+              </Button>
             </CardBlock>
           </Card>
         </FlexItem>

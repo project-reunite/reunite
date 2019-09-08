@@ -6,7 +6,9 @@ const Footer = () => (
   <footer className="pageFooter">
     <div className="footerContainer">
       <div className="footerElementContainer">
-        <img className="footerImage" src="reunite-icon.svg" alt="" />
+        <a href="https://ibm.ent.box.com/file/483338314391">
+          <img className="footerImage" src="reunite-icon.svg" alt="" />
+        </a>
         <p>Video</p>
       </div>
       <div className="footerElementContainer">
