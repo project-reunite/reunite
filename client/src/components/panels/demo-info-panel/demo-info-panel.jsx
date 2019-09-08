@@ -49,10 +49,6 @@ const DemoInfoPanel = (props) => {
                 Github Repo
               </Button>
             </CardBlock>
-            <CardBlock>
-              This app has been made for use on any device, so give it a try on whichever you have
-              access to and let us know what you think!
-            </CardBlock>
             <CardBlock>When you are ready to try the app, hit start.</CardBlock>
             <CardBlock>
               <Button style={secondButtonStyle} iconStart={nextIcon} onClick={moveOn}>

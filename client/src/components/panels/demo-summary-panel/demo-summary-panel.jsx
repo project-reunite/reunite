@@ -39,7 +39,7 @@ const DemoSummaryPanel = (props) => {
             <CardBlock style={cardBlockStyle}>
               You found your person in
               {` ${numberOfChoices} `}
-              stepPwes, which is
+              steps, which is
               {` ${numberOfPhotosSeen} `}
               photos. It would have taken an average of 32 photos to find them by scrolling through
               each photo one-by-one. So you found them in

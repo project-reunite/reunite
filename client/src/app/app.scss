@@ -3,6 +3,11 @@ h1 {
   color: #58606e;
 }
 
+.dashboardContainer {
+  position: relative;
+  min-height: 100vh;
+}
+
 .cardContainer {
   text-align: center;
   font-weight: bold;
