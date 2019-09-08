@@ -7,14 +7,17 @@ import Flex from 'mineral-ui/Flex/Flex';
 
 import IconSuccess from 'mineral-ui-icons/IconSuccess';
 import Button from 'mineral-ui/Button';
+import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
 
 const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../../styles/card-styles');
 const { flexStyle } = require('../../../styles/flex-styles');
-const { buttonStyle } = require('../../../styles/button-styles');
-const { iconStyle } = require('../../../styles/icon-styles');
+const { nextButtonStyle } = require('../../../styles/button-styles');
+
+const { nextIconStyle } = require('../../../styles/icon-styles');
 
 const DemoSummaryPanel = (props) => {
   const { foundPersonDetails, moveOn, decisions } = props;
+  const nextIcon = <IconNext style={nextIconStyle} />;
 
   const numberOfChoices = decisions.length;
   const numberOfPhotosSeen = numberOfChoices * 2;
@@ -46,7 +49,7 @@ const DemoSummaryPanel = (props) => {
               %.
             </CardBlock>
             <CardBlock>
-              <Button style={buttonStyle} onClick={moveOn} iconStart={<IconSuccess mov />}>
+              <Button style={nextButtonStyle} fullWidth iconStart={nextIcon} onClick={moveOn}>
                 Next
               </Button>
             </CardBlock>

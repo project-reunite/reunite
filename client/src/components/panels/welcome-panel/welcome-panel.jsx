@@ -7,8 +7,6 @@ import Card, { CardImage, CardTitle, CardBlock } from 'mineral-ui/Card';
 import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
 import Button from 'mineral-ui/Button';
 
-import GeneralCard from '../../cards/general-card';
-
 import Translate from '../../../locales/translate';
 
 const { nextIconStyle } = require('../../../styles/icon-styles');
@@ -26,7 +24,7 @@ const WelcomeCard = (props) => {
         <FlexItem>
           <Card onClick={moveOn} className="generalCard" style={matchCardStyle}>
             <CardBlock>
-              Imagine there are 64 missing people,and you need to find one of them.
+              Imagine there are 64 missing people, and you need to find one of them.
             </CardBlock>
             <CardBlock>
               If you had to scroll through each photo one-by-one, you would find them after 32

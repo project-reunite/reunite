@@ -33,8 +33,6 @@ const DemoInfoPanel = (props) => {
             </CardBlock>
           </Card>
         </FlexItem>
-      </Flex>
-      <Flex wrap {...flexStyle}>
         <FlexItem data-cy="play-button">
           <Card className="generalCard" style={smallCardStyle}>
             <CardBlock>When you are ready, hit start</CardBlock>
