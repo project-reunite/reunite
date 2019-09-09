@@ -42,21 +42,21 @@ const DemoInfoPanel = (props) => {
                 </Button>
               </a>
             </CardBlock>
-            <CardBlock>
+            {/* <CardBlock>
               <p>
                 <Translate string="demo-info.feedback" />
               </p>
               <p>
                 <Translate string="demo-info.raise-issue" />
               </p>
-            </CardBlock>
-            <CardBlock>
+            </CardBlock> */}
+            {/* <CardBlock>
               <a href="https://github.ibm.com/ProjectReunite/reunite">
                 <Button style={buttonStyle} iconStart={githubIcon} onClick={moveOn}>
                   <Translate string="button.github-repo" />
                 </Button>
               </a>
-            </CardBlock>
+            </CardBlock> */}
             <CardBlock>
               <p>
                 <Translate string="demo-info.start-message" />

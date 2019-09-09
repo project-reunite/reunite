@@ -33,6 +33,11 @@ const WelcomeCard = (props) => {
                 <Translate string="welcomePanel.message-2" />
               </p>
             </CardBlock>
+            <CardBlock>
+              <p>
+                <Translate string="welcomePanel.message-2.5" />
+              </p>
+            </CardBlock>
             <CardImage className="cardImage" src="reunite-dark.svg" alt="gradient placeholder" />
             <CardBlock>
               <p>
