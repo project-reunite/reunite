@@ -8,6 +8,7 @@ import GbEngIcon from '../icons/gb-icon';
 import EsIcon from '../icons/es-icon';
 import FrIcon from '../icons/fr-icon';
 import DeIcon from '../icons/de-icon';
+import InIcon from '../icons/in-icon';
 
 import useOutsideClick from '../../hooks/useOutsideClick';
 
@@ -35,7 +36,7 @@ const LanguageMenu = (props) => {
         <MenuItem iconStart={<FrIcon />} onClick={() => submit('fr')}>
           Français
         </MenuItem>
-        <MenuItem iconStart={<EsIcon />}>Español</MenuItem>
+        <MenuItem iconStart={<InIcon />}>हिंदी</MenuItem>
         <MenuItem iconStart={<DeIcon />}>Deutsche</MenuItem>
       </Menu>
     </div>
