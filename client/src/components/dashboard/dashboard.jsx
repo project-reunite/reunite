@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import Flex from 'mineral-ui/Flex';
 
@@ -16,7 +16,7 @@ import MatchCard from '../cards/match-card';
 import DemoInfoPanel from '../panels/demo-info-panel';
 import DemoSummaryPanel from '../panels/demo-summary-panel';
 import FurtherInfoPanel from '../panels/further-info-panel';
-import Footer from '../footer';
+// import Footer from '../footer';
 
 const { flexStyle } = require('../../styles/flex-styles');
 
@@ -143,7 +143,7 @@ const Dashboard = (props) => {
     <div className="dashboardContainer">
       <Header submitLanguage={changeLanguage} restartApp={restartApp} goBack={goBack} />
       {MainPanel}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

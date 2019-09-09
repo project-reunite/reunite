@@ -40,7 +40,7 @@ const WelcomeCard = (props) => {
               </p>
             </CardBlock>
             <CardBlock>
-              <Button style={buttonStyle} iconStart={nextIcon} onClick={moveOn}>
+              <Button style={buttonStyle} data-cy="begin" iconStart={nextIcon} onClick={moveOn}>
                 <Translate string="button.begin" />
               </Button>
             </CardBlock>

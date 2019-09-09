@@ -21,6 +21,7 @@ const LanguageSelectionPanel = (props) => {
         <FlexItem>
           <Card
             style={languageCardStyle}
+            data-cy="language-english"
             onClick={() => submitLanguage('en')}
             className="languageCard"
             img="gb-eng.svg"

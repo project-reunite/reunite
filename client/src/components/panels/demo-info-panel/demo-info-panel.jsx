@@ -6,6 +6,7 @@ import Button from 'mineral-ui/Button';
 
 import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
 import IconMoreInfo from 'mineral-ui-icons/IconPersonOutline';
+import config from '../../../config';
 import Translate from '../../../locales/translate';
 import GithubIcon from '../../icons/github';
 
@@ -14,14 +15,18 @@ const { regularCardStyle } = require('../../../styles/card-styles');
 const { buttonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
 
+const { origin } = config;
+
 const DemoInfoPanel = (props) => {
   const { moveOn } = props;
 
   const moreInfoIcon = <IconMoreInfo style={iconStyle} />;
   const nextIcon = <IconNext style={iconStyle} />;
   const githubIcon = <GithubIcon />;
+  const visualiseLink = `${origin}/visualise`;
+
   return (
-    <div className="cardContainer" data-cy="welcome-card">
+    <div className="cardContainer" data-cy="demo-info-panel">
       <Flex wrap {...flexStyle}>
         <FlexItem data-cy="play-button">
           <Card onClick={moveOn} className="generalCard" style={regularCardStyle}>
@@ -31,9 +36,11 @@ const DemoInfoPanel = (props) => {
               </p>
             </CardBlock>
             <CardBlock>
-              <Button style={buttonStyle} iconStart={moreInfoIcon} onClick={moveOn}>
-                <Translate string="button.open-photos" />
-              </Button>
+              <a href={visualiseLink} target="_blank" rel="noopener noreferrer">
+                <Button style={buttonStyle} iconStart={moreInfoIcon} onClick={moveOn}>
+                  <Translate string="button.open-photos" />
+                </Button>
+              </a>
             </CardBlock>
             <CardBlock>
               <p>
@@ -56,7 +63,7 @@ const DemoInfoPanel = (props) => {
               </p>
             </CardBlock>
             <CardBlock>
-              <Button style={buttonStyle} iconStart={nextIcon} onClick={moveOn}>
+              <Button style={buttonStyle} data-cy="start" iconStart={nextIcon} onClick={moveOn}>
                 <Translate string="button.start" />
               </Button>
             </CardBlock>

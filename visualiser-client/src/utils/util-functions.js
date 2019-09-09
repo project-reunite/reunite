@@ -11,6 +11,6 @@ function shuffleArray(originalArray) {
     return array;
 }
 
-module.exports = {
-    shuffleArray,
+export {
+  shuffleArray,
 }

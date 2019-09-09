@@ -42,11 +42,11 @@ const Page = () => {
     </p>),
   ];
 
-  const backButton = (
-    <button type="button">
-      When you're ready, tap here to go back to the Reunite app and start searching for them
-    </button>
-  );
+  // const backButton = (
+  //   <button type="button">
+  //     When you're ready, tap here to go back to the Reunite app and start searching for them
+  //   </button>
+  // );
 
   const faces = urls.map(url => {
     const absoluteUrl = `${origin}${url}`;
@@ -55,7 +55,7 @@ const Page = () => {
 
   return [
     pageExplanation,
-    backButton,
+    // backButton,
     (<br></br>),
     faces,
   ];
