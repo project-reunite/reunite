@@ -7,6 +7,8 @@ import IconSuccess from 'mineral-ui-icons/IconSuccess';
 import IconMoreInfo from 'mineral-ui-icons/IconPersonOutline';
 import apiRequests from '../../../utils/apiRequests';
 
+import Translate from '../../../locales/translate';
+
 const {
   regularCardStyle,
   cardImageStyle,
@@ -16,26 +18,32 @@ const {
 const { buttonStyle, secondButtonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
 
+const successIcon = <IconSuccess style={iconStyle} />;
+const moreInfoIcon = <IconMoreInfo style={iconStyle} />;
+
 const PersonCard = (props) => {
   const [details, setDetails] = useState([]);
-
-  const moreInfoIcon = <IconMoreInfo style={iconStyle} />;
-  const successIcon = <IconSuccess style={iconStyle} />;
 
   const {
     onError, id, onClick, onMatch,
   } = props;
 
   useEffect(() => {
+    let mounted = true;
     async function fetchData() {
       try {
         const personDetails = await apiRequests.getPerson(id);
-        setDetails(personDetails);
+        if (mounted) {
+          setDetails(personDetails);
+        }
       } catch (err) {
         onError();
       }
     }
     fetchData();
+    return () => {
+      mounted = false;
+    };
   }, [onError, id]);
 
   if (!details.data) {
@@ -59,7 +67,7 @@ const PersonCard = (props) => {
             onClick={onMatch}
             data-cy="select-match"
           >
-            My Person
+            <Translate string="person-card.my-person" />
           </Button>
           <Button
             style={buttonStyle}
@@ -67,7 +75,7 @@ const PersonCard = (props) => {
             iconStart={moreInfoIcon}
             onClick={onClick}
           >
-            Similar
+            <Translate string="person-card.similar" />
           </Button>
         </CardFooter>
       </Card>

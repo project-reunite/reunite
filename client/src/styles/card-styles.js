@@ -17,7 +17,7 @@ const regularCardStyle = {
 };
 
 const languageCardStyle = {
-  margin: '5px',
+  marginTop: '20px',
   borderRadius: '20px',
   paddingLeft: '1em',
   paddingRight: '1em',

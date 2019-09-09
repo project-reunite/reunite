@@ -9,6 +9,8 @@ import { FlexItem } from 'mineral-ui/Flex';
 import apiRequests from '../../../utils/apiRequests';
 import ConfirmMatchDialog from '../../dialogs/confirm-match-dialog';
 
+import Translate from '../../../locales/translate';
+
 const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../../styles/card-styles');
 const { buttonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
@@ -17,7 +19,9 @@ const MatchCard = (props) => {
   const [details, setDetails] = useState([]);
   const [isMatchConfirmed, setIsMatchConfirmed] = useState(false);
 
-  const { onError, continueSearch, id } = props;
+  const {
+    onError, continueSearch, restartApp, id, confirmMatch,
+  } = props;
 
   useEffect(() => {
     async function fetchData() {
@@ -35,20 +39,23 @@ const MatchCard = (props) => {
     return null;
   }
 
-  const successMessage = `Yes, please reunite me with ${details.data.name}`;
+  const successMessage = <Translate string="match-card.match-accept" />;
 
   return (
     <div>
       <ConfirmMatchDialog
         isOpen={isMatchConfirmed}
         closeDialog={() => setIsMatchConfirmed(false)}
+        restartApp={restartApp}
         message="Aid worker contacted!"
         title="Success"
       />
       <div className="cardContainer" data-cy="match-card">
         <FlexItem>
           <Card style={matchCardStyle} data-cy="person-card">
-            <CardTitle className="cardTitle">Is this your relative?</CardTitle>
+            <CardTitle className="cardTitle">
+              <Translate string="match-card.title" />
+            </CardTitle>
             <CardImage
               style={cardImageStyle}
               className="matchCardImage"
@@ -63,7 +70,9 @@ const MatchCard = (props) => {
                 style={buttonStyle}
                 iconStart={<IconSuccess style={iconStyle} />}
                 primary
-                onClick={() => setIsMatchConfirmed(true)}
+                onClick={() => {
+                  confirmMatch(details);
+                }}
               >
                 {successMessage}
               </Button>
@@ -72,7 +81,7 @@ const MatchCard = (props) => {
                 onClick={continueSearch}
                 iconStart={<IconCancel style={iconStyle} />}
               >
-                No, keep searching
+                <Translate string="match-card.match-reject" />
               </Button>
             </CardBlock>
           </Card>
@@ -83,13 +92,17 @@ const MatchCard = (props) => {
 };
 
 MatchCard.defaultProps = {
+  confirmMatch: () => {},
+  restartApp: () => {},
   continueSearch: () => {},
   onError: () => {},
   id: '0',
 };
 
 MatchCard.propTypes = {
+  confirmMatch: PropTypes.func,
   onError: PropTypes.func,
+  restartApp: PropTypes.func,
   continueSearch: PropTypes.func,
   id: PropTypes.string,
 };

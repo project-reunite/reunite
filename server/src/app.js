@@ -7,6 +7,7 @@ const path = require('path');
 const middleware = require('./middleware');
 const { port } = require('./config');
 const v1Routes = require('./v1/routes');
+const v2Routes = require('./v2/routes');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use('/api/v1/', v1Routes);
+app.use('/api/v2/', v2Routes);
 
 app.use('/', express.static(path.join(__dirname, '..', '..', 'client', 'build')));
 app.use('/visualise', express.static(path.join(__dirname, '..', '..', 'visualiser-client', 'build')));

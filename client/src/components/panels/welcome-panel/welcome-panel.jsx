@@ -2,36 +2,49 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
-import GeneralCard from '../../cards/general-card';
+import Card, { CardImage, CardBlock } from 'mineral-ui/Card';
 
+import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
+import Button from 'mineral-ui/Button';
+
+import Translate from '../../../locales/translate';
+
+const { iconStyle } = require('../../../styles/icon-styles');
 const { flexStyle } = require('../../../styles/flex-styles');
-const { smallCardStyle } = require('../../../styles/card-styles');
+const { matchCardStyle } = require('../../../styles/card-styles');
+const { buttonStyle } = require('../../../styles/button-styles');
 
 const WelcomeCard = (props) => {
-  const { startSearch } = props;
+  const { moveOn } = props;
+  const nextIcon = <IconNext style={iconStyle} />;
+
   return (
     <div className="cardContainer" data-cy="welcome-card">
-      <Flex
-        wrap
-        {...flexStyle}
-      >
-        <FlexItem data-cy="play-button">
-          <GeneralCard
-            onClick={startSearch}
-            inputCardStyle={smallCardStyle}
-            imageClassName="smallerCardImage"
-            img="play.svg"
-            title="Start"
-          />
-        </FlexItem>
-        <FlexItem className="startButton">
-          <GeneralCard
-            onClick={() => {}}
-            imageClassName="smallerCardImage"
-            inputCardStyle={smallCardStyle}
-            img="question-mark.svg"
-            title="Info"
-          />
+      <Flex wrap {...flexStyle}>
+        <FlexItem>
+          <Card className="generalCard" style={matchCardStyle}>
+            <CardBlock>
+              <p>
+                <Translate string="welcomePanel.message-1" />
+              </p>
+            </CardBlock>
+            <CardBlock>
+              <p>
+                <Translate string="welcomePanel.message-2" />
+              </p>
+            </CardBlock>
+            <CardImage className="cardImage" src="reunite-dark.svg" alt="gradient placeholder" />
+            <CardBlock>
+              <p>
+                <Translate string="welcomePanel.message-3" />
+              </p>
+            </CardBlock>
+            <CardBlock>
+              <Button style={buttonStyle} data-cy="begin" iconStart={nextIcon} onClick={moveOn}>
+                <Translate string="button.begin" />
+              </Button>
+            </CardBlock>
+          </Card>
         </FlexItem>
       </Flex>
     </div>
@@ -39,11 +52,11 @@ const WelcomeCard = (props) => {
 };
 
 WelcomeCard.defaultProps = {
-  startSearch: () => {},
+  moveOn: () => {},
 };
 
 WelcomeCard.propTypes = {
-  startSearch: PropTypes.func,
+  moveOn: PropTypes.func,
 };
 
 export default WelcomeCard;

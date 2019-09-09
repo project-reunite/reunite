@@ -1,31 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Dialog, {
-  DialogActions, DialogHeader, DialogTitle,
-} from 'mineral-ui/Dialog';
+import Dialog, { DialogActions, DialogHeader, DialogTitle } from 'mineral-ui/Dialog';
 import Text from 'mineral-ui/Text';
 import Button from 'mineral-ui/Button';
 
+import Translate from '../../../locales/translate';
 
 const ErrorDialog = (props) => {
-  const {
-    error, restart, close,
-  } = props;
+  const { restartApp, close } = props;
   return (
-    <Dialog
-      isOpen
-      variant="danger"
-      onClose={close}
-    >
+    <Dialog isOpen variant="danger" onClose={close}>
       <DialogHeader>
-        <DialogTitle>Error</DialogTitle>
+        <DialogTitle>
+          <Translate string="error-dialog.title" />
+        </DialogTitle>
       </DialogHeader>
       <Text>
-        {error}
+        <Translate string="server-error" />
       </Text>
       <DialogActions>
-        <Button onClick={restart} size="medium">Restart App</Button>
+        <Button onClick={restartApp} size="medium">
+          <Translate string="restart-app" />
+        </Button>
       </DialogActions>
     </Dialog>
   );
@@ -33,13 +30,13 @@ const ErrorDialog = (props) => {
 
 ErrorDialog.defaultProps = {
   error: '',
-  restart: () => {},
+  restartApp: () => {},
   close: () => {},
 };
 
 ErrorDialog.propTypes = {
   error: PropTypes.string,
-  restart: PropTypes.func,
+  restartApp: PropTypes.func,
   close: PropTypes.func,
 };
 

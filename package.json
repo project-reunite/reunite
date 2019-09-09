@@ -38,7 +38,7 @@
   ],
   "license": "Apache-2.0",
   "devDependencies": {
-    "cypress": "^3.3.1"
+    "cypress": "^3.4.1"
   },
   "dependencies": {
     "concurrently": "^4.1.0",

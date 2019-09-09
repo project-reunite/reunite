@@ -12,11 +12,7 @@ const GeneralCard = (props) => {
   return (
     <Card onClick={onClick} className="generalCard" data-cy={dataCy} style={inputCardStyle}>
       <CardTitle className="cardTitle">{title}</CardTitle>
-      <CardImage
-        className={imageClassName || 'cardImage'}
-        src={img}
-        alt="gradient placeholder"
-      />
+      <CardImage className={imageClassName || 'cardImage'} src={img} alt="gradient placeholder" />
     </Card>
   );
 };

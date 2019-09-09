@@ -1,27 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Dialog from 'mineral-ui/Dialog';
+import Dialog, { DialogTitle, DialogHeader } from 'mineral-ui/Dialog';
 import Text from 'mineral-ui/Text';
 
+import Translate from '../../../locales/translate';
+
 const NoMatchDialog = (props) => {
-  const { isOpen, closeDialog, restartApp } = props;
+  const { isOpen, restartApp } = props;
   return (
     <div>
       <Dialog
-        title="No more choices"
-        actions={[
-          { onClick: closeDialog, text: 'Close' },
-          { onClick: restartApp, text: 'Restart App' },
-
-        ]}
+        actions={[{ onClick: restartApp, text: <Translate string="restart-app" /> }]}
         isOpen={isOpen}
-        onClose={closeDialog}
       >
+        <DialogHeader>
+          <DialogTitle>No more choices</DialogTitle>
+        </DialogHeader>
         <Text>
-           No match was found, your choices will be stored and you
-           will be contacted if a potential match is added to the
-           system.
+          <Translate string="no-match-dialog.message" />
         </Text>
       </Dialog>
     </div>
@@ -29,13 +26,13 @@ const NoMatchDialog = (props) => {
 };
 
 NoMatchDialog.defaultProps = {
-  closeDialog: () => {},
+  restartApp: () => {},
   isOpen: false,
 };
 
 NoMatchDialog.propTypes = {
   isOpen: PropTypes.bool,
-  closeDialog: PropTypes.func,
+  restartApp: PropTypes.func,
 };
 
 export default NoMatchDialog;

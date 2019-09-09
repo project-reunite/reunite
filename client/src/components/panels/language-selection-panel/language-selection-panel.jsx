@@ -1,47 +1,73 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Menu, { MenuItem } from 'mineral-ui/Menu';
-import Card, { CardTitle } from 'mineral-ui/Card';
+import './language-selection-panel.scss';
+import Card, { CardBlock } from 'mineral-ui/Card';
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 
+import Translate from '../../../locales/translate';
+
 const { languageCardStyle } = require('../../../styles/card-styles');
-const { languageMenuStyle } = require('../../../styles/menu-styles');
 const { flexStyle } = require('../../../styles/flex-styles');
 
 const LanguageSelectionPanel = (props) => {
   const { submitLanguage } = props;
   return (
     <div className="cardContainer" data-cy="language-selection-panel">
-      <Flex
-        wrap
-        {...flexStyle}
-      >
+      <h1>
+        <Translate string="language-select.translate" />
+      </h1>
+      <Flex wrap {...flexStyle}>
         <FlexItem>
-          <Card style={languageCardStyle} className="languageCard" data-cy="restart-card">
-            <CardTitle className="cardTitle">Select Language</CardTitle>
-            <Menu
-              style={languageMenuStyle}
-            >
-              <MenuItem data-cy="language-english" onClick={submitLanguage}>
-            English
-              </MenuItem>
-              <MenuItem onClick={submitLanguage}>
-            Français
-              </MenuItem>
-              <MenuItem onClick={submitLanguage}>
-            Espanol
-              </MenuItem>
-              <MenuItem onClick={submitLanguage}>
-            Alemand
-              </MenuItem>
-              <MenuItem onClick={submitLanguage}>
-              عرب
-              </MenuItem>
-              <MenuItem onClick={submitLanguage}>
-              中文
-              </MenuItem>
-            </Menu>
+          <Card
+            style={languageCardStyle}
+            data-cy="language-english"
+            onClick={() => submitLanguage('en')}
+            className="languageCard"
+            img="gb-eng.svg"
+          >
+            <span className="flag-icon flag-icon-gb-eng flag-icon-squared" />
+            <img className="flagImage" alt="" src="gb-eng.svg" />
+            <span />
+
+            <CardBlock className="languageCardBlock">English</CardBlock>
+          </Card>
+        </FlexItem>
+        <FlexItem>
+          <Card
+            style={languageCardStyle}
+            onClick={() => submitLanguage('fr')}
+            className="languageCard"
+            data-cy="restart-card"
+          >
+            <span className="flag-icon flag-icon-fr flag-icon-squared" />
+            <img className="flagImage" alt="" src="fr.svg" />
+            <span />
+            <CardBlock className="languageCardBlock">French</CardBlock>
+          </Card>
+        </FlexItem>
+        <FlexItem>
+          <Card
+            style={languageCardStyle}
+            // onClick={() => submitLanguage('es')}
+            className="languageCard"
+          >
+            <span className="flag-icon flag-icon-es flag-icon-squared" />
+            <img className="flagImage" alt="" src="es.svg" />
+            <span />
+            <CardBlock className="languageCardBlock">Español</CardBlock>
+          </Card>
+        </FlexItem>
+        <FlexItem>
+          <Card
+            style={languageCardStyle}
+            // onClick={() => submitLanguage('de')}
+            className="languageCard"
+          >
+            <span className="flag-icon flag-icon-de flag-icon-squared" />
+            <img className="flagImage" alt="" src="de.svg" />
+            <span />
+            <CardBlock className="languageCardBlock">Deutsche</CardBlock>
           </Card>
         </FlexItem>
       </Flex>
