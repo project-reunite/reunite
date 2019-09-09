@@ -18,31 +18,17 @@ const {
 const { buttonStyle, secondButtonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
 
-<<<<<<< HEAD
-const PersonCard = (props) => {
-  const [details, setDetails] = useState([]);
-
-  const moreInfoIcon = <IconMoreInfo style={iconStyle} />;
-  const successIcon = <IconSuccess style={iconStyle} />;
-=======
 const successIcon = <IconSuccess style={iconStyle} />;
 const moreInfoIcon = <IconMoreInfo style={iconStyle} />;
 
 const PersonCard = (props) => {
   const [details, setDetails] = useState([]);
->>>>>>> connect client to v2 api
 
   const {
     onError, id, onClick, onMatch,
   } = props;
 
   useEffect(() => {
-<<<<<<< HEAD
-    async function fetchData() {
-      try {
-        const personDetails = await apiRequests.getPerson(id);
-        setDetails(personDetails);
-=======
     let mounted = true;
     async function fetchData() {
       try {
@@ -50,18 +36,14 @@ const PersonCard = (props) => {
         if (mounted) {
           setDetails(personDetails);
         }
->>>>>>> connect client to v2 api
       } catch (err) {
         onError();
       }
     }
     fetchData();
-<<<<<<< HEAD
-=======
     return () => {
       mounted = false;
     };
->>>>>>> connect client to v2 api
   }, [onError, id]);
 
   if (!details.data) {
