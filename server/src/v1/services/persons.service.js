@@ -16,6 +16,9 @@ const getPerson = async(id, host) => {
 const getPersons = async ({ filters, host }) => {
     try {
         const persons = await Database.getAllDocuments({ database, filters });
+        if (!host) {
+            host = '';
+        }
         persons.docs.forEach((person) => person.img_url = host + person.img_url);
         return persons;
     } catch(err) {

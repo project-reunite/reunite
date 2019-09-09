@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "(cd server && npm start)",
-    "start:dev": "concurrently \"cd server && npm run nodemon\" \"cd client && npm start\"",
-    "start:test": "concurrently \"cd server && npm start\" \"cd client && npm start\"",
+    "start:dev": "concurrently \"cd server && npm run nodemon\" \"cd client && npm start\" \"cd visualiser-client && npm start\"",
+    "start:test": "concurrently \"cd server && npm start\" \"cd client && npm start\" \"cd visualiser-client && npm start\"",
     "test": "(cd server && npm test) && (cd client && npm test)",
     "stop": "killall node",
     "test:full": "(npm run test:components && npm run test:integration)",
