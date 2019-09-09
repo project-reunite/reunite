@@ -6,16 +6,16 @@ const Footer = () => (
   <footer className="pageFooter">
     <div className="footerContainer">
       <div className="footerElementContainer">
-        <a href="https://ibm.ent.box.com/file/483338314391">
+        <a href="https://github.ibm.com/ProjectReunite/reunite#project-reunite">
           <img className="footerImage" src="reunite-icon.svg" alt="" />
         </a>
-        <p>Video</p>
+        <p>More Info</p>
       </div>
       <div className="footerElementContainer">
-        <a href="https://github.ibm.com/ProjectReunite/reunite">
+        <a href="https://github.ibm.com/ProjectReunite/reunite/issues/new/choose">
           <img className="footerImage" src="github.png" alt="" />
         </a>
-        <p>More Info</p>
+        <p>Feedback</p>
       </div>
       <div className="footerElementContainer">
         <a href="https://w3.ibm.com/w3publisher/cognitive-applications/updates-from-bob/a7222250-cf31-11e9-8f65-2d7c559e6321">
