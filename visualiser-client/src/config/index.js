@@ -1,9 +1,9 @@
 const port = process.env.PORT || 9100;
 
 // For debug
-console.log('process.env')
-console.log(process.env)
-console.log('port', port)
+console.log('process.env');
+console.log(process.env);
+console.log('port', port);
 
 // TODO: get this working in all environments
 // In IBM Cloud Foundry, process.env = { NODE_ENV: 'production', PUBLIC_URL, '"."' }
