@@ -3,13 +3,14 @@ h1 {
   color: #58606e;
 }
 
-#body {
-  padding-bottom: 70px
+.footerPadding {
+  height: 80px;
 }
 
 .dashboardContainer {
   position: relative;
   min-height: 100vh;
+  margin-bottom: -50px;
 }
 
 .cardContainer {
