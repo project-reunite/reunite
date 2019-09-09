@@ -33,13 +33,20 @@ const Page = () => {
     fetchUrls()
   }, []);
 
-  const pageExplanation = <p>
-    Here are 64 missing people. Choose (in your head) who you're looking for
-  </p>;
+  const pageExplanation = [
+    (<p>
+      Here are 64 missing people. Choose (in your head) who you're looking for
+    </p>),
+    (<p>
+      (These photos are generated from celebrity faces. This demo uses these faces because we do not yet have access to a database of refugees)
+    </p>),
+  ];
 
-  const backButton = <button type="button">
-    When you're ready, tap here to go back to the Reunite app and start searching for them
-  </button>;
+  const backButton = (
+    <button type="button">
+      When you're ready, tap here to go back to the Reunite app and start searching for them
+    </button>
+  );
 
   const faces = urls.map(url => {
     const absoluteUrl = `${origin}${url}`;
@@ -49,25 +56,24 @@ const Page = () => {
   return [
     pageExplanation,
     backButton,
-    <br></br>,
+    (<br></br>),
     faces,
   ];
 }
 
-const Face = (props) => (
-  <img
-    className="face"
-    src={props.src}
-    alt="Missing person"
-  >
-  </img>
-  // For debug:
-  // <p>{props.src}</p>
-)
-
-
-
-
+const Face = (props) => {
+  const { src } = props;
+  return (
+    <img
+      className="face"
+      src={src}
+      alt="Missing person"
+    >
+    </img>
+    // For debug:
+    // <p>{src}</p>
+  )
+}
 
 // ========================================
 
