@@ -19,10 +19,12 @@ const DemoSummaryPanel = (props) => {
   const { foundPersonDetails, moveOn, decisions } = props;
   const nextIcon = <IconNext style={iconStyle} />;
 
+  const numberOfPhotosInTotal = 64;
+  const numberOfPhotosRequiredByExistingSolutions = numberOfPhotosInTotal / 2;
   const numberOfChoices = decisions.length;
   const numberOfPhotosSeen = numberOfChoices * 2;
-  const numberOfPhotosQuicker = 32 - numberOfPhotosSeen;
-  const percentagePhotosFewer = (100 * (numberOfPhotosSeen / 32)).toFixed(0);
+  const numberOfPhotosQuicker = numberOfPhotosRequiredByExistingSolutions - numberOfPhotosSeen;
+  // const percentagePhotosFewer = (100 * (numberOfPhotosSeen / numberOfPhotosRequiredByExistingSolutions)).toFixed(0);
 
   return (
     <div className="cardContainer">
@@ -37,14 +39,14 @@ const DemoSummaryPanel = (props) => {
               alt="gradient placeholder"
             />
             <p>
-              {` ${numberOfPhotosSeen} `}
+              {`${numberOfPhotosSeen} `}
               <Translate string="demo-summary.message-2" />
             </p>
             <CardBlock style={cardBlockStyle}>
               <p>
-                {` ${numberOfPhotosQuicker}`}
+                {`${numberOfPhotosQuicker} `}
                 <Translate string="demo-summary.message-4" />
-                (32)
+                {` (${numberOfPhotosRequiredByExistingSolutions})`}
               </p>
             </CardBlock>
             <CardBlock>
