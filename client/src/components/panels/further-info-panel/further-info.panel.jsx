@@ -29,12 +29,16 @@ const FurtherInfoPanel = () => (
             <p>
               <Translate string="further-info.message-1" />
             </p>
-            <p>
-              <Translate string="further-info.message-2" />
-            </p>
           </CardBlock>
           <CardBlock>
-            <a href="https://ibm.ent.box.com/file/483338314391/reunite">
+            <a href="https://github.ibm.com/ProjectReunite/reunite/issues/new/choose">
+              <Button iconStart={<IconVideo style={iconStyle} />} style={buttonStyle}>
+                <Translate string="further-info.feedback" />
+              </Button>
+            </a>
+          </CardBlock>
+          <CardBlock>
+            <a href="https://github.ibm.com/ProjectReunite/reunite#project-reunite">
               <Button iconStart={<IconVideo style={iconStyle} />} style={buttonStyle}>
                 <Translate string="further-info.more-information" />
               </Button>
