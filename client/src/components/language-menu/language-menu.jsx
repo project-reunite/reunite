@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 
 import './language-menu.scss';
 import Menu, { MenuItem } from 'mineral-ui/Menu';
-import GbEngIcon from '../icons/gb-icon';
 
-import EsIcon from '../icons/es-icon';
+import GbEngIcon from '../icons/gb-icon';
 import FrIcon from '../icons/fr-icon';
-import DeIcon from '../icons/de-icon';
 import InIcon from '../icons/in-icon';
 
 import useOutsideClick from '../../hooks/useOutsideClick';
@@ -37,7 +35,7 @@ const LanguageMenu = (props) => {
           Français
         </MenuItem>
         <MenuItem iconStart={<InIcon />}>हिंदी</MenuItem>
-        <MenuItem iconStart={<DeIcon />}>Deutsche</MenuItem>
+        <MenuItem>عربى</MenuItem>
       </Menu>
     </div>
   );

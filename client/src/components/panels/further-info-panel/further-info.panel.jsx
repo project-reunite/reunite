@@ -3,8 +3,9 @@ import React from 'react';
 import Card, { CardImage, CardBlock, CardTitle } from 'mineral-ui/Card';
 import { FlexItem } from 'mineral-ui/Flex';
 import Flex from 'mineral-ui/Flex/Flex';
-import IconVideo from 'mineral-ui-icons/IconOndemandVideo';
-import IconEye from 'mineral-ui-icons/IconVisibility';
+import IconModeComment from 'mineral-ui-icons/IconModeComment';
+import IconCheckCircle from 'mineral-ui-icons/IconCheckCircle';
+import IconHelp from 'mineral-ui-icons/IconHelp';
 import Button from 'mineral-ui/Button';
 
 import Translate from '../../../locales/translate';
@@ -32,21 +33,21 @@ const FurtherInfoPanel = () => (
           </CardBlock>
           <CardBlock>
             <a href="https://github.ibm.com/ProjectReunite/reunite/issues/new/choose">
-              <Button iconStart={<IconVideo style={iconStyle} />} style={buttonStyle}>
+              <Button iconStart={<IconModeComment style={iconStyle} />} style={buttonStyle}>
                 <Translate string="further-info.feedback" />
               </Button>
             </a>
           </CardBlock>
           <CardBlock>
             <a href="https://github.ibm.com/ProjectReunite/reunite#project-reunite">
-              <Button iconStart={<IconVideo style={iconStyle} />} style={buttonStyle}>
+              <Button iconStart={<IconHelp style={iconStyle} />} style={buttonStyle}>
                 <Translate string="further-info.more-information" />
               </Button>
             </a>
           </CardBlock>
           <CardBlock>
             <a href="https://w3.ibm.com/w3publisher/cognitive-applications/updates-from-bob/a7222250-cf31-11e9-8f65-2d7c559e6321">
-              <Button iconStart={<IconEye style={iconStyle} />} style={buttonStyle}>
+              <Button iconStart={<IconCheckCircle style={iconStyle} />} style={buttonStyle}>
                 <Translate string="further-info.link-to-cfc" />
               </Button>
             </a>

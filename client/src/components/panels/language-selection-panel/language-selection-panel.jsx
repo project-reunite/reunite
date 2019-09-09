@@ -65,9 +65,9 @@ const LanguageSelectionPanel = (props) => {
             className="languageCard"
           >
             <span className="flag-icon flag-icon-de flag-icon-squared" />
-            <img className="flagImage" alt="" src="de.svg" />
+            <img className="arabicImage" alt="" src="arabic.svg" />
             <span />
-            <CardBlock className="languageCardBlock">Deutsche</CardBlock>
+            <CardBlock className="arabicLanguageCardBlock">عربى</CardBlock>
           </Card>
         </FlexItem>
       </Flex>
