@@ -18,6 +18,7 @@ import DemoInfoPanel from '../panels/demo-info-panel';
 import DemoSummaryPanel from '../panels/demo-summary-panel';
 import FurtherInfoPanel from '../panels/further-info-panel';
 import Footer from '../footer';
+import apiRequests from '../../utils/apiRequests';
 
 const { flexStyle } = require('../../styles/flex-styles');
 
@@ -107,6 +108,7 @@ const Dashboard = (props) => {
         confirmMatch={(info) => {
           setFoundPersonDetails(info);
           setAppState(appStatus.DEMO_COMPLETE);
+          apiRequests.postStatistics(personId);
         }}
         continueSearch={() => {
           setAppState(appStatus.COMPARE_PICTURES);
