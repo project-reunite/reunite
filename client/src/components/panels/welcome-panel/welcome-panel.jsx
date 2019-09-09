@@ -11,7 +11,7 @@ import Translate from '../../../locales/translate';
 
 const { iconStyle } = require('../../../styles/icon-styles');
 const { flexStyle } = require('../../../styles/flex-styles');
-const { matchCardStyle } = require('../../../styles/card-styles');
+const { matchCardStyle, cardBlockStyle } = require('../../../styles/card-styles');
 const { buttonStyle } = require('../../../styles/button-styles');
 
 const WelcomeCard = (props) => {
@@ -19,16 +19,17 @@ const WelcomeCard = (props) => {
   const nextIcon = <IconNext style={iconStyle} />;
 
   return (
-    <div className="cardContainer" data-cy="welcome-card">
+    <div className="singleCardContainer" data-cy="welcome-card">
       <Flex wrap {...flexStyle}>
         <FlexItem>
           <Card className="generalCard" style={matchCardStyle}>
-            <CardBlock>
+            <CardImage className="cardImage" src="reunite-dark.svg" alt="gradient placeholder" />
+            <CardBlock style={cardBlockStyle}>
               <p>
                 <Translate string="welcomePanel.message-1" />
               </p>
             </CardBlock>
-            <CardBlock>
+            <CardBlock style={cardBlockStyle}>
               <p>
                 <Translate string="welcomePanel.message-2" />
               </p>
@@ -38,13 +39,12 @@ const WelcomeCard = (props) => {
                 <Translate string="welcomePanel.message-2.5" />
               </p>
             </CardBlock>
-            <CardImage className="cardImage" src="reunite-dark.svg" alt="gradient placeholder" />
             <CardBlock>
               <p>
                 <Translate string="welcomePanel.message-3" />
               </p>
             </CardBlock>
-            <CardBlock>
+            <CardBlock style={cardBlockStyle}>
               <Button style={buttonStyle} data-cy="begin" iconStart={nextIcon} onClick={moveOn}>
                 <Translate string="button.begin" />
               </Button>

@@ -26,7 +26,7 @@ const DemoInfoPanel = (props) => {
   const visualiseLink = `${origin}/visualise`;
 
   return (
-    <div className="cardContainer" data-cy="demo-info-panel">
+    <div className="singleCardContainer" data-cy="demo-info-panel">
       <Flex wrap {...flexStyle}>
         <FlexItem data-cy="play-button">
           <Card onClick={moveOn} className="generalCard" style={regularCardStyle}>

@@ -30,36 +30,25 @@ const DemoSummaryPanel = (props) => {
         <FlexItem>
           <Card style={matchCardStyle} className="demoSummaryCard">
             <CardTitle className="cardTitle">Person found!</CardTitle>
-            <p>
-              <Translate string="demo-summary.message-1" />
-              {` ${numberOfChoices}`}
-            </p>
-            <p>
-              <Translate string="demo-summary.message-2" />
-              {` ${numberOfPhotosSeen} `}
-            </p>
             <CardImage
               className="matchCardImage"
               style={cardImageStyle}
               src={foundPersonDetails.data.img_url}
               alt="gradient placeholder"
             />
+            <p>
+              {` ${numberOfPhotosSeen} `}
+              <Translate string="demo-summary.message-2" />
+            </p>
             <CardBlock style={cardBlockStyle}>
               <p>
-                <Translate string="demo-summary.message-3" />
-                32
-              </p>
-              <p>
-                <Translate string="demo-summary.message-4" />
                 {` ${numberOfPhotosQuicker}`}
-              </p>
-              <p>
-                <Translate string="demo-summary.photos-fewer" />
-                {` ${percentagePhotosFewer}% `}
+                <Translate string="demo-summary.message-4" />
+                (32)
               </p>
             </CardBlock>
             <CardBlock>
-              <Button style={buttonStyle} iconStart={nextIcon} onClick={moveOn}>
+              <Button className="cardButton" style={buttonStyle} iconStart={nextIcon} onClick={moveOn}>
                 <Translate string="button.next" />
               </Button>
             </CardBlock>

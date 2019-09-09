@@ -3,6 +3,19 @@ h1 {
   color: #58606e;
 }
 
+ .cardTitle {
+   font-size: 25px;
+   color: black;
+ }
+
+.singleCardContainer p {
+  font-size: 1.5em;
+}
+
+.cardContainer p {
+  font-size: 1.5em;
+}
+
 .footerPadding {
   height: 80px;
 }
@@ -11,6 +24,15 @@ h1 {
   position: relative;
   min-height: 100vh;
   margin-bottom: -50px;
+  vertical-align: middle;
+}
+
+.singleCardContainer {
+  padding-top: 50px;
+  text-align: center;
+  font-weight: bold;
+  align-items: center;
+  margin: 0 50px;
 }
 
 .cardContainer {
@@ -18,11 +40,6 @@ h1 {
   font-weight: bold;
   align-items: center;
   padding: 3px;
-}
-
-.cardTitle {
-  font-size: 20px;
-  color: black;
 }
 
 .cardImage {
@@ -77,21 +94,28 @@ h1 {
 }
 
 @media only screen and (max-width: 800px) {
+
 .cardImage {
   width: 300px;
   height: 300px;
 }
 
+.singleCardContainer {
+  margin: 0 20px;
 }
 
+.singleCardContainer p {
+  font-size: 1em;
+}
+
+.cardContainer p {
+  font-size: 1em;
+}
+}
 @media only screen and (max-width: 600px) {
 
   h1 {
     font-size: 1.5em
-  }
-
-  .demoSummaryCard p {
-    font-size: 0.8em
   }
 
 

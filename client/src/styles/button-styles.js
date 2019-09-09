@@ -3,7 +3,6 @@ const buttonStyle = {
   margin: '1px',
   backgroundColor: '#132832',
   color: 'white',
-  // color: '#61B7E1',
 };
 
 const nextButtonStyle = {
@@ -11,7 +10,6 @@ const nextButtonStyle = {
   margin: '1px',
   backgroundColor: 'green',
   color: 'white',
-  // color: '#61B7E1',
 };
 
 const secondButtonStyle = {

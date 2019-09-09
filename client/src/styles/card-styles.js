@@ -37,10 +37,6 @@ const cardImageStyle = {
   marginBottom: '1px',
 };
 
-const cardBlockStyle = {
-  fontSize: '20px',
-};
-
 module.exports = {
   smallCardStyle,
   matchCardStyle,
@@ -48,5 +44,4 @@ module.exports = {
   regularCardStyle,
   cardFooterStyle,
   cardImageStyle,
-  cardBlockStyle,
 };
