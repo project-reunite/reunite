@@ -92,6 +92,7 @@ const MatchCard = (props) => {
 };
 
 MatchCard.defaultProps = {
+  confirmMatch: () => {},
   restartApp: () => {},
   continueSearch: () => {},
   onError: () => {},
@@ -99,6 +100,7 @@ MatchCard.defaultProps = {
 };
 
 MatchCard.propTypes = {
+  confirmMatch: PropTypes.func,
   onError: PropTypes.func,
   restartApp: PropTypes.func,
   continueSearch: PropTypes.func,

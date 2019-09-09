@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Flex from 'mineral-ui/Flex';
 
@@ -146,6 +147,14 @@ const Dashboard = (props) => {
       {/* <Footer /> */}
     </div>
   );
+};
+
+Dashboard.defaultProps = {
+  changeLanguage: () => {},
+};
+
+Dashboard.propTypes = {
+  changeLanguage: PropTypes.func,
 };
 
 export default Dashboard;

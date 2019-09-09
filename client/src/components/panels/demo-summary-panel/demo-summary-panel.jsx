@@ -22,7 +22,7 @@ const DemoSummaryPanel = (props) => {
   const numberOfChoices = decisions.length;
   const numberOfPhotosSeen = numberOfChoices * 2;
   const numberOfPhotosQuicker = 32 - numberOfPhotosSeen;
-  const percentagePhotosQuicker = (100 * (32 / numberOfPhotosSeen)).toFixed(0);
+  const percentagePhotosFewer = (100 * (numberOfPhotosSeen / 32)).toFixed(0);
 
   return (
     <div className="cardContainer">
@@ -52,9 +52,10 @@ const DemoSummaryPanel = (props) => {
               <p>
                 <Translate string="demo-summary.message-4" />
                 {` ${numberOfPhotosQuicker}`}
-                {` (${percentagePhotosQuicker}% `}
-                <Translate string="demo-summary.quicker" />
-)
+              </p>
+              <p>
+                <Translate string="demo-summary.photos-fewer" />
+                {` ${percentagePhotosFewer}% `}
               </p>
             </CardBlock>
             <CardBlock>
