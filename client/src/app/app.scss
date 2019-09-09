@@ -26,8 +26,8 @@ h1 {
 
 .cardImage {
   padding: 2%;
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   border-radius: 20px;
   display: block;
   margin-left: auto;
@@ -73,6 +73,14 @@ h1 {
 
 .flagImage {
   margin: 10px 10px 0px 10px;
+}
+
+@media only screen and (max-width: 800px) {
+.cardImage {
+  width: 300px;
+  height: 300px;
+}
+
 }
 
 @media only screen and (max-width: 600px) {
