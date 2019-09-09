@@ -9,6 +9,7 @@ console.log('port', port);
 // const inCloudEnv = (process.env.NODE_ENV === 'production') && !!process.env.PUBLIC_URL;
 // const origin = inCloudEnv ? 'https://reunite.eu-gb.cf.appdomain.cloud' : `http://localhost:${port}`;
 const origin = `http://localhost:${port}`;
+// const origin = 'https://reunite.eu-gb.cf.appdomain.cloud';
 
 module.exports = {
   origin,

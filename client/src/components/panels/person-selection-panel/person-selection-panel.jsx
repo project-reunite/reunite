@@ -7,6 +7,8 @@ import PersonCard from '../../cards/person-card';
 import NoMatchDialog from '../../dialogs/no-match-dialog';
 import apiRequests from '../../../utils/apiRequests';
 
+import Translate from '../../../locales/translate';
+
 const { flexStyle } = require('../../../styles/flex-styles');
 
 const PersonSelectionPanel = (props) => {
@@ -72,9 +74,15 @@ const PersonSelectionPanel = (props) => {
   return (
     <div className="cardContainer">
       <NoMatchDialog isOpen={noDecisionsLeft} restartApp={restartApp} />
+      <h1>
+        <Translate string="comparisonPanel.title" />
+      </h1>
       <Flex wrap {...flexStyle}>
         {renderChildren()}
       </Flex>
+      <p>
+        <Translate string="comparisonPanel.subtitle" />
+      </p>
     </div>
   );
 };
