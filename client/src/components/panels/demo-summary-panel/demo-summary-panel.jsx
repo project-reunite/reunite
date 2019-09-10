@@ -31,7 +31,9 @@ const DemoSummaryPanel = (props) => {
       <Flex {...flexStyle}>
         <FlexItem>
           <Card style={matchCardStyle} className="demoSummaryCard">
-            <CardTitle className="cardTitle">Person found!</CardTitle>
+            <CardTitle className="cardTitle">
+              <Translate string="demo-summary.title" />
+            </CardTitle>
             <CardImage
               className="matchCardImage"
               style={cardImageStyle}

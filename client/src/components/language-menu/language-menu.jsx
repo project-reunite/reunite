@@ -7,6 +7,7 @@ import Menu, { MenuItem } from 'mineral-ui/Menu';
 import GbEngIcon from '../icons/gb-icon';
 import FrIcon from '../icons/fr-icon';
 import InIcon from '../icons/in-icon';
+import ArIcon from '../icons/ar-icon';
 
 import useOutsideClick from '../../hooks/useOutsideClick';
 
@@ -34,8 +35,12 @@ const LanguageMenu = (props) => {
         <MenuItem iconStart={<FrIcon />} onClick={() => submit('fr')}>
           Français
         </MenuItem>
-        <MenuItem iconStart={<InIcon />} onClick={() => submit('hi')}>हिंदी</MenuItem>
-        <MenuItem>عربى</MenuItem>
+        <MenuItem iconStart={<InIcon />} onClick={() => submit('hi')}>
+          हिंदी
+        </MenuItem>
+        <MenuItem /* iconStart={<ArIcon />} */ onClick={() => submit('ar')}>
+          عربى
+        </MenuItem>
       </Menu>
     </div>
   );
