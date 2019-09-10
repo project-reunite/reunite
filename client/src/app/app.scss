@@ -17,7 +17,7 @@ h1 {
 }
 
 .footerPadding {
-  height: 80px;
+  height: 60px;
 }
 
 .dashboardContainer {
@@ -117,7 +117,9 @@ h1 {
   h1 {
     font-size: 1.5em
   }
-
+  .singleCardContainer {
+    padding-top: 10px;
+  }
 
   .cardContainer {
     text-align: center;
