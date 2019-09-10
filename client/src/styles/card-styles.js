@@ -19,10 +19,6 @@ const regularCardStyle = {
 const languageCardStyle = {
   marginTop: '20px',
   borderRadius: '20px',
-  // paddingLeft: '1em',
-  // paddingRight: '1em',
-  // marginRight: '1em',
-  // marginLeft: '1em',
 };
 
 const cardFooterStyle = {
