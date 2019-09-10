@@ -58,7 +58,6 @@ const PersonCard = (props) => {
           className="cardImage"
           src={details.data.img_url}
           alt="gradient placeholder"
-          onClick={onClick}
         />
         <CardFooter style={cardFooterStyle}>
           <Button
