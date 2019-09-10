@@ -35,7 +35,7 @@ const LanguageMenu = (props) => {
           Français
         </MenuItem>
         <MenuItem iconStart={<InIcon />} onClick={() => submit('hi')}>हिंदी</MenuItem>
-        <MenuItem iconStart={<InIcon />} onClick={() => submit('ar')}>عربى</MenuItem>
+        <MenuItem onClick={() => submit('ar')}>عربى</MenuItem>
       </Menu>
     </div>
   );
