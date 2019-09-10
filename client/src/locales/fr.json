@@ -23,6 +23,7 @@
   "confirm-match-dialog.title": "Un travailleur humanitaire a été contacté",
   "confirm-match-dialog.message": "Un travailleur humanitaire a été contacté. Quand il/elle a vérifié votre selection, il/elle vous notifiera.",
   "no-match-dialog.message": "Aucune correspondance n'a été trouvée, vos choix seront enregistrés et vous serez contacté si une correspondance potentielle est ajoutée au système.",
+  "demo-summary.title": "Personne Retrouvée!",
   "demo-summary.message-2": "photos vues",
   "demo-summary.message-4": "photos de moins utilisées que la solution existante",
   "server-error": "Erreur lors de la réception des informations du serveur. Veuillez vérifier que le serveur est en cours d'exécution. Si le problème persiste, contactez un administrateur système.",
