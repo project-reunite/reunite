@@ -46,7 +46,7 @@ const FurtherInfoPanel = () => (
             </a>
           </CardBlock>
           <CardBlock>
-            <a href="https://w3.ibm.com/w3publisher/cognitive-applications/updates-from-bob/a7222250-cf31-11e9-8f65-2d7c559e6321">
+            <a href="https://www.surveygizmo.com/s3/5198505/IBMer-s-Choice-Award-Call-for-Code-The-Internal-Final-Five">
               <Button iconStart={<IconCheckCircle style={iconStyle} />} style={buttonStyle}>
                 <Translate string="further-info.link-to-cfc" />
               </Button>
