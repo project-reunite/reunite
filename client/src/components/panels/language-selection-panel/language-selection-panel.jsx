@@ -61,7 +61,7 @@ const LanguageSelectionPanel = (props) => {
         <FlexItem>
           <Card
             style={languageCardStyle}
-            // onClick={() => submitLanguage('de')}
+            onClick={() => submitLanguage('ar')}
             className="languageCard"
           >
             <span className="flag-icon flag-icon-de flag-icon-squared" />
