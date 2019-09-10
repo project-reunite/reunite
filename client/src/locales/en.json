@@ -1,6 +1,9 @@
 {
   "header.back": "Back",
   "header.language": "Language",
+  "footer.more-info": "More Info",
+  "footer.feedback": "Feedback",
+  "footer.vote": "Vote",
   "welcome.start": "Start",
   "welcome.info": "Info",
   "welcomePanel.message-1": "Imagine there are 64 missing people, and you need to find one of them.",
