@@ -8,7 +8,6 @@ import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
 import IconMoreInfo from 'mineral-ui-icons/IconPersonOutline';
 import config from '../../../config';
 import Translate from '../../../locales/translate';
-import GithubIcon from '../../icons/github';
 
 const { flexStyle } = require('../../../styles/flex-styles');
 const { regularCardStyle } = require('../../../styles/card-styles');
@@ -22,14 +21,13 @@ const DemoInfoPanel = (props) => {
 
   const moreInfoIcon = <IconMoreInfo style={iconStyle} />;
   const nextIcon = <IconNext style={iconStyle} />;
-  const githubIcon = <GithubIcon />;
   const visualiseLink = `${origin}/visualise`;
 
   return (
     <div className="singleCardContainer" data-cy="demo-info-panel">
       <Flex wrap {...flexStyle}>
         <FlexItem data-cy="play-button">
-          <Card onClick={moveOn} className="generalCard" style={regularCardStyle}>
+          <Card className="generalCard" style={regularCardStyle}>
             <CardBlock>
               <p>
                 <Translate string="demo-info.open-pictures" />
@@ -37,26 +35,11 @@ const DemoInfoPanel = (props) => {
             </CardBlock>
             <CardBlock>
               <a href={visualiseLink} target="_blank" rel="noopener noreferrer">
-                <Button style={buttonStyle} iconStart={moreInfoIcon} onClick={moveOn}>
+                <Button style={buttonStyle} iconStart={moreInfoIcon}>
                   <Translate string="button.open-photos" />
                 </Button>
               </a>
             </CardBlock>
-            {/* <CardBlock>
-              <p>
-                <Translate string="demo-info.feedback" />
-              </p>
-              <p>
-                <Translate string="demo-info.raise-issue" />
-              </p>
-            </CardBlock> */}
-            {/* <CardBlock>
-              <a href="https://github.ibm.com/ProjectReunite/reunite">
-                <Button style={buttonStyle} iconStart={githubIcon} onClick={moveOn}>
-                  <Translate string="button.github-repo" />
-                </Button>
-              </a>
-            </CardBlock> */}
             <CardBlock>
               <p>
                 <Translate string="demo-info.start-message" />
