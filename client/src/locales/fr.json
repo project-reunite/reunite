@@ -1,7 +1,10 @@
 {
   "header.back": "Retour",
   "header.language": "Langue",
-  "welcome.start": "Commencez",
+  "footer.more-info": "Plus d'Infos",
+  "footer.feedback": "Feedback",
+  "footer.vote": "Voter",
+  "welcome.start": "Commencer",
   "welcome.info": "Infos",
   "welcomePanel.message-1": "Imaginez 64 personnes disparues et vous devez en trouver une.",
   "welcomePanel.message-2": "La seule façon de les trouver à l'aide des sites Web d'organisations caritatives existants consiste à faire défiler les 64 photos une par une.",
@@ -26,14 +29,14 @@
   "error-dialog.title": "Erreur",
   "close-dialog": "Fermer",
   "restart-app": "Recommencer les recherches",
-  "button.begin": "Essayez vous-même",
+  "button.begin": "Essayer vous-même",
   "button.start": "Commencer à chercher",
   "button.next": "Suivant",
-  "button.github-repo": "Github Repo",
+  "button.github-repo": "Dépôt Github",
   "button.open-photos": "Afficher les photos dans un nouvel onglet",
   "further-info.title": "Démo terminée",
   "further-info.message-1": "Merci d'avoir essayé notre démo.",
   "further-info.feedback": "Laisser des commentaires pour améliorer ce prototype",
   "further-info.more-information": "FAQ et plus d'informations",
-  "further-info.link-to-cfc": "Votez pour nous"
+  "further-info.link-to-cfc": "Voter pour nous"
 }
