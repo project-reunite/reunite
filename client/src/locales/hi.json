@@ -1,6 +1,9 @@
 {
   "header.back": "पीछे",
   "header.language": "भाषा",
+  "footer.more-info": "और पढो",
+  "footer.feedback": "प्रतिक्रिया",
+  "footer.vote": "मत",
   "welcome.start": "शुरु",
   "welcome.info": "जानकारी",
   "welcomePanel.message-1": "कल्पना कीजिए कि चौंसठ लापता लोग हैं, और आपको उनमें से एक को खोजने की जरूरत है.",
