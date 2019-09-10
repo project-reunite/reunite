@@ -4,6 +4,7 @@ import LocaleContext from '../locale-context';
 import en from './en.json';
 import fr from './fr.json';
 import hi from './hi.json';
+import ar from './ar.json';
 
 export default class Translate extends PureComponent {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class Translate extends PureComponent {
         en,
         fr,
         hi,
+        ar,
       },
     };
   }

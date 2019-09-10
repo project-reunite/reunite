@@ -50,7 +50,7 @@ const MatchCard = (props) => {
         message="Aid worker contacted!"
         title="Success"
       />
-      <div className="cardContainer" data-cy="match-card">
+      <div className="singleCardContainer" data-cy="match-card">
         <FlexItem>
           <Card style={matchCardStyle} data-cy="person-card">
             <CardTitle className="cardTitle">

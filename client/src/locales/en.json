@@ -25,6 +25,7 @@
   "confirm-match-dialog.title": "Aid worker contacted",
   "confirm-match-dialog.message": "An aid worker has been contacted and is verifying the match, you will be contacted with further information.",
   "no-match-dialog.message": "No match was found, your choices will be stored and you will be contacted if a potential match is added to the system.",
+  "demo-summary.title": "Person found!",
   "demo-summary.message-1": "Number of steps to find your person:",
   "demo-summary.message-2": "photos viewed",
   "demo-summary.message-4": "fewer photos used than existing solution",

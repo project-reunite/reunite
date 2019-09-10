@@ -27,11 +27,13 @@ const DemoSummaryPanel = (props) => {
   // const percentagePhotosFewer = (100 * (numberOfPhotosSeen / numberOfPhotosRequiredByExistingSolutions)).toFixed(0);
 
   return (
-    <div className="cardContainer">
+    <div className="singleCardContainer">
       <Flex {...flexStyle}>
         <FlexItem>
           <Card style={matchCardStyle} className="demoSummaryCard">
-            <CardTitle className="cardTitle">Person found!</CardTitle>
+            <CardTitle className="cardTitle">
+              <Translate string="demo-summary.title" />
+            </CardTitle>
             <CardImage
               className="matchCardImage"
               style={cardImageStyle}
