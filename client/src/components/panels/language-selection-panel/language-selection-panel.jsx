@@ -52,10 +52,10 @@ const LanguageSelectionPanel = (props) => {
             // onClick={() => submitLanguage('es')}
             className="languageCard"
           >
-            <span className="flag-icon flag-icon-es flag-icon-squared" />
-            <img className="flagImage" alt="" src="es.svg" />
+            <span className="flag-icon flag-icon-in flag-icon-squared" />
+            <img className="flagImage" alt="" src="in.svg" />
             <span />
-            <CardBlock className="languageCardBlock">Español</CardBlock>
+            <CardBlock className="languageCardBlock">हिंदी</CardBlock>
           </Card>
         </FlexItem>
         <FlexItem>
@@ -65,9 +65,9 @@ const LanguageSelectionPanel = (props) => {
             className="languageCard"
           >
             <span className="flag-icon flag-icon-de flag-icon-squared" />
-            <img className="flagImage" alt="" src="de.svg" />
+            <img className="arabicImage" alt="" src="arabic.svg" />
             <span />
-            <CardBlock className="languageCardBlock">Deutsche</CardBlock>
+            <CardBlock className="languageCardBlock">عربى</CardBlock>
           </Card>
         </FlexItem>
       </Flex>
