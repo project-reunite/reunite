@@ -114,6 +114,10 @@ const getNextDecision = (decisions, viewedPeople) => {
             viewedPeople.push(rankedPeople[0].person);
             viewedPeople.push(rankedPeople[1].person);
             return {
+                skipInput: {
+                    decisions,
+                    viewedPeople,
+                },
                 choices: [
                     {
                         personId: rankedPeople[0].person,
@@ -146,6 +150,10 @@ const getNextDecision = (decisions, viewedPeople) => {
         viewedPeople.push(choiceB);
         
         return {
+            skipInput: {
+                decisions,
+                viewedPeople,
+            },
             choices: [
                 {
                     personId: choiceA,
