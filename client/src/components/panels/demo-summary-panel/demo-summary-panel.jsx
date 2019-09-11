@@ -8,6 +8,7 @@ import Flex from 'mineral-ui/Flex/Flex';
 import Button from 'mineral-ui/Button';
 import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
 import Translate from '../../../locales/translate';
+import DemoSummaryChart from '../../demo-chart';
 
 const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../../styles/card-styles');
 const { flexStyle } = require('../../../styles/flex-styles');
@@ -23,12 +24,16 @@ const DemoSummaryPanel = (props) => {
   const numberOfPhotosRequiredByExistingSolutions = numberOfPhotosInTotal / 2;
   const numberOfChoices = decisions.length;
   const numberOfPhotosSeen = numberOfChoices * 2;
-  const numberOfPhotosQuicker = numberOfPhotosRequiredByExistingSolutions - numberOfPhotosSeen;
-  // const percentagePhotosFewer = (100 * (numberOfPhotosSeen / numberOfPhotosRequiredByExistingSolutions)).toFixed(0);
+
+  const demoSummaryData = {
+    numberOfPhotosInTotal,
+    numberOfPhotosRequiredByExistingSolutions,
+    numberOfPhotosSeen,
+  };
 
   return (
-    <div className="singleCardContainer">
-      <Flex {...flexStyle}>
+    <div className="demoSummaryCardContainer">
+      <Flex wrap {...flexStyle}>
         <FlexItem>
           <Card style={matchCardStyle} className="demoSummaryCard">
             <CardTitle className="cardTitle">
@@ -40,21 +45,25 @@ const DemoSummaryPanel = (props) => {
               src={foundPersonDetails.data.img_url}
               alt="gradient placeholder"
             />
-            <p>
-              {`${numberOfPhotosSeen} `}
-              <Translate string="demo-summary.message-2" />
-            </p>
-            <CardBlock style={cardBlockStyle}>
-              <p>
-                {`${numberOfPhotosQuicker} `}
-                <Translate string="demo-summary.message-4" />
-                {` (${numberOfPhotosRequiredByExistingSolutions})`}
-              </p>
-            </CardBlock>
             <CardBlock>
-              <Button className="cardButton" style={buttonStyle} iconStart={nextIcon} onClick={moveOn}>
+              <Button
+                className="cardButton"
+                style={buttonStyle}
+                iconStart={nextIcon}
+                onClick={moveOn}
+              >
                 <Translate string="button.next" />
               </Button>
+            </CardBlock>
+          </Card>
+        </FlexItem>
+        <FlexItem>
+          <Card style={matchCardStyle} className="demoSummaryCard">
+            <CardTitle className="cardTitle">Faces viewed</CardTitle>
+            <CardBlock style={cardBlockStyle}>
+              <DemoSummaryChart
+                demoSummaryData={demoSummaryData}
+              />
             </CardBlock>
           </Card>
         </FlexItem>

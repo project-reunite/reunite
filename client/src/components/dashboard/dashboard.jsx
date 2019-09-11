@@ -23,7 +23,7 @@ import apiRequests from '../../utils/apiRequests';
 const { flexStyle } = require('../../styles/flex-styles');
 
 const Dashboard = (props) => {
-  const [appState, setAppState] = useState(appStatus.LANGUAGE_SELECT);
+  const [appState, setAppState] = useState(appStatus.DEMO_COMPLETE);
   const [personId, setPersonId] = useState(null);
   const [decisions, setDecisions] = useState([{}]);
   const [viewedPeople, setViewedPeople] = useState([]);
@@ -68,13 +68,23 @@ const Dashboard = (props) => {
     />
   );
 
-  const getDemoSummaryPanel = () => (
-    <DemoSummaryPanel
-      foundPersonDetails={foundPersonDetails}
-      decisions={decisions}
-      moveOn={() => setAppState(appStatus.FURTHER_INFO)}
-    />
-  );
+  const getDemoSummaryPanel = () => {
+    const foundPerson = {
+      data: {
+        name: 'James',
+        age: 23,
+        img_url: 'http://localhost:9100/images/generated/4_features/0000.png',
+      },
+    };
+    const decisionList = [{}, {}, {}];
+    return (
+      <DemoSummaryPanel
+        foundPersonDetails={foundPerson}
+        decisions={decisionList}
+        moveOn={() => setAppState(appStatus.FURTHER_INFO)}
+      />
+    );
+  };
 
   const getFurtherInfoPanel = () => <FurtherInfoPanel />;
 

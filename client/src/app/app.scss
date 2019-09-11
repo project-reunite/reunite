@@ -20,6 +20,11 @@ h1 {
   height: 60px;
 }
 
+.demoChart {
+  height: 300px;
+  width: 300px;
+}
+
 .dashboardContainer {
   position: relative;
   min-height: 100vh;
@@ -28,6 +33,14 @@ h1 {
 }
 
 .singleCardContainer {
+  padding-top: 50px;
+  text-align: center;
+  font-weight: bold;
+  align-items: center;
+  margin: 0 50px;
+}
+
+.demoSummaryCardContainer {
   padding-top: 50px;
   text-align: center;
   font-weight: bold;
@@ -81,8 +94,8 @@ h1 {
 }
 
 .matchCardImage {
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -126,6 +139,10 @@ h1 {
     font-weight: bold;
     align-items: center;
     padding: 1px;
+  }
+
+  .demoSummaryCardContainer {
+    padding-top: 10px;
   }
 
   .cardImage {
