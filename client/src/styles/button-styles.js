@@ -5,13 +5,6 @@ const buttonStyle = {
   color: 'white',
 };
 
-const nextButtonStyle = {
-  borderRadius: '20px',
-  margin: '1px',
-  backgroundColor: 'green',
-  color: 'white',
-};
-
 const secondButtonStyle = {
   borderRadius: '20px',
   margin: '1px',
@@ -21,5 +14,4 @@ const secondButtonStyle = {
 module.exports = {
   buttonStyle,
   secondButtonStyle,
-  nextButtonStyle,
 };

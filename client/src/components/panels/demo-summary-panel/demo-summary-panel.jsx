@@ -24,7 +24,6 @@ const DemoSummaryPanel = (props) => {
   const numberOfChoices = decisions.length;
   const numberOfPhotosSeen = numberOfChoices * 2;
   const numberOfPhotosQuicker = numberOfPhotosRequiredByExistingSolutions - numberOfPhotosSeen;
-  // const percentagePhotosFewer = (100 * (numberOfPhotosSeen / numberOfPhotosRequiredByExistingSolutions)).toFixed(0);
 
   return (
     <div className="singleCardContainer">
