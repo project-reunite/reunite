@@ -1,11 +1,3 @@
-const smallCardStyle = {
-  margin: '10px',
-  borderRadius: '20px',
-  paddingLeft: '3em',
-  paddingRight: '3em',
-  paddingBottom: '1em',
-};
-
 const matchCardStyle = {
   margin: '2px',
   borderRadius: '20px',
@@ -39,7 +31,6 @@ const cardImageStyle = {
 };
 
 module.exports = {
-  smallCardStyle,
   matchCardStyle,
   languageCardStyle,
   regularCardStyle,

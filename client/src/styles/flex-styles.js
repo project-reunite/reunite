@@ -1,6 +1,6 @@
 const flexStyle = {
   justifyContent: 'evenly',
-  gutterWidth: 2,
+  gutterWidth: 1,
 };
 
 module.exports = {
