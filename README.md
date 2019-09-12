@@ -40,7 +40,7 @@ By dividing the search area repeatedly, we divide Arame's search time too:
 
 - And if there were 50,000 survivor's photos, she'd have to look though 25,000 of them on Red Cross' website, but only *40* on ours.
 
-So our prioritization algorithm makes searching really fast, and reunites Arame with her son quicker. Try it yourself at https://reunite.eu-gb.cf.appdomain.cloud, or watch our 3-minute demo:
+So our prioritization algorithm makes searching really fast, and reunites Arame with her son quicker. Try it yourself at http://ibm.biz/reunite, or watch our 3-minute demo:
 
 [<img width="1275" alt="reunitethumbnail" src="https://media.github.ibm.com/user/186207/files/0b91ce00-b20b-11e9-9eff-05a9cfda3d50">
 ](https://ibm.box.com/s/qcqnxj41ksf20uft365zxp1ryxm2xx9j)
@@ -48,8 +48,8 @@ So our prioritization algorithm makes searching really fast, and reunites Arame 
 ## FAQs
 
 ### Privacy
-#### Why doesn't our app just let Arame search for missing people by name?
-We want Arame to be able find her son even if he could not or did not want to give his name (e.g. if he was frightened). Moreover, charities' privacy policies may prohibit them from releasing refugees' names publicly. Further, many refugees might share the same name; some may spell their name incorrectly, and aid workers may record their names incorrectly.
+#### Why doesn't our app just let Arame search for missing people by name or other metadata?
+We want Arame to be able find her son even if charities cannot release his name or metadata publicly (for example, if their privacy policies prohibit it). Moreover, the survivor metadata they've collected may be insufficient (e.g. if Arame's son was too scared to give his name). Finally, their metadata may be inaccurate, if survivors and aid workers spell survivors' names incorrectly.
 #### Is anyone's privacy being violated?
 No, because charities are already letting searchers look through all these photos - we are simply leading searchers through them more efficiently, which will allow us to show only a small subset of photos. Therefore, we will always adhere to the charities' privacy policies, for example, using only photos taken with people's permission, using the photos only to reunite people, and deleting the photos immediately after confirming reunification.
 
@@ -63,7 +63,7 @@ If Arame still doesn't find a match after viewing all (relevant & irrelevant) ph
 
 ### Deployment
 #### What if refugees don't have smartphones or access to a stable internet connection?
-Our app still improves on existing charities' sites, because refugees will complete their search in far fewer photos. This means a much shorter search time, so a few shared devices and limited mobile data will serve many more refugees than before.
+Both our app and existing charities' sites require access to internet-connected devices. Where access is available but limited, our app still improves on existing charities' sites, because refugees will complete their search in far fewer photos. A shorter search time allows shared devices and limited mobile data to serve many more refugees than before.
 
 ## Project Roadmap
 
