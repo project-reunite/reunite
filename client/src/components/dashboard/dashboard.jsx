@@ -24,7 +24,7 @@ import apiRequests from '../../utils/apiRequests';
 const { flexStyle } = require('../../styles/flex-styles');
 
 const Dashboard = (props) => {
-  const [appState, setAppState] = useState(appStatus.LANGUAGE_SELECT);
+  const [appState, setAppState] = useState(appStatus.AID_WORKER_CONTACTED);
   const [personId, setPersonId] = useState(null);
   const [decisions, setDecisions] = useState([{}]);
   const [viewedPeople, setViewedPeople] = useState([]);
@@ -69,24 +69,6 @@ const Dashboard = (props) => {
     />
   );
 
-  const getDemoSummaryPanel = () => {
-    const foundPerson = {
-      data: {
-        name: 'James',
-        age: 23,
-        img_url: 'http://localhost:9100/images/generated/4_features/0000.png',
-      },
-    };
-    const decisionList = [{}, {}, {}];
-    return (
-      <DemoSummaryPanel
-        foundPersonDetails={foundPerson}
-        decisions={decisionList}
-        moveOn={() => setAppState(appStatus.FURTHER_INFO)}
-      />
-    );
-  };
-
   const getFurtherInfoPanel = () => <FurtherInfoPanel />;
 
   const getWelcomeCard = () => (
@@ -128,12 +110,40 @@ const Dashboard = (props) => {
     </Flex>
   );
 
-  const getAidworkerContactedPanel = () => (
-    <AidWorkerContactedPanel
-      moveOn={() => setAppState(appStatus.DEMO_COMPLETE)}
-      foundPersonDetails={foundPersonDetails}
-    />
-  );
+
+  const getDemoSummaryPanel = () => {
+    const foundPerson = {
+      data: {
+        name: 'James',
+        age: 23,
+        img_url: 'http://localhost:9100/images/generated/4_features/0000.png',
+      },
+    };
+    const decisionList = [{}, {}, {}];
+    return (
+      <DemoSummaryPanel
+        foundPersonDetails={foundPerson}
+        decisions={decisionList}
+        moveOn={() => setAppState(appStatus.FURTHER_INFO)}
+      />
+    );
+  };
+
+  const getAidworkerContactedPanel = () => {
+    const foundPerson = {
+      data: {
+        name: 'James',
+        age: 23,
+        img_url: 'http://localhost:9100/images/generated/4_features/0000.png',
+      },
+    };
+    return (
+      <AidWorkerContactedPanel
+        moveOn={() => setAppState(appStatus.DEMO_COMPLETE)}
+        foundPersonDetails={foundPerson}
+      />
+    );
+  };
 
   const getDemoInfoPanel = () => (
     <DemoInfoPanel moveOn={() => setAppState(appStatus.COMPARE_PICTURES)} />
@@ -142,7 +152,7 @@ const Dashboard = (props) => {
   const getErrorDialog = () => <ErrorDialog restartApp={restartApp} close={restartApp} />;
 
   const getMainPanel = () => (
-    <div>
+    <div className="mainPanel">
       {
         {
           [appStatus.LANGUAGE_SELECT]: getLanguageSelectionPanel(),
