@@ -58,7 +58,7 @@ const MatchCard = (props) => {
             </CardTitle>
             <CardImage
               style={cardImageStyle}
-              className="matchCardImage"
+              className="cardImage"
               src={details.data.img_url}
               alt="gradient placeholder"
             />

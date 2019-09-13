@@ -3,15 +3,9 @@ h1 {
   color: #58606e;
 }
 
-.cardContainer {
-  line-height: 4em;
+.cardTitle {
+  font-size: 25px;
 }
-
-
- .cardTitle {
-   font-size: 25px;
-   color: black;
- }
 
 .singleCardContainer p {
   font-size: 1.5em;
@@ -37,7 +31,7 @@ h1 {
 }
 
 .singleCardContainer {
-  padding-top: 50px;
+  padding-top: 20px;
   text-align: center;
   font-weight: bold;
   align-items: center;
@@ -57,6 +51,16 @@ h1 {
   font-weight: bold;
   align-items: center;
   padding: 3px;
+}
+
+.logoImage {
+  padding: 2%;
+  width: 170px;
+  height: 170px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
 }
 
 .cardImage {
@@ -97,43 +101,46 @@ h1 {
   object-fit: contain;
 }
 
-.matchCardImage {
-  width: 300px;
-  height: 300px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  object-fit: contain;
-}
-
 .flagImage {
   margin: 10px 10px 0px 10px;
 }
 
-@media only screen and (max-width: 800px) {
-
-.cardImage {
-  width: 300px;
-  height: 300px;
-}
-
-.singleCardContainer {
-  margin: 0 20px;
-}
-
-.singleCardContainer p {
-  font-size: 1em;
-}
-
-.cardContainer p {
-  font-size: 1em;
-}
-}
-@media only screen and (max-width: 600px) {
-
-  h1 {
-    font-size: 1.5em
+// covers 15" laptop screens
+@media only screen and (max-width: 1400px) {
+  .logoImage {
+    width: 150px;
+    height: 150px;
   }
+
+  .cardImage {
+    width: 300px;
+    height: 300px;
+  }
+
+  .singleCardContainer {
+    margin: 0 20px;
+  }
+
+  .singleCardContainer p {
+    font-size: 1em;
+  }
+
+  .cardContainer p {
+    font-size: 1em;
+  }
+
+  .smallerCardImage {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+// covers iPad (768x1024) and iPhone X (375x812)
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.3em
+  }
+
   .singleCardContainer {
     padding-top: 10px;
   }
@@ -145,17 +152,14 @@ h1 {
     padding: 1px;
   }
 
-  .demoSummaryCardContainer {
-    padding-top: 10px;
+  .logoImage {
+    width: 110px;
+    height: 110px;
   }
 
   .cardImage {
-    width: 190px;
-    height: 190px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    object-fit: contain;
+    width: 175px;
+    height: 175px;
   }
 
   .genderSelectCardImage {
@@ -170,75 +174,70 @@ h1 {
   .ageSelectCardImage {
     width: 120px;
     height: 160px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .smallerCardImage {
     width: 130px;
     height: 130px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  .matchCardImage {
-    width: 200px;
-    height: 200px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    object-fit: contain;
+  .cardContainer p {
+    font-size: 0.9em;
   }
 }
 
-@media only screen and (max-width: 330px) {
+// covers iPhone 6/7/8
+@media only screen and (max-height: 667px) {
+  .singleCardContainer {
+    padding-top: 6px;
+  }
+
+  .cardImage {
+    width: 160px;
+    height: 160px;
+  }
+
+  .cardContainer p {
+    font-size: 0.7em;
+  }
+}
+
+// covers iPhone 5/SE
+@media only screen and (max-height: 610px) {
+  h1 {
+    font-size: 1.1em
+  }
+
+  .cardContainer p {
+    font-size: 0.6em;
+  }
+
+  .logoImage {
+    width: 60px;
+    height: 60px;
+  }
+
   .cardImage {
     width: 130px;
     height: 130px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    object-fit: contain;
   }
 
   .cardTitle {
     font-size: 15px;
-    color: black;
   }
 
   .ageSelectCardImage {
     width: 100px;
     height: 120px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .genderSelectCardImage {
     width: 140px;
     height: 130px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    object-fit: contain;
   }
 
   .smallerCardImage {
     width: 100px;
     height: 100px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .matchCardImage {
-    width: 150px;
-    height: 150px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    object-fit: contain;
   }
 }
