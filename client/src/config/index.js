@@ -2,7 +2,7 @@ const port = process.env.PORT || 9100;
 
 // For debug
 // console.log('process.env');
-// ;console.log(process.env)
+// console.log(process.env);
 // console.log('port', port);
 
 // In IBM Cloud Foundry, process.env = { NODE_ENV: 'production', PUBLIC_URL, '.' }
