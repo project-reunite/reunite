@@ -24,7 +24,7 @@ import apiRequests from '../../utils/apiRequests';
 const { flexStyle } = require('../../styles/flex-styles');
 
 const Dashboard = (props) => {
-  const [appState, setAppState] = useState(appStatus.AID_WORKER_CONTACTED);
+  const [appState, setAppState] = useState(appStatus.COMPARE_PICTURES);
   const [personId, setPersonId] = useState(null);
   const [decisions, setDecisions] = useState([{}]);
   const [viewedPeople, setViewedPeople] = useState([]);

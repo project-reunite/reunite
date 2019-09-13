@@ -40,8 +40,8 @@ const Example = (props) => {
   ];
   return (
     <BarChart
-      width={300}
-      height={400}
+      width={200}
+      height={200}
       data={data}
       margin={{
         top: 5,
@@ -52,7 +52,7 @@ const Example = (props) => {
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
-      <YAxis domain={[0, nextMultipleOfTen(numberOfPhotosRequiredByExistingSolutions)]} />
+      {/* <YAxis domain={[0, nextMultipleOfTen(numberOfPhotosRequiredByExistingSolutions)]} /> */}
       <Tooltip />
       <Legend
         formatter={renderLegendEntry}

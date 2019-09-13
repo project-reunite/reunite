@@ -71,6 +71,7 @@ const MatchCard = (props) => {
                 iconStart={<IconSuccess style={iconStyle} />}
                 primary
                 onClick={() => {
+                  // setIsMatchConfirmed(true);
                   confirmMatch(details);
                 }}
               >

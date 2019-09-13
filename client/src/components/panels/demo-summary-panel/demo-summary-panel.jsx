@@ -32,7 +32,7 @@ const DemoSummaryPanel = (props) => {
     <div className="demoSummaryCardContainer">
       <Flex {...flexStyle}>
         <FlexItem>
-          <Card style={{ height: '480px', borderRadius: '20px' }} className="statsSummaryCard">
+          <Card style={{ height: '280px', borderRadius: '20px' }} className="statsSummaryCard">
             <CardTitle className="cardTitle">Photos Viewed</CardTitle>
             <DemoSummaryChart3 demoSummaryData={demoSummaryData} />
             <Button className="cardButton" style={buttonStyle} iconStart={nextIcon} onClick={moveOn}>

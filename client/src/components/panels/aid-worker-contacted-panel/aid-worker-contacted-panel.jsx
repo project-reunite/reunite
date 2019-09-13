@@ -24,7 +24,7 @@ const aidWorkerContactedPanel = (props) => {
               <Translate string="demo-summary.title" />
             </CardTitle>
             <CardImage
-              className="matchCardImage"
+              className="cardImage"
               style={cardImageStyle}
               src={foundPersonDetails.data.img_url}
               alt="gradient placeholder"
