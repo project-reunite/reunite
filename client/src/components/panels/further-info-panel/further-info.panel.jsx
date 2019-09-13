@@ -17,7 +17,7 @@ const { buttonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
 
 const FurtherInfoPanel = () => (
-  <div className="cardContainer">
+  <div className="singleCardContainer">
     <Flex {...flexStyle}>
       <FlexItem>
         <Card style={matchCardStyle}>
@@ -25,19 +25,10 @@ const FurtherInfoPanel = () => (
             <Translate string="further-info.title" />
           </CardTitle>
           <CardBlock>
-            <CardImage className="cardImage" src="reunite-dark.svg" alt="gradient placeholder" />
+            <CardImage className="smallerCardImage" src="reunite-dark.svg" alt="gradient placeholder" />
           </CardBlock>
           <CardBlock style={cardBlockStyle}>
-            <p>
-              <Translate string="further-info.message-1" />
-            </p>
-          </CardBlock>
-          <CardBlock>
-            <a href="https://github.ibm.com/ProjectReunite/reunite/issues/new/choose">
-              <Button iconStart={<IconModeComment style={iconStyle} />} style={buttonStyle}>
-                <Translate string="further-info.feedback" />
-              </Button>
-            </a>
+            <Translate string="further-info.message-1" />
           </CardBlock>
           <CardBlock>
             <a href="https://github.ibm.com/ProjectReunite/reunite#project-reunite">
@@ -47,16 +38,16 @@ const FurtherInfoPanel = () => (
             </a>
           </CardBlock>
           <CardBlock>
-            <a href="https://www.surveygizmo.com/s3/5198505/IBMer-s-Choice-Award-Call-for-Code-The-Internal-Final-Five">
-              <Button iconStart={<IconCheckCircle style={iconStyle} />} style={buttonStyle}>
-                <Translate string="footer.vote" />
+            <a href="https://w3.ibm.com/w3publisher/cognitive-applications/updates-from-bob/a7222250-cf31-11e9-8f65-2d7c559e6321">
+              <Button iconStart={<IconBook style={iconStyle} />} style={buttonStyle}>
+                <Translate string="further-info.link-to-cfc" />
               </Button>
             </a>
           </CardBlock>
           <CardBlock>
-            <a href="https://w3.ibm.com/w3publisher/cognitive-applications/updates-from-bob/a7222250-cf31-11e9-8f65-2d7c559e6321">
-              <Button iconStart={<IconBook style={iconStyle} />} style={buttonStyle}>
-                <Translate string="further-info.link-to-cfc" />
+            <a href="https://www.surveygizmo.com/s3/5198505/IBMer-s-Choice-Award-Call-for-Code-The-Internal-Final-Five">
+              <Button iconStart={<IconCheckCircle style={iconStyle} />} style={buttonStyle}>
+                <Translate string="footer.vote" />
               </Button>
             </a>
           </CardBlock>

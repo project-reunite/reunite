@@ -23,7 +23,7 @@ const WelcomeCard = (props) => {
       <Flex wrap {...flexStyle}>
         <FlexItem>
           <Card className="generalCard" style={matchCardStyle}>
-            <CardImage className="cardImage" src="reunite-dark.svg" alt="gradient placeholder" />
+            <CardImage className="logoImage" src="reunite-dark.svg" alt="gradient placeholder" />
             <CardBlock style={cardBlockStyle}>
               <p>
                 <Translate string="welcomePanel.message-1" />
@@ -36,12 +36,12 @@ const WelcomeCard = (props) => {
             </CardBlock>
             <CardBlock>
               <p>
-                <Translate string="welcomePanel.message-2.5" />
+                <Translate string="welcomePanel.message-3" />
               </p>
             </CardBlock>
             <CardBlock>
               <p>
-                <Translate string="welcomePanel.message-3" />
+                <Translate string="welcomePanel.message-4" />
               </p>
             </CardBlock>
             <CardBlock style={cardBlockStyle}>
