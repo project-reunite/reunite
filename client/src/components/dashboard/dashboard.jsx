@@ -17,13 +17,14 @@ import MatchCard from '../cards/match-card';
 import DemoInfoPanel from '../panels/demo-info-panel';
 import DemoSummaryPanel from '../panels/demo-summary-panel';
 import FurtherInfoPanel from '../panels/further-info-panel';
+import AidWorkerContactedPanel from '../panels/aid-worker-contacted-panel';
 import Footer from '../footer';
 import apiRequests from '../../utils/apiRequests';
 
 const { flexStyle } = require('../../styles/flex-styles');
 
 const Dashboard = (props) => {
-  const [appState, setAppState] = useState(appStatus.DEMO_COMPLETE);
+  const [appState, setAppState] = useState(appStatus.LANGUAGE_SELECT);
   const [personId, setPersonId] = useState(null);
   const [decisions, setDecisions] = useState([{}]);
   const [viewedPeople, setViewedPeople] = useState([]);
@@ -117,7 +118,7 @@ const Dashboard = (props) => {
         onError={() => setServerError()}
         confirmMatch={(info) => {
           setFoundPersonDetails(info);
-          setAppState(appStatus.DEMO_COMPLETE);
+          setAppState(appStatus.AID_WORKER_CONTACTED);
           apiRequests.postStatistics(personId);
         }}
         continueSearch={() => {
@@ -125,6 +126,13 @@ const Dashboard = (props) => {
         }}
       />
     </Flex>
+  );
+
+  const getAidworkerContactedPanel = () => (
+    <AidWorkerContactedPanel
+      moveOn={() => setAppState(appStatus.DEMO_COMPLETE)}
+      foundPersonDetails={foundPersonDetails}
+    />
   );
 
   const getDemoInfoPanel = () => (
@@ -142,6 +150,7 @@ const Dashboard = (props) => {
           [appStatus.DEMO_INFO_PANEL]: getDemoInfoPanel(),
           [appStatus.COMPARE_PICTURES]: getPersonSelectionPanel(),
           [appStatus.MATCH_FOUND]: getMatchCard(),
+          [appStatus.AID_WORKER_CONTACTED]: getAidworkerContactedPanel(),
           [appStatus.DEMO_COMPLETE]: getDemoSummaryPanel(),
           [appStatus.FURTHER_INFO]: getFurtherInfoPanel(),
           [appStatus.ERROR]: getErrorDialog(),

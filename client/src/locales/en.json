@@ -28,6 +28,8 @@
   "demo-summary.title": "Person found!",
   "demo-summary.message-1": "Number of steps to find your person:",
   "demo-summary.message-2": "photos viewed",
+  "stats-summary-1": "Using existing solution (on average)",
+  "stats-summary-2": "Using the Reunite app",
   "demo-summary.message-4": "fewer photos used than existing solution",
   "server-error": "Error receiving information from the server. Please check the server is running. If problem persists, contact a system admin.",
   "error-dialog.title": "Error",

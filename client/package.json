@@ -25,6 +25,7 @@
     "react-router": "^3.0.5",
     "react-scripts": "3.0.1",
     "react-vis": "^1.11.7",
+    "recharts": "^1.7.1",
     "regenerator-runtime": "^0.13.2"
   },
   "scripts": {

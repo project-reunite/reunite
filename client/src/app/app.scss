@@ -3,6 +3,11 @@ h1 {
   color: #58606e;
 }
 
+.cardContainer {
+  line-height: 4em;
+}
+
+
  .cardTitle {
    font-size: 25px;
    color: black;
@@ -12,17 +17,16 @@ h1 {
   font-size: 1.5em;
 }
 
+.statsSummaryCard {
+  height: 450px;
+}
+
 .cardContainer p {
   font-size: 1.5em;
 }
 
 .footerPadding {
   height: 60px;
-}
-
-.demoChart {
-  height: 300px;
-  width: 300px;
 }
 
 .dashboardContainer {
