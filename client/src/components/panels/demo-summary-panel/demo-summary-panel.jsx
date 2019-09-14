@@ -7,7 +7,7 @@ import Flex, { FlexItem } from 'mineral-ui/Flex';
 import Button from 'mineral-ui/Button';
 import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
 import Translate from '../../../locales/translate';
-import DemoSummaryChart3 from '../../demo-chart';
+import DemoSummaryChart from '../../demo-chart';
 
 const { flexStyle } = require('../../../styles/flex-styles');
 const { buttonStyle } = require('../../../styles/button-styles');
@@ -47,7 +47,7 @@ const DemoSummaryPanel = (props) => {
                 <Translate string="demo-summary.message-2" />
               </h3>
             </CardBlock>
-            <DemoSummaryChart3 demoSummaryData={demoSummaryData} />
+            <DemoSummaryChart demoSummaryData={demoSummaryData} />
             <Button
               className="cardButton"
               style={buttonStyle}
