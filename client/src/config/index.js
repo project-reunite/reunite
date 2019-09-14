@@ -11,9 +11,11 @@ const port = process.env.PORT || 9100;
 const origin = `http://localhost:${port}`;
 // const origin = 'https://reunite.eu-gb.cf.appdomain.cloud';
 
-const numPhotosInTotal = 128;
+const numMissingPeople = 128;
+const numPhotosViaExistingSolutions = numMissingPeople / 2;
 
 module.exports = {
   origin,
-  numPhotosInTotal,
+  numMissingPeople,
+  numPhotosViaExistingSolutions,
 };

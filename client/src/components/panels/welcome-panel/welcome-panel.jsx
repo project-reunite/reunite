@@ -13,7 +13,6 @@ const { iconStyle } = require('../../../styles/icon-styles');
 const { flexStyle } = require('../../../styles/flex-styles');
 const { matchCardStyle, cardBlockStyle } = require('../../../styles/card-styles');
 const { buttonStyle } = require('../../../styles/button-styles');
-const { numPhotosInTotal } = require('../../../config');
 
 const WelcomeCard = (props) => {
   const { moveOn } = props;
@@ -27,7 +26,6 @@ const WelcomeCard = (props) => {
             <CardImage className="logoImage" src="reunite-dark.svg" alt="gradient placeholder" />
             <CardBlock style={cardBlockStyle}>
               <p>
-                {/* TODO: soft code this to the total number of photos. using sprintf? https://github.com/alexei/sprintf.js */}
                 <Translate string="welcomePanel.message-1" />
               </p>
             </CardBlock>

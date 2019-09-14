@@ -13,13 +13,15 @@ const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../../sty
 const { flexStyle } = require('../../../styles/flex-styles');
 const { buttonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
-const { numPhotosInTotal } = require('../../../config');
+const {
+  numMissingPeople,
+  numPhotosViaExistingSolutions,
+} = require('../../../config');
 
 const DemoSummaryPanel = (props) => {
   const { foundPersonDetails, moveOn, decisions } = props;
   const nextIcon = <IconNext style={iconStyle} />;
 
-  const numPhotosViaExistingSolutions = numPhotosInTotal / 2;
   const numChoices = decisions.length;
   const numPhotosSeen = numChoices * 2;
   const numPhotosQuicker = numPhotosViaExistingSolutions - numPhotosSeen;
