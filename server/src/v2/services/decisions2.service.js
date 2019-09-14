@@ -1,7 +1,8 @@
-const numberOfFeatures = 6;
+const numberOfFeatures = 7;
 const featureConfidence = [
-    0.8,
-    0.5,
+    1,   // gender
+    0.8, // skin tone
+    0.7, // age
     0.5,
     0.5,
     0.5,
@@ -56,7 +57,7 @@ const countChoicesByDecisions = (decisions, numberOfFeatures) => {
 };
 
 const getPrediction = (previousDecisions, numberOfFeatures) => {
-    const counter = countChoicesByDecisions(previousDecisions, numberOfFeatures);    
+    const counter = countChoicesByDecisions(previousDecisions, numberOfFeatures);
     const prediction = new Array(numberOfFeatures).fill(0.5);
 
     for(let i = 0; i < numberOfFeatures; i++) {
@@ -148,7 +149,7 @@ const getNextDecision = (decisions, viewedPeople) => {
         choiceB = replaceCharAt(choiceB, '1', featureChanged);
         viewedPeople.push(choiceA);
         viewedPeople.push(choiceB);
-        
+
         return {
             skipInput: {
                 decisions,

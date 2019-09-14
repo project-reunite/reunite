@@ -33,9 +33,11 @@ const Page = () => {
     fetchUrls()
   }, []);
 
+  const numMissingPeople = urls.length || 128;
+
   const pageExplanation = [
     (<h2>
-      Here are the 64 missing people.
+      {`Here are the ${numMissingPeople} missing people.`}
     </h2>),
     (<h3>
       Choose (in your head) who you're looking for.
@@ -69,8 +71,6 @@ const Face = (props) => {
       alt="Missing person"
     >
     </img>
-    // For debug:
-    // <p>{src}</p>
   )
 }
 
