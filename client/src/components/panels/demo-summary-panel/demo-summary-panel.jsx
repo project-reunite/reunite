@@ -13,10 +13,7 @@ const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../../sty
 const { flexStyle } = require('../../../styles/flex-styles');
 const { buttonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
-const {
-  numMissingPeople,
-  numPhotosViaExistingSolutions,
-} = require('../../../config');
+const { numPhotosViaExistingSolutions } = require('../../../config');
 
 const DemoSummaryPanel = (props) => {
   const { foundPersonDetails, moveOn, decisions } = props;
