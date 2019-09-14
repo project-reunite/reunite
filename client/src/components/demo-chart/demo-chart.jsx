@@ -1,91 +1,53 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { BarChart, Bar, XAxis } from 'recharts';
+import useWindowSize from '../../hooks/useWindowSize';
 
-import {
-  XYPlot, YAxis, VerticalBarSeries, DiscreteColorLegend,
-} from 'react-vis';
+import CustomizedLabel from './customized-label';
 
-const plotMargin = {
-  left: 60,
-  right: 30,
-  top: 10,
-  bottom: 10,
-};
-
-const demoSummaryChart = (props) => {
+const DemoChart = (props) => {
   const { demoSummaryData } = props;
-  const {
-    numberOfPhotosInTotal,
-    numberOfPhotosRequiredByExistingSolutions,
-    numberOfPhotosSeen,
-  } = demoSummaryData;
+  const { numberOfPhotosRequiredByExistingSolutions, numberOfPhotosSeen } = demoSummaryData;
 
-  const isMobile = window.innerWidth < 400;
-  const width = isMobile ? 300 : 300;
-  const height = isMobile ? 230 : 230;
+  const size = useWindowSize();
+  const isMobile = size.width < 600;
+  const width = isMobile ? 300 : 400;
+  const height = isMobile ? 180 : 300;
+  const dx = isMobile ? 55 : 70;
 
-  const legendItems = [
+  const data = [
     {
-      title: 'Viewed by you, using Reunite',
-      color: '#132832',
-      strokeWidth: '6px',
-    },
-    {
-      title: 'Average saving, compared to existing solution',
-      color: '#408bfc',
-      strokeWidth: '6px',
-    },
-    {
-      title: 'The rest of the photos',
-      color: '#61B7E1',
-      strokeWidth: '6px',
+      'Existing solution': numberOfPhotosRequiredByExistingSolutions,
+      'Using Reunite': numberOfPhotosSeen,
     },
   ];
-
-  const photosSeenStack = [
-    {
-      x: 'A',
-      y: numberOfPhotosSeen,
-    },
-  ];
-
-  const existingSolutionStack = [
-    { x: 'A', y: numberOfPhotosRequiredByExistingSolutions - numberOfPhotosSeen },
-  ];
-  const totalStack = [
-    {
-      x: 'A',
-      y: numberOfPhotosInTotal - numberOfPhotosRequiredByExistingSolutions - numberOfPhotosSeen,
-    },
-  ];
-
   return (
-    <XYPlot width={width} margin={plotMargin} height={height} xType="ordinal" stackBy="y">
-      <DiscreteColorLegend items={legendItems} />
-      <VerticalBarSeries barWidth={0.6} color="#132832" data={photosSeenStack} />
-      <VerticalBarSeries
-        barWidth={0.6}
-        color="#408bfc
-
-"
-        data={existingSolutionStack}
+    <BarChart
+      width={width}
+      height={height}
+      data={data}
+      margin={{
+        top: 30,
+        right: 25,
+        left: 10,
+        bottom: -20,
+      }}
+    >
+      <XAxis dataKey="name" />
+      <Bar
+        dataKey="Existing solution"
+        fill="#61B7E1"
+        label={<CustomizedLabel key="Existing solution" dx={dx} />}
+        animationDuration={1000}
       />
-      <VerticalBarSeries
-        barWidth={0.6}
-        color="#61B7E1"
-        data={totalStack}
+      <Bar
+        dataKey="Using Reunite"
+        fill="#132832"
+        label={<CustomizedLabel key="Using Reunite" dx={dx} />}
+        animationDuration={1000}
+        animationBegin={1500}
       />
-      <YAxis />
-    </XYPlot>
+    </BarChart>
   );
 };
 
-demoSummaryChart.defaultProps = {
-  data: [],
-};
-
-demoSummaryChart.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
-};
-
-export default demoSummaryChart;
+export default DemoChart;

@@ -3,6 +3,10 @@ h1 {
   color: #58606e;
 }
 
+h3 {
+  margin: 0;
+}
+
 .cardTitle {
   font-size: 25px;
 }
@@ -12,7 +16,7 @@ h1 {
 }
 
 .statsSummaryCard {
-  height: 450px;
+  height: 680px;
 }
 
 .cardContainer p {
@@ -91,10 +95,22 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   object-fit: contain;
+  padding-bottom: 0px;
 }
 
 .flagImage {
   margin: 10px 10px 0px 10px;
+}
+
+.summaryPersonImage {
+  width: 150px;
+  height: 150px;
+  display: block;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
 }
 
 // covers 15" laptop screens
@@ -131,6 +147,14 @@ h1 {
 @media only screen and (max-width: 600px) {
   h1 {
     font-size: 1.3em
+  }
+
+  h3 {
+    font-size: 0.9em
+  }
+
+  .statsSummaryCard {
+    height: 520px;
   }
 
   .singleCardContainer {
@@ -200,6 +224,10 @@ h1 {
     font-size: 1.1em
   }
 
+  .statsSummaryCard {
+    height: 430px;
+  }
+
   .cardContainer p {
     font-size: 0.6em;
   }
@@ -209,6 +237,11 @@ h1 {
     height: 60px;
   }
 
+  .summaryPersonImage {
+    width: 100px;
+    height: 100px;
+  }
+
   .cardImage {
     width: 130px;
     height: 130px;
@@ -216,16 +249,6 @@ h1 {
 
   .cardTitle {
     font-size: 15px;
-  }
-
-  .ageSelectCardImage {
-    width: 100px;
-    height: 120px;
-  }
-
-  .genderSelectCardImage {
-    width: 140px;
-    height: 130px;
   }
 
   .smallerCardImage {

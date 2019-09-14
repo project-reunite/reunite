@@ -17,14 +17,13 @@ import MatchCard from '../cards/match-card';
 import DemoInfoPanel from '../panels/demo-info-panel';
 import DemoSummaryPanel from '../panels/demo-summary-panel';
 import FurtherInfoPanel from '../panels/further-info-panel';
-import AidWorkerContactedPanel from '../panels/aid-worker-contacted-panel';
 import Footer from '../footer';
 import apiRequests from '../../utils/apiRequests';
 
 const { flexStyle } = require('../../styles/flex-styles');
 
 const Dashboard = (props) => {
-  const [appState, setAppState] = useState(appStatus.COMPARE_PICTURES);
+  const [appState, setAppState] = useState(appStatus.DEMO_COMPLETE);
   const [personId, setPersonId] = useState(null);
   const [decisions, setDecisions] = useState([{}]);
   const [viewedPeople, setViewedPeople] = useState([]);
@@ -69,10 +68,12 @@ const Dashboard = (props) => {
     />
   );
 
-  const getFurtherInfoPanel = () => <FurtherInfoPanel />;
-
   const getWelcomeCard = () => (
     <WelcomeCard moveOn={() => setAppState(appStatus.DEMO_INFO_PANEL)} />
+  );
+
+  const getDemoInfoPanel = () => (
+    <DemoInfoPanel moveOn={() => setAppState(appStatus.COMPARE_PICTURES)} />
   );
 
   const getPersonSelectionPanel = () => (
@@ -100,7 +101,7 @@ const Dashboard = (props) => {
         onError={() => setServerError()}
         confirmMatch={(info) => {
           setFoundPersonDetails(info);
-          setAppState(appStatus.AID_WORKER_CONTACTED);
+          setAppState(appStatus.DEMO_COMPLETE);
           apiRequests.postStatistics(personId);
         }}
         continueSearch={() => {
@@ -109,7 +110,6 @@ const Dashboard = (props) => {
       />
     </Flex>
   );
-
 
   const getDemoSummaryPanel = () => {
     const foundPerson = {
@@ -129,25 +129,7 @@ const Dashboard = (props) => {
     );
   };
 
-  const getAidworkerContactedPanel = () => {
-    const foundPerson = {
-      data: {
-        name: 'James',
-        age: 23,
-        img_url: 'http://localhost:9100/images/generated/4_features/0000.png',
-      },
-    };
-    return (
-      <AidWorkerContactedPanel
-        moveOn={() => setAppState(appStatus.DEMO_COMPLETE)}
-        foundPersonDetails={foundPerson}
-      />
-    );
-  };
-
-  const getDemoInfoPanel = () => (
-    <DemoInfoPanel moveOn={() => setAppState(appStatus.COMPARE_PICTURES)} />
-  );
+  const getFurtherInfoPanel = () => <FurtherInfoPanel />;
 
   const getErrorDialog = () => <ErrorDialog restartApp={restartApp} close={restartApp} />;
 
@@ -160,7 +142,6 @@ const Dashboard = (props) => {
           [appStatus.DEMO_INFO_PANEL]: getDemoInfoPanel(),
           [appStatus.COMPARE_PICTURES]: getPersonSelectionPanel(),
           [appStatus.MATCH_FOUND]: getMatchCard(),
-          [appStatus.AID_WORKER_CONTACTED]: getAidworkerContactedPanel(),
           [appStatus.DEMO_COMPLETE]: getDemoSummaryPanel(),
           [appStatus.FURTHER_INFO]: getFurtherInfoPanel(),
           [appStatus.ERROR]: getErrorDialog(),

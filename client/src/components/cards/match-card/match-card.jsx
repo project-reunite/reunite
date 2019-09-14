@@ -46,7 +46,7 @@ const MatchCard = (props) => {
       <ConfirmMatchDialog
         isOpen={isMatchConfirmed}
         closeDialog={() => setIsMatchConfirmed(false)}
-        restartApp={restartApp}
+        confirmMatch={confirmMatch}
         message="Aid worker contacted!"
         title="Success"
       />
@@ -60,6 +60,7 @@ const MatchCard = (props) => {
               style={cardImageStyle}
               className="cardImage"
               src={details.data.img_url}
+              details={details}
               alt="gradient placeholder"
             />
             <CardBlock style={cardBlockStyle}>
@@ -71,8 +72,8 @@ const MatchCard = (props) => {
                 iconStart={<IconSuccess style={iconStyle} />}
                 primary
                 onClick={() => {
-                  // setIsMatchConfirmed(true);
-                  confirmMatch(details);
+                  setIsMatchConfirmed(true);
+                  // confirmMatch(details);
                 }}
               >
                 {successMessage}
