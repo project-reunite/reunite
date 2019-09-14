@@ -7,5 +7,4 @@ module.exports = {
   DEMO_COMPLETE: 'DEMO_COMPLETE',
   FURTHER_INFO: 'FURTHER_INFO',
   ERROR: 'ERROR',
-
 };
