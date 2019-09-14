@@ -39,7 +39,7 @@ const DemoSummaryPanel = (props) => {
             <CardImage
               className="summaryPersonImage"
               style={cardImageStyle}
-              src={foundPersonDetails.data.img_url}
+              src={foundPersonDetails.img_url}
               alt="gradient placeholder"
             />
             <CardBlock>
@@ -66,11 +66,13 @@ const DemoSummaryPanel = (props) => {
 DemoSummaryPanel.defaultProps = {
   moveOn: () => {},
   decisions: [{}],
+  foundPersonDetails: { img_url: '' },
 };
 
 DemoSummaryPanel.propTypes = {
   moveOn: PropTypes.func,
   decisions: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  foundPersonDetails: PropTypes.objectOf(PropTypes.string),
 };
 
 export default DemoSummaryPanel;

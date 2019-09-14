@@ -26,6 +26,8 @@
   "demo-summary.title": "شخص وجد!",
   "demo-summary.message-2": "عدد الصور التي رايتها",
   "demo-summary.message-4": "فارق عدد الصور",
+  "stats-summary-1": "الحل الحالي",
+  "stats-summary-2": "لدينا التطبيق",
   "server-error": "حدث خطآ في احد الاجهزة. حاول الاتصال باحد المشدفين علي التطبيق",
   "error-dialog.title": "خطآ",
   "close-dialog": "اغلق",

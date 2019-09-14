@@ -26,6 +26,8 @@
   "demo-summary.title": "Personne Retrouvée!",
   "demo-summary.message-2": "photos vues",
   "demo-summary.message-4": "photos de moins utilisées que la solution existante",
+  "stats-summary-1": "Solution existante",
+  "stats-summary-2": "Utiliser Reunite",
   "server-error": "Erreur lors de la réception des informations du serveur. Veuillez vérifier que le serveur est en cours d'exécution. Si le problème persiste, contactez un administrateur système.",
   "error-dialog.title": "Erreur",
   "close-dialog": "Fermer",

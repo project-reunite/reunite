@@ -1,23 +1,25 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import Translate from '../../locales/translate';
 
-const message1 = <Translate string="stats-summary-1" />;
+const existingSolutionLabel = <Translate string="stats-summary-1" />;
 
-const message2 = <Translate string="stats-summary-2" />;
+const reuniteLabel = <Translate string="stats-summary-2" />;
 
 const keyToLabel = {
-  'Existing solution': message1,
-  'Using Reunite': message2,
+  'Existing solution': existingSolutionLabel,
+  'Using Reunite': reuniteLabel,
 };
 
 const CustomizedLabel = (props) => {
   const {
     x, y, fill, value, content, dx,
   } = props;
-  console.log(props);
+
   const { key } = content;
   const label = keyToLabel[key];
+
   return (
     <text
       x={x}
@@ -30,9 +32,24 @@ const CustomizedLabel = (props) => {
       textAnchor="middle"
     >
       {label}
-      {` (${value})`}
+      {` - ${value}`}
     </text>
   );
+};
+
+CustomizedLabel.defaultProps = {
+  fill: 'black',
+  content: { key: '' },
+  dx: 0,
+};
+
+CustomizedLabel.propTypes = {
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
+  fill: PropTypes.string,
+  value: PropTypes.isRequired,
+  content: PropTypes.objectOf(PropTypes.string),
+  dx: PropTypes.number,
 };
 
 export default CustomizedLabel;

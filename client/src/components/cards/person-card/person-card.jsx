@@ -51,7 +51,6 @@ const PersonCard = (props) => {
   }
 
   return (
-  // <div className="cardContainer">
     <Card style={regularCardStyle} className="personCard" data-cy="person-card">
       <CardImage
         style={cardImageStyle}
@@ -63,7 +62,7 @@ const PersonCard = (props) => {
         <Button
           style={secondButtonStyle}
           iconStart={successIcon}
-          onClick={onMatch}
+          onClick={() => onMatch(details.data)}
           data-cy="select-match"
         >
           <Translate string="person-card.my-person" />
@@ -78,7 +77,6 @@ const PersonCard = (props) => {
         </Button>
       </CardFooter>
     </Card>
-  // </div>
   );
 };
 

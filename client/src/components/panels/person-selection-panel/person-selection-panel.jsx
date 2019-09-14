@@ -61,7 +61,7 @@ const PersonSelectionPanel = (props) => {
         <FlexItem key={personId} data-cy="PersonSelectionPanel">
           <PersonCard
             id={personId}
-            onMatch={() => reactToMatch(personId)}
+            onMatch={reactToMatch}
             onClick={() => reactToCardClick(choice.nextInput)}
             onError={onError}
           />

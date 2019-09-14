@@ -1,32 +1,38 @@
-import { useState, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
-// Hook
-function useWindowSize() {
+const useWindowSize = (initialWidth = Infinity, initialHeight = Infinity) => {
   const isClient = typeof window === 'object';
-
-  function getSize() {
-    return {
-      width: isClient ? window.innerWidth : undefined,
-      height: isClient ? window.innerHeight : undefined,
-    };
-  }
-
-  const [windowSize, setWindowSize] = useState(getSize);
+  const frame = useRef(0);
+  const [state, setState] = useState({
+    width: isClient ? window.innerWidth : initialWidth,
+    height: isClient ? window.innerHeight : initialHeight,
+  });
 
   useEffect(() => {
-    if (!isClient) {
-      return false;
+    if (isClient) {
+      const handler = () => {
+        cancelAnimationFrame(frame.current);
+
+        frame.current = requestAnimationFrame(() => {
+          setState({
+            width: window.innerWidth,
+            height: window.innerHeight,
+          });
+        });
+      };
+
+      window.addEventListener('resize', handler);
+
+      return () => {
+        cancelAnimationFrame(frame.current);
+
+        window.removeEventListener('resize', handler);
+      };
     }
+    return undefined;
+  }, [isClient]);
 
-    function handleResize() {
-      setWindowSize(getSize());
-    }
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []); // Empty array ensures that effect is only run on mount and unmount
-
-  return windowSize;
-}
+  return state;
+};
 
 export default useWindowSize;
