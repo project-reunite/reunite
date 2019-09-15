@@ -3,7 +3,6 @@ import { origin } from "./config";
 // import apiRequests from "./utils/apiRequests";
 import socketIOClient from "socket.io-client";
 import posed, { PoseGroup } from "react-pose";
-import { shuffleArray, shuffleArray2 } from "./utils/util-functions";
 import "./App.css";
 
 //TODO: call this at start ?
@@ -30,16 +29,11 @@ const Face = props => {
 function App() {
   const [urls, setUrls] = useState([]);
 
-  const makeUrls = ids => {
-    return ids.map(id => `/images/generated/6_features/${id}.png`);
-  };
-
   useEffect(() => {
     function fetchNewOrder() {
       try {
-        const socket = socketIOClient("http://localhost:9100");
-        socket.on("rankedPeople", data => {
-          const urls = makeUrls(data);
+        const socket = socketIOClient(origin);
+        socket.on("rankedPeople", urls => {
           setUrls(urls);
         });
       } catch (err) {
