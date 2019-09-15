@@ -43,7 +43,7 @@ const Page = () => {
       Choose (in your head) who you're looking for.
     </h3>),
     (<h3>
-      When you're read, go back to the Reunite app to start searching for them.
+      When you're ready, go back to the Reunite app to start searching for them.
     </h3>),
     (<p>
       (These photos are generated from celebrity faces. This demo uses these faces because we do not yet have access to a database of refugees)
