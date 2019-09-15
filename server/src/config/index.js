@@ -1,7 +1,16 @@
 /* istanbul ignore next */
 const env = process.env.NODE_ENV || 'development';
 
-const numFeatures = 7;
+const NUM_FEATURES = 7;
+const FEATURE_CONFIDENCE = [
+    1,   // gender
+    0.8, // skin tone
+    0.7, // age
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+];
 
 /* istanbul ignore next */
 function determineLogLevel(env) {
@@ -15,5 +24,6 @@ module.exports = {
     ...require(`./${env}`), // eslint-disable-line import/no-dynamic-require
     logLevel: determineLogLevel(env),
     env,
-    numFeatures,
+    NUM_FEATURES,
+    FEATURE_CONFIDENCE,
 };

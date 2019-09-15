@@ -28,8 +28,8 @@ const getPersons = async ({ filters, host }) => {
 
 const getPersonUrls = async() => {
     const persons = (await getPersons({ filters: { selector: {} } })).docs;
-    const { numFeatures } = config;
-    const personsWithNFeatures = persons.filter(person => person._id.length === numFeatures);
+    const { NUM_FEATURES } = config;
+    const personsWithNFeatures = persons.filter(person => person._id.length === NUM_FEATURES);
     const urls = personsWithNFeatures.map(person => person.img_url);
     return urls;
 };
