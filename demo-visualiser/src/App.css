@@ -1,0 +1,47 @@
+body {
+  margin: 20px;
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}
+
+.shuffle-button {
+  height: 40px;
+  width: 80px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.face {
+  border: 1px solid black;
+  width: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 12px;
+  }
+
+  .face {
+    text-align: center;
+    width: 120px;
+  }
+}
+
+ul {
+  list-style: none;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+}
+
+li {
+  display: block;
+  border-radius: 2px;
+  background: white;
+  margin: 10px;
+}
