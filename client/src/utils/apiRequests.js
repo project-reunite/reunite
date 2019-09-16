@@ -43,9 +43,15 @@ const getTree = async (queryString) => {
   }
 };
 
+const getPersonUrls = async () => {
+  const urls = await axios.get(`${origin}/api/v1/persons/urls`);
+  return urls;
+};
+
 export default {
   postStatistics,
   getPerson,
   getChoices,
   getTree,
+  getPersonUrls,
 };

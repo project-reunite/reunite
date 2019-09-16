@@ -1,0 +1,26 @@
+.missing-people-screen {
+  margin: 20px;
+  text-align: center;
+}
+
+.missing-people-screen .face {
+  border: 1px solid black;
+  width: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+  .missing-people-screen {
+    font-size: 12px;
+  }
+
+  .missing-people-screen h1 {
+    font-size: 1.8em;
+  }
+
+  .missing-people-screen .face {
+    width: 120px;
+  }
+
+
+
+}
