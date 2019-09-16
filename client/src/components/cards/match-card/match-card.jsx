@@ -63,7 +63,7 @@ const MatchCard = (props) => {
               alt="gradient placeholder"
             />
             <CardBlock style={cardBlockStyle}>
-              {`${details.data.name}, ${details.data.age}`}
+              {details.data.name}
             </CardBlock>
             <CardBlock>
               <Button

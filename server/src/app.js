@@ -27,4 +27,7 @@ app.listen(port, () => {
     console.log(`App running on port ${port}`);
 });
 
+// Uncomment to insert documents about the missing persons into Cloudant
+// require('./v2/services/personsGenerator.service');
+
 module.exports = app;
