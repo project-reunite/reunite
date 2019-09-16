@@ -25,6 +25,16 @@ body {
   width: 200px;
 }
 
+.filtered {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 0.5;
+}
+
+.selected {
+  border: 5px solid green;
+}
+
 ul {
   padding: 0px;
   list-style: none;

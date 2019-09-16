@@ -14,25 +14,29 @@ const Item = posed.li({
 });
 
 const Face = props => {
-  const { src, name } = props;
+  const { src, name, personSeen, id, currentPersons } = props;
+  let imgClass = "face";
+  if (personSeen) imgClass += " filtered";
+  if (currentPersons.includes(id)) imgClass += " selected";
   return (
     <div className="person-container">
-      <img className="face" src={src} alt="Missing person"></img>
+      <img className={imgClass} src={src} alt="Missing person"></img>
       {name}
     </div>
   );
 };
 
 function App() {
-  const [urls, setUrls] = useState([]);
+  const [rankedPersons, setRankedPersons] = useState([]);
+  const [currentPersons, setCurrentPersons] = useState([]);
 
   useEffect(() => {
     function fetchNewOrder() {
       try {
         const socket = socketIOClient(origin);
-        socket.on("rankedPeople", urls => {
-          console.log(urls);
-          setUrls(urls);
+        socket.on("rankedPersons", rankedPersons => {
+          setCurrentPersons(rankedPersons.currentPersons);
+          setRankedPersons(rankedPersons.rankedPersons);
         });
       } catch (err) {
         console.log(err);
@@ -45,12 +49,15 @@ function App() {
     return (
       <ul id="#menu">
         <PoseGroup>
-          {urls.map(url => (
-            <Item key={url.name}>
+          {rankedPersons.map(person => (
+            <Item key={person.name}>
               <Face
-                key={url.name}
-                src={`${origin}${url.img_url}`}
-                name={url.name}
+                key={person.name}
+                id={person._id}
+                src={`${origin}${person.img_url}`}
+                name={person.name}
+                personSeen={person.personSeen}
+                currentPersons={currentPersons}
               />
             </Item>
           ))}

@@ -38,7 +38,7 @@ const getPersonUrls = async () => {
     return urls;
 };
 
-const getOrderedPersons = async decisions => {
+const getOrderedPersons = async (decisions, viewedPeople) => {
     const persons = (await getPersons({ filters: { selector: {} } })).docs;
     const personsWith6Features = persons.filter(
         person => person._id.length === 6
@@ -46,6 +46,7 @@ const getOrderedPersons = async decisions => {
     const prediction = decisionsService.getPrediction(decisions, 6);
     let rankedPeople = personsWith6Features.map(person => ({
         ...person,
+        personSeen: viewedPeople.slice(0, -2).includes(person._id),
         probability: decisionsService.rankPerson(person._id, prediction)
             .probability,
     }));
