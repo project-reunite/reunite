@@ -7,13 +7,13 @@ import Text from 'mineral-ui/Text';
 import Translate from '../../../locales/translate';
 
 const ConfirmMatchDialog = (props) => {
-  const { isOpen, closeDialog, restartApp } = props;
+  const { isOpen, closeDialog, confirmMatch } = props;
   return (
     <div>
       <Dialog
         actions={[
           { onClick: closeDialog, text: <Translate string="close-dialog" /> },
-          { onClick: restartApp, text: <Translate string="restart-app" /> },
+          { onClick: () => confirmMatch(), text: <Translate string="button.next" /> },
         ]}
         isOpen={isOpen}
         onClose={closeDialog}
@@ -33,14 +33,14 @@ const ConfirmMatchDialog = (props) => {
 
 ConfirmMatchDialog.defaultProps = {
   closeDialog: () => {},
-  restartApp: () => {},
+  confirmMatch: () => {},
   isOpen: false,
 };
 
 ConfirmMatchDialog.propTypes = {
   isOpen: PropTypes.bool,
   closeDialog: PropTypes.func,
-  restartApp: PropTypes.func,
+  confirmMatch: PropTypes.func,
 };
 
 export default ConfirmMatchDialog;

@@ -24,7 +24,11 @@ const FurtherInfoPanel = () => (
             <Translate string="further-info.title" />
           </CardTitle>
           <CardBlock>
-            <CardImage className="smallerCardImage" src="reunite-dark.svg" alt="gradient placeholder" />
+            <CardImage
+              className="smallerCardImage"
+              src="reunite-dark.svg"
+              alt="gradient placeholder"
+            />
           </CardBlock>
           <CardBlock style={cardBlockStyle}>
             <Translate string="further-info.message-1" />
