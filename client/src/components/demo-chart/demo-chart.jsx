@@ -8,9 +8,9 @@ import CustomizedLabel from './customized-label';
 const DemoChart = (props) => {
   const { demoSummaryData } = props;
   const { numberOfPhotosRequiredByExistingSolutions, numberOfPhotosSeen } = demoSummaryData;
-  const [chartWidth, setChartWidth] = useState(400);
-  const [chartHeight, setChartHeight] = useState(300);
-  const [labeldx, setLabeldx] = useState(70);
+  const [chartWidth, setChartWidth] = useState();
+  const [chartHeight, setChartHeight] = useState();
+  const [labeldx, setLabeldx] = useState();
 
   const size = useWindowSize();
 
@@ -43,13 +43,13 @@ const DemoChart = (props) => {
       <XAxis dataKey="name" />
       <Bar
         dataKey="Existing solution"
-        fill="#61B7E1"
+        fill="#132832"
         label={<CustomizedLabel key="Existing solution" dx={labeldx} />}
         animationDuration={1000}
       />
       <Bar
         dataKey="Using Reunite"
-        fill="#132832"
+        fill="#61B7E1"
         label={<CustomizedLabel key="Using Reunite" dx={labeldx} />}
         animationDuration={1000}
         animationBegin={1500}
