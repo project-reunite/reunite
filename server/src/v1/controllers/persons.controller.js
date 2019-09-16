@@ -7,7 +7,7 @@ const getPersons = async function(req, res, next) {
             host: req.protocol + '://' + req.get('host'),
         });
         res.status(200).send(persons);
-    } catch (err) {
+    } catch(err) {
         next(err);
     }
 };
@@ -15,11 +15,8 @@ const getPersons = async function(req, res, next) {
 const getPerson = async function(req, res, next) {
     let id = req.params.id;
     try {
-        const person = await personsService.getPerson(
-            id,
-            req.protocol + '://' + req.get('host')
-        );
-        if (person.statusCode === 404) {
+        const person = await personsService.getPerson(id, req.protocol + '://' + req.get('host') );
+        if(person.statusCode === 404) {
             const error = {
                 message: `person ${id} not found`,
                 statusCode: 404,
@@ -28,7 +25,7 @@ const getPerson = async function(req, res, next) {
         } else {
             res.status(200).send(person);
         }
-    } catch (err) {
+    } catch(err) {
         next(err);
     }
 };
@@ -37,7 +34,7 @@ const getPersonUrls = async function(req, res, next) {
     try {
         const personUrls = await personsService.getPersonUrls();
         res.status(200).send(personUrls);
-    } catch (err) {
+    } catch(err) {
         next(err);
     }
 };
@@ -47,7 +44,7 @@ const getPair = async function(req, res, next) {
         const pairIndex = req.params.index;
         const pair = await personsService.getPair(pairIndex);
         res.status(200).send(pair);
-    } catch (err) {
+    } catch(err) {
         next(err);
     }
 };

@@ -1,16 +1,23 @@
 const numberOfFeatures = 6;
-const featureConfidence = [0.8, 0.5, 0.5, 0.5, 0.5, 0.5];
+const featureConfidence = [
+    0.8,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+];
 
 const addPadding = (n, numberOfFeatures) => {
-    for (let i = n.length; i < numberOfFeatures; i++) {
+    for(let i = n.length; i < numberOfFeatures; i++) {
         n = '0' + n;
     }
     return n;
 };
 
-const generateAllPeople = numberOfFeatures => {
+const generateAllPeople = (numberOfFeatures) => {
     const list = [];
-    for (let i = 0; i < 2 ** numberOfFeatures; i++) {
+    for(let i = 0; i < 2 ** numberOfFeatures; i++) {
         let n = addPadding(parseInt(i, 10).toString(2), numberOfFeatures);
         list.push(n);
     }
@@ -23,17 +30,15 @@ const replaceCharAt = (string, char, index) => {
     return string.join('');
 };
 
-const generatePairsFromPeople = people => {
+const generatePairsFromPeople = (people) => {
     let pairs = [];
-    for (let i = 0; i < numberOfFeatures; i++) {
-        pairs = pairs.concat(
-            people.map(person => replaceCharAt(person, '*', i))
-        );
+    for(let i = 0; i < numberOfFeatures; i++) {
+        pairs = pairs.concat(people.map(person => replaceCharAt(person, '*', i)));
     }
     return [...new Set(pairs)];
 };
 
-const generateAllPairs = numberOfFeatures => {
+const generateAllPairs = (numberOfFeatures) => {
     const people = generateAllPeople(numberOfFeatures);
     return generatePairsFromPeople(people);
 };
@@ -51,13 +56,10 @@ const countChoicesByDecisions = (decisions, numberOfFeatures) => {
 };
 
 const getPrediction = (previousDecisions, numberOfFeatures) => {
-    const counter = countChoicesByDecisions(
-        previousDecisions,
-        numberOfFeatures
-    );
+    const counter = countChoicesByDecisions(previousDecisions, numberOfFeatures);    
     const prediction = new Array(numberOfFeatures).fill(0.5);
 
-    for (let i = 0; i < numberOfFeatures; i++) {
+    for(let i = 0; i < numberOfFeatures; i++) {
         prediction[i] *= (1 - featureConfidence[i]) ** Math.abs(counter[i]);
         if (counter[i] > 0) {
             prediction[i] = 1 - prediction[i];
@@ -69,7 +71,7 @@ const getPrediction = (previousDecisions, numberOfFeatures) => {
 const rankPerson = (person, prediction) => {
     let probability = 1;
     person = person.split('');
-    for (let i = 0; i < prediction.length; i++) {
+    for(let i = 0; i < prediction.length; i++) {
         probability *= 1 - Math.abs(prediction[i] - person[i]);
     }
     return {
@@ -80,7 +82,7 @@ const rankPerson = (person, prediction) => {
 
 const rankPair = (pair, prediction) => {
     let probability = 1;
-    for (let i = 0; i < prediction.length; i++) {
+    for(let i = 0; i < prediction.length; i++) {
         if (pair[i] === '*') {
             continue;
         }
@@ -92,7 +94,7 @@ const rankPair = (pair, prediction) => {
     };
 };
 
-const getRemainingPeople = viewedPeople => {
+const getRemainingPeople = (viewedPeople) => {
     const allPeople = generateAllPeople(numberOfFeatures);
     return allPeople.filter(person => !viewedPeople.includes(person));
 };
@@ -105,10 +107,8 @@ const getNextDecision = (decisions, viewedPeople) => {
     if (pairs.length === 0) {
         const people = getRemainingPeople(viewedPeople);
         let rankedPeople = people.map(person => rankPerson(person, prediction));
-        rankedPeople = rankedPeople.sort(
-            (a, b) => b.probability - a.probability
-        );
-        if (rankedPeople.length === 0) {
+        rankedPeople = rankedPeople.sort((a,b) => (b.probability - a.probability));
+        if(rankedPeople.length === 0) {
             return { choices: [] };
         } else {
             viewedPeople.push(rankedPeople[0].person);
@@ -137,9 +137,9 @@ const getNextDecision = (decisions, viewedPeople) => {
             };
         }
     } else {
-        pairs = pairs.sort((a, b) => b - a);
+        pairs = pairs.sort((a,b) => (b - a));
         pairs = pairs.map(pair => rankPair(pair, prediction));
-        pairs = pairs.sort((a, b) => b.probability - a.probability);
+        pairs = pairs.sort((a,b) => (b.probability - a.probability));
         const best = pairs[0].pair;
         let choiceA = best.repeat(1);
         let choiceB = best.repeat(1);
@@ -148,7 +148,7 @@ const getNextDecision = (decisions, viewedPeople) => {
         choiceB = replaceCharAt(choiceB, '1', featureChanged);
         viewedPeople.push(choiceA);
         viewedPeople.push(choiceB);
-
+        
         return {
             skipInput: {
                 decisions,

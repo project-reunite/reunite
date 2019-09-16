@@ -10,7 +10,7 @@ const getDecision = async function(req, res, next) {
             viewedPeople
         );
         res.status(200).send(decision);
-    } catch (err) {
+    } catch(err) {
         next(err);
     }
     try {
