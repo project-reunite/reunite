@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { origin } from "./config";
-// import apiRequests from "./utils/apiRequests";
 import socketIOClient from "socket.io-client";
 import posed, { PoseGroup } from "react-pose";
 import "./App.css";
-
-//TODO: call this at start ?
-// const getUrls = async () => {
-//   const response = await apiRequests.getPersonUrls();
-//   const urls = response.data;
-//   return urls;
-// };
 
 const Item = posed.li({
   flip: {

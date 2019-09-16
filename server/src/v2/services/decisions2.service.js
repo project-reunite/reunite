@@ -97,19 +97,6 @@ const getRemainingPeople = viewedPeople => {
     return allPeople.filter(person => !viewedPeople.includes(person));
 };
 
-const sendRankedPeopleToDemo = (decisions, viewedPeople, socket) => {
-    const people = getRemainingPeople(viewedPeople);
-    const prediction = getPrediction(decisions, numberOfFeatures);
-    let rankedPeople = people.map(person => rankPerson(person, prediction));
-    rankedPeople = rankedPeople.sort((a, b) => b.probability - a.probability);
-    const rankedPeopleIds = rankedPeople.map(details => details.person);
-    try {
-        socket.emit('rankedPeople', rankedPeopleIds);
-    } catch (error) {
-        console.error(`Error: ${error.code}`);
-    }
-};
-
 const getNextDecision = (decisions, viewedPeople) => {
     let pairs = generateAllPairs(numberOfFeatures);
     const viewedPairs = generatePairsFromPeople(viewedPeople);
@@ -201,7 +188,6 @@ const getNextDecision = (decisions, viewedPeople) => {
 
 module.exports = {
     getNextDecision,
-    sendRankedPeopleToDemo,
     getPrediction,
     rankPerson,
 };
