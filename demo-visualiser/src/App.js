@@ -14,8 +14,13 @@ const Item = posed.li({
 });
 
 const Face = props => {
-  const { src } = props;
-  return <img className="face" src={src} alt="Missing person"></img>;
+  const { src, name } = props;
+  return (
+    <div className="person-container">
+      <img className="face" src={src} alt="Missing person"></img>
+      {name}
+    </div>
+  );
 };
 
 function App() {
@@ -26,6 +31,7 @@ function App() {
       try {
         const socket = socketIOClient(origin);
         socket.on("rankedPeople", urls => {
+          console.log(urls);
           setUrls(urls);
         });
       } catch (err) {
@@ -40,8 +46,12 @@ function App() {
       <ul id="#menu">
         <PoseGroup>
           {urls.map(url => (
-            <Item key={url}>
-              <Face key={url} src={`${origin}${url}`} />
+            <Item key={url.name}>
+              <Face
+                key={url.name}
+                src={`${origin}${url.img_url}`}
+                name={url.name}
+              />
             </Item>
           ))}
         </PoseGroup>

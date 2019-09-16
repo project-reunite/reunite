@@ -14,20 +14,15 @@ body {
   margin-right: auto;
 }
 
+.person-container {
+  width: 200px;
+  font-size: 80%;
+  text-align: center;
+}
+
 .face {
   border: 1px solid black;
   width: 200px;
-}
-
-@media only screen and (max-width: 600px) {
-  body {
-    font-size: 12px;
-  }
-
-  .face {
-    text-align: center;
-    width: 120px;
-  }
 }
 
 ul {
@@ -44,4 +39,16 @@ li {
   border-radius: 2px;
   background: white;
   margin: 10px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 12px;
+  }
+
+  .face {
+    text-align: center;
+    width: 120px;
+  }
 }

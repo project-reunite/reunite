@@ -10,17 +10,16 @@ const getDecision = async function(req, res, next) {
             viewedPeople
         );
         res.status(200).send(decision);
-    } catch(err) {
-        next(err);
-    }
-
-    try {
-        const rankedUrls = await personsService.getOrderedPersonUrls(decisions);
-        req.io.emit('rankedPeople', rankedUrls);
     } catch (err) {
         next(err);
     }
 
+    try {
+        const rankedUrls = await personsService.getOrderedPersons(decisions);
+        req.io.emit('rankedPeople', rankedUrls);
+    } catch (err) {
+        next(err);
+    }
 };
 
 module.exports = {
