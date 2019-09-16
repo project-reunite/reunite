@@ -24,7 +24,6 @@ const { flexStyle } = require('../../styles/flex-styles');
 
 const Dashboard = (props) => {
   const [appState, setAppState] = useState(appStatus.LANGUAGE_SELECT);
-  const [personId, setPersonId] = useState(null);
   const [decisions, setDecisions] = useState([{}]);
   const [viewedPeople, setViewedPeople] = useState([]);
   const [foundPersonDetails, setFoundPersonDetails] = useState({});
@@ -55,10 +54,6 @@ const Dashboard = (props) => {
     setAppState(appStatus.LANGUAGE_SELECT);
   };
 
-  const setServerError = () => {
-    setAppState(appStatus.ERROR);
-  };
-
   const getLanguageSelectionPanel = () => (
     <LanguageSelectionPanel
       submitLanguage={(code) => {
@@ -66,6 +61,47 @@ const Dashboard = (props) => {
         setAppState(appStatus.WELCOME_PANEL);
       }}
     />
+  );
+
+  const getWelcomeCard = () => (
+    <WelcomeCard moveOn={() => setAppState(appStatus.DEMO_INFO_PANEL)} />
+  );
+
+  const getDemoInfoPanel = () => (
+    <DemoInfoPanel moveOn={() => setAppState(appStatus.COMPARE_PICTURES)} />
+  );
+
+  const getPersonSelectionPanel = () => (
+    <PersonSelectionPanel
+      decisions={decisions}
+      viewedPeople={viewedPeople}
+      onChoice={(decisionList, viewedPeopleList) => {
+        setDecisions(decisionList);
+        setViewedPeople(viewedPeopleList);
+      }}
+      onMatch={(person) => {
+        setFoundPersonDetails(person);
+        setAppState(appStatus.MATCH_FOUND);
+      }}
+      onError={() => setAppState(appStatus.ERROR)}
+      restartApp={restartApp}
+    />
+  );
+
+  const getMatchCard = () => (
+    <Flex {...flexStyle}>
+      <MatchCard
+        foundPersonDetails={foundPersonDetails}
+        confirmMatch={() => {
+          setAppState(appStatus.DEMO_COMPLETE);
+          apiRequests.postStatistics(foundPersonDetails._id);
+        }}
+        continueSearch={() => {
+          setFoundPersonDetails([]);
+          setAppState(appStatus.COMPARE_PICTURES);
+        }}
+      />
+    </Flex>
   );
 
   const getDemoSummaryPanel = () => (
@@ -78,53 +114,10 @@ const Dashboard = (props) => {
 
   const getFurtherInfoPanel = () => <FurtherInfoPanel />;
 
-  const getWelcomeCard = () => (
-    <WelcomeCard moveOn={() => setAppState(appStatus.DEMO_INFO_PANEL)} />
-  );
-
-  const getPersonSelectionPanel = () => (
-    <PersonSelectionPanel
-      decisions={decisions}
-      viewedPeople={viewedPeople}
-      onChoice={(decisionList, viewedPeopleList) => {
-        setDecisions(decisionList);
-        setViewedPeople(viewedPeopleList);
-      }}
-      onMatch={(person) => {
-        setPersonId(person);
-        setAppState(appStatus.MATCH_FOUND);
-      }}
-      onError={() => setAppState(appStatus.ERROR)}
-      restartApp={restartApp}
-    />
-  );
-
-  const getMatchCard = () => (
-    <Flex {...flexStyle}>
-      <MatchCard
-        restartApp={restartApp}
-        id={personId}
-        onError={() => setServerError()}
-        confirmMatch={(info) => {
-          setFoundPersonDetails(info);
-          setAppState(appStatus.DEMO_COMPLETE);
-          apiRequests.postStatistics(personId);
-        }}
-        continueSearch={() => {
-          setAppState(appStatus.COMPARE_PICTURES);
-        }}
-      />
-    </Flex>
-  );
-
-  const getDemoInfoPanel = () => (
-    <DemoInfoPanel moveOn={() => setAppState(appStatus.COMPARE_PICTURES)} />
-  );
-
   const getErrorDialog = () => <ErrorDialog restartApp={restartApp} close={restartApp} />;
 
   const getMainPanel = () => (
-    <div>
+    <div className="mainPanel">
       {
         {
           [appStatus.LANGUAGE_SELECT]: getLanguageSelectionPanel(),

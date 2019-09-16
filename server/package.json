@@ -52,6 +52,7 @@
     "api-spec-converter": "^2.8.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "country-list-js": "^3.1.5",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "express-openapi-validate": "^0.4.4",

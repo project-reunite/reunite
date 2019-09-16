@@ -3,6 +3,11 @@ const matchCardStyle = {
   borderRadius: '20px',
 };
 
+const statsCardStyle = {
+  margin: '2px',
+  borderRadius: '20px',
+};
+
 const regularCardStyle = {
   margin: '4px',
   borderRadius: '20px',
@@ -31,4 +36,5 @@ module.exports = {
   regularCardStyle,
   cardFooterStyle,
   cardImageStyle,
+  statsCardStyle,
 };

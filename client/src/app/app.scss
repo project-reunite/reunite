@@ -1,6 +1,10 @@
 h1 {
   font-size: 40px;
-  color: #58606e;
+  color: #171717;
+}
+
+h3 {
+  margin: 0;
 }
 
 .cardTitle {
@@ -9,6 +13,16 @@ h1 {
 
 .singleCardContainer p {
   font-size: 1.5em;
+}
+
+.statsSummaryCard {
+  height: 680px;
+}
+
+.demoChart {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cardContainer p {
@@ -87,10 +101,22 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   object-fit: contain;
+  padding-bottom: 0px;
 }
 
 .flagImage {
   margin: 10px 10px 0px 10px;
+}
+
+.summaryPersonImage {
+  width: 150px;
+  height: 150px;
+  display: block;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
 }
 
 // covers 15" laptop screens
@@ -126,7 +152,15 @@ h1 {
 // covers iPad (768x1024) and iPhone X (375x812)
 @media only screen and (max-width: 600px) {
   h1 {
-    font-size: 1.3em
+    font-size: 1.2em
+  }
+
+  h3 {
+    font-size: 0.9em
+  }
+
+  .statsSummaryCard {
+    height: 560px;
   }
 
   .singleCardContainer {
@@ -180,6 +214,10 @@ h1 {
     padding-top: 6px;
   }
 
+  .statsSummaryCard {
+    height: 550px;
+  }
+
   .cardImage {
     width: 160px;
     height: 160px;
@@ -196,6 +234,10 @@ h1 {
     font-size: 1.1em
   }
 
+  .statsSummaryCard {
+    height: 445px;
+  }
+
   .cardContainer p {
     font-size: 0.6em;
   }
@@ -205,6 +247,11 @@ h1 {
     height: 60px;
   }
 
+  .summaryPersonImage {
+    width: 100px;
+    height: 100px;
+  }
+
   .cardImage {
     width: 130px;
     height: 130px;
@@ -212,16 +259,6 @@ h1 {
 
   .cardTitle {
     font-size: 15px;
-  }
-
-  .ageSelectCardImage {
-    width: 100px;
-    height: 120px;
-  }
-
-  .genderSelectCardImage {
-    width: 140px;
-    height: 130px;
   }
 
   .smallerCardImage {

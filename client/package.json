@@ -24,7 +24,9 @@
     "react-dom": "^16.8.6",
     "react-router": "^3.0.5",
     "react-scripts": "3.0.1",
-    "regenerator-runtime": "^0.13.2"
+    "recharts": "^1.7.1",
+    "regenerator-runtime": "^0.13.2",
+    "seedrandom": "^3.0.3"
   },
   "scripts": {
     "start": "PORT=41002 react-scripts start",

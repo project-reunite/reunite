@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'mineral-ui/themes';
-import LocaleContext from '../locale-context.js';
+import LocaleContext from '../locale-context';
 import Dashboard from '../components/dashboard';
 import './app.scss';
 

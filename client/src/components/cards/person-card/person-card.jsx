@@ -51,34 +51,32 @@ const PersonCard = (props) => {
   }
 
   return (
-    <div className="cardContainer">
-      <Card style={regularCardStyle} className="personCard" data-cy="person-card">
-        <CardImage
-          style={cardImageStyle}
-          className="cardImage"
-          src={details.data.img_url}
-          alt="gradient placeholder"
-        />
-        <CardFooter style={cardFooterStyle}>
-          <Button
-            style={secondButtonStyle}
-            iconStart={successIcon}
-            onClick={onMatch}
-            data-cy="select-match"
-          >
-            <Translate string="person-card.my-person" />
-          </Button>
-          <Button
-            style={buttonStyle}
-            className="cardButton"
-            iconStart={moreInfoIcon}
-            onClick={onClick}
-          >
-            <Translate string="person-card.similar" />
-          </Button>
-        </CardFooter>
-      </Card>
-    </div>
+    <Card style={regularCardStyle} className="personCard" data-cy="person-card">
+      <CardImage
+        style={cardImageStyle}
+        className="cardImage"
+        src={details.data.img_url}
+        alt="gradient placeholder"
+      />
+      <CardFooter style={cardFooterStyle}>
+        <Button
+          style={secondButtonStyle}
+          iconStart={successIcon}
+          onClick={() => onMatch(details.data)}
+          data-cy="select-match"
+        >
+          <Translate string="person-card.my-person" />
+        </Button>
+        <Button
+          style={buttonStyle}
+          className="cardButton"
+          iconStart={moreInfoIcon}
+          onClick={onClick}
+        >
+          <Translate string="person-card.similar" />
+        </Button>
+      </CardFooter>
+    </Card>
   );
 };
 

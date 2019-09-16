@@ -3,7 +3,6 @@ import React from 'react';
 import Card, { CardImage, CardBlock, CardTitle } from 'mineral-ui/Card';
 import { FlexItem } from 'mineral-ui/Flex';
 import Flex from 'mineral-ui/Flex/Flex';
-import IconModeComment from 'mineral-ui-icons/IconModeComment';
 import IconCheckCircle from 'mineral-ui-icons/IconCheckCircle';
 import IconBook from 'mineral-ui-icons/IconBook';
 import IconHelp from 'mineral-ui-icons/IconHelp';
@@ -25,7 +24,11 @@ const FurtherInfoPanel = () => (
             <Translate string="further-info.title" />
           </CardTitle>
           <CardBlock>
-            <CardImage className="smallerCardImage" src="reunite-dark.svg" alt="gradient placeholder" />
+            <CardImage
+              className="smallerCardImage"
+              src="reunite-dark.svg"
+              alt="gradient placeholder"
+            />
           </CardBlock>
           <CardBlock style={cardBlockStyle}>
             <Translate string="further-info.message-1" />
