@@ -43,7 +43,7 @@ const DemoSummaryPanel = (props) => {
               alt="gradient placeholder"
             />
             <CardBlock>
-              <h3>
+              <h3 style={{ color: 'black' }}>
                 <Translate string="demo-summary.message-2" />
               </h3>
             </CardBlock>

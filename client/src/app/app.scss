@@ -19,6 +19,12 @@ h3 {
   height: 680px;
 }
 
+.demoChart {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .cardContainer p {
   font-size: 1.5em;
 }
@@ -146,7 +152,7 @@ h3 {
 // covers iPad (768x1024) and iPhone X (375x812)
 @media only screen and (max-width: 600px) {
   h1 {
-    font-size: 1.3em
+    font-size: 1.2em
   }
 
   h3 {
@@ -154,7 +160,7 @@ h3 {
   }
 
   .statsSummaryCard {
-    height: 520px;
+    height: 560px;
   }
 
   .singleCardContainer {
@@ -208,6 +214,10 @@ h3 {
     padding-top: 6px;
   }
 
+  .statsSummaryCard {
+    height: 550px;
+  }
+
   .cardImage {
     width: 160px;
     height: 160px;
@@ -225,7 +235,7 @@ h3 {
   }
 
   .statsSummaryCard {
-    height: 430px;
+    height: 445px;
   }
 
   .cardContainer p {

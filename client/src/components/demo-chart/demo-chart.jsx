@@ -31,11 +31,12 @@ const DemoChart = (props) => {
   return (
     <BarChart
       width={chartWidth}
+      className="demoChart"
       height={chartHeight}
       data={data}
       margin={{
         top: 30,
-        right: 25,
+        right: 10,
         left: 10,
         bottom: -10,
       }}
