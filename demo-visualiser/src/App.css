@@ -26,6 +26,7 @@ body {
 }
 
 ul {
+  padding: 0px;
   list-style: none;
   align-items: center;
   justify-content: center;
@@ -45,6 +46,10 @@ li {
 @media only screen and (max-width: 600px) {
   body {
     font-size: 12px;
+  }
+
+  .person-container {
+    width: 120px;
   }
 
   .face {
