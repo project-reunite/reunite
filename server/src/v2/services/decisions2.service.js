@@ -1,12 +1,6 @@
-const numberOfFeatures = 6;
-const featureConfidence = [
-    0.8,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-    0.5,
-];
+const config = require('../../config');
+
+const { NUM_FEATURES, FEATURE_CONFIDENCE } = config;
 
 const addPadding = (n, numberOfFeatures) => {
     for(let i = n.length; i < numberOfFeatures; i++) {
@@ -32,7 +26,7 @@ const replaceCharAt = (string, char, index) => {
 
 const generatePairsFromPeople = (people) => {
     let pairs = [];
-    for(let i = 0; i < numberOfFeatures; i++) {
+    for(let i = 0; i < NUM_FEATURES; i++) {
         pairs = pairs.concat(people.map(person => replaceCharAt(person, '*', i)));
     }
     return [...new Set(pairs)];
@@ -56,11 +50,11 @@ const countChoicesByDecisions = (decisions, numberOfFeatures) => {
 };
 
 const getPrediction = (previousDecisions, numberOfFeatures) => {
-    const counter = countChoicesByDecisions(previousDecisions, numberOfFeatures);    
+    const counter = countChoicesByDecisions(previousDecisions, numberOfFeatures);
     const prediction = new Array(numberOfFeatures).fill(0.5);
 
     for(let i = 0; i < numberOfFeatures; i++) {
-        prediction[i] *= (1 - featureConfidence[i]) ** Math.abs(counter[i]);
+        prediction[i] *= (1 - FEATURE_CONFIDENCE[i]) ** Math.abs(counter[i]);
         if (counter[i] > 0) {
             prediction[i] = 1 - prediction[i];
         }
@@ -95,14 +89,14 @@ const rankPair = (pair, prediction) => {
 };
 
 const getRemainingPeople = (viewedPeople) => {
-    const allPeople = generateAllPeople(numberOfFeatures);
+    const allPeople = generateAllPeople(NUM_FEATURES);
     return allPeople.filter(person => !viewedPeople.includes(person));
 };
 
 const getNextDecision = (decisions, viewedPeople) => {
-    let pairs = generateAllPairs(numberOfFeatures);
+    let pairs = generateAllPairs(NUM_FEATURES);
     const viewedPairs = generatePairsFromPeople(viewedPeople);
-    const prediction = getPrediction(decisions, numberOfFeatures);
+    const prediction = getPrediction(decisions, NUM_FEATURES);
     pairs = pairs.filter(pair => !viewedPairs.includes(pair));
     if (pairs.length === 0) {
         const people = getRemainingPeople(viewedPeople);
@@ -148,7 +142,7 @@ const getNextDecision = (decisions, viewedPeople) => {
         choiceB = replaceCharAt(choiceB, '1', featureChanged);
         viewedPeople.push(choiceA);
         viewedPeople.push(choiceB);
-        
+
         return {
             skipInput: {
                 decisions,

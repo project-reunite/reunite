@@ -13,19 +13,18 @@ const { flexStyle } = require('../../../styles/flex-styles');
 const { buttonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
 const { cardImageStyle } = require('../../../styles/card-styles');
+const { numPhotosViaExistingSolutions } = require('../../../config');
 
 const DemoSummaryPanel = (props) => {
   const { moveOn, decisions, foundPersonDetails } = props;
   const nextIcon = <IconNext style={iconStyle} />;
 
-  const numberOfPhotosInTotal = 64;
-  const numberOfPhotosRequiredByExistingSolutions = numberOfPhotosInTotal / 2;
-  const numberOfChoices = decisions.length;
-  const numberOfPhotosSeen = numberOfChoices * 2;
+  const numChoices = decisions.length;
+  const numPhotosSeen = numChoices * 2;
 
   const demoSummaryData = {
-    numberOfPhotosRequiredByExistingSolutions,
-    numberOfPhotosSeen,
+    numPhotosViaExistingSolutions,
+    numPhotosSeen,
   };
 
   return (

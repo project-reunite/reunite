@@ -23,7 +23,10 @@ const getChoices = async (body) => {
     const response = await axios.post(`${origin}/api/v2/decisions/`, body);
     if (response.data.choices.length > 0) {
       const { decisions, viewedPeople } = response.data.choices[0].nextInput;
-      savedData = { decisions: decisions.slice(1, decisions.length - 1), viewedPeople };
+      savedData = {
+        decisions: decisions.slice(1, decisions.length - 1),
+        viewedPeople,
+      };
     }
     return response;
   } catch (err) {
@@ -40,9 +43,15 @@ const getTree = async (queryString) => {
   }
 };
 
+const getPersonUrls = async () => {
+  const urls = await axios.get(`${origin}/api/v1/persons/urls`);
+  return urls;
+};
+
 export default {
   postStatistics,
   getPerson,
   getChoices,
   getTree,
+  getPersonUrls,
 };
