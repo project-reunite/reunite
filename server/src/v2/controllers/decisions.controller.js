@@ -13,12 +13,14 @@ const getDecision = async function(req, res, next) {
     } catch(err) {
         next(err);
     }
+
     try {
         const rankedUrls = await personsService.getOrderedPersonUrls(decisions);
         req.io.emit('rankedPeople', rankedUrls);
     } catch (err) {
-        console.error(err);
+        next(err);
     }
+
 };
 
 module.exports = {
