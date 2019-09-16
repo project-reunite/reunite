@@ -7,7 +7,7 @@ import CustomizedLabel from './customized-label';
 
 const DemoChart = (props) => {
   const { demoSummaryData } = props;
-  const { numberOfPhotosRequiredByExistingSolutions, numberOfPhotosSeen } = demoSummaryData;
+  const { numPhotosViaExistingSolutions, numPhotosSeen } = demoSummaryData;
   const [chartWidth, setChartWidth] = useState();
   const [chartHeight, setChartHeight] = useState();
   const [labeldx, setLabeldx] = useState();
@@ -23,8 +23,8 @@ const DemoChart = (props) => {
 
   const data = [
     {
-      'Existing solution': numberOfPhotosRequiredByExistingSolutions,
-      'Using Reunite': numberOfPhotosSeen,
+      'Existing solution': numPhotosViaExistingSolutions,
+      'Using Reunite': numPhotosSeen,
     },
   ];
 
