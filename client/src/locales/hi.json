@@ -7,7 +7,7 @@
   "welcome.start": "शुरु",
   "welcome.info": "जानकारी",
   "welcomePanel.message-1": "कल्पना कीजिए कि %numMissingPeople% लापता लोग हैं, और आपको उनमें से एक को खोजने की जरूरत है.",
-  "welcomePanel.message-2": "उन्हें खोजने का एकमात्र तरीका %numMissingPeople% फ़ोटो एक-एक करके स्क्रॉल करना है.",
+  "welcomePanel.message-2": "उन्हें खोजने का एकमात्र तरीका फ़ोटो एक-एक करके स्क्रॉल करना है.",
   "welcomePanel.message-3": "तो, आपको उन्हें खोजने से पहले औसतन %numPhotosViaExistingSolutions% तस्वीरें देखनी होंगी.",
   "welcomePanel.message-4": "हालाँकि, Reunite app का उपयोग करके, आप उन्हें बहुत कम फ़ोटो में पाएंगे.",
   "demo-info.open-pictures": "%numMissingPeople% लापता लोगों को देखने के लिए यहां टैप करें",

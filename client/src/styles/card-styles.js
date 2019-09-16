@@ -26,8 +26,8 @@ const cardFooterStyle = {
 
 const cardImageStyle = {
   borderRadius: '20px',
-  paddingBottom: '0.5em',
-  marginBottom: '1px',
+  padding: '3px',
+  marginBottom: 0,
 };
 
 module.exports = {

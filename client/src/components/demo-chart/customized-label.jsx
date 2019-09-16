@@ -32,7 +32,7 @@ const CustomizedLabel = (props) => {
       textAnchor="middle"
     >
       {label}
-      {` - ${value}`}
+      {`: ${value}`}
     </text>
   );
 };

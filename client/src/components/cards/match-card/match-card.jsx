@@ -11,7 +11,7 @@ import ConfirmMatchDialog from '../../dialogs/confirm-match-dialog';
 import Translate from '../../../locales/translate';
 
 const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../../styles/card-styles');
-const { buttonStyle } = require('../../../styles/button-styles');
+const { buttonStyle, secondButtonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
 
 const MatchCard = (props) => {
@@ -54,7 +54,7 @@ const MatchCard = (props) => {
                 {successMessage}
               </Button>
               <Button
-                style={buttonStyle}
+                style={secondButtonStyle}
                 onClick={continueSearch}
                 iconStart={<IconCancel style={iconStyle} />}
               >
