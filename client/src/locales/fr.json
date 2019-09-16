@@ -24,7 +24,7 @@
   "confirm-match-dialog.message": "Un travailleur humanitaire a été contacté. Quand il/elle a vérifié votre selection, il/elle vous notifiera.",
   "no-match-dialog.message": "Aucune correspondance n'a été trouvée, vos choix seront enregistrés et vous serez contacté si une correspondance potentielle est ajoutée au système.",
   "demo-summary.title": "Personne Retrouvée!",
-  "demo-summary.message-2": "Photos requises pour trouver votre personne",
+  "demo-summary.message-2": "Photos requises pour trouver votre personne:",
   "demo-summary.message-4": "photos de moins utilisées que la solution existante",
   "stats-summary-1": "Site de charité",
   "stats-summary-2": "Reunite",
