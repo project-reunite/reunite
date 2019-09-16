@@ -12,18 +12,16 @@ import Translate from '../../../locales/translate';
 const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../../styles/card-styles');
 const { flexStyle } = require('../../../styles/flex-styles');
 const { buttonStyle } = require('../../../styles/button-styles');
-
 const { iconStyle } = require('../../../styles/icon-styles');
+const { numPhotosViaExistingSolutions } = require('../../../config');
 
 const DemoSummaryPanel = (props) => {
   const { foundPersonDetails, moveOn, decisions } = props;
   const nextIcon = <IconNext style={iconStyle} />;
 
-  const numberOfPhotosInTotal = 64;
-  const numberOfPhotosRequiredByExistingSolutions = numberOfPhotosInTotal / 2;
-  const numberOfChoices = decisions.length;
-  const numberOfPhotosSeen = numberOfChoices * 2;
-  const numberOfPhotosQuicker = numberOfPhotosRequiredByExistingSolutions - numberOfPhotosSeen;
+  const numChoices = decisions.length;
+  const numPhotosSeen = numChoices * 2;
+  const numPhotosQuicker = numPhotosViaExistingSolutions - numPhotosSeen;
 
   return (
     <div className="singleCardContainer">
@@ -40,14 +38,14 @@ const DemoSummaryPanel = (props) => {
               alt="gradient placeholder"
             />
             <p>
-              {`${numberOfPhotosSeen} `}
+              {`${numPhotosSeen} `}
               <Translate string="demo-summary.message-2" />
             </p>
             <CardBlock style={cardBlockStyle}>
               <p>
-                {`${numberOfPhotosQuicker} `}
+                {`${numPhotosQuicker} `}
                 <Translate string="demo-summary.message-4" />
-                {` (${numberOfPhotosRequiredByExistingSolutions})`}
+                {` (${numPhotosViaExistingSolutions})`}
               </p>
             </CardBlock>
             <CardBlock>
