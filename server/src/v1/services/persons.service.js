@@ -32,7 +32,9 @@ const getPersons = async ({ filters, host }) => {
 const getPersonUrls = async () => {
     const persons = (await getPersons({ filters: { selector: {} } })).docs;
     const { NUM_FEATURES } = config;
-    const personsWithNFeatures = persons.filter(person => person._id.length === NUM_FEATURES);
+    const personsWithNFeatures = persons.filter(
+        person => person._id.length === NUM_FEATURES
+    );
     const urls = personsWithNFeatures.map(person => person.img_url);
     return urls;
 };
@@ -40,7 +42,7 @@ const getPersonUrls = async () => {
 const getOrderedPersons = async (decisions, viewedPeople) => {
     const persons = (await getPersons({ filters: { selector: {} } })).docs;
     const personsWith6Features = persons.filter(
-        person => person._id.length === 6
+        person => person._id.length === 7
     );
     const prediction = decisionsService.getPrediction(decisions, 6);
     let rankedPeople = personsWith6Features.map(person => ({
