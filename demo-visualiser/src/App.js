@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { origin } from "./config";
-import socketIOClient from "socket.io-client";
-import posed, { PoseGroup } from "react-pose";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import socketIOClient from 'socket.io-client';
+import posed, { PoseGroup } from 'react-pose';
+import Face from './Face';
+// import { origin } from '../../config';
+import './App.css';
 
 const Item = posed.li({
   flip: {
@@ -13,30 +14,30 @@ const Item = posed.li({
   },
 });
 
-const Face = props => {
-  const { src, name, personSeen, id, currentPersons } = props;
-  let imgClass = "face";
-  if (personSeen) imgClass += " filtered";
-  if (currentPersons.includes(id)) imgClass += " selected";
-  return (
-    <div className="person-container">
-      <img className={imgClass} src={src} alt="Missing person"></img>
-      {name}
-    </div>
-  );
-};
-
-function App() {
+const DemoVisualiser = () => {
   const [rankedPersons, setRankedPersons] = useState([]);
   const [currentPersons, setCurrentPersons] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     function fetchNewOrder() {
       try {
-        const socket = socketIOClient(origin);
-        socket.on("rankedPersons", rankedPersons => {
-          setCurrentPersons(rankedPersons.currentPersons);
-          setRankedPersons(rankedPersons.rankedPersons);
+        const socket = socketIOClient('http://localhost:9100');
+        socket.on('rankedPersons', (data) => {
+          setCurrentPersons(data.currentPersons);
+          setRankedPersons(data.rankedPersons);
+        });
+        socket.on('newUser', (username) => {
+          const newUsers = users.concat(username);
+          console.log(newUsers);
+          setUsers(newUsers);
+        });
+        socket.on('removeUser', (username) => {
+          const index = users.indexOf(username);
+          if (index > -1) {
+            users.splice(index, 1);
+          }
+          setUsers(users);
         });
       } catch (err) {
         console.log(err);
@@ -45,28 +46,38 @@ function App() {
     fetchNewOrder();
   }, []);
 
-  const faces = () => {
-    return (
-      <ul id="#menu">
-        <PoseGroup>
-          {rankedPersons.map(person => (
-            <Item key={person.name}>
-              <Face
-                key={person.name}
-                id={person._id}
-                src={`${origin}${person.img_url}`}
-                name={person.name}
-                personSeen={person.personSeen}
-                currentPersons={currentPersons}
-              />
-            </Item>
-          ))}
-        </PoseGroup>
-      </ul>
-    );
-  };
+  const userMenu = (
+    <ul>
+      <PoseGroup>
+        {users.map(user => (
+          <Item key={user}>
+            <p>{user}</p>
+          </Item>
+        ))}
+      </PoseGroup>
+    </ul>
+  );
 
-  return [faces()];
-}
+  const faces = (
+    <ul id="#menu">
+      <PoseGroup>
+        {rankedPersons.map(person => (
+          <Item key={person.name}>
+            <Face
+              key={person.name}
+              id={person._id}
+              src={`${origin}${person.img_url}`}
+              name={person.name}
+              personSeen={person.personSeen}
+              currentPersons={currentPersons}
+            />
+          </Item>
+        ))}
+      </PoseGroup>
+    </ul>
+  );
+  console.log(users);
+  return <div className="demo-visualiser-screen">{userMenu}</div>;
+};
 
-export default App;
+export default DemoVisualiser;
