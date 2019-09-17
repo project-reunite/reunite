@@ -48,10 +48,21 @@ const getPersonUrls = async () => {
   return urls;
 };
 
+const postUser = async () => {
+  const username = await axios.post(`${origin}/api/v1/users`);
+  return username;
+};
+
+const deleteUser = async (username) => {
+  await axios.delete(`${origin}/api/v1/users`, { username });
+};
+
 export default {
   postStatistics,
   getPerson,
   getChoices,
   getTree,
   getPersonUrls,
+  postUser,
+  deleteUser,
 };

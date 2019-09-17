@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
 import posed, { PoseGroup } from 'react-pose';
+import Face from './face';
 import { origin } from '../../config';
 import './demo-visualiser-screen.scss';
 
@@ -13,41 +14,30 @@ const Item = posed.li({
   },
 });
 
-const Face = (props) => {
-  const {
-    src, name, personSeen, id, currentPersons,
-  } = props;
-  console.log(currentPersons);
-  console.log(id);
-  let imgClass = 'face';
-  if (personSeen) {
-    imgClass += ' filtered';
-  }
-  if (currentPersons.includes(id)) {
-    imgClass += ' selected';
-    console.log(name);
-  }
-
-  return (
-    <div className="person-container">
-      <img className={imgClass} src={src} alt="Missing person" />
-      {name}
-    </div>
-  );
-};
-
 const DemoVisualiser = () => {
   const [rankedPersons, setRankedPersons] = useState([]);
   const [currentPersons, setCurrentPersons] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     function fetchNewOrder() {
       try {
         const socket = socketIOClient(origin);
         socket.on('rankedPersons', (data) => {
-          console.log(data.curre);
           setCurrentPersons(data.currentPersons);
           setRankedPersons(data.rankedPersons);
+        });
+        socket.on('newUser', (username) => {
+          const newUsers = users.concat(username);
+          console.log(newUsers);
+          setUsers(newUsers);
+        });
+        socket.on('removeUser', (username) => {
+          const index = users.indexOf(username);
+          if (index > -1) {
+            users.splice(index, 1);
+          }
+          setUsers(users);
         });
       } catch (err) {
         console.log(err);
@@ -55,6 +45,18 @@ const DemoVisualiser = () => {
     }
     fetchNewOrder();
   }, []);
+
+  const userMenu = (
+    <ul>
+      <PoseGroup>
+        {users.map(user => (
+          <Item key={user}>
+            <p>{user}</p>
+          </Item>
+        ))}
+      </PoseGroup>
+    </ul>
+  );
 
   const faces = (
     <ul id="#menu">
@@ -74,8 +76,8 @@ const DemoVisualiser = () => {
       </PoseGroup>
     </ul>
   );
-
-  return <div className="demo-visualiser-screen">{faces}</div>;
+  console.log(users);
+  return <div className="demo-visualiser-screen">{userMenu}</div>;
 };
 
 export default DemoVisualiser;
