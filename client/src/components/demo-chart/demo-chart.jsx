@@ -17,7 +17,7 @@ const DemoChart = (props) => {
   useEffect(() => {
     const isMobile = size.width < 600;
     setChartWidth(isMobile ? 300 : 400);
-    setChartHeight(isMobile ? 180 : 300);
+    setChartHeight(isMobile ? 170 : 300);
     setLabeldx(isMobile ? 55 : 70);
   }, [size]);
 
@@ -35,7 +35,7 @@ const DemoChart = (props) => {
       height={chartHeight}
       data={data}
       margin={{
-        top: 30,
+        top: 0,
         right: 10,
         left: 10,
         bottom: -10,
