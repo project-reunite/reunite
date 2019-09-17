@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', personsController.getPersons);
 
-router.get('/urls', personsController.getPersonUrls);
+router.get('/current', personsController.getPersonsWithNFeatures);
 
 router.get('/:id', personsController.getPerson);
 
