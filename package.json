@@ -41,7 +41,6 @@
   },
   "dependencies": {
     "concurrently": "^4.1.0",
-    "seedrandom": "^3.0.5",
     "wait-on": "^3.2.0"
   }
 }
