@@ -84,7 +84,15 @@ const DemoVisualiser = () => {
       <PoseGroup>
         {users.map(user => (
           <Item onClick={() => setCurrentUser(user)} key={user}>
-            <button type="submit">{user}</button>
+            {user === currentUser ? (
+              <button className="user-button selected-button" type="submit">
+                {user}
+              </button>
+            ) : (
+              <button className="user-button " type="submit">
+                {user}
+              </button>
+            )}
           </Item>
         ))}
       </PoseGroup>
