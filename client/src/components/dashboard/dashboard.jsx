@@ -28,7 +28,7 @@ const Dashboard = (props) => {
   const [viewedPeople, setViewedPeople] = useState([]);
   const [foundPersonDetails, setFoundPersonDetails] = useState({});
 
-  const { changeLanguage } = props;
+  const { changeLanguage, username } = props;
 
   const removeLastChoice = () => {
     setViewedPeople(viewedPeople.slice(0, -2));
@@ -73,6 +73,7 @@ const Dashboard = (props) => {
 
   const getPersonSelectionPanel = () => (
     <PersonSelectionPanel
+      username={username}
       decisions={decisions}
       viewedPeople={viewedPeople}
       onChoice={(decisionList, viewedPeopleList) => {

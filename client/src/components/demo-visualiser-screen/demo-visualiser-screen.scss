@@ -6,15 +6,37 @@
   text-align: center;
 }
 
+.demo-visualiser-screen h1 {
+  color: black;
+  text-align: center;
+}
+
+.demo-visualiser-screen h2 {
+  color: black;
+  text-align: center;
+}
+
+.demo-visualiser-screen .awaiting-search {
+  color: black;
+  text-align: center;
+  font-size: 30px;
+}
+
 .demo-visualiser-screen .person-container {
-  width: 200px;
+  width: 230px;
   font-size: 80%;
   text-align: center;
 }
 
+.demo-visualiser-screen button {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 140%;
+}
+
 .demo-visualiser-screen .face {
   border: 1px solid black;
-  width: 200px;
+  width: 230px;
 }
 
 .demo-visualiser-screen .filtered {
@@ -40,7 +62,7 @@
 .demo-visualiser-screen li {
   display: block;
   border-radius: 2px;
-  background: white;
+  // background: white;
   margin: 10px;
 }
 

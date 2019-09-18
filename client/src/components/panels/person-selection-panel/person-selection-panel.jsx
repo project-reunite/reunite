@@ -13,7 +13,7 @@ const { flexStyle } = require('../../../styles/flex-styles');
 
 const PersonSelectionPanel = (props) => {
   const {
-    restartApp, onError, onChoice, onMatch, decisions, viewedPeople,
+    restartApp, onError, onChoice, onMatch, decisions, viewedPeople, username,
   } = props;
 
   const [choices, setChoices] = useState([]);
@@ -26,6 +26,7 @@ const PersonSelectionPanel = (props) => {
         const response = await apiRequests.getChoices({
           decisions,
           viewedPeople,
+          username,
         });
         if (mounted) {
           if (response.data.choices.length === 0) {

@@ -2,7 +2,7 @@ const decisionsService = require('../services/decisions2.service');
 const personsService = require('../../v1/services/persons.service');
 
 const getDecision = async function(req, res, next) {
-    const { decisions, viewedPeople } = req.body;
+    const { decisions, viewedPeople, username } = req.body;
 
     try {
         const decision = await decisionsService.getNextDecision(
@@ -19,6 +19,7 @@ const getDecision = async function(req, res, next) {
             decision.choices[0].personId,
             decision.choices[1].personId,
         ];
+        detailsToDisplay.username = username;
         req.io.emit('rankedPersons', detailsToDisplay);
     } catch (err) {
         next(err);

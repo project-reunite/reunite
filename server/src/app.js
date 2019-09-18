@@ -9,7 +9,7 @@ const socketIo = require('socket.io');
 const app = express();
 
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = socketIo(server, { origins: '*:*' });
 
 io.on('connection', socket => {
     console.log('New client connected'),
@@ -33,13 +33,16 @@ app.use(bodyParser.json());
 app.use('/api/v1/', v1Routes);
 app.use('/api/v2/', v2Routes);
 
-app.use('/', express.static(path.join(__dirname, '..', '..', 'client', 'build')));
+app.use(
+    '/',
+    express.static(path.join(__dirname, '..', '..', 'client', 'build'))
+);
 app.use('/images', express.static(path.join(__dirname, '..', 'public'))); // This needs to be below `express.static(path.join(__dirname, '..', '..', 'client', 'build')` in order to overwrite the /images dir correctly. We should change the names so we don't have to do this
 
 app.use(middleware.errorHandler.handleErrors);
 
 server.listen(port, () => {
-    console.log(`App running on port ${port}`);
+    console.log(`App running well on port ${port}`);
 });
 
 // Uncomment to insert documents about the missing persons into Cloudant
