@@ -18,6 +18,16 @@ const getPerson = async (id) => {
   }
 };
 
+const getPersonsWithNFeatures = async () => {
+  try {
+    const response = await axios.get(`${origin}/api/v1/persons/current`);
+    const persons = response.data;
+    return persons;
+  } catch (err) {
+    throw err;
+  }
+};
+
 const getChoices = async (body) => {
   try {
     const response = await axios.post(`${origin}/api/v2/decisions/`, body);
@@ -60,6 +70,7 @@ const deleteUser = async (username) => {
 export default {
   postStatistics,
   getPerson,
+  getPersonsWithNFeatures,
   getChoices,
   getTree,
   getPersonUrls,

@@ -81,9 +81,6 @@ const PersonSelectionPanel = (props) => {
       <Flex wrap {...flexStyle}>
         {renderChildren()}
       </Flex>
-      <p>
-        <Translate string="comparisonPanel.subtitle" />
-      </p>
     </div>
   );
 };

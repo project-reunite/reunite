@@ -3,38 +3,31 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import apiRequests from '../../utils/apiRequests';
-import { shuffleArray } from '../../utils/utilFunctions';
 import { origin } from '../../config';
 import './missing-people-screen.scss';
 
-const getUrls = async () => {
-  const response = await apiRequests.getPersonUrls();
-  const urls = response.data;
-  return urls;
-};
-
-const getShuffledUrls = async () => {
-  const urls = await getUrls();
-  const shuffledUrls = shuffleArray(urls);
-  return shuffledUrls;
+const getPersonsInNameOrder = async () => {
+  const persons = await apiRequests.getPersonsWithNFeatures();
+  const personsInNameOrder = persons.sort((person1, person2) => (person1.name > person2.name));
+  return personsInNameOrder;
 };
 
 const MissingPeopleScreen = () => {
-  const [urls, setUrls] = useState([]);
+  const [persons, setPersons] = useState([]);
 
   useEffect(() => {
-    async function fetchUrls() {
+    async function fetchPersons() {
       try {
-        const newUrls = await getShuffledUrls();
-        setUrls(newUrls);
+        const newPersons = await getPersonsInNameOrder();
+        setPersons(newPersons);
       } catch (err) {
         console.log(err);
       }
     }
-    fetchUrls();
+    fetchPersons();
   }, []);
 
-  const numMissingPeople = urls.length || 128;
+  const numMissingPeople = persons.length || 128;
 
   const pageExplanation = [
     (
@@ -59,9 +52,17 @@ const MissingPeopleScreen = () => {
     ),
   ];
 
-  const faces = urls.map((url) => {
+  const faces = persons.map((person) => {
+    const { name } = person;
+    const url = person.img_url;
     const absoluteUrl = `${origin}${url}`;
-    return (<Face key={url} src={absoluteUrl} />);
+    return (
+      <Face
+        key={url}
+        src={absoluteUrl}
+        name={name}
+      />
+    );
   });
 
   return (
@@ -74,18 +75,19 @@ const MissingPeopleScreen = () => {
 };
 
 const Face = (props) => {
-  const { src } = props;
+  const { src, name } = props;
   return (
     <img
       className="face"
       src={src}
-      alt="Missing person"
+      alt={name}
     />
   );
 };
 
 Face.propTypes = {
   src: PropTypes.string.isRequired,
+  name: PropTypes.number.isRequired,
 };
 
 
