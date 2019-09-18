@@ -139,6 +139,10 @@ const Dashboard = (props) => {
   return (
     <div className="dashboardContainer">
       <Header submitLanguage={changeLanguage} restartApp={restartApp} goBack={goBack} />
+      <h4 style={{ textAlign: 'center', paddingTop: '1%', margin: 0 }}>
+        Demo Username:
+        {` ${username}`}
+      </h4>
       {MainPanel}
       <div className="footerPadding" />
       <Footer />

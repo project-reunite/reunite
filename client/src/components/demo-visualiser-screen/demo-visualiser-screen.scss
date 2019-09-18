@@ -29,10 +29,22 @@
   margin: 0 8px
 }
 
-.demo-visualiser-screen button {
+.demo-visualiser-screen .user-button {
   padding: 10px;
   border-radius: 10px;
   font-size: 140%;
+}
+
+.demo-visualiser-screen .cancel-icon {
+  padding: 0px;
+}
+
+.demo-visualiser-screen .remove-user-button {
+  border-radius: 10px;
+  font-size: 140%;
+  padding: 0px;
+  background-color: #f3f3f3;
+  border: none;
 }
 
 .demo-visualiser-screen .selected-button {

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
 import posed, { PoseGroup } from 'react-pose';
+import Button from 'mineral-ui/Button';
+
+import IconCancel from 'mineral-ui-icons/IconCancel';
 import apiRequests from '../../utils/apiRequests';
 
 import Face from './face';
@@ -9,11 +12,21 @@ import './demo-visualiser-screen.scss';
 
 const socket = socketIOClient(origin);
 
-const Item = posed.li({
+const FaceItem = posed.li({
   flip: {
     scale: 1,
     transition: {
+      delay: 500,
       duration: 2500,
+    },
+  },
+});
+
+const UserItem = posed.li({
+  flip: {
+    scale: 1,
+    transition: {
+      duration: 1000,
     },
   },
 });
@@ -67,12 +80,18 @@ const DemoVisualiser = () => {
     };
   });
 
+  const removeUser = (username) => {
+    const newUsers = [...users];
+    const index = newUsers.indexOf(username);
+    if (index > -1) {
+      newUsers.splice(index, 1);
+    }
+    setUsers(newUsers);
+  };
+
   useEffect(() => {
     socket.on('removeUser', (username) => {
-      const index = users.indexOf(username);
-      if (index > -1) {
-        users.splice(index, 1);
-      }
+      removeUser(username);
     });
     return () => {
       socket.off('removeUser');
@@ -83,17 +102,27 @@ const DemoVisualiser = () => {
     <ul>
       <PoseGroup>
         {users.map(user => (
-          <Item onClick={() => setCurrentUser(user)} key={user}>
-            {user === currentUser ? (
-              <button className="user-button selected-button" type="submit">
-                {user}
-              </button>
-            ) : (
-              <button className="user-button " type="submit">
-                {user}
-              </button>
-            )}
-          </Item>
+          <UserItem onClick={() => setCurrentUser(user)} key={user}>
+            <div>
+              <Button
+                className="remove-user-button"
+                onClick={() => removeUser(user)}
+                iconStart={<IconCancel className="cancel-icon" />}
+              />
+              {/* <button type="submit" onClick={() => removeUser(user)}>
+                delete
+              </button> */}
+              {user === currentUser ? (
+                <button className="user-button selected-button" type="submit">
+                  {user}
+                </button>
+              ) : (
+                <button className="user-button " type="submit">
+                  {user}
+                </button>
+              )}
+            </div>
+          </UserItem>
         ))}
       </PoseGroup>
     </ul>
@@ -103,7 +132,7 @@ const DemoVisualiser = () => {
     <ul id="#menu">
       <PoseGroup>
         {rankedPersons[currentUser].map(person => (
-          <Item key={person.name}>
+          <FaceItem key={person.name}>
             <Face
               key={person.name}
               id={person._id}
@@ -112,7 +141,7 @@ const DemoVisualiser = () => {
               personSeen={person.personSeen}
               currentPersons={currentPersons[currentUser]}
             />
-          </Item>
+          </FaceItem>
         ))}
       </PoseGroup>
     </ul>
@@ -120,14 +149,14 @@ const DemoVisualiser = () => {
     <ul id="#menu">
       <PoseGroup>
         {persons.map(person => (
-          <Item key={person.name}>
+          <FaceItem key={person.name}>
             <Face
               key={person.name}
               id={person._id}
               src={`${origin}${person.img_url}`}
               name={person.name}
             />
-          </Item>
+          </FaceItem>
         ))}
       </PoseGroup>
     </ul>
