@@ -36,10 +36,12 @@ const SimpleFace = (props) => {
 
 const DemoVisualiser = () => {
   const [rankedPersons, setRankedPersons] = useState({});
-  const [currentPersons, setCurrentPersons] = useState([]);
+  const [currentPersons, setCurrentPersons] = useState({});
   const [users, setUsers] = useState([]);
   const [urls, setUrls] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
+
+  console.log(currentPersons);
 
   useEffect(() => {
     async function fetchUrls() {
@@ -56,9 +58,11 @@ const DemoVisualiser = () => {
   useEffect(() => {
     socket.on('rankedPersons', (data) => {
       const newRankedPersons = { ...rankedPersons };
+      const newCurrentPersons = { ...currentPersons };
       newRankedPersons[data.username] = data.rankedPersons;
+      newCurrentPersons[data.username] = data.currentPersons;
       setRankedPersons(newRankedPersons);
-      setCurrentPersons(data.currentPersons);
+      setCurrentPersons(newCurrentPersons);
     });
     return () => {
       socket.off('rankedPersons');
@@ -82,6 +86,9 @@ const DemoVisualiser = () => {
         users.splice(index, 1);
       }
     });
+    return () => {
+      socket.off('removeUser');
+    };
   });
 
   const userMenu = (
@@ -112,7 +119,7 @@ const DemoVisualiser = () => {
               src={`${origin}${person.img_url}`}
               name={person.name}
               personSeen={person.personSeen}
-              currentPersons={currentPersons}
+              currentPersons={currentPersons[currentUser]}
             />
           </Item>
         ))}
