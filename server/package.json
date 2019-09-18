@@ -62,6 +62,7 @@
     "objection": "^1.6.8",
     "path": "^0.12.7",
     "pg": "^7.11.0",
+    "seedrandom": "^3.0.5",
     "swagger-ui-express": "^4.0.2",
     "yamljs": "^0.3.0",
     "z-schema": "^4.1.0"
