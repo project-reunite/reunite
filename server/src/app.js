@@ -42,7 +42,7 @@ app.use('/images', express.static(path.join(__dirname, '..', 'public'))); // Thi
 app.use(middleware.errorHandler.handleErrors);
 
 server.listen(port, () => {
-    console.log(`App running well on port ${port}`);
+    console.log(`App running on port ${port}`);
 });
 
 // Uncomment to insert documents about the missing persons into Cloudant
