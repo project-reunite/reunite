@@ -109,9 +109,6 @@ const DemoVisualiser = () => {
                 onClick={() => removeUser(user)}
                 iconStart={<IconCancel className="cancel-icon" />}
               />
-              {/* <button type="submit" onClick={() => removeUser(user)}>
-                delete
-              </button> */}
               {user === currentUser ? (
                 <button className="user-button selected-button" type="submit">
                   {user}
