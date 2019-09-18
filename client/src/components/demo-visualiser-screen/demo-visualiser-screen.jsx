@@ -18,41 +18,29 @@ const Item = posed.li({
   },
 });
 
-const getUrls = async () => {
-  const response = await apiRequests.getPersonUrls();
-  const urls = response.data;
-  return urls;
-};
-
-const SimpleFace = (props) => {
-  const { src, name } = props;
-  return (
-    <div className="person-container">
-      <img className="face" src={src} alt="Missing person" />
-      {name}
-    </div>
-  );
+const getPersonsInNameOrder = async () => {
+  const persons = await apiRequests.getPersonsWithNFeatures();
+  const personsInNameOrder = persons.sort((person1, person2) => person1.name > person2.name);
+  return personsInNameOrder;
 };
 
 const DemoVisualiser = () => {
   const [rankedPersons, setRankedPersons] = useState({});
   const [currentPersons, setCurrentPersons] = useState({});
   const [users, setUsers] = useState([]);
-  const [urls, setUrls] = useState([]);
+  const [persons, setPersons] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
 
-  console.log(currentPersons);
-
   useEffect(() => {
-    async function fetchUrls() {
+    async function fetchPersons() {
       try {
-        const newUrls = await getUrls();
-        setUrls(newUrls);
+        const initialPersons = await getPersonsInNameOrder();
+        setPersons(initialPersons);
       } catch (err) {
         console.log(err);
       }
     }
-    fetchUrls();
+    fetchPersons();
   }, []);
 
   useEffect(() => {
@@ -103,11 +91,6 @@ const DemoVisualiser = () => {
     </ul>
   );
 
-  const preSearchFaces = urls.map((url) => {
-    const absoluteUrl = `${origin}${url}`;
-    return <SimpleFace key={url} src={absoluteUrl} />;
-  });
-
   const faces = rankedPersons[currentUser] ? (
     <ul id="#menu">
       <PoseGroup>
@@ -126,11 +109,21 @@ const DemoVisualiser = () => {
       </PoseGroup>
     </ul>
   ) : (
-    <div className="awaiting-search">Awaiting search!</div>
+    <ul id="#menu">
+      <PoseGroup>
+        {persons.map(person => (
+          <Item key={person.name}>
+            <Face
+              key={person.name}
+              id={person._id}
+              src={`${origin}${person.img_url}`}
+              name={person.name}
+            />
+          </Item>
+        ))}
+      </PoseGroup>
+    </ul>
   );
-  //   (
-  // <ul id="#menu">{preSearchFaces}</ul>
-  // );
 
   return (
     <div className="demo-visualiser-screen">

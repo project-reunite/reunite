@@ -8,8 +8,10 @@ const Face = (props) => {
   if (personSeen) {
     imgClass += ' filtered';
   }
-  if (currentPersons.includes(id)) {
-    imgClass += ' selected';
+  if (currentPersons) {
+    if (currentPersons.includes(id)) {
+      imgClass += ' selected';
+    }
   }
 
   return (
