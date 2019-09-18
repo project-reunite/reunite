@@ -127,8 +127,6 @@ const DemoVisualiser = () => {
 
   return (
     <div className="demo-visualiser-screen">
-      <h1>Project Reunite Visualiser (logo)</h1>
-      {/* <h2>Current Users</h2> */}
       {userMenu}
       {faces}
     </div>
