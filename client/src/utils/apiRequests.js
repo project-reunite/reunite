@@ -28,12 +28,13 @@ const getPersonsWithNFeatures = async () => {
   }
 };
 
-const getChoices = async (body) => {
+const getChoices = async (body, username) => {
   try {
     const response = await axios.post(`${origin}/api/v2/decisions/`, body);
     if (response.data.choices.length > 0) {
       const { decisions, viewedPeople } = response.data.choices[0].nextInput;
       savedData = {
+        username,
         decisions: decisions.slice(1, decisions.length - 1),
         viewedPeople,
       };

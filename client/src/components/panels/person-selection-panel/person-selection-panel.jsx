@@ -26,8 +26,7 @@ const PersonSelectionPanel = (props) => {
         const response = await apiRequests.getChoices({
           decisions,
           viewedPeople,
-          username,
-        });
+        }, username);
         if (mounted) {
           if (response.data.choices.length === 0) {
             setNoDecisionsLeft(true);
@@ -93,6 +92,7 @@ PersonSelectionPanel.defaultProps = {
   onChoice: () => {},
   decisions: [{}],
   viewedPeople: [],
+  username: '',
 };
 
 PersonSelectionPanel.propTypes = {
@@ -103,6 +103,7 @@ PersonSelectionPanel.propTypes = {
   onChoice: PropTypes.func,
   viewedPeople: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   decisions: PropTypes.arrayOf(PropTypes.object),
+  username: PropTypes.string,
 };
 
 export default PersonSelectionPanel;
