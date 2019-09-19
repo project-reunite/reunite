@@ -4,8 +4,34 @@
 }
 
 .missing-people-screen .face {
-  border: 1px solid black;
+  border: 3px solid black;
   width: 200px;
+  margin: 3px;
+}
+
+.missing-people-screen .person-container {
+  width: 200px;
+  font-size: 130%;
+  text-align: center;
+  margin: 0 8px
+}
+
+.missing-people-screen ul {
+  padding: 3px 0 0 0;
+  list-style: none;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+}
+
+.missing-people-screen li {
+  display: block;
+  border-radius: 2px;
+  // background: white;
+  margin: 3px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -18,6 +44,10 @@
   }
 
   .missing-people-screen .face {
+    width: 120px;
+  }
+
+  .missing-people-screen .person-container {
     width: 120px;
   }
 }
