@@ -33,8 +33,7 @@ const UserItem = posed.li({
 
 const getPersonsInNameOrder = async () => {
   const persons = await apiRequests.getPersonsWithNFeatures();
-  const personsInNameOrder = persons.sort((person1, person2) => person1.name > person2.name);
-  return personsInNameOrder;
+  return persons.sort((person1, person2) => (person1.name > person2.name ? 1 : -1));
 };
 
 const DemoVisualiser = () => {

@@ -30,6 +30,7 @@ const Dashboard = (props) => {
 
   const { changeLanguage, username } = props;
 
+
   const removeLastChoice = () => {
     setViewedPeople(viewedPeople.slice(0, -2));
     setDecisions(decisions.slice(0, -1));

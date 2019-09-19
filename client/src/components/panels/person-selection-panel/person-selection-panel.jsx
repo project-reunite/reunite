@@ -26,7 +26,8 @@ const PersonSelectionPanel = (props) => {
         const response = await apiRequests.getChoices({
           decisions,
           viewedPeople,
-        }, username);
+          username,
+        });
         if (mounted) {
           if (response.data.choices.length === 0) {
             setNoDecisionsLeft(true);
