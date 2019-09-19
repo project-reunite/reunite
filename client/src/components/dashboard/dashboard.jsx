@@ -134,15 +134,19 @@ const Dashboard = (props) => {
     </div>
   );
 
+  const usernameDisplay = username ? (
+    <h4 style={{ textAlign: 'center', paddingTop: '1%', margin: 0 }}>
+    Demo Username:
+      {` ${username}`}
+    </h4>
+  ) : null;
+
   const MainPanel = getMainPanel();
 
   return (
     <div className="dashboardContainer">
       <Header submitLanguage={changeLanguage} restartApp={restartApp} goBack={goBack} />
-      <h4 style={{ textAlign: 'center', paddingTop: '1%', margin: 0 }}>
-        Demo Username:
-        {` ${username}`}
-      </h4>
+      {usernameDisplay}
       {MainPanel}
       <div className="footerPadding" />
       <Footer />
