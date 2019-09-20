@@ -182,4 +182,6 @@ const getNextDecision = (decisions, viewedPeople) => {
 
 module.exports = {
     getNextDecision,
+    getPrediction,
+    rankPerson,
 };

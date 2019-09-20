@@ -34,6 +34,7 @@ const getChoices = async (body) => {
     if (response.data.choices.length > 0) {
       const { decisions, viewedPeople } = response.data.choices[0].nextInput;
       savedData = {
+        username: body.username,
         decisions: decisions.slice(1, decisions.length - 1),
         viewedPeople,
       };
@@ -53,10 +54,27 @@ const getTree = async (queryString) => {
   }
 };
 
+const getPersonUrls = async () => {
+  const urls = await axios.get(`${origin}/api/v1/persons/urls`);
+  return urls;
+};
+
+const postUser = async () => {
+  const username = await axios.post(`${origin}/api/v1/users`);
+  return username;
+};
+
+const deleteUser = async (username) => {
+  await axios.delete(`${origin}/api/v1/users`, { username });
+};
+
 export default {
   postStatistics,
   getPerson,
   getPersonsWithNFeatures,
   getChoices,
   getTree,
+  getPersonUrls,
+  postUser,
+  deleteUser,
 };

@@ -1,6 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+
+import Face from './face';
 
 import apiRequests from '../../utils/apiRequests';
 import { origin } from '../../config';
@@ -8,8 +8,7 @@ import './missing-people-screen.scss';
 
 const getPersonsInNameOrder = async () => {
   const persons = await apiRequests.getPersonsWithNFeatures();
-  const personsInNameOrder = persons.sort((person1, person2) => (person1.name > person2.name));
-  return personsInNameOrder;
+  return persons.sort((person1, person2) => (person1.name > person2.name ? 1 : -1));
 };
 
 const MissingPeopleScreen = () => {
@@ -30,40 +29,30 @@ const MissingPeopleScreen = () => {
   const numMissingPeople = persons.length || 128;
 
   const pageExplanation = [
-    (
-      <h1>
-        {`Here are the ${numMissingPeople} missing people.`}
-      </h1>
-    ),
-    (
-      <h3>
-        {'Choose (in your head) who you\'re looking for.'}
-      </h3>
-    ),
-    (
-      <h3>
-        {'When you\'re ready, go back to the Reunite app to start searching for them.'}
-      </h3>
-    ),
-    (
-      <p>
-        {'(These photos are generated from celebrity faces. This demo uses these faces because we do not yet have access to a database of refugees)'}
-      </p>
-    ),
+    <h1>{`Here are the ${numMissingPeople} missing people.`}</h1>,
+    <h3>Choose (in your head) who &apos;re looking for.</h3>,
+    <h3>When you&apos;re ready, go back to the Reunite app to start searching for them.</h3>,
+    <p>
+      {
+        '(These photos are generated from celebrity faces. This demo uses these faces because we do not yet have access to a database of refugees)'
+      }
+    </p>,
   ];
 
-  const faces = persons.map((person) => {
-    const { name } = person;
-    const url = person.img_url;
-    const absoluteUrl = `${origin}${url}`;
-    return (
-      <Face
-        key={url}
-        src={absoluteUrl}
-        name={name}
-      />
-    );
-  });
+  const faces = (
+    <ul id="#menu">
+      {persons.map(person => (
+
+        <Face
+          key={person.name}
+          id={person._id}
+          src={`${origin}${person.img_url}`}
+          name={person.name}
+        />
+
+      ))}
+    </ul>
+  );
 
   return (
     <div className="missing-people-screen">
@@ -73,22 +62,5 @@ const MissingPeopleScreen = () => {
     </div>
   );
 };
-
-const Face = (props) => {
-  const { src, name } = props;
-  return (
-    <img
-      className="face"
-      src={src}
-      alt={name}
-    />
-  );
-};
-
-Face.propTypes = {
-  src: PropTypes.string.isRequired,
-  name: PropTypes.number.isRequired,
-};
-
 
 export default MissingPeopleScreen;

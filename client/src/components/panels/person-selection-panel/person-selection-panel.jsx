@@ -13,7 +13,7 @@ const { flexStyle } = require('../../../styles/flex-styles');
 
 const PersonSelectionPanel = (props) => {
   const {
-    restartApp, onError, onChoice, onMatch, decisions, viewedPeople,
+    restartApp, onError, onChoice, onMatch, decisions, viewedPeople, username,
   } = props;
 
   const [choices, setChoices] = useState([]);
@@ -26,6 +26,7 @@ const PersonSelectionPanel = (props) => {
         const response = await apiRequests.getChoices({
           decisions,
           viewedPeople,
+          username,
         });
         if (mounted) {
           if (response.data.choices.length === 0) {
@@ -43,7 +44,7 @@ const PersonSelectionPanel = (props) => {
     return () => {
       mounted = false;
     };
-  }, [decisions, viewedPeople, onError]);
+  }, [decisions, viewedPeople, onError, username]);
 
   const reactToCardClick = (nextInput) => {
     onChoice(nextInput.decisions, nextInput.viewedPeople);
@@ -92,6 +93,7 @@ PersonSelectionPanel.defaultProps = {
   onChoice: () => {},
   decisions: [{}],
   viewedPeople: [],
+  username: '',
 };
 
 PersonSelectionPanel.propTypes = {
@@ -102,6 +104,7 @@ PersonSelectionPanel.propTypes = {
   onChoice: PropTypes.func,
   viewedPeople: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   decisions: PropTypes.arrayOf(PropTypes.object),
+  username: PropTypes.string,
 };
 
 export default PersonSelectionPanel;

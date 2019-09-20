@@ -28,7 +28,8 @@ const Dashboard = (props) => {
   const [viewedPeople, setViewedPeople] = useState([]);
   const [foundPersonDetails, setFoundPersonDetails] = useState({});
 
-  const { changeLanguage } = props;
+  const { changeLanguage, username } = props;
+
 
   const removeLastChoice = () => {
     setViewedPeople(viewedPeople.slice(0, -2));
@@ -73,6 +74,7 @@ const Dashboard = (props) => {
 
   const getPersonSelectionPanel = () => (
     <PersonSelectionPanel
+      username={username}
       decisions={decisions}
       viewedPeople={viewedPeople}
       onChoice={(decisionList, viewedPeopleList) => {
@@ -133,11 +135,19 @@ const Dashboard = (props) => {
     </div>
   );
 
+  const usernameDisplay = username ? (
+    <h4 style={{ textAlign: 'center', paddingTop: '1%', margin: 0 }}>
+    Demo Username:
+      {` ${username}`}
+    </h4>
+  ) : null;
+
   const MainPanel = getMainPanel();
 
   return (
     <div className="dashboardContainer">
       <Header submitLanguage={changeLanguage} restartApp={restartApp} goBack={goBack} />
+      {usernameDisplay}
       {MainPanel}
       <div className="footerPadding" />
       <Footer />

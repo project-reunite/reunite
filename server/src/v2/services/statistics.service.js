@@ -8,7 +8,7 @@ const postStatistic = (doc) => {
         return;
     }
 
-    insertDocument({ 
+    insertDocument({
         database,
         doc: { ...doc , created_at: Date.now() },
     });

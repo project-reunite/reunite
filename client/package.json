@@ -22,10 +22,12 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-pose": "^4.0.8",
     "react-router": "^3.0.5",
     "react-scripts": "3.0.1",
     "recharts": "^1.7.1",
-    "regenerator-runtime": "^0.13.2"
+    "regenerator-runtime": "^0.13.2",
+    "socket.io-client": "^2.2.0"
   },
   "scripts": {
     "start": "PORT=41002 react-scripts start",

@@ -2,7 +2,7 @@ const statisticsService = require('../services/statistics.service');
 
 const postStatistic = async function(req, res, next) {
     try {
-        const statistic = await statisticsService.postStatistic({ ...req.body, username: 'Michael' });
+        const statistic = await statisticsService.postStatistic({ ...req.body, username: req.body.username });
         res.status(200).send(statistic);
     } catch(err) {
         next(err);
