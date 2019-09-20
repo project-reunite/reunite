@@ -41,11 +41,11 @@ const getPersonsWithNFeatures = async () => {
 const getOrderedPersons = async (decisions, viewedPeople) => {
     const persons = (await getPersons({ filters: { selector: {} } })).docs;
     const { NUM_FEATURES } = config;
-    const personsWith6Features = persons.filter(
+    const personsWithNFeatures = persons.filter(
         person => person._id.length === NUM_FEATURES
     );
     const prediction = decisionsService.getPrediction(decisions, 6);
-    let rankedPeople = personsWith6Features.map(person => ({
+    let rankedPeople = personsWithNFeatures.map(person => ({
         ...person,
         personSeen: viewedPeople.slice(0, -2).includes(person._id),
         probability: decisionsService.rankPerson(person._id, prediction)
