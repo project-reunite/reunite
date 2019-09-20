@@ -44,7 +44,7 @@ const PersonSelectionPanel = (props) => {
     return () => {
       mounted = false;
     };
-  }, [decisions, viewedPeople, onError]);
+  }, [decisions, viewedPeople, onError, username]);
 
   const reactToCardClick = (nextInput) => {
     onChoice(nextInput.decisions, nextInput.viewedPeople);

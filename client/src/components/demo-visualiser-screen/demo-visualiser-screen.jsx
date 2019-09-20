@@ -1,35 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
-import posed, { PoseGroup } from 'react-pose';
 import Button from 'mineral-ui/Button';
+import { PoseGroup } from 'react-pose';
 
 import IconCancel from 'mineral-ui-icons/IconCancel';
 import apiRequests from '../../utils/apiRequests';
 
 import Face from './face';
 import { origin } from '../../config';
+import { FaceItem, UserItem } from '../animations/list-animations';
 import './demo-visualiser-screen.scss';
 
 const socket = socketIOClient(origin);
-
-const FaceItem = posed.li({
-  flip: {
-    scale: 1,
-    transition: {
-      delay: 500,
-      duration: 2500,
-    },
-  },
-});
-
-const UserItem = posed.li({
-  flip: {
-    scale: 1,
-    transition: {
-      duration: 1000,
-    },
-  },
-});
 
 const getPersonsInNameOrder = async () => {
   const persons = await apiRequests.getPersonsWithNFeatures();
@@ -40,14 +22,26 @@ const DemoVisualiser = () => {
   const [rankedPersons, setRankedPersons] = useState({});
   const [currentPersons, setCurrentPersons] = useState({});
   const [users, setUsers] = useState([]);
-  const [persons, setPersons] = useState([]);
+  const [personsSortedByName, setPersonsSortedByName] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
+
+  const removeUser = (username) => {
+    const newUsers = [...users];
+    const newRankedPersons = { ...rankedPersons };
+    delete newRankedPersons[username];
+    const index = newUsers.indexOf(username);
+    if (index > -1) {
+      newUsers.splice(index, 1);
+    }
+    setRankedPersons(newRankedPersons);
+    setUsers(newUsers);
+  };
 
   useEffect(() => {
     async function fetchPersons() {
       try {
         const initialPersons = await getPersonsInNameOrder();
-        setPersons(initialPersons);
+        setPersonsSortedByName(initialPersons);
       } catch (err) {
         console.log(err);
       }
@@ -78,15 +72,6 @@ const DemoVisualiser = () => {
       socket.off('newUser');
     };
   });
-
-  const removeUser = (username) => {
-    const newUsers = [...users];
-    const index = newUsers.indexOf(username);
-    if (index > -1) {
-      newUsers.splice(index, 1);
-    }
-    setUsers(newUsers);
-  };
 
   useEffect(() => {
     socket.on('removeUser', (username) => {
@@ -144,7 +129,7 @@ const DemoVisualiser = () => {
   ) : (
     <ul id="#menu">
       <PoseGroup>
-        {persons.map(person => (
+        {personsSortedByName.map(person => (
           <FaceItem key={person.name}>
             <Face
               key={person.name}

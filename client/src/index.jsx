@@ -11,7 +11,7 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={App} />
     <Route path="/missing-people" component={MissingPeopleScreen} />
-    <Route path="/demo-visualiser" component={DemoVisualiserScreen} />
+    <Route path="/visualiser" component={DemoVisualiserScreen} />
   </Router>,
   document.getElementById('root'),
 );
