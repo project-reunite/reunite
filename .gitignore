@@ -11,7 +11,7 @@
 /server/.stryker-tmp
 
 # production
-/client/build
+/**/build
 
 # babel
 /client/lib
