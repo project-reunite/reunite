@@ -10,14 +10,18 @@ import Translate from '../../../locales/translate';
 import DemoSummaryChart from '../../demo-chart';
 
 const { flexStyle } = require('../../../styles/flex-styles');
-const { buttonStyle } = require('../../../styles/button-styles');
+const { responsivePrimaryButtonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
 const { cardImageStyle } = require('../../../styles/card-styles');
 const { numPhotosViaExistingSolutions } = require('../../../config');
 
 const DemoSummaryPanel = (props) => {
-  const { moveOn, decisions, foundPersonDetails } = props;
+  const {
+    moveOn, decisions, foundPersonDetails, isMobile,
+  } = props;
   const nextIcon = <IconNext style={iconStyle} />;
+
+  const buttonStyle = responsivePrimaryButtonStyle(isMobile);
 
   const numChoices = decisions.length;
   const numPhotosSeen = numChoices * 2;
@@ -42,9 +46,9 @@ const DemoSummaryPanel = (props) => {
               alt="gradient placeholder"
             />
             <CardBlock>
-              <h3 style={{ color: 'black' }}>
+              <p>
                 <Translate string="demo-summary.message-2" />
-              </h3>
+              </p>
             </CardBlock>
             <DemoSummaryChart demoSummaryData={demoSummaryData} />
             <Button
@@ -66,12 +70,14 @@ DemoSummaryPanel.defaultProps = {
   moveOn: () => {},
   decisions: [{}],
   foundPersonDetails: { img_url: '' },
+  isMobile: false,
 };
 
 DemoSummaryPanel.propTypes = {
   moveOn: PropTypes.func,
   decisions: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   foundPersonDetails: PropTypes.objectOf(PropTypes.string),
+  isMobile: PropTypes.bool,
 };
 
 export default DemoSummaryPanel;

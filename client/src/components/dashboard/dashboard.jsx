@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Flex from 'mineral-ui/Flex';
@@ -19,6 +19,7 @@ import DemoSummaryPanel from '../panels/demo-summary-panel';
 import FurtherInfoPanel from '../panels/further-info-panel';
 import Footer from '../footer';
 import apiRequests from '../../utils/apiRequests';
+import useWindowSize from '../../hooks/useWindowSize';
 
 const { flexStyle } = require('../../styles/flex-styles');
 
@@ -27,9 +28,15 @@ const Dashboard = (props) => {
   const [decisions, setDecisions] = useState([{}]);
   const [viewedPeople, setViewedPeople] = useState([]);
   const [foundPersonDetails, setFoundPersonDetails] = useState({});
+  const [isMobile, setIsMobile] = useState(false);
+
+  const size = useWindowSize();
+
+  useEffect(() => {
+    setIsMobile(size.width < 600);
+  }, [size]);
 
   const { changeLanguage, username } = props;
-
 
   const removeLastChoice = () => {
     setViewedPeople(viewedPeople.slice(0, -2));
@@ -65,20 +72,24 @@ const Dashboard = (props) => {
   );
 
   const getWelcomeCard = () => (
-    <WelcomeCard moveOn={() => setAppState(appStatus.DEMO_INFO_PANEL)} />
+    <WelcomeCard isMobile={isMobile} moveOn={() => setAppState(appStatus.DEMO_INFO_PANEL)} />
   );
 
   const getDemoInfoPanel = () => (
-    <DemoInfoPanel moveOn={() => setAppState(appStatus.COMPARE_PICTURES)} />
+    <DemoInfoPanel isMobile={isMobile} moveOn={() => setAppState(appStatus.COMPARE_PICTURES)} />
   );
 
   const getPersonSelectionPanel = () => (
     <PersonSelectionPanel
       username={username}
+      isMobile={isMobile}
       decisions={decisions}
       viewedPeople={viewedPeople}
       onChoice={(decisionList, viewedPeopleList) => {
         setDecisions(decisionList);
+        setViewedPeople(viewedPeopleList);
+      }}
+      onSkip={(viewedPeopleList) => {
         setViewedPeople(viewedPeopleList);
       }}
       onMatch={(person) => {
@@ -94,6 +105,7 @@ const Dashboard = (props) => {
     <Flex {...flexStyle}>
       <MatchCard
         foundPersonDetails={foundPersonDetails}
+        isMobile={isMobile}
         confirmMatch={() => {
           setAppState(appStatus.DEMO_COMPLETE);
           apiRequests.postStatistics(foundPersonDetails._id);
@@ -110,11 +122,12 @@ const Dashboard = (props) => {
     <DemoSummaryPanel
       foundPersonDetails={foundPersonDetails}
       decisions={decisions}
+      isMobile={isMobile}
       moveOn={() => setAppState(appStatus.FURTHER_INFO)}
     />
   );
 
-  const getFurtherInfoPanel = () => <FurtherInfoPanel />;
+  const getFurtherInfoPanel = () => <FurtherInfoPanel isMobile={isMobile} />;
 
   const getErrorDialog = () => <ErrorDialog restartApp={restartApp} close={restartApp} />;
 
@@ -136,7 +149,7 @@ const Dashboard = (props) => {
   );
 
   const usernameDisplay = username ? (
-    <h4 style={{ textAlign: 'center', paddingTop: '1%', margin: 0 }}>
+    <h4 className="demoUsername">
     Demo Username:
       {` ${username}`}
     </h4>
@@ -157,10 +170,12 @@ const Dashboard = (props) => {
 
 Dashboard.defaultProps = {
   changeLanguage: () => {},
+  username: '',
 };
 
 Dashboard.propTypes = {
   changeLanguage: PropTypes.func,
+  username: PropTypes.string,
 };
 
 export default Dashboard;

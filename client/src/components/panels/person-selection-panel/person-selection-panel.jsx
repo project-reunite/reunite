@@ -2,22 +2,34 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Flex, { FlexItem } from 'mineral-ui/Flex';
+import Button from 'mineral-ui/Button';
+import IconNavigateNext from 'mineral-ui-icons/IconNavigateNext';
 
 import PersonCard from '../../cards/person-card';
 import NoMatchDialog from '../../dialogs/no-match-dialog';
 import apiRequests from '../../../utils/apiRequests';
-
 import Translate from '../../../locales/translate';
 
 const { flexStyle } = require('../../../styles/flex-styles');
+const { responsivePrimaryButtonStyle } = require('../../../styles/button-styles');
+const { iconStyle } = require('../../../styles/icon-styles');
 
 const PersonSelectionPanel = (props) => {
   const {
-    restartApp, onError, onChoice, onMatch, decisions, viewedPeople, username,
+    restartApp,
+    isMobile,
+    onError,
+    onChoice,
+    onMatch,
+    onSkip,
+    decisions,
+    viewedPeople,
+    username,
   } = props;
 
-  const [choices, setChoices] = useState([]);
+  const [choiceData, setChoiceData] = useState({});
   const [noDecisionsLeft, setNoDecisionsLeft] = useState(false);
+  const buttonStyle = responsivePrimaryButtonStyle(isMobile);
 
   useEffect(() => {
     let mounted = true;
@@ -32,7 +44,7 @@ const PersonSelectionPanel = (props) => {
           if (response.data.choices.length === 0) {
             setNoDecisionsLeft(true);
           } else {
-            setChoices(response.data.choices);
+            setChoiceData(response.data);
           }
         }
       } catch (err) {
@@ -46,6 +58,10 @@ const PersonSelectionPanel = (props) => {
     };
   }, [decisions, viewedPeople, onError, username]);
 
+  const reactToSkip = (choices) => {
+    if (choices.skipInput) onSkip(choices.skipInput.viewedPeople);
+  };
+
   const reactToCardClick = (nextInput) => {
     onChoice(nextInput.decisions, nextInput.viewedPeople);
   };
@@ -56,21 +72,25 @@ const PersonSelectionPanel = (props) => {
 
   const renderChildren = () => {
     const children = [];
-    choices.forEach((choice) => {
-      const { personId } = choice;
-      children.push(
-        <FlexItem key={personId} data-cy="PersonSelectionPanel">
-          <PersonCard
-            id={personId}
-            onMatch={reactToMatch}
-            onClick={() => reactToCardClick(choice.nextInput)}
-            onError={onError}
-          />
-        </FlexItem>,
-      );
-    });
+    if (choiceData.choices) {
+      choiceData.choices.forEach((choice) => {
+        const { personId } = choice;
+        children.push(
+          <FlexItem key={personId} data-cy="PersonSelectionPanel">
+            <PersonCard
+              id={personId}
+              onMatch={reactToMatch}
+              onClick={() => reactToCardClick(choice.nextInput)}
+              onError={onError}
+              isMobile={isMobile}
+            />
+          </FlexItem>,
+        );
+      });
+    }
     return children;
   };
+
 
   return (
     <div className="cardContainer">
@@ -81,6 +101,14 @@ const PersonSelectionPanel = (props) => {
       <Flex wrap {...flexStyle}>
         {renderChildren()}
       </Flex>
+      <Button
+        className="skipButton"
+        iconStart={<IconNavigateNext style={iconStyle} />}
+        style={{ ...buttonStyle }}
+        onClick={() => reactToSkip(choiceData)}
+      >
+      Skip Choice
+      </Button>
     </div>
   );
 };
@@ -88,9 +116,11 @@ const PersonSelectionPanel = (props) => {
 PersonSelectionPanel.defaultProps = {
   onFailure: () => {},
   onMatch: () => {},
+  onSkip: () => {},
   onError: () => {},
   restartApp: () => {},
   onChoice: () => {},
+  isMobile: false,
   decisions: [{}],
   viewedPeople: [],
   username: '',
@@ -102,6 +132,8 @@ PersonSelectionPanel.propTypes = {
   onFailure: PropTypes.func,
   onMatch: PropTypes.func,
   onChoice: PropTypes.func,
+  isMobile: PropTypes.bool,
+  onSkip: PropTypes.func,
   viewedPeople: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   decisions: PropTypes.arrayOf(PropTypes.object),
   username: PropTypes.string,
