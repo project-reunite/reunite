@@ -28,6 +28,7 @@ const Dashboard = (props) => {
   const [decisions, setDecisions] = useState([{}]);
   const [viewedPeople, setViewedPeople] = useState([]);
   const [foundPersonDetails, setFoundPersonDetails] = useState({});
+  const [userActions, setUserActions] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
 
   const size = useWindowSize();
@@ -40,7 +41,10 @@ const Dashboard = (props) => {
 
   const removeLastChoice = () => {
     setViewedPeople(viewedPeople.slice(0, -2));
-    setDecisions(decisions.slice(0, -1));
+    if (userActions[userActions.length - 1] === 'select') {
+      setDecisions(decisions.slice(0, -1));
+    }
+    setUserActions(userActions.slice(0, -1));
   };
 
   const goBack = () => {
@@ -86,10 +90,16 @@ const Dashboard = (props) => {
       decisions={decisions}
       viewedPeople={viewedPeople}
       onChoice={(decisionList, viewedPeopleList) => {
+        const newUserActions = [...userActions];
+        newUserActions.push('select');
+        setUserActions(newUserActions);
         setDecisions(decisionList);
         setViewedPeople(viewedPeopleList);
       }}
       onSkip={(viewedPeopleList) => {
+        const newUserActions = [...userActions];
+        newUserActions.push('skip');
+        setUserActions(newUserActions);
         setViewedPeople(viewedPeopleList);
       }}
       onMatch={(person) => {
