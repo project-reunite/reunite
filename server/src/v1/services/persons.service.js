@@ -51,7 +51,11 @@ const getOrderedPersons = async (decisions, viewedPeople) => {
         probability: decisionsService.rankPerson(person._id, prediction)
             .probability,
     }));
-    rankedPeople = rankedPeople.sort((a, b) => b.probability - a.probability);
+    // This sorts by descending probability, with all the seen photos at the back
+    rankedPeople = rankedPeople.sort((a, b) =>
+        (a.personSeen === b.personSeen)
+            ? b.probability - a.probability
+            : a.personSeen ? 1 : -1);
     return rankedPeople;
 };
 
