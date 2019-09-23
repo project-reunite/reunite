@@ -1,10 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import FaceChart from '../face-chart';
+
+const generateFaceData = (name) => {
+  const faceData = [];
+  [...name].forEach(c => faceData.push({
+    A: (Number(c) === 1) ? 1 : 0.5,
+  }));
+  return faceData;
+};
 
 const Face = (props) => {
   const {
-    src, name, personSeen, id, currentPersons,
+    src, name, personSeen, id, currentPersons, showGraphs,
   } = props;
+
   let imgClass = 'face';
+
   if (personSeen) {
     imgClass += ' filtered';
   }
@@ -13,13 +25,33 @@ const Face = (props) => {
       imgClass += ' selected';
     }
   }
+  if (showGraphs) {
+    imgClass += ' background-image';
+  }
+
+  const faceGraph = showGraphs ? (
+    <div className="person-chart">
+      <FaceChart data={generateFaceData(id)} />
+    </div>
+  )
+    : null;
 
   return (
     <div className="person-container">
+      {faceGraph}
       <img className={imgClass} src={src} alt="Missing person" />
       {name}
     </div>
   );
+};
+
+Face.propTypes = {
+  src: PropTypes.string.isRequired,
+  name: PropTypes.number.isRequired,
+  personSeen: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  currentPersons: PropTypes.arrayOf(PropTypes.string).isRequired,
+  showGraphs: PropTypes.bool.isRequired,
 };
 
 export default Face;
