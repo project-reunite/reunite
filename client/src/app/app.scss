@@ -1,7 +1,7 @@
 h1 {
-  font-size: 40px;
+  font-size: 2em;
   color: #171717;
-  margin: 2% 0;
+  margin: 1% 0;
 }
 
 h3 {
@@ -21,14 +21,6 @@ h3 {
 
 .personCard p {
   font-size: 12px;
-}
-
-.cardButton {
-  font-size: 12px
-}
-
-.cardTitle {
-  font-size: 20px;
 }
 
 .singleCardContainer p {
@@ -214,10 +206,6 @@ h3 {
 
 // covers iPhone 6/7/8, Galaxy S5
 @media only screen and (max-height: 667px) {
-  h1 {
-    // margin: 9px;
-  }
-
   .singleCardContainer {
     padding-top: 6px;
   }
@@ -240,7 +228,6 @@ h3 {
 @media only screen and (max-height: 610px) {
   h1 {
     font-size: 1em;
-    margin: 1px 0;
   }
 
   h3 {
@@ -248,7 +235,7 @@ h3 {
   }
 
   h4 {
-    font-size: 0.6em;
+    font-size: 0.8em;
   }
 
   .statsSummaryCard {

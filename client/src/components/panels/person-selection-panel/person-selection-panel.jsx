@@ -107,7 +107,7 @@ const PersonSelectionPanel = (props) => {
         style={{ ...buttonStyle }}
         onClick={() => reactToSkip(choiceData)}
       >
-      Skip Choice
+        <Translate string="button.skip-choice" />
       </Button>
     </div>
   );

@@ -19,6 +19,7 @@ import DemoSummaryPanel from '../panels/demo-summary-panel';
 import FurtherInfoPanel from '../panels/further-info-panel';
 import Footer from '../footer';
 import apiRequests from '../../utils/apiRequests';
+import Translate from '../../locales/translate';
 import useWindowSize from '../../hooks/useWindowSize';
 
 const { flexStyle } = require('../../styles/flex-styles');
@@ -160,8 +161,8 @@ const Dashboard = (props) => {
 
   const usernameDisplay = username ? (
     <h4 className="demoUsername">
-    Demo Username:
-      {` ${username}`}
+      <Translate string="demo.username" />
+      {`: ${username}`}
     </h4>
   ) : null;
 
