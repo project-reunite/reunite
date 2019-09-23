@@ -8,7 +8,11 @@ const Footer = () => (
   <footer className="pageFooter">
     <div className="footerContainer">
       <div className="footerElementContainer">
-        <a href="https://github.ibm.com/ProjectReunite/reunite#project-reunite">
+        <a
+          href="https://github.ibm.com/ProjectReunite/reunite#project-reunite"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img className="footerImage" src="reunite-icon.svg" alt="" />
         </a>
         <p>
@@ -16,7 +20,11 @@ const Footer = () => (
         </p>
       </div>
       <div className="footerElementContainer">
-        <a href="https://github.ibm.com/ProjectReunite/reunite/issues/new/choose">
+        <a
+          href="https://github.ibm.com/ProjectReunite/reunite/issues/new/choose"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img className="footerImage" src="github.png" alt="" />
         </a>
         <p>
@@ -24,7 +32,11 @@ const Footer = () => (
         </p>
       </div>
       <div className="footerElementContainer">
-        <a href="https://www.surveygizmo.com/s3/5198505/IBMer-s-Choice-Award-Call-for-Code-The-Internal-Final-Five">
+        <a
+          href="https://www.surveygizmo.com/s3/5198505/IBMer-s-Choice-Award-Call-for-Code-The-Internal-Final-Five"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img className="footerImage" src="tick.svg" alt="" />
         </a>
         <p>
