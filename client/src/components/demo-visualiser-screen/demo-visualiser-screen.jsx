@@ -151,7 +151,7 @@ const DemoVisualiser = () => {
       <PoseGroup>
         <UserItem key="open-graphs">
           <button type="button" className="show-graphs-button" onClick={() => setShowGraphs(!showGraphs)}>
-            {showGraphs ? 'Remove Graphs' : 'Show Graphs'}
+            {showGraphs ? 'Hide Graphs' : 'Show Graphs'}
           </button>
         </UserItem>
       </PoseGroup>
