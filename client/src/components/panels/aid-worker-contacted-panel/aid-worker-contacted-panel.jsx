@@ -9,12 +9,13 @@ import Translate from '../../../locales/translate';
 
 const { flexStyle } = require('../../../styles/flex-styles');
 const { matchCardStyle, cardImageStyle } = require('../../../styles/card-styles');
-const { buttonStyle } = require('../../../styles/button-styles');
+const { responsivePrimaryButtonStyle } = require('../../../styles/button-styles');
 
 const nextIcon = <IconNext />;
 
 const aidWorkerContactedPanel = (props) => {
-  const { foundPersonDetails, moveOn } = props;
+  const { foundPersonDetails, moveOn, isMobile } = props;
+
   return (
     <div className="singleCardContainer">
       <Flex {...flexStyle}>
@@ -35,7 +36,7 @@ const aidWorkerContactedPanel = (props) => {
             <CardBlock>
               <Button
                 className="cardButton"
-                style={buttonStyle}
+                style={responsivePrimaryButtonStyle}
                 iconStart={nextIcon}
                 onClick={moveOn}
               >
@@ -52,11 +53,13 @@ const aidWorkerContactedPanel = (props) => {
 aidWorkerContactedPanel.defaultProps = {
   foundPersonDetails: {},
   moveOn: () => {},
+  isMobile: false,
 };
 
 aidWorkerContactedPanel.propTypes = {
   foundPersonDetails: PropTypes.objectOf(PropTypes.string),
   moveOn: PropTypes.func,
+  isMobile: PropTypes.bool,
 };
 
 export default aidWorkerContactedPanel;

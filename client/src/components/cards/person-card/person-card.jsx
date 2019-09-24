@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import Card, { CardImage, CardFooter } from 'mineral-ui/Card';
+import Card, {
+  CardImage, CardFooter,
+} from 'mineral-ui/Card';
 import Button from 'mineral-ui/Button';
 import IconSuccess from 'mineral-ui-icons/IconSuccess';
 import IconMoreInfo from 'mineral-ui-icons/IconPersonOutline';
@@ -15,7 +17,7 @@ const {
   cardFooterStyle,
 } = require('../../../styles/card-styles');
 
-const { buttonStyle, secondButtonStyle } = require('../../../styles/button-styles');
+const { responsivePrimaryButtonStyle, responsiveSecondButtonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
 
 const successIcon = <IconSuccess style={iconStyle} />;
@@ -25,8 +27,11 @@ const PersonCard = (props) => {
   const [details, setDetails] = useState([]);
 
   const {
-    onError, id, onClick, onMatch,
+    onError, id, onClick, onMatch, isMobile,
   } = props;
+
+  const primaryButtonStyle = responsivePrimaryButtonStyle(isMobile);
+  const secondButtonStyle = responsiveSecondButtonStyle(isMobile);
 
   useEffect(() => {
     let mounted = true;
@@ -58,9 +63,14 @@ const PersonCard = (props) => {
         src={details.data.img_url}
         alt="gradient placeholder"
       />
+      <p className="personName">
+        #
+        {details.data.name}
+      </p>
       <CardFooter style={cardFooterStyle}>
         <Button
           style={secondButtonStyle}
+          className="cardButton"
           iconStart={successIcon}
           onClick={() => onMatch(details.data)}
           data-cy="select-match"
@@ -68,7 +78,7 @@ const PersonCard = (props) => {
           <Translate string="person-card.my-person" />
         </Button>
         <Button
-          style={buttonStyle}
+          style={primaryButtonStyle}
           className="cardButton"
           iconStart={moreInfoIcon}
           onClick={onClick}
@@ -84,12 +94,14 @@ PersonCard.defaultProps = {
   onClick: () => {},
   onMatch: () => {},
   onError: () => {},
+  isMobile: false,
 };
 
 PersonCard.propTypes = {
   onError: PropTypes.func,
   onClick: PropTypes.func,
   onMatch: PropTypes.func,
+  isMobile: PropTypes.bool,
   id: PropTypes.string.isRequired,
 };
 

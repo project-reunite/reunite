@@ -11,14 +11,16 @@ import Translate from '../../../locales/translate';
 
 const { flexStyle } = require('../../../styles/flex-styles');
 const { regularCardStyle } = require('../../../styles/card-styles');
-const { buttonStyle } = require('../../../styles/button-styles');
+const { responsivePrimaryButtonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
 
 const DemoInfoPanel = (props) => {
-  const { moveOn } = props;
+  const { moveOn, isMobile } = props;
 
   const moreInfoIcon = <IconMoreInfo style={iconStyle} />;
   const nextIcon = <IconNext style={iconStyle} />;
+
+  const buttonStyle = responsivePrimaryButtonStyle(isMobile);
 
   return (
     <div className="singleCardContainer" data-cy="demo-info-panel">
@@ -56,10 +58,12 @@ const DemoInfoPanel = (props) => {
 
 DemoInfoPanel.defaultProps = {
   moveOn: () => {},
+  isMobile: false,
 };
 
 DemoInfoPanel.propTypes = {
   moveOn: PropTypes.func,
+  isMobile: PropTypes.bool,
 };
 
 export default DemoInfoPanel;
