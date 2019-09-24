@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Flex, { FlexItem } from 'mineral-ui/Flex';
 import Button from 'mineral-ui/Button';
-import IconNavigateNext from 'mineral-ui-icons/IconNavigateNext';
+import IconNavigateNext from 'mineral-ui-icons/IconSkipNext';
 
 import PersonCard from '../../cards/person-card';
 import NoMatchDialog from '../../dialogs/no-match-dialog';
@@ -11,7 +11,7 @@ import apiRequests from '../../../utils/apiRequests';
 import Translate from '../../../locales/translate';
 
 const { flexStyle } = require('../../../styles/flex-styles');
-const { responsivePrimaryButtonStyle } = require('../../../styles/button-styles');
+const { responsiveSecondButtonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
 
 const PersonSelectionPanel = (props) => {
@@ -29,7 +29,7 @@ const PersonSelectionPanel = (props) => {
 
   const [choiceData, setChoiceData] = useState({});
   const [noDecisionsLeft, setNoDecisionsLeft] = useState(false);
-  const buttonStyle = responsivePrimaryButtonStyle(isMobile);
+  const buttonStyle = responsiveSecondButtonStyle(isMobile);
 
   useEffect(() => {
     let mounted = true;
