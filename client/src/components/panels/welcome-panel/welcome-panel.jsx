@@ -11,18 +11,20 @@ import Translate from '../../../locales/translate';
 
 const { iconStyle } = require('../../../styles/icon-styles');
 const { flexStyle } = require('../../../styles/flex-styles');
-const { matchCardStyle, cardBlockStyle } = require('../../../styles/card-styles');
-const { buttonStyle } = require('../../../styles/button-styles');
+const { regularCardStyle, cardBlockStyle } = require('../../../styles/card-styles');
+const { responsivePrimaryButtonStyle } = require('../../../styles/button-styles');
 
 const WelcomeCard = (props) => {
-  const { moveOn } = props;
+  const { moveOn, isMobile } = props;
   const nextIcon = <IconNext style={iconStyle} />;
+
+  const buttonStyle = responsivePrimaryButtonStyle(isMobile);
 
   return (
     <div className="singleCardContainer" data-cy="welcome-card">
       <Flex wrap {...flexStyle}>
         <FlexItem>
-          <Card className="generalCard" style={matchCardStyle}>
+          <Card className="generalCard" style={regularCardStyle}>
             <CardImage className="logoImage" src="reunite-dark.svg" alt="gradient placeholder" />
             <CardBlock style={cardBlockStyle}>
               <p>
@@ -58,10 +60,12 @@ const WelcomeCard = (props) => {
 
 WelcomeCard.defaultProps = {
   moveOn: () => {},
+  isMobile: false,
 };
 
 WelcomeCard.propTypes = {
   moveOn: PropTypes.func,
+  isMobile: PropTypes.bool,
 };
 
 export default WelcomeCard;

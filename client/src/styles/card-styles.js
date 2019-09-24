@@ -1,15 +1,10 @@
-const matchCardStyle = {
-  margin: '2px',
-  borderRadius: '20px',
-};
-
 const statsCardStyle = {
   margin: '2px',
   borderRadius: '20px',
 };
 
 const regularCardStyle = {
-  margin: '4px',
+  margin: '2px',
   borderRadius: '20px',
 };
 
@@ -27,11 +22,11 @@ const cardFooterStyle = {
 const cardImageStyle = {
   borderRadius: '20px',
   padding: '3px',
+  marginTop: 0,
   marginBottom: 0,
 };
 
 module.exports = {
-  matchCardStyle,
   languageCardStyle,
   regularCardStyle,
   cardFooterStyle,
