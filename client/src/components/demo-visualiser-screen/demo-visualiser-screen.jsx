@@ -150,15 +150,9 @@ const DemoVisualiser = () => {
     <ul id="#menu">
       <PoseGroup>
         <UserItem key="open-graphs">
-          <div className="show-graphs-button">
-            <input
-              type="radio"
-              value="Show Graphs"
-              checked={showGraphs}
-              onClick={() => setShowGraphs(!showGraphs)}
-            />
-              Show Graphs
-          </div>
+          <button type="button" className="show-graphs-button" onClick={() => setShowGraphs(!showGraphs)}>
+            {showGraphs ? 'Remove Graphs' : 'Show Graphs'}
+          </button>
         </UserItem>
       </PoseGroup>
     </ul>
