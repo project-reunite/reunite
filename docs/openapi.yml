@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: Reunite server API spec
+  description: API spec for Reunite server
+  version: 0.1.0
+paths:
+  /api/v1/persons:
+    get:
+      responses:
+        200:
+          description: List all persons
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - docs
+                properties:
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Person'
+components:
+  schemas:
+    Person:
+      type: object
+      required:
+        - _id
+        - _rev
+        - age
+        - gender
+        - img_url
+        - name
+      properties:
+        _id:
+          type: string
+        _rev:
+          type: string
+        age:
+          type: string
+        gender:
+          type: string
+        img_url:
+          type: string
+        name:
+          type: string
