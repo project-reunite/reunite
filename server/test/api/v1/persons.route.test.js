@@ -1,3 +1,12 @@
+const chai = require('chai');
+const chaiResValidator = require('chai-openapi-response-validator');
+
+const { pathToApiSpec } = require('../../config');
+
+chai.use(chaiResValidator(pathToApiSpec));
+
+// TODO: tidy after TechConnect demo
+//////////////////////////////////////////////////////
 const app = require('../../setup/app.setup');
 
 const { expect } = require('../../setup/chai.setup');
@@ -5,6 +14,8 @@ const { jsonSchemas, fitsSchema } = require('../../setup/jsonSchemas.setup');
 const persons = require('../../../data/Persons');
 const databaseSetup = require('../../setup/database.setup');
 const config = require('../../../src/config');
+
+//////////////////////////////////////////////////////
 
 const personsDb = config.database.persons;
 
@@ -17,11 +28,8 @@ describe('/api/v1', function () {
         describe('GET', function () {
             it('returns 200 and a body listing all persons', async function () {
                 const res = await app().get('/api/v1/persons');
-                expect(res.status).to.equal(200);
-                expect(res.body.docs).to.be.an('array').of.length(persons.length);
-                for(const member of res.body.docs) {
-                    expect(fitsSchema(member, jsonSchemas.Person)).to.be.true;
-                }
+                expect(res).to.have.status(200);
+                expect(res).to.satisfyApiSpec;
             });
         });
         describe('/{id}', function () {
@@ -53,7 +61,7 @@ describe('/api/v1', function () {
                         it('returns 200 and a body containing the person requested', async function () {
                             const res = await app().get(`/api/v1/persons/pairs/0`);
                             expect(res.status).to.equal(200);
-                            
+
                         });
                     });
                 });
