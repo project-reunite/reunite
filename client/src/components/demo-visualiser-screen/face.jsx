@@ -2,13 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FaceChart from '../face-chart';
 
-const generateDataForFaceChart = (name) => {
-  const faceData = [];
-  [...name].forEach(c => faceData.push({
-    A: (Number(c) === 1) ? 1 : 0.5,
-  }));
-  return faceData;
-};
+const generateDataForFaceChart = name => [...name].map(char => (
+  { A: (Number(char) === 1) ? 1 : 0.5 }));
 
 const Face = (props) => {
   const {
