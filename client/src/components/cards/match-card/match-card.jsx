@@ -10,14 +10,19 @@ import ConfirmMatchDialog from '../../dialogs/confirm-match-dialog';
 
 import Translate from '../../../locales/translate';
 
-const { matchCardStyle, cardImageStyle, cardBlockStyle } = require('../../../styles/card-styles');
-const { buttonStyle, secondButtonStyle } = require('../../../styles/button-styles');
+const { regularCardStyle, cardImageStyle, cardBlockStyle } = require('../../../styles/card-styles');
+const { responsivePrimaryButtonStyle, responsiveSecondButtonStyle } = require('../../../styles/button-styles');
 const { iconStyle } = require('../../../styles/icon-styles');
 
 const MatchCard = (props) => {
   const [isMatchConfirmed, setIsMatchConfirmed] = useState(false);
-  const { continueSearch, confirmMatch, foundPersonDetails } = props;
+  const {
+    continueSearch, isMobile, confirmMatch, foundPersonDetails,
+  } = props;
   const successMessage = <Translate string="match-card.match-accept" />;
+
+  const buttonStyle = responsivePrimaryButtonStyle(isMobile);
+  const secondButtonStyle = responsiveSecondButtonStyle(isMobile);
 
   return (
     <div>
@@ -28,7 +33,7 @@ const MatchCard = (props) => {
       />
       <div className="singleCardContainer" data-cy="match-card">
         <FlexItem>
-          <Card style={matchCardStyle} data-cy="person-card">
+          <Card style={regularCardStyle} data-cy="person-card">
             <CardTitle className="cardTitle">
               <Translate string="match-card.title" />
             </CardTitle>
@@ -71,6 +76,7 @@ const MatchCard = (props) => {
 MatchCard.defaultProps = {
   confirmMatch: () => {},
   continueSearch: () => {},
+  isMobile: false,
   foundPersonDetails: {
     name: '',
     age: '',
@@ -81,6 +87,7 @@ MatchCard.defaultProps = {
 MatchCard.propTypes = {
   confirmMatch: PropTypes.func,
   continueSearch: PropTypes.func,
+  isMobile: PropTypes.bool,
   foundPersonDetails: PropTypes.objectOf(PropTypes.string),
 };
 

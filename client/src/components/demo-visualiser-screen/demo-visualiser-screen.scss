@@ -24,6 +24,7 @@
 
 .demo-visualiser-screen .person-container {
   width: 230px;
+  position: relative;
   font-size: 110%;
   text-align: center;
   margin: 0 3px
@@ -33,10 +34,27 @@
   padding: 10px;
   border-radius: 10px;
   font-size: 140%;
+  text-align: center;
+}
+
+.demo-visualiser-screen .show-graphs-button {
+  text-align: center;
+  background-color: white;
+  border: 1px solid rgb(216, 216, 216);
+  padding: 10px;
+  font-size: 140%;
+  border-radius: 10px;
 }
 
 .demo-visualiser-screen .cancel-icon {
   padding: 0px;
+}
+
+.demo-visualiser-screen .person-chart {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  z-index: 10;
 }
 
 .demo-visualiser-screen .remove-user-button {
@@ -66,6 +84,10 @@
   border: 10px solid green;
 }
 
+.demo-visualiser-screen .background-image {
+  opacity: 0.2;
+}
+
 .demo-visualiser-screen ul {
   padding-top: 3px;
   list-style: none;
@@ -74,6 +96,7 @@
   flex-wrap: wrap;
   flex-direction: row;
   display: flex;
+  margin: 4px;
 }
 
 .demo-visualiser-screen li {
