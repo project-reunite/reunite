@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import FaceChart from '../face-chart';
 
 const generateDataForFaceChart = name => [...name].map(char => (
-  { A: (Number(char) === 1) ? 1 : 0.5 }));
+  { A: (Number(char) === 1) ? 1 : 0.7 }));
 
 const Face = (props) => {
   const {
-    src, name, personSeen, id, currentPersons, showGraphs,
+    src, name, personSeen, id, currentPersons, showGraphs, isMobile,
   } = props;
+
+  const faceSize = isMobile ? 100 : 150;
 
   let imgClass = 'face';
 
@@ -24,7 +26,7 @@ const Face = (props) => {
 
   const faceChart = showGraphs ? (
     <div className="person-chart">
-      <FaceChart data={generateDataForFaceChart(id)} />
+      <FaceChart data={generateDataForFaceChart(id)} size={faceSize} />
     </div>
   )
     : null;

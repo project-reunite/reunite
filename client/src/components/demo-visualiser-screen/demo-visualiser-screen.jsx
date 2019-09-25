@@ -10,6 +10,8 @@ import Face from './face';
 import { origin } from '../../config';
 import { FaceItem, UserItem } from '../animations/list-animations';
 import './demo-visualiser-screen.scss';
+import useWindowSize from '../../hooks/useWindowSize';
+
 
 const socket = socketIOClient(origin);
 
@@ -25,6 +27,9 @@ const DemoVisualiser = () => {
   const [users, setUsers] = useState([]);
   const [personsSortedByName, setPersonsSortedByName] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
+
+  const size = useWindowSize();
 
   const removeUser = (username) => {
     const newUsers = [...users];
@@ -37,6 +42,10 @@ const DemoVisualiser = () => {
     setRankedPersons(newRankedPersons);
     setUsers(newUsers);
   };
+
+  useEffect(() => {
+    setIsMobile(size.width < 600);
+  }, [size]);
 
   useEffect(() => {
     async function fetchPersons() {
@@ -123,6 +132,7 @@ const DemoVisualiser = () => {
               personSeen={person.personSeen}
               currentPersons={currentPersons[currentUser]}
               showGraphs={showGraphs}
+              isMobile={isMobile}
             />
           </FaceItem>
         ))}
@@ -139,6 +149,7 @@ const DemoVisualiser = () => {
               src={`${origin}${person.img_url}`}
               name={person.name}
               showGraphs={showGraphs}
+              isMobile={isMobile}
             />
           </FaceItem>
         ))}
@@ -151,7 +162,7 @@ const DemoVisualiser = () => {
       <PoseGroup>
         <UserItem key="open-graphs">
           <button type="button" className="show-graphs-button" onClick={() => setShowGraphs(!showGraphs)}>
-            {showGraphs ? 'Hide Graphs' : 'Show Graphs'}
+            {showGraphs ? 'Hide Charts' : 'Show Charts'}
           </button>
         </UserItem>
       </PoseGroup>
