@@ -6,9 +6,10 @@ info:
 paths:
   /api/v1/persons:
     get:
+      summary: List all persons
       responses:
         200:
-          description: List all persons
+          description: Response successful
           content:
             application/json:
               schema:
