@@ -6,9 +6,9 @@ import {
 } from 'recharts';
 
 const FaceChart = (props) => {
-  const { data } = props;
+  const { data, size } = props;
   return (
-    <RadarChart polarRadius={[100]} outerRadius={100} width={200} height={200} data={data}>
+    <RadarChart polarRadius={[100]} outerRadius={size / 2} width={size} height={size} data={data}>
       <Radar dataKey="A" stroke="#132832" fill="#61B7E1" fillOpacity={0.6} />
     </RadarChart>
   );
