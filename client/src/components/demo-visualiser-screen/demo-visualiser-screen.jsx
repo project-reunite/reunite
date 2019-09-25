@@ -21,6 +21,7 @@ const getPersonsInNameOrder = async () => {
 const DemoVisualiser = () => {
   const [rankedPersons, setRankedPersons] = useState({});
   const [currentPersons, setCurrentPersons] = useState({});
+  const [showGraphs, setShowGraphs] = useState(false);
   const [users, setUsers] = useState([]);
   const [personsSortedByName, setPersonsSortedByName] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
@@ -121,6 +122,7 @@ const DemoVisualiser = () => {
               name={person.name}
               personSeen={person.personSeen}
               currentPersons={currentPersons[currentUser]}
+              showGraphs={showGraphs}
             />
           </FaceItem>
         ))}
@@ -136,6 +138,7 @@ const DemoVisualiser = () => {
               id={person._id}
               src={`${origin}${person.img_url}`}
               name={person.name}
+              showGraphs={showGraphs}
             />
           </FaceItem>
         ))}
@@ -143,9 +146,22 @@ const DemoVisualiser = () => {
     </ul>
   );
 
+  const showGraphsButton = (
+    <ul id="#menu">
+      <PoseGroup>
+        <UserItem key="open-graphs">
+          <button type="button" className="show-graphs-button" onClick={() => setShowGraphs(!showGraphs)}>
+            {showGraphs ? 'Hide Graphs' : 'Show Graphs'}
+          </button>
+        </UserItem>
+      </PoseGroup>
+    </ul>
+  );
+
   return (
     <div className="demo-visualiser-screen">
       {userMenu}
+      {showGraphsButton}
       {faces}
     </div>
   );
