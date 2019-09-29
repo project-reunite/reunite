@@ -31,6 +31,7 @@ const Dashboard = (props) => {
   const [foundPersonDetails, setFoundPersonDetails] = useState({});
   const [userActions, setUserActions] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
+  const [username, setUsername] = useState('');
 
   const size = useWindowSize();
 
@@ -38,7 +39,23 @@ const Dashboard = (props) => {
     setIsMobile(size.width < 600);
   }, [size]);
 
-  const { changeLanguage, username } = props;
+  const { changeLanguage } = props;
+
+
+  useEffect(() => {
+    let mounted = true;
+    async function fetchData() {
+      const response = await apiRequests.postUser();
+      if (mounted) {
+        setUsername(response.data);
+      }
+    }
+    fetchData();
+    // useEffect cleanup function, avoids setting state on unmounted component
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const removeLastChoice = () => {
     setViewedPeople(viewedPeople.slice(0, -2));
@@ -181,12 +198,10 @@ const Dashboard = (props) => {
 
 Dashboard.defaultProps = {
   changeLanguage: () => {},
-  username: '',
 };
 
 Dashboard.propTypes = {
   changeLanguage: PropTypes.func,
-  username: PropTypes.string,
 };
 
 export default Dashboard;

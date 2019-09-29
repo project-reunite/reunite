@@ -11,7 +11,9 @@ const NoMatchDialog = (props) => {
   return (
     <div>
       <Dialog
-        actions={[{ onClick: restartApp, text: <Translate string="restart-app" /> }]}
+        actions={[
+          { onClick: () => restartApp(), text: <Translate string="restart-app" /> },
+        ]}
         isOpen={isOpen}
       >
         <DialogHeader>
