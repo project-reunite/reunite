@@ -38,17 +38,20 @@ const CustomizedLabel = (props) => {
 };
 
 CustomizedLabel.defaultProps = {
+  x: 0,
+  y: 0,
   fill: 'black',
   content: { key: '' },
   dx: 0,
+  value: 0,
 };
 
 CustomizedLabel.propTypes = {
-  x: PropTypes.number.isRequired,
-  y: PropTypes.number.isRequired,
+  x: PropTypes.number,
+  y: PropTypes.number,
   fill: PropTypes.string,
-  value: PropTypes.isRequired,
-  content: PropTypes.objectOf(PropTypes.string),
+  value: PropTypes.number,
+  content: PropTypes.objectOf(PropTypes.any),
   dx: PropTypes.number,
 };
 

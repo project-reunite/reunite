@@ -122,7 +122,7 @@ const Dashboard = (props) => {
           apiRequests.postStatistics(foundPersonDetails._id);
         }}
         continueSearch={() => {
-          setFoundPersonDetails([]);
+          setFoundPersonDetails({});
           setAppState(appStatus.COMPARE_PICTURES);
         }}
       />
