@@ -17,6 +17,7 @@
     "cypress:run": "cypress run",
     "build": "npm run build:client",
     "build:client": "(cd client && npm run build)",
+    "build:stats": "(cd statistics && npm run build)",
     "deploy": "npm run build && ibmcloud dev deploy"
   },
   "repository": {
