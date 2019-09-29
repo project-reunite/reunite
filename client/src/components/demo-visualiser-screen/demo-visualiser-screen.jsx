@@ -29,7 +29,7 @@ const DemoVisualiser = () => {
   const [rankedPersons, setRankedPersons] = useState({});
   const [currentPersons, setCurrentPersons] = useState({});
   const [showGraphs, setShowGraphs] = useState(false);
-  const [showFacePredictionGraphs, setShowFacePredictionGraphs] = useState(true);
+  const [showFacePredictionGraphs, setShowFacePredictionGraphs] = useState(false);
   const [users, setUsers] = useState([]);
   const [personsSortedByName, setPersonsSortedByName] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
@@ -37,6 +37,8 @@ const DemoVisualiser = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const size = useWindowSize();
+
+  console.log(rankedPersons);
 
   const facePredictionRadius = isMobile ? 50 : 100;
 

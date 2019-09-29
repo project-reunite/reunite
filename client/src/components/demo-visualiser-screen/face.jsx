@@ -5,6 +5,7 @@ import FaceChart from '../face-chart';
 const generateDataForFaceChart = name => [...name].map(char => (
   { A: (Number(char) === 1) ? 1 : 0.7 }));
 
+
 const Face = (props) => {
   const {
     src, name, personSeen, id, currentPersons, showGraphs, isMobile,
