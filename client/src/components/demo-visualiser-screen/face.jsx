@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FaceChart from '../face-chart';
 
 const generateDataForFaceChart = name => [...name].map(char => (
-  { A: (Number(char) === 1) ? 1 : 0.7 }));
+  { A: (Number(char)) }));
 
 
 const Face = (props) => {

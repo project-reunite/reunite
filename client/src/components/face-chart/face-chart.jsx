@@ -8,7 +8,7 @@ import {
 const FaceChart = (props) => {
   const { data, size } = props;
   return (
-    <RadarChart polarRadius={size / 2} outerRadius={size / 2} width={size} height={size} data={data}>
+    <RadarChart polarRadius={size / 2} innerRadius={size / 4} width={size} height={size} data={data}>
       <Radar dataKey="A" stroke="#132832" fill="#61B7E1" fillOpacity={0.6} />
     </RadarChart>
   );
