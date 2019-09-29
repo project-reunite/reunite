@@ -42,6 +42,7 @@
   background-color: white;
   border: 1px solid rgb(216, 216, 216);
   padding: 10px;
+  margin: 0 5px;
   font-size: 140%;
   border-radius: 10px;
 }
@@ -97,13 +98,14 @@
   flex-direction: row;
   display: flex;
   margin: 4px;
+  padding-inline-start: 0px;
 }
 
 .demo-visualiser-screen li {
   display: block;
   border-radius: 2px;
-  // background: white;
   margin: 10px;
+  text-align: center;
 }
 
 @media only screen and (max-width: 600px) {

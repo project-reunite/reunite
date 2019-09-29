@@ -9,9 +9,11 @@ import apiRequests from '../../utils/apiRequests';
 import Face from './face';
 import { origin } from '../../config';
 import { FaceItem, UserItem } from '../animations/list-animations';
+import FacePredictionChart from '../face-prediction-chart';
 import './demo-visualiser-screen.scss';
 import useWindowSize from '../../hooks/useWindowSize';
 
+const featureList = ['Male', 'Skin_Tone', 'Age', 'Eyeglasses', 'Bangs', 'Wavy_Hair', 'Makeup'];
 
 const socket = socketIOClient(origin);
 
@@ -20,27 +22,37 @@ const getPersonsInNameOrder = async () => {
   return persons.sort((person1, person2) => (person1.name > person2.name ? 1 : -1));
 };
 
+const generateDataForFacePredictionChart = prediction => prediction.map((x, index) => (
+  { feature: featureList[index], data: x }));
+
 const DemoVisualiser = () => {
   const [rankedPersons, setRankedPersons] = useState({});
   const [currentPersons, setCurrentPersons] = useState({});
   const [showGraphs, setShowGraphs] = useState(false);
+  const [showFacePredictionGraphs, setShowFacePredictionGraphs] = useState(true);
   const [users, setUsers] = useState([]);
   const [personsSortedByName, setPersonsSortedByName] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
+  const [facePrediction, setFacePrediction] = useState({});
   const [isMobile, setIsMobile] = useState(false);
 
   const size = useWindowSize();
 
+  const facePredictionRadius = isMobile ? 50 : 100;
+
   const removeUser = (username) => {
     const newUsers = [...users];
     const newRankedPersons = { ...rankedPersons };
+    const newFacePrediction = { ...facePrediction };
     delete newRankedPersons[username];
+    delete newFacePrediction[username];
     const index = newUsers.indexOf(username);
     if (index > -1) {
       newUsers.splice(index, 1);
     }
     setRankedPersons(newRankedPersons);
     setUsers(newUsers);
+    setFacePrediction(newFacePrediction);
   };
 
   useEffect(() => {
@@ -63,10 +75,13 @@ const DemoVisualiser = () => {
     socket.on('rankedPersons', (data) => {
       const newRankedPersons = { ...rankedPersons };
       const newCurrentPersons = { ...currentPersons };
+      const newFacePrediction = { ...facePrediction };
       newRankedPersons[data.username] = data.rankedPersons;
       newCurrentPersons[data.username] = data.currentPersons;
+      newFacePrediction[data.username] = data.facePrediction;
       setRankedPersons(newRankedPersons);
       setCurrentPersons(newCurrentPersons);
+      setFacePrediction(newFacePrediction);
     });
     return () => {
       socket.off('rankedPersons');
@@ -162,17 +177,42 @@ const DemoVisualiser = () => {
       <PoseGroup>
         <UserItem key="open-graphs">
           <button type="button" className="show-graphs-button" onClick={() => setShowGraphs(!showGraphs)}>
-            {showGraphs ? 'Hide Charts' : 'Show Charts'}
+            {showGraphs ? 'Hide Face Charts' : 'Show Face Charts'}
+          </button>
+        </UserItem>
+      </PoseGroup>
+      <PoseGroup>
+        <UserItem key="open-graphs">
+          <button type="button" className="show-graphs-button" onClick={() => setShowFacePredictionGraphs(!showFacePredictionGraphs)}>
+            {showFacePredictionGraphs ? 'Hide Prediction Chart' : 'Show Prediction Chart'}
           </button>
         </UserItem>
       </PoseGroup>
     </ul>
   );
 
+  const predictedFaceChart = () => {
+    const prediction = generateDataForFacePredictionChart(facePrediction[currentUser]
+      || [1, 1, 1, 1, 1, 1, 1]);
+    const chart = showFacePredictionGraphs
+      ? (
+        <ul id="#menu">
+          <PoseGroup>
+            <UserItem key="open-graphs">
+              <FacePredictionChart size={facePredictionRadius} data={prediction} />
+            </UserItem>
+          </PoseGroup>
+        </ul>
+      ) : null;
+
+    return chart;
+  };
+
   return (
     <div className="demo-visualiser-screen">
-      {userMenu}
       {showGraphsButton}
+      {userMenu}
+      {predictedFaceChart()}
       {faces}
     </div>
   );
