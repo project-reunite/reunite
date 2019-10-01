@@ -8,7 +8,8 @@ import apiRequests from '../../utils/apiRequests';
 
 import Face from './face';
 import { origin } from '../../config';
-import { FaceItem, UserItem, PosedDiv } from '../animations/list-animations';
+import { FaceItem, UserItem } from '../animations/list-animations';
+import PosedDiv from '../animations/div-animations';
 import FacePredictionChart from '../face-prediction-chart';
 import './demo-visualiser-screen.scss';
 import useWindowSize from '../../hooks/useWindowSize';
@@ -196,7 +197,7 @@ const DemoVisualiser = () => {
       || [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]);
     const chart = showFacePredictionGraphs
       ? (
-        <PosedDiv className="predictionChart">
+        <PosedDiv key="predictionChart" className="predictionChart">
           <h2>Current prediction of missing person&apos;s feature values</h2>
           <FacePredictionChart size={facePredictionRadius} data={prediction} />
         </PosedDiv>
