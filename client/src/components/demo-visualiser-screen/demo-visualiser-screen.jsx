@@ -8,12 +8,12 @@ import apiRequests from '../../utils/apiRequests';
 
 import Face from './face';
 import { origin } from '../../config';
-import { FaceItem, UserItem } from '../animations/list-animations';
+import { FaceItem, UserItem, PosedDiv } from '../animations/list-animations';
 import FacePredictionChart from '../face-prediction-chart';
 import './demo-visualiser-screen.scss';
 import useWindowSize from '../../hooks/useWindowSize';
 
-const featureList = ['Male', 'Skin_Tone', 'Age', 'Eyeglasses', 'Bangs', 'Wavy_Hair', 'Makeup'];
+const featureList = ['Gender', 'Skin Tone', 'Age', 'Eye Shape', 'Wavy Hair', 'Hair Line', 'Vitality'];
 
 const socket = socketIOClient(origin);
 
@@ -29,7 +29,7 @@ const DemoVisualiser = () => {
   const [rankedPersons, setRankedPersons] = useState({});
   const [currentPersons, setCurrentPersons] = useState({});
   const [showGraphs, setShowGraphs] = useState(false);
-  const [showFacePredictionGraphs, setShowFacePredictionGraphs] = useState(false);
+  const [showFacePredictionGraphs, setShowFacePredictionGraphs] = useState(true);
   const [users, setUsers] = useState([]);
   const [personsSortedByName, setPersonsSortedByName] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
@@ -37,8 +37,6 @@ const DemoVisualiser = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const size = useWindowSize();
-
-  console.log(rankedPersons);
 
   const facePredictionRadius = isMobile ? 50 : 100;
 
@@ -175,7 +173,7 @@ const DemoVisualiser = () => {
   );
 
   const showGraphsButton = (
-    <ul id="#menu">
+    <ul className="menu">
       <PoseGroup>
         <UserItem key="open-graphs">
           <button type="button" className="show-graphs-button" onClick={() => setShowGraphs(!showGraphs)}>
@@ -195,16 +193,13 @@ const DemoVisualiser = () => {
 
   const predictedFaceChart = () => {
     const prediction = generateDataForFacePredictionChart(facePrediction[currentUser]
-      || [1, 1, 1, 1, 1, 1, 1]);
+      || [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]);
     const chart = showFacePredictionGraphs
       ? (
-        <ul id="#menu">
-          <PoseGroup>
-            <UserItem key="open-graphs">
-              <FacePredictionChart size={facePredictionRadius} data={prediction} />
-            </UserItem>
-          </PoseGroup>
-        </ul>
+        <PosedDiv className="predictionChart">
+          <h2>Current prediction of missing person&apos;s feature values</h2>
+          <FacePredictionChart size={facePredictionRadius} data={prediction} />
+        </PosedDiv>
       ) : null;
 
     return chart;
@@ -212,8 +207,8 @@ const DemoVisualiser = () => {
 
   return (
     <div className="demo-visualiser-screen">
-      {showGraphsButton}
       {userMenu}
+      {showGraphsButton}
       {predictedFaceChart()}
       {faces}
     </div>

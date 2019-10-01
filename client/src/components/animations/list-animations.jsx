@@ -19,7 +19,10 @@ const UserItem = posed.li({
   },
 });
 
+const PosedDiv = posed.div();
+
 export {
   FaceItem,
   UserItem,
+  PosedDiv,
 };

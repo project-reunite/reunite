@@ -5,21 +5,13 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
-
-.demo-visualiser-screen h1 {
-  color: black;
-  text-align: center;
-}
-
 .demo-visualiser-screen h2 {
   color: black;
   text-align: center;
 }
 
-.demo-visualiser-screen .awaiting-search {
-  color: black;
+.demo-visualiser-screen .face-prediction-chart {
   text-align: center;
-  font-size: 30px;
 }
 
 .demo-visualiser-screen .person-container {
@@ -89,13 +81,14 @@
   opacity: 0.3;
 }
 
+.demo-visualiser-screen .recharts-wrapper {
+  margin : 0 auto;
+}
+
 .demo-visualiser-screen ul {
   padding-top: 3px;
-  list-style: none;
-  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  flex-direction: row;
   display: flex;
   margin: 4px;
   padding-inline-start: 0px;
