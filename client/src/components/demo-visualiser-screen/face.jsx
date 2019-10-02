@@ -42,6 +42,7 @@ const Face = (props) => {
 
 Face.defaultProps = {
   personSeen: false,
+  isMobile: false,
   currentPersons: [],
 };
 
@@ -50,6 +51,7 @@ Face.propTypes = {
   name: PropTypes.number.isRequired,
   personSeen: PropTypes.bool,
   id: PropTypes.string.isRequired,
+  isMobile: PropTypes.bool,
   currentPersons: PropTypes.arrayOf(PropTypes.string),
   showGraphs: PropTypes.bool.isRequired,
 };
