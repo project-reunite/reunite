@@ -15,7 +15,7 @@ const FacePredictionChart = (props) => {
       height={2.5 * size}
       data={data}
     >
-      <PolarAngleAxis dataKey="feature" />
+      <PolarAngleAxis tick={{ fontSize: 20, fontWeight: 'bold' }} dataKey="feature" />
       <PolarGrid />
       <Radar dataKey="data" stroke="#132832" fill="#61B7E1" fillOpacity={0.6} />
       <PolarRadiusAxis domain={[0, 1]} tickCount={5} />
@@ -24,7 +24,7 @@ const FacePredictionChart = (props) => {
 };
 
 FacePredictionChart.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)).isRequired,
+  data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
   size: PropTypes.number.isRequired,
 };
 

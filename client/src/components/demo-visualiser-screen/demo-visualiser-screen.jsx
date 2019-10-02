@@ -9,12 +9,12 @@ import apiRequests from '../../utils/apiRequests';
 import Face from './face';
 import { origin } from '../../config';
 import { FaceItem, UserItem } from '../animations/list-animations';
-import PosedDiv from '../animations/div-animations';
+import { PosedDiv } from '../animations/div-animations';
 import FacePredictionChart from '../face-prediction-chart';
 import './demo-visualiser-screen.scss';
 import useWindowSize from '../../hooks/useWindowSize';
 
-const featureList = ['Gender', 'Skin Tone', 'Age', 'Eye Shape', 'Wavy Hair', 'Hair Line', 'Vitality'];
+const featureList = ['Gender', 'Skin Tone', 'Age', 'Eye Shape', 'Wavy Hair', 'Hairline', 'Vitality'];
 
 const socket = socketIOClient(origin);
 
@@ -177,15 +177,15 @@ const DemoVisualiser = () => {
     <ul className="menu">
       <PoseGroup>
         <UserItem key="open-graphs">
-          <button type="button" className="show-graphs-button" onClick={() => setShowGraphs(!showGraphs)}>
-            {showGraphs ? 'Hide Face Charts' : 'Show Face Charts'}
+          <button type="button" className="show-graphs-button" onClick={() => setShowFacePredictionGraphs(!showFacePredictionGraphs)}>
+            {showFacePredictionGraphs ? 'Hide Current Estimate' : 'Show Current Estimate'}
           </button>
         </UserItem>
       </PoseGroup>
       <PoseGroup>
         <UserItem key="open-graphs">
-          <button type="button" className="show-graphs-button" onClick={() => setShowFacePredictionGraphs(!showFacePredictionGraphs)}>
-            {showFacePredictionGraphs ? 'Hide Prediction Chart' : 'Show Prediction Chart'}
+          <button type="button" className="show-graphs-button" onClick={() => setShowGraphs(!showGraphs)}>
+            {showGraphs ? 'Hide Image Analysis' : 'Show Image Analysis'}
           </button>
         </UserItem>
       </PoseGroup>
@@ -197,18 +197,29 @@ const DemoVisualiser = () => {
       || [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]);
     const chart = showFacePredictionGraphs
       ? (
-        <PosedDiv key="predictionChart" className="predictionChart">
-          <h2>Current prediction of missing person&apos;s feature values</h2>
-          <FacePredictionChart size={facePredictionRadius} data={prediction} />
-        </PosedDiv>
+        <PoseGroup>
+          <PosedDiv key="predictionChart" className="predictionChart">
+            <h2>Current estimate of missing person&apos;s features</h2>
+            <FacePredictionChart size={facePredictionRadius} data={prediction} />
+          </PosedDiv>
+        </PoseGroup>
       ) : null;
 
     return chart;
   };
 
+  const pageTitle = (
+    <PoseGroup>
+      <PosedDiv key="title">
+        <h1>Reunite Search Visualiser</h1>
+      </PosedDiv>
+    </PoseGroup>
+  );
+
   return (
     <div className="demo-visualiser-screen">
       {userMenu}
+      {pageTitle}
       {showGraphsButton}
       {predictedFaceChart()}
       {faces}

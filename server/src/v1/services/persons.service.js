@@ -44,7 +44,7 @@ const getOrderedPersonsAndPrediction = async (decisions, viewedPeople) => {
     const personsWithNFeatures = persons.filter(
         person => person._id.length === NUM_FEATURES
     );
-    const prediction = decisionsService.getPrediction(decisions, 6);
+    const prediction = decisionsService.getPrediction(decisions, NUM_FEATURES);
     let rankedPersons = personsWithNFeatures.map(person => ({
         ...person,
         personSeen: viewedPeople.slice(0, -2).includes(person._id),
