@@ -30,7 +30,7 @@ const DemoVisualiser = () => {
   const [rankedPersons, setRankedPersons] = useState({});
   const [currentPersons, setCurrentPersons] = useState({});
   const [showGraphs, setShowGraphs] = useState(false);
-  const [showFacePredictionGraphs, setShowFacePredictionGraphs] = useState(true);
+  const [showFacePredictionGraphs, setShowFacePredictionGraphs] = useState(false);
   const [users, setUsers] = useState([]);
   const [personsSortedByName, setPersonsSortedByName] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
