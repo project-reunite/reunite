@@ -24,7 +24,7 @@ const successIcon = <IconSuccess style={iconStyle} />;
 const moreInfoIcon = <IconMoreInfo style={iconStyle} />;
 
 const PersonCard = (props) => {
-  const [details, setDetails] = useState([]);
+  const [details, setDetails] = useState({});
 
   const {
     onError, id, onClick, onMatch, isMobile,

@@ -75,8 +75,8 @@ DemoSummaryPanel.defaultProps = {
 
 DemoSummaryPanel.propTypes = {
   moveOn: PropTypes.func,
-  decisions: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
-  foundPersonDetails: PropTypes.objectOf(PropTypes.string),
+  decisions: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)),
+  foundPersonDetails: PropTypes.objectOf(PropTypes.any),
   isMobile: PropTypes.bool,
 };
 

@@ -88,7 +88,7 @@ MatchCard.propTypes = {
   confirmMatch: PropTypes.func,
   continueSearch: PropTypes.func,
   isMobile: PropTypes.bool,
-  foundPersonDetails: PropTypes.objectOf(PropTypes.string),
+  foundPersonDetails: PropTypes.objectOf(PropTypes.any),
 };
 
 export default MatchCard;
