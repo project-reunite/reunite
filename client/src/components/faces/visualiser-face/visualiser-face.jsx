@@ -3,52 +3,55 @@ import PropTypes from 'prop-types';
 import FaceChart from '../../charts/face-chart';
 import { AnimatedFaceChartDiv } from '../../animations/div-animations';
 import { generateDataForFaceChart } from '../../../utils/util-functions';
-import { origin } from '../../../config';
 
-import chartSizes from '../../../utils/chart-sizes';
-
-const VisualiserFace = (props) => {
+const Face = (props) => {
   const {
-    person, currentPersons, showFaceCharts, isMobile,
+    src, name, personSeen, id, currentPersons, showFaceCharts, isMobile,
   } = props;
 
-  const chartRadius = isMobile
-    ? chartSizes.faceChartRadiusMobile
-    : chartSizes.faceChartRadius;
+  const faceSize = isMobile ? 100 : 200;
 
   let imgClass = 'face';
 
-  if (person.personSeen) { imgClass += ' filtered'; }
-
-  if (currentPersons && currentPersons.includes(person._id)) { imgClass += ' selected'; }
-
-  if (showFaceCharts) { imgClass += ' background-image'; }
+  if (personSeen) {
+    imgClass += ' filtered';
+  }
+  if (currentPersons && currentPersons.includes(id)) {
+    imgClass += ' selected';
+  }
+  if (showFaceCharts) {
+    imgClass += ' background-image';
+  }
 
   const faceChart = (
     <AnimatedFaceChartDiv className="person-chart" pose={showFaceCharts ? 'visible' : 'hidden'}>
-      <FaceChart data={generateDataForFaceChart(person._id)} size={chartRadius} />
+      <FaceChart data={generateDataForFaceChart(id)} size={faceSize} />
     </AnimatedFaceChartDiv>
   );
 
   return (
     <div className="person-container">
       {faceChart}
-      <img className={imgClass} src={`${origin}${person.img_url}`} alt="Missing person" />
-      {person.name}
+      <img className={imgClass} src={src} alt="Missing person" />
+      {name}
     </div>
   );
 };
 
-VisualiserFace.defaultProps = {
+Face.defaultProps = {
+  personSeen: false,
   isMobile: false,
   currentPersons: [],
 };
 
-VisualiserFace.propTypes = {
+Face.propTypes = {
+  src: PropTypes.string.isRequired,
+  name: PropTypes.number.isRequired,
+  personSeen: PropTypes.bool,
+  id: PropTypes.string.isRequired,
   isMobile: PropTypes.bool,
-  person: PropTypes.objectOf(PropTypes.any).isRequired,
   currentPersons: PropTypes.arrayOf(PropTypes.string),
   showFaceCharts: PropTypes.bool.isRequired,
 };
 
-export default VisualiserFace;
+export default Face;

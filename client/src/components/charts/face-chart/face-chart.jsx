@@ -2,20 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  Radar, RadarChart, PolarRadiusAxis,
+  Radar, RadarChart, PolarGrid, PolarRadiusAxis,
 } from 'recharts';
 
 const FaceChart = (props) => {
   const { data, size } = props;
   return (
     <RadarChart
-      outerRadius={size}
-      innerRadius={2 * size / 3}
-      width={2 * size}
-      height={2 * size}
+      outerRadius={size / 2}
+      innerRadius={size / 3}
+      width={size}
+      height={size}
       data={data}
     >
       <Radar dataKey="A" stroke="#132832" fill="#61B7E1" fillOpacity={0.6} />
+      <PolarGrid
+        stroke="#8c8c8c"
+        gridType="circle"
+      />
       <PolarRadiusAxis tick={false} tickCount={3} axisLine={false} />
     </RadarChart>
   );
