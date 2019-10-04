@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FaceChart from '../face-chart';
-import { PosedFaceChart } from '../animations/div-animations';
-
-const generateDataForFaceChart = name => [...name].map(char => (
-  { A: (Number(char)) }));
+import FaceChart from '../../charts/face-chart';
+import { AnimatedFaceChartDiv } from '../../animations/div-animations';
+import { generateDataForFaceChart } from '../../../utils/util-functions';
 
 const Face = (props) => {
   const {
-    src, name, personSeen, id, currentPersons, showGraphs, isMobile,
+    src, name, personSeen, id, currentPersons, showFaceCharts, isMobile,
   } = props;
 
-  const faceSize = isMobile ? 100 : 150;
+  const faceSize = isMobile ? 100 : 200;
 
   let imgClass = 'face';
 
@@ -21,14 +19,14 @@ const Face = (props) => {
   if (currentPersons && currentPersons.includes(id)) {
     imgClass += ' selected';
   }
-  if (showGraphs) {
+  if (showFaceCharts) {
     imgClass += ' background-image';
   }
 
   const faceChart = (
-    <PosedFaceChart className="person-chart" pose={showGraphs ? 'visible' : 'hidden'}>
+    <AnimatedFaceChartDiv className="person-chart" pose={showFaceCharts ? 'visible' : 'hidden'}>
       <FaceChart data={generateDataForFaceChart(id)} size={faceSize} />
-    </PosedFaceChart>
+    </AnimatedFaceChartDiv>
   );
 
   return (
@@ -53,7 +51,7 @@ Face.propTypes = {
   id: PropTypes.string.isRequired,
   isMobile: PropTypes.bool,
   currentPersons: PropTypes.arrayOf(PropTypes.string),
-  showGraphs: PropTypes.bool.isRequired,
+  showFaceCharts: PropTypes.bool.isRequired,
 };
 
 export default Face;

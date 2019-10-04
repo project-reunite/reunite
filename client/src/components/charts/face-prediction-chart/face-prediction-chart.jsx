@@ -9,16 +9,19 @@ const FacePredictionChart = (props) => {
   const { data, size } = props;
   return (
     <RadarChart
-      polarRadius={size}
       outerRadius={size}
+      innerRadius={2 * size / 3}
       width={3.8 * size}
       height={2.5 * size}
       data={data}
     >
       <PolarAngleAxis tick={{ fontSize: 20, fontWeight: 'bold' }} dataKey="feature" />
-      <PolarGrid />
+      <PolarGrid
+        stroke="#bebebe"
+        gridType="circle"
+      />
       <Radar dataKey="data" stroke="#132832" fill="#61B7E1" fillOpacity={0.6} />
-      <PolarRadiusAxis domain={[0, 1]} tickCount={5} />
+      <PolarRadiusAxis fill="8c8c8c" domain={[0, 1]} tickCount={3} />
     </RadarChart>
   );
 };

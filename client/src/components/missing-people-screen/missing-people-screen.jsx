@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import Face from './face';
+import Face from '../faces/missing-persons-face';
 
 import apiRequests from '../../utils/apiRequests';
 import { origin } from '../../config';

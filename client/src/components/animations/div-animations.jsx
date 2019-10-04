@@ -1,6 +1,6 @@
 import posed from 'react-pose';
 
-const PosedFaceChart = posed.div({
+const AnimatedFaceChartDiv = posed.div({
   visible: {
     opacity: 1,
     transition: {
@@ -11,7 +11,7 @@ const PosedFaceChart = posed.div({
   hidden: { opacity: 0 },
 });
 
-const PosedDiv = posed.div({
+const AnimatedDiv = posed.div({
   flip: {
     scale: 1,
     transition: {
@@ -21,6 +21,6 @@ const PosedDiv = posed.div({
 });
 
 export {
-  PosedFaceChart,
-  PosedDiv,
+  AnimatedFaceChartDiv,
+  AnimatedDiv,
 };
