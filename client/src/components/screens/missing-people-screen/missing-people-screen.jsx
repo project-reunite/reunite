@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import Face from '../faces/missing-persons-face';
+import Face from '../../faces/missing-persons-face';
 
-import apiRequests from '../../utils/apiRequests';
-import { origin } from '../../config';
+import apiRequests from '../../../utils/apiRequests';
+import { origin } from '../../../config';
 import './missing-people-screen.scss';
 
 const getPersonsInNameOrder = async () => {

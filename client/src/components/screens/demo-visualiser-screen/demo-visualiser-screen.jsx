@@ -3,16 +3,16 @@ import React, { useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
 import { PoseGroup } from 'react-pose';
 
-import UserMenu from '../menus/user-menu';
-import FaceChartMenu from '../menus/face-charts-menu';
-import RankedPersonsPanel from '../panels/ranked-persons-panel';
-import SortedPersonsPanel from '../panels/sorted-persons-panel';
-import FacePredictionChart from '../charts/face-prediction-chart';
+import UserMenu from '../../menus/user-menu';
+import FaceChartMenu from '../../menus/face-charts-menu';
+import RankedPersonsPanel from '../../panels/ranked-persons-panel';
+import SortedPersonsPanel from '../../panels/sorted-persons-panel';
+import FacePredictionChart from '../../charts/face-prediction-chart';
 
-import { origin } from '../../config';
-import { AnimatedDiv } from '../animations/div-animations';
-import { getPersonsInNameOrder, generateDataForFacePredictionChart } from '../../utils/util-functions';
-import useWindowSize from '../../hooks/useWindowSize';
+import { origin } from '../../../config';
+import { AnimatedDiv } from '../../animations/div-animations';
+import { getPersonsInNameOrder, generateDataForFacePredictionChart } from '../../../utils/util-functions';
+import useWindowSize from '../../../hooks/useWindowSize';
 
 import './demo-visualiser-screen.scss';
 
@@ -75,7 +75,7 @@ const DemoVisualiser = () => {
     return () => {
       socket.off('rankedPersons');
     };
-  });
+  }, []);
 
 
   const removeUser = (username) => {

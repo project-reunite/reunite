@@ -33,7 +33,7 @@ SortedPersonsPanel.defaultProps = {
 
 SortedPersonsPanel.propTypes = {
   personsSortedByName: PropTypes.arrayOf(PropTypes.any).isRequired,
-  showFaceCharts: PropTypes.func.isRequired,
+  showFaceCharts: PropTypes.bool.isRequired,
   isMobile: PropTypes.bool,
 };
 

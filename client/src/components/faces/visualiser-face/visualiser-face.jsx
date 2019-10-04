@@ -4,7 +4,7 @@ import FaceChart from '../../charts/face-chart';
 import { AnimatedFaceChartDiv } from '../../animations/div-animations';
 import { generateDataForFaceChart } from '../../../utils/util-functions';
 
-const Face = (props) => {
+const VisualiserFace = (props) => {
   const {
     src, name, personSeen, id, currentPersons, showFaceCharts, isMobile,
   } = props;
@@ -13,15 +13,11 @@ const Face = (props) => {
 
   let imgClass = 'face';
 
-  if (personSeen) {
-    imgClass += ' filtered';
-  }
-  if (currentPersons && currentPersons.includes(id)) {
-    imgClass += ' selected';
-  }
-  if (showFaceCharts) {
-    imgClass += ' background-image';
-  }
+  if (personSeen) { imgClass += ' filtered'; }
+
+  if (currentPersons && currentPersons.includes(id)) { imgClass += ' selected'; }
+
+  if (showFaceCharts) { imgClass += ' background-image'; }
 
   const faceChart = (
     <AnimatedFaceChartDiv className="person-chart" pose={showFaceCharts ? 'visible' : 'hidden'}>
@@ -38,13 +34,13 @@ const Face = (props) => {
   );
 };
 
-Face.defaultProps = {
+VisualiserFace.defaultProps = {
   personSeen: false,
   isMobile: false,
   currentPersons: [],
 };
 
-Face.propTypes = {
+VisualiserFace.propTypes = {
   src: PropTypes.string.isRequired,
   name: PropTypes.number.isRequired,
   personSeen: PropTypes.bool,
@@ -54,4 +50,4 @@ Face.propTypes = {
   showFaceCharts: PropTypes.bool.isRequired,
 };
 
-export default Face;
+export default VisualiserFace;

@@ -3,28 +3,28 @@ import PropTypes from 'prop-types';
 
 import Flex from 'mineral-ui/Flex';
 
-import './dashboard.scss';
+import './main-app-screen.scss';
 
-import appStatus from '../../utils/appStatus';
-import appOrder from '../../utils/appOrder';
+import appStatus from '../../../utils/appStatus';
+import appOrder from '../../../utils/appOrder';
 
-import LanguageSelectionPanel from '../panels/language-selection-panel';
-import WelcomeCard from '../panels/welcome-panel';
-import ErrorDialog from '../dialogs/error-dialog';
-import Header from '../header';
-import PersonSelectionPanel from '../panels/person-selection-panel';
-import MatchCard from '../cards/match-card';
-import DemoInfoPanel from '../panels/demo-info-panel';
-import DemoSummaryPanel from '../panels/demo-summary-panel';
-import FurtherInfoPanel from '../panels/further-info-panel';
-import Footer from '../footer';
-import apiRequests from '../../utils/apiRequests';
-import Translate from '../../locales/translate';
-import useWindowSize from '../../hooks/useWindowSize';
+import LanguageSelectionPanel from '../../panels/language-selection-panel';
+import WelcomeCard from '../../panels/welcome-panel';
+import ErrorDialog from '../../dialogs/error-dialog';
+import Header from '../../header';
+import PersonSelectionPanel from '../../panels/person-selection-panel';
+import MatchCard from '../../cards/match-card';
+import DemoInfoPanel from '../../panels/demo-info-panel';
+import DemoSummaryPanel from '../../panels/demo-summary-panel';
+import FurtherInfoPanel from '../../panels/further-info-panel';
+import Footer from '../../footer';
+import apiRequests from '../../../utils/apiRequests';
+import Translate from '../../../locales/translate';
+import useWindowSize from '../../../hooks/useWindowSize';
 
-const { flexStyle } = require('../../styles/flex-styles');
+const { flexStyle } = require('../../../styles/flex-styles');
 
-const Dashboard = (props) => {
+const MainAppScreen = (props) => {
   const [appState, setAppState] = useState(appStatus.LANGUAGE_SELECT);
   const [decisions, setDecisions] = useState([{}]);
   const [viewedPeople, setViewedPeople] = useState([]);
@@ -40,7 +40,6 @@ const Dashboard = (props) => {
   }, [size]);
 
   const { changeLanguage } = props;
-
 
   useEffect(() => {
     let mounted = true;
@@ -196,12 +195,12 @@ const Dashboard = (props) => {
   );
 };
 
-Dashboard.defaultProps = {
+MainAppScreen.defaultProps = {
   changeLanguage: () => {},
 };
 
-Dashboard.propTypes = {
+MainAppScreen.propTypes = {
   changeLanguage: PropTypes.func,
 };
 
-export default Dashboard;
+export default MainAppScreen;

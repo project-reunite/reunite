@@ -5,7 +5,7 @@ import { PrimaryNav, NavItem } from 'mineral-ui/Navigation';
 import IconRestart from 'mineral-ui-icons/IconArrowBack';
 import IconExpandMore from 'mineral-ui-icons/IconExpandMore';
 
-import LanguageMenu from '../language-menu';
+import LanguageMenu from '../menus/language-menu';
 import Translate from '../../locales/translate';
 import './header.scss';
 

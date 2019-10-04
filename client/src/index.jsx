@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import { Router, Route, hashHistory } from 'react-router';
 import App from './app';
-import MissingPeopleScreen from './components/missing-people-screen';
-import DemoVisualiserScreen from './components/demo-visualiser-screen';
+import MissingPeopleScreen from './components/screens/missing-people-screen';
+import DemoVisualiserScreen from './components/screens/demo-visualiser-screen';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
