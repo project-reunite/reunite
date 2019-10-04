@@ -5,14 +5,13 @@ import { PoseGroup } from 'react-pose';
 
 import UserMenu from '../../menus/user-menu';
 import FaceChartMenu from '../../menus/face-charts-menu';
-import Face from '../../faces/visualiser-face';
+import RankedPersonsPanel from '../../panels/ranked-persons-panel';
+import SortedPersonsPanel from '../../panels/sorted-persons-panel';
 import FacePredictionChart from '../../charts/face-prediction-chart';
 
 import { origin } from '../../../config';
-import { StandardAnimatedDiv } from '../../animations/div-animations';
-import { AnimatedFaceDiv } from '../../animations/list-animations';
+import { AnimatedDiv } from '../../animations/div-animations';
 import { getPersonsInNameOrder, generateDataForFacePredictionChart } from '../../../utils/util-functions';
-import chartSizes from '../../../utils/chart-sizes';
 import useWindowSize from '../../../hooks/useWindowSize';
 
 import './demo-visualiser-screen.scss';
@@ -20,21 +19,22 @@ import './demo-visualiser-screen.scss';
 const socket = socketIOClient(origin);
 
 const DemoVisualiser = () => {
-  const [visualiserData, setVisualiserData] = useState({});
+  const [rankedPersons, setRankedPersons] = useState({});
+  const [currentPersons, setCurrentPersons] = useState({});
   const [showFaceCharts, setShowFaceCharts] = useState(false);
   const [showCurrentEstimateChart, setShowCurrentEstimateChart] = useState(false);
+  const [users, setUsers] = useState([]);
   const [personsSortedByName, setPersonsSortedByName] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
+  const [facePrediction, setFacePrediction] = useState({});
   const [isMobile, setIsMobile] = useState(false);
 
   const size = useWindowSize();
 
-  const facePredictionRadius = isMobile
-    ? chartSizes.faceChartRadiusMobile
-    : chartSizes.faceChartRadius;
+  const facePredictionRadius = isMobile ? 50 : 100;
 
   useEffect(() => {
-    setIsMobile(size.width < 500);
+    setIsMobile(size.width < 600);
   }, [size]);
 
   // Fetches initial sorted list, when visualiser first renders
@@ -52,13 +52,8 @@ const DemoVisualiser = () => {
 
   useEffect(() => {
     socket.on('newUser', (username) => {
-      const newVisualiserData = { ...visualiserData };
-      newVisualiserData[username] = {
-        rankedPersons: [],
-        currentPersons: [],
-        facePrediction: [],
-      };
-      setVisualiserData(newVisualiserData);
+      const newUsers = users.concat(username);
+      setUsers(newUsers);
     });
     return () => {
       socket.off('newUser');
@@ -67,23 +62,35 @@ const DemoVisualiser = () => {
 
   useEffect(() => {
     socket.on('rankedPersons', (data) => {
-      const newVisualiserData = { ...visualiserData };
-      if (newVisualiserData[data.username]) {
-        newVisualiserData[data.username].rankedPersons = data.rankedPersons;
-        newVisualiserData[data.username].currentPersons = data.currentPersons;
-        newVisualiserData[data.username].facePrediction = data.facePrediction;
-      }
-      setVisualiserData(newVisualiserData);
+      const newRankedPersons = { ...rankedPersons };
+      const newCurrentPersons = { ...currentPersons };
+      const newFacePrediction = { ...facePrediction };
+      newRankedPersons[data.username] = data.rankedPersons;
+      newCurrentPersons[data.username] = data.currentPersons;
+      newFacePrediction[data.username] = data.facePrediction;
+      setRankedPersons(newRankedPersons);
+      setCurrentPersons(newCurrentPersons);
+      setFacePrediction(newFacePrediction);
     });
     return () => {
       socket.off('rankedPersons');
     };
-  });
+  }, []);
+
 
   const removeUser = (username) => {
-    const newVisualiserData = { ...visualiserData };
-    delete newVisualiserData[username];
-    setVisualiserData(newVisualiserData);
+    const newUsers = [...users];
+    const newRankedPersons = { ...rankedPersons };
+    const newFacePrediction = { ...facePrediction };
+    delete newRankedPersons[username];
+    delete newFacePrediction[username];
+    const index = newUsers.indexOf(username);
+    if (index > -1) {
+      newUsers.splice(index, 1);
+    }
+    setRankedPersons(newRankedPersons);
+    setUsers(newUsers);
+    setFacePrediction(newFacePrediction);
   };
 
   useEffect(() => {
@@ -97,53 +104,34 @@ const DemoVisualiser = () => {
 
   const pageTitle = (
     <PoseGroup>
-      <StandardAnimatedDiv key="title">
+      <AnimatedDiv key="title">
         <h1>Reunite Search Visualiser</h1>
-      </StandardAnimatedDiv>
+      </AnimatedDiv>
     </PoseGroup>
   );
 
   const userMenu = (
     <UserMenu
-      users={Object.keys(visualiserData)}
+      users={users}
       setCurrentUser={setCurrentUser}
       removeUser={removeUser}
       currentUser={currentUser}
     />
   );
 
-  let faces;
-  // If rankedPersons hasn't been received, default to ordering by name
-  if (visualiserData[currentUser] && visualiserData[currentUser].rankedPersons.length > 0) {
-    faces = visualiserData[currentUser].rankedPersons.map(person => (
-      <AnimatedFaceDiv key={person.name}>
-        <Face
-          person={person}
-          personSeen={person.personSeen}
-          currentPersons={visualiserData[currentUser].currentPersons}
-          showFaceCharts={showFaceCharts}
-          isMobile={isMobile}
-        />
-      </AnimatedFaceDiv>
-    ));
-  } else {
-    faces = personsSortedByName.map(person => (
-      <AnimatedFaceDiv key={person.name}>
-        <Face
-          person={person}
-          showFaceCharts={showFaceCharts}
-          isMobile={isMobile}
-        />
-      </AnimatedFaceDiv>
-    ));
-  }
-
-  const facePanel = (
-    <ul>
-      <PoseGroup>
-        {faces}
-      </PoseGroup>
-    </ul>
+  const faces = rankedPersons[currentUser] ? (
+    <RankedPersonsPanel
+      rankedPersons={rankedPersons[currentUser]}
+      showFaceCharts={showFaceCharts}
+      isMobile={isMobile}
+      currentPersons={currentPersons[currentUser]}
+    />
+  ) : (
+    <SortedPersonsPanel
+      personsSortedByName={personsSortedByName}
+      showFaceCharts={showFaceCharts}
+      isMobile={isMobile}
+    />
   );
 
   const showFaceChartsButton = (
@@ -156,25 +144,18 @@ const DemoVisualiser = () => {
   );
 
   const predictedFaceChart = () => {
-    // Default to 0.5 for each feature if user doesn't exist or isn't searching yet
-    const initialPrediction = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
-    const userExistsAndIsSearching = visualiserData[currentUser]
-      && visualiserData[currentUser].facePrediction.length > 0;
-
-    const facePrediction = userExistsAndIsSearching
-      ? visualiserData[currentUser].facePrediction
-      : initialPrediction;
-    const faceChartData = generateDataForFacePredictionChart(facePrediction);
-
+    const prediction = generateDataForFacePredictionChart(facePrediction[currentUser]
+      || [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]);
     const chart = showCurrentEstimateChart
       ? (
         <PoseGroup>
-          <StandardAnimatedDiv key="predictionChart" className="predictionChart">
+          <AnimatedDiv key="predictionChart" className="predictionChart">
             <h2>Current estimate of missing person&apos;s features</h2>
-            <FacePredictionChart size={facePredictionRadius} data={faceChartData} />
-          </StandardAnimatedDiv>
+            <FacePredictionChart size={facePredictionRadius} data={prediction} />
+          </AnimatedDiv>
         </PoseGroup>
       ) : null;
+
     return chart;
   };
 
@@ -184,7 +165,7 @@ const DemoVisualiser = () => {
       {pageTitle}
       {showFaceChartsButton}
       {predictedFaceChart()}
-      {facePanel}
+      {faces}
     </div>
   );
 };
