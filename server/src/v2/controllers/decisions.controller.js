@@ -11,10 +11,12 @@ const getDecision = async function(req, res, next) {
         );
         res.status(200).send(decision);
         const detailsToDisplay = {};
-        detailsToDisplay.rankedPersons = await personsService.getOrderedPersons(
+        const nextSelectionDetails = await personsService.getOrderedPersonsAndPrediction(
             decisions,
             viewedPeople
         );
+        detailsToDisplay.rankedPersons = nextSelectionDetails.rankedPersons;
+        detailsToDisplay.facePrediction = nextSelectionDetails.prediction;
         detailsToDisplay.currentPersons = [
             decision.choices[0].personId,
             decision.choices[1].personId,

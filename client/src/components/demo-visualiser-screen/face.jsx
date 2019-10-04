@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FaceChart from '../face-chart';
+import { PosedFaceChart } from '../animations/div-animations';
 
 const generateDataForFaceChart = name => [...name].map(char => (
-  { A: (Number(char) === 1) ? 1 : 0.7 }));
+  { A: (Number(char)) }));
 
 const Face = (props) => {
   const {
@@ -24,12 +25,11 @@ const Face = (props) => {
     imgClass += ' background-image';
   }
 
-  const faceChart = showGraphs ? (
-    <div className="person-chart">
+  const faceChart = (
+    <PosedFaceChart className="person-chart" pose={showGraphs ? 'visible' : 'hidden'}>
       <FaceChart data={generateDataForFaceChart(id)} size={faceSize} />
-    </div>
-  )
-    : null;
+    </PosedFaceChart>
+  );
 
   return (
     <div className="person-container">
@@ -40,12 +40,19 @@ const Face = (props) => {
   );
 };
 
+Face.defaultProps = {
+  personSeen: false,
+  isMobile: false,
+  currentPersons: [],
+};
+
 Face.propTypes = {
   src: PropTypes.string.isRequired,
   name: PropTypes.number.isRequired,
-  personSeen: PropTypes.bool.isRequired,
+  personSeen: PropTypes.bool,
   id: PropTypes.string.isRequired,
-  currentPersons: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isMobile: PropTypes.bool,
+  currentPersons: PropTypes.arrayOf(PropTypes.string),
   showGraphs: PropTypes.bool.isRequired,
 };
 

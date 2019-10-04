@@ -9,9 +9,12 @@ import apiRequests from '../../utils/apiRequests';
 import Face from './face';
 import { origin } from '../../config';
 import { FaceItem, UserItem } from '../animations/list-animations';
+import { PosedDiv } from '../animations/div-animations';
+import FacePredictionChart from '../face-prediction-chart';
 import './demo-visualiser-screen.scss';
 import useWindowSize from '../../hooks/useWindowSize';
 
+const featureList = ['Gender', 'Skin Tone', 'Age', 'Eye Shape', 'Wavy Hair', 'Hairline', 'Vitality'];
 
 const socket = socketIOClient(origin);
 
@@ -20,27 +23,37 @@ const getPersonsInNameOrder = async () => {
   return persons.sort((person1, person2) => (person1.name > person2.name ? 1 : -1));
 };
 
+const generateDataForFacePredictionChart = prediction => prediction.map((x, index) => (
+  { feature: featureList[index], data: x }));
+
 const DemoVisualiser = () => {
   const [rankedPersons, setRankedPersons] = useState({});
   const [currentPersons, setCurrentPersons] = useState({});
   const [showGraphs, setShowGraphs] = useState(false);
+  const [showFacePredictionGraphs, setShowFacePredictionGraphs] = useState(false);
   const [users, setUsers] = useState([]);
   const [personsSortedByName, setPersonsSortedByName] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
+  const [facePrediction, setFacePrediction] = useState({});
   const [isMobile, setIsMobile] = useState(false);
 
   const size = useWindowSize();
 
+  const facePredictionRadius = isMobile ? 50 : 100;
+
   const removeUser = (username) => {
     const newUsers = [...users];
     const newRankedPersons = { ...rankedPersons };
+    const newFacePrediction = { ...facePrediction };
     delete newRankedPersons[username];
+    delete newFacePrediction[username];
     const index = newUsers.indexOf(username);
     if (index > -1) {
       newUsers.splice(index, 1);
     }
     setRankedPersons(newRankedPersons);
     setUsers(newUsers);
+    setFacePrediction(newFacePrediction);
   };
 
   useEffect(() => {
@@ -63,10 +76,13 @@ const DemoVisualiser = () => {
     socket.on('rankedPersons', (data) => {
       const newRankedPersons = { ...rankedPersons };
       const newCurrentPersons = { ...currentPersons };
+      const newFacePrediction = { ...facePrediction };
       newRankedPersons[data.username] = data.rankedPersons;
       newCurrentPersons[data.username] = data.currentPersons;
+      newFacePrediction[data.username] = data.facePrediction;
       setRankedPersons(newRankedPersons);
       setCurrentPersons(newCurrentPersons);
+      setFacePrediction(newFacePrediction);
     });
     return () => {
       socket.off('rankedPersons');
@@ -158,21 +174,54 @@ const DemoVisualiser = () => {
   );
 
   const showGraphsButton = (
-    <ul id="#menu">
+    <ul className="menu">
+      <PoseGroup>
+        <UserItem key="open-graphs">
+          <button type="button" className="show-graphs-button" onClick={() => setShowFacePredictionGraphs(!showFacePredictionGraphs)}>
+            {showFacePredictionGraphs ? 'Hide Current Estimate' : 'Show Current Estimate'}
+          </button>
+        </UserItem>
+      </PoseGroup>
       <PoseGroup>
         <UserItem key="open-graphs">
           <button type="button" className="show-graphs-button" onClick={() => setShowGraphs(!showGraphs)}>
-            {showGraphs ? 'Hide Charts' : 'Show Charts'}
+            {showGraphs ? 'Hide Image Analysis' : 'Show Image Analysis'}
           </button>
         </UserItem>
       </PoseGroup>
     </ul>
   );
 
+  const predictedFaceChart = () => {
+    const prediction = generateDataForFacePredictionChart(facePrediction[currentUser]
+      || [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]);
+    const chart = showFacePredictionGraphs
+      ? (
+        <PoseGroup>
+          <PosedDiv key="predictionChart" className="predictionChart">
+            <h2>Current estimate of missing person&apos;s features</h2>
+            <FacePredictionChart size={facePredictionRadius} data={prediction} />
+          </PosedDiv>
+        </PoseGroup>
+      ) : null;
+
+    return chart;
+  };
+
+  const pageTitle = (
+    <PoseGroup>
+      <PosedDiv key="title">
+        <h1>Reunite Search Visualiser</h1>
+      </PosedDiv>
+    </PoseGroup>
+  );
+
   return (
     <div className="demo-visualiser-screen">
       {userMenu}
+      {pageTitle}
       {showGraphsButton}
+      {predictedFaceChart()}
       {faces}
     </div>
   );
