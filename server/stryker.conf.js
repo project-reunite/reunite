@@ -1,7 +1,7 @@
 module.exports = function(config) {
     config.set({
         mutate: [
-            'src/**/*.js',
+            'src/**/decisions3.service.js',
             '!src/**/routes/*.js',
             '!src/**/controllers/*.js',
             '!src/**/models/*.js',

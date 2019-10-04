@@ -29,6 +29,15 @@ const databaseExists = async ({ database }) => {
     return databases.includes(database);
 };
 
+const destroyDocument = async ({ database, id }) => {
+    try {
+        const { _rev } = await getDocument({ database, id });
+        cloudant.db.use(database).destroy(id, _rev);
+    } catch(err) { 
+        console.log(err);
+    }
+};
+
 module.exports = {
     getDocument,
     getAllDocuments,
@@ -36,4 +45,5 @@ module.exports = {
     createDatabase,
     destroyDatabase,
     databaseExists,
+    destroyDocument,
 };

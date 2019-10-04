@@ -1,4 +1,4 @@
-const { insertDocument } = require('../../v1/services/database.service');
+const { insertDocument, destroyDocument, getDocument } = require('../../v1/services/database.service');
 
 const femaleNames = ['Emily','Hannah','Madison','Ashley','Sarah','Alexis','Samantha','Jessica','Elizabeth','Taylor','Lauren','Alyssa','Kayla','Abigail','Brianna','Olivia','Emma','Megan','Grace','Victoria','Rachel','Anna','Sydney','Destiny','Morgan','Jennifer','Jasmine','Haley','Julia','Kaitlyn','Nicole','Amanda','Katherine','Natalie','Hailey','Alexandra','Savannah','Chloe','Rebecca','Stephanie','Maria','Sophia','Mackenzie','Allison','Isabella','Amber','Mary','Danielle'];
 const maleNames = ['Jacob', 'Michael', 'Matthew', 'Joshua', 'Christopher', 'Nicholas', 'Andrew', 'Joseph', 'Daniel', 'Tyler', 'William', 'Brandon', 'Ryan', 'John', 'Zachary', 'David', 'Anthony', 'James', 'Justin', 'Alexander', 'Jonathan', 'Christian', 'Austin', 'Dylan', 'Ethan', 'Benjamin', 'Noah', 'Samuel', 'Robert', 'Nathan', 'Cameron', 'Kevin', 'Thomas', 'Jose', 'Hunter', 'Jordan', 'Kyle', 'Caleb', 'Jason', 'Logan', 'Aaron', 'Eric', 'Brian', 'Gabriel', 'Adam', 'Jack', 'Isaiah', 'Juan', 'Luis', 'Connor', 'Charles'];
@@ -21,17 +21,29 @@ const generatePeople = (numberOfFeatures) => {
     return list;
 };
 
-const people = generatePeople(6);
+const people = generatePeople(7);
 
-people.forEach(person => {
-    insertDocument({
-        database: 'persons_migrants',
-        doc: {
-            _id: person,
-            name: (person.charAt(0) === '1' ? maleNames[parseInt(person, 2) - 32] : femaleNames[parseInt(person, 2)]) + ' ' + lastNames[70 - parseInt(person, 2)],
-            age: 26 + (parseInt(person, 2) % 10),
-            gender: person.charAt(0) === '1' ? 'Male' : 'Female',
-            img_url: `/images/generated/6_features/${person}.png`,
-        },
-    });
+people.forEach(async (person) => {
+    try {
+        destroyDocument({
+            database: 'persons_migrants',
+            id: person,
+        });
+    } catch(err) {
+        console.log(err)
+    }
+    // try {
+    //     await insertDocument({
+    //         database: 'persons_migrants',
+    //         doc: {
+    //             _id: person,
+    //             name: (person.charAt(0) === '1' ? maleNames[parseInt(person, 2) - 32] : femaleNames[parseInt(person, 2)]) + ' ' + lastNames[70 - parseInt(person, 2)],
+    //             age: 26 + (parseInt(person, 2) % 10),
+    //             gender: person.charAt(0) === '1' ? 'Male' : 'Female',
+    //             img_url: `/images/generated/7_features/lighter/low_res/${person}.png`,
+    //         },
+    //     });
+    // } catch(err) {
+    //     console.log(err);
+    // }
 });
