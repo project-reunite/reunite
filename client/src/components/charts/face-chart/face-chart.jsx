@@ -9,10 +9,10 @@ const FaceChart = (props) => {
   const { data, size } = props;
   return (
     <RadarChart
-      outerRadius={size / 2}
-      innerRadius={size / 3}
-      width={size}
-      height={size}
+      outerRadius={size}
+      innerRadius={2 * size / 3}
+      width={2 * size}
+      height={2 * size}
       data={data}
     >
       <Radar dataKey="A" stroke="#132832" fill="#61B7E1" fillOpacity={0.6} />

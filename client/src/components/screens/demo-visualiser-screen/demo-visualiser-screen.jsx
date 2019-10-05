@@ -110,7 +110,7 @@ const DemoVisualiser = () => {
   );
 
   let faces;
-  // If rankedPersons hasn't been received, default to ordering faces by name
+  // If rankedPersons hasn't been received, default to ordering by name
   if (visualiserData[currentUser] && visualiserData[currentUser].rankedPersons.length > 0) {
     faces = visualiserData[currentUser].rankedPersons.map(person => (
       <AnimatedFaceDiv key={person.name}>
@@ -154,16 +154,18 @@ const DemoVisualiser = () => {
 
   const predictedFaceChart = () => {
     // Default to 0.5 for each feature if user doesn't exist or isn't searching yet
-    let prediction = [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
-    if (visualiserData[currentUser] && visualiserData[currentUser].facePrediction) {
-      prediction = generateDataForFacePredictionChart(visualiserData[currentUser].facePrediction);
-    }
+    const facePrediction = (visualiserData[currentUser]
+      && visualiserData[currentUser].facePrediction.length > 0)
+      ? visualiserData[currentUser].facePrediction
+      : [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
+    const faceChartData = generateDataForFacePredictionChart(facePrediction);
+
     const chart = showCurrentEstimateChart
       ? (
         <PoseGroup>
           <AnimatedDiv key="predictionChart" className="predictionChart">
             <h2>Current estimate of missing person&apos;s features</h2>
-            <FacePredictionChart size={facePredictionRadius} data={prediction} />
+            <FacePredictionChart size={facePredictionRadius} data={faceChartData} />
           </AnimatedDiv>
         </PoseGroup>
       ) : null;
