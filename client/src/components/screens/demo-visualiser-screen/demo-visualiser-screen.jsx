@@ -77,7 +77,6 @@ const DemoVisualiser = () => {
     };
   });
 
-
   const removeUser = (username) => {
     const newUsers = [...users];
     const newRankedPersons = { ...rankedPersons };
