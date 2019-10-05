@@ -5,12 +5,12 @@ import { PoseGroup } from 'react-pose';
 
 import UserMenu from '../../menus/user-menu';
 import FaceChartMenu from '../../menus/face-charts-menu';
-import RankedPersonsPanel from '../../panels/ranked-persons-panel';
-import SortedPersonsPanel from '../../panels/sorted-persons-panel';
+import Face from '../../faces/visualiser-face';
 import FacePredictionChart from '../../charts/face-prediction-chart';
 
 import { origin } from '../../../config';
 import { AnimatedDiv } from '../../animations/div-animations';
+import { AnimatedFaceDiv } from '../../animations/list-animations';
 import { getPersonsInNameOrder, generateDataForFacePredictionChart } from '../../../utils/util-functions';
 import useWindowSize from '../../../hooks/useWindowSize';
 
@@ -75,7 +75,7 @@ const DemoVisualiser = () => {
     return () => {
       socket.off('rankedPersons');
     };
-  }, []);
+  });
 
 
   const removeUser = (username) => {
@@ -120,18 +120,35 @@ const DemoVisualiser = () => {
   );
 
   const faces = rankedPersons[currentUser] ? (
-    <RankedPersonsPanel
-      rankedPersons={rankedPersons[currentUser]}
-      showFaceCharts={showFaceCharts}
-      isMobile={isMobile}
-      currentPersons={currentPersons[currentUser]}
-    />
+    rankedPersons[currentUser].map(person => (
+      <AnimatedFaceDiv key={person.name}>
+        <Face
+          person={person}
+          personSeen={person.personSeen}
+          currentPersons={currentPersons[currentUser]}
+          showFaceCharts={showFaceCharts}
+          isMobile={isMobile}
+        />
+      </AnimatedFaceDiv>
+    ))
   ) : (
-    <SortedPersonsPanel
-      personsSortedByName={personsSortedByName}
-      showFaceCharts={showFaceCharts}
-      isMobile={isMobile}
-    />
+    personsSortedByName.map(person => (
+      <AnimatedFaceDiv key={person.name}>
+        <Face
+          person={person}
+          showFaceCharts={showFaceCharts}
+          isMobile={isMobile}
+        />
+      </AnimatedFaceDiv>
+    ))
+  );
+
+  const facePanel = (
+    <ul>
+      <PoseGroup>
+        {faces}
+      </PoseGroup>
+    </ul>
   );
 
   const showFaceChartsButton = (
@@ -165,7 +182,7 @@ const DemoVisualiser = () => {
       {pageTitle}
       {showFaceChartsButton}
       {predictedFaceChart()}
-      {faces}
+      {facePanel}
     </div>
   );
 };
