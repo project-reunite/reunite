@@ -10,7 +10,7 @@ const VisualiserFace = (props) => {
     person, currentPersons, showFaceCharts, isMobile,
   } = props;
 
-  const faceSize = isMobile ? 100 : 200;
+  const faceChartRadius = isMobile ? 50 : 100;
 
   let imgClass = 'face';
 
@@ -22,7 +22,7 @@ const VisualiserFace = (props) => {
 
   const faceChart = (
     <AnimatedFaceChartDiv className="person-chart" pose={showFaceCharts ? 'visible' : 'hidden'}>
-      <FaceChart data={generateDataForFaceChart(person._id)} size={faceSize} />
+      <FaceChart data={generateDataForFaceChart(person._id)} size={faceChartRadius} />
     </AnimatedFaceChartDiv>
   );
 
