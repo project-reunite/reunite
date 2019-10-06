@@ -11,9 +11,9 @@ function getBinLabels(binDefinitions){
 }
 
 function getGraphData(stats) {
-  const averagePhotosUsedByExistingSystems = [];
+  const smoothedTotalUsers = [];
   let binDefinitions = [{
-      min: 0,
+      min: 2,
       max:4,
       count: 0,
     }, {
@@ -34,10 +34,18 @@ function getGraphData(stats) {
       count: 0,
     }, {
       min: 22,
+      max:24,
+      count: 0,
+    }, {
+      min: 26,
       max:28,
       count: 0,
     }, {
       min: 30,
+      max:32,
+      count: 0,
+    }, {
+      min: 34,
       max: NUM_MISSING_PEOPLE / 2,
       count: 0,
     }, {
@@ -59,11 +67,22 @@ function getGraphData(stats) {
   let data = [];
   binDefinitions.forEach(bin => {
     data.push(bin.count);
+    smoothedTotalUsers.push(bin.count);
   });
 
   const graphData = {
       labels,
       datasets:[
+        {
+          label: 'Smoothed',
+          type:'line',
+          data: smoothedTotalUsers,
+          pointBorderColor: 'rgba(0, 0, 0, 0)',
+          pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+          backgroundColor: 'rgb(255, 112, 79, 0.06)',
+          borderColor: 'rgb(255, 112, 79)',
+          borderWidth: 5,
+        },
         {
           label: 'Number of Users',
           data,
