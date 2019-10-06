@@ -1,31 +1,71 @@
 const NUM_MISSING_PEOPLE = 128; // TODO: soft code
 const EXISTING_AVERAGE = NUM_MISSING_PEOPLE / 2;
 
+function getBinLabels(binDefinitions){
+  let labels = [];
+  binDefinitions.forEach(bin => {
+    let label = `${bin.min} - ${bin.max} Photos`
+    labels.push(label);
+  });
+  return labels;
+}
+
 function getGraphData(stats) {
-  const labels = [];
-  const data = [];
   const averagePhotosUsedByExistingSystems = [];
+  let binDefinitions = [{
+      min: 0,
+      max:4,
+      count: 0,
+    }, {
+      min: 6,
+      max:8,
+      count: 0,
+    }, {
+      min: 10,
+      max:12,
+      count: 0,
+    }, {
+      min: 14,
+      max: 16,
+      count: 0,
+    }, {
+      min: 18,
+      max:20,
+      count: 0,
+    }, {
+      min: 22,
+      max:28,
+      count: 0,
+    }, {
+      min: 30,
+      max: NUM_MISSING_PEOPLE / 2,
+      count: 0,
+    }, {
+      min: (NUM_MISSING_PEOPLE / 2) + 2,
+      max: NUM_MISSING_PEOPLE,
+      count: 0,
+    }];
+  const labels = getBinLabels(binDefinitions);
+
 
   for (const statsOfAUser of stats) {
-    labels.push(statsOfAUser.username)
-    data.push(statsOfAUser.viewedPeople.length)
-    averagePhotosUsedByExistingSystems.push(EXISTING_AVERAGE);
+    binDefinitions.forEach(bin => {
+      if(statsOfAUser.viewedPeople.length >= bin.min && statsOfAUser.viewedPeople.length <= bin.max) {
+        bin.count = bin.count + 1;
+      }
+    });
   }
+
+  let data = [];
+  binDefinitions.forEach(bin => {
+    data.push(bin.count);
+  });
+
   const graphData = {
       labels,
       datasets:[
         {
-          label: 'Existing solutions (average)',
-          type:'line',
-          data: averagePhotosUsedByExistingSystems,
-          pointBorderColor: 'rgba(0, 0, 0, 0)',
-          pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-          backgroundColor: 'rgb(255, 112, 79, 0.06)',
-          borderColor: 'rgb(255, 112, 79)',
-          borderWidth: 5,
-        },
-        {
-          label: 'Reunite',
+          label: 'Number of Users',
           data,
           backgroundColor: 'rgba(0, 98, 255, 1)',
         },
