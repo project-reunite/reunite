@@ -57,13 +57,17 @@ No, because charities are already letting searchers look through all these photo
 #### How does Arame know about our website, and know how to use it?
 Charities such as Red Cross already direct Arame and other searchers to their existing search sites; searchers will now find our app on those sites. We designed the site to be intuitive enough to use even if aid workers are unavailable to guide users through it.
 #### What happens if Arame doesn't find a match after viewing all relevant photos?
-We would then show her less relevant photos. Our system prioritises photos rather than filtering them, so that no photo is ever hidden. Therefore, in the worst case our system still matches the existing system, and in the best case our system far outperforms it. 
+We would then show her less relevant photos. Our system prioritises photos rather than filtering them, so that no photo is ever hidden. Therefore, in the worst case our system still matches the existing system, and in the best case our system far outperforms it.
 
 If Arame still doesn't find a match after viewing all (relevant & irrelevant) photos collected by the charity, then we apologise for the photo not being present, and present her with a button to easily contact a relevant aid worker for advice. She can choose to be notified when new photos are added.
 
 ### Deployment
 #### What if refugees don't have smartphones or access to a stable internet connection?
-Both our app and existing charities' sites require access to internet-connected devices. Where access is available but limited, our app still improves on existing charities' sites, because refugees will complete their search in far fewer photos. A shorter search time allows shared devices and limited mobile data to serve many more refugees than before.
+Refugees can access the Reunite website on a shared computer or an aid workers' smartphone.
+
+The Reunite website also has an 'offline mode', allowing it to run by connecting to a local server nearby, rather than a server over the internet (see ['deploying the app', below](#deploying-the-app)).
+
+In both these cases, our app still improves on existing charities' sites, because refugees will complete their search in far fewer photos. A shorter search time allows shared devices and limited connectivity to serve many more refugees than before.
 
 ## Project Roadmap
 
@@ -174,6 +178,33 @@ npm test
 # Run all API tests and generate coverage report
 npm run test:coverage
 ```
+
+## Deploying the app
+
+### Locally (for accessing the client site on the same computer)
+
+1. Set up a [Cloudant database on IBM Cloud](https://cloud.ibm.com/catalog/services/cloudant), or run a local instance of  [Apache CouchDB](http://docs.couchdb.org/en/stable/install/mac.html).
+2. In `server/config/index.js`, set where your database is located. (If it is located on the cloud, ensure you have specified your login details in `server/config/index.js` or a `.env` file).
+3. Run `npm run deploy:local`
+
+### Local network (for accessing the client site on nearby devices, without a Wi-Fi connection)
+
+1. Run a local instance of [Apache CouchDB](http://docs.couchdb.org/en/stable/install/mac.html).
+2. In `server/config/index.js`, set that your database is located locally.
+3. Run `npm run deploy:local-network`
+4. Create a local network by (on Mac) going to `Wi-Fi settings` and selecting `Create Network`.
+5. In `client/config/index.js`, set your `origin` to your computer's Private IP address (e.g. 192.168.0.0). (On Mac, go to `System Preferences` -> `Network` -> `Wi-Fi`).
+6. On nearby internet-enabled devices, open the `available networks` settings page. The local network you created should appear here. Connect to it.
+7. The app should now be accessible at (e.g.) `http://192.168.0.0:9100`
+
+### To IBM Cloud Foundry (for accessing the client site on any internet device connected to the internet)
+
+1. Set up your [IBM Cloud Foundry](https://www.ibm.com/cloud/cloud-foundry) account.
+2. In `client/config/index.js`, set the cloud config to your Cloud Foundry address.
+3. Set up a [Cloudant database on IBM Cloud](https://cloud.ibm.com/catalog/services/cloudant).
+4. In `server/config/index.js`, set that your database is located on the cloud. Ensure you have specified your login details in `server/config/index.js` or a `.env` file.
+5. `npm run deploy:cloud`
+
 
 ## Built With
 

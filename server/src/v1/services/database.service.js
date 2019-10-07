@@ -1,18 +1,8 @@
 const Cloudant = require('@cloudant/cloudant');
 
-const account = process.env.DB_ACCOUNT;
-const password = process.env.DB_PASSWORD;
+const { dbConfig } = require('../../config');
 
-const cloudant = new Cloudant({
-    account,
-    password,
-    maxAttempt: 5,
-    plugins: [
-        {
-            retry: { retryErrors: false, retryStatusCodes: [ 429 ] },
-        },
-    ],
-});
+const cloudant = Cloudant(dbConfig);
 
 const getDocument = ({ database, id }) => cloudant.db.use(database).get(id);
 

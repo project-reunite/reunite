@@ -18,7 +18,9 @@
     "build": "npm run build:client",
     "build:client": "(cd client && npm run build)",
     "build:stats": "(cd statistics && npm run build)",
-    "deploy": "npm run build && ibmcloud dev deploy"
+    "deploy:cloud": "REACT_APP_SERVER_LOCATION=cloud npm run build && ibmcloud dev deploy",
+    "deploy:local": "REACT_APP_SERVER_LOCATION=local npm run build && npm start",
+    "deploy:local-network": "REACT_APP_SERVER_LOCATION=local-network npm run build && npm start"
   },
   "repository": {
     "type": "git",
