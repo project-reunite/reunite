@@ -7,7 +7,7 @@ import { origin } from '../../../config';
 
 const VisualiserFace = (props) => {
   const {
-    person, currentPersons, showFaceCharts, isMobile, position, maximumProbability,
+    person, currentPersons, showFaceCharts, isMobile, maximumProbability, minimumProbability,
   } = props;
 
   const faceChartRadius = isMobile ? 50 : 100;
@@ -26,19 +26,15 @@ const VisualiserFace = (props) => {
     </AnimatedFaceChartDiv>
   );
 
-  // const personSeenImage = person.personSeen
-  //   ? <img className="person-seen-image" src="cross.svg" alt="Missing person" />
-  //   : null;
-
-  // const personImageStyle = position
-  //   ? { WebkitFilter: 'greyscale(100%)', filter: `grayscale(${100 * position / 128}%)` }
-  //   : {};
-
-
-  const personImageStyle = person.personSeen
-    ? {}
-    : { opacity: person.probability / maximumProbability };
-
+  let personImageStyle = {};
+  if (maximumProbability && !person.personSeen) {
+    personImageStyle = {
+      // weight the image opacity so all images are seen
+      opacity: 0.5 + (0.5 * (person.probability - minimumProbability) / (maximumProbability - minimumProbability)),
+    };
+  } else {
+    personImageStyle = {};
+  }
 
   return (
     <div className="person-container">
@@ -53,7 +49,8 @@ const VisualiserFace = (props) => {
 VisualiserFace.defaultProps = {
   isMobile: false,
   currentPersons: [],
-  position: 0,
+  maximumProbability: 1,
+  minimumProbability: 0,
 };
 
 VisualiserFace.propTypes = {
@@ -61,7 +58,8 @@ VisualiserFace.propTypes = {
   person: PropTypes.objectOf(PropTypes.any).isRequired,
   currentPersons: PropTypes.arrayOf(PropTypes.string),
   showFaceCharts: PropTypes.bool.isRequired,
-  position: PropTypes.number,
+  maximumProbability: PropTypes.number,
+  minimumProbability: PropTypes.number,
 };
 
 export default VisualiserFace;

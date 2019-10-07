@@ -21,7 +21,7 @@ const FacePredictionChart = (props) => {
         gridType="circle"
       />
       <Radar dataKey="data" stroke="#132832" fillOpacity={0.6} />
-      <PolarRadiusAxis fill="8c8c8c" domain={[0, 1]} tickCount={3} />
+      <PolarRadiusAxis fill="#8c8c8c" domain={[0, 1]} tickCount={3} />
     </RadarChart>
   );
 };
