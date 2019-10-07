@@ -4,6 +4,11 @@
 /**/coverage/
 /**/test
 /**/README.md
+/public/refugees/
+/public/generated/4_features/
+/public/generated/6_features/
+/public/generated/6_features_hi_res/
+/public/generated/7_features/darker
 .git/
 .github/
 .vscode
