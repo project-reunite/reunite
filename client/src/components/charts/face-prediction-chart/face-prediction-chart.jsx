@@ -20,11 +20,12 @@ const FacePredictionChart = (props) => {
         stroke="#bebebe"
         gridType="circle"
       />
-      <Radar dataKey="data" stroke="#132832" fill="#61B7E1" fillOpacity={0.6} />
+      <Radar dataKey="data" stroke="#132832" fillOpacity={0.6} />
       <PolarRadiusAxis fill="8c8c8c" domain={[0, 1]} tickCount={3} />
     </RadarChart>
   );
 };
+
 
 FacePredictionChart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,

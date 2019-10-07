@@ -7,7 +7,7 @@ import { origin } from '../../../config';
 
 const VisualiserFace = (props) => {
   const {
-    person, currentPersons, showFaceCharts, isMobile, position,
+    person, currentPersons, showFaceCharts, isMobile, position, maximumProbability,
   } = props;
 
   const faceChartRadius = isMobile ? 50 : 100;
@@ -15,6 +15,8 @@ const VisualiserFace = (props) => {
   let imgClass = 'face';
 
   if (currentPersons && currentPersons.includes(person._id)) { imgClass += ' selected'; }
+
+  if (person.personSeen) { imgClass += ' filtered'; }
 
   if (showFaceCharts) { imgClass += ' background-image'; }
 
@@ -24,18 +26,23 @@ const VisualiserFace = (props) => {
     </AnimatedFaceChartDiv>
   );
 
-  const personSeenImage = person.personSeen
-    ? <img className="person-seen-image" src="cross.svg" alt="Missing person" />
-    : null;
+  // const personSeenImage = person.personSeen
+  //   ? <img className="person-seen-image" src="cross.svg" alt="Missing person" />
+  //   : null;
 
-  const personImageStyle = position
-    ? { WebkitFilter: 'greyscale(100%)', filter: `grayscale(${100 * position / 128}%)` }
-    : {};
+  // const personImageStyle = position
+  //   ? { WebkitFilter: 'greyscale(100%)', filter: `grayscale(${100 * position / 128}%)` }
+  //   : {};
+
+
+  const personImageStyle = person.personSeen
+    ? {}
+    : { opacity: person.probability / maximumProbability };
 
 
   return (
     <div className="person-container">
-      {personSeenImage}
+      {/* {personSeenImage} */}
       {faceChart}
       <img style={personImageStyle} className={imgClass} src={`${origin}${person.img_url}`} alt="Missing person" />
       {person.name}
