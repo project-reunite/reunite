@@ -112,7 +112,7 @@ const DemoVisualiser = () => {
   let faces;
   // If rankedPersons hasn't been received, default to ordering by name
   if (visualiserData[currentUser] && visualiserData[currentUser].rankedPersons.length > 0) {
-    faces = visualiserData[currentUser].rankedPersons.map(person => (
+    faces = visualiserData[currentUser].rankedPersons.map((person, index) => (
       <AnimatedFaceDiv key={person.name}>
         <Face
           person={person}
@@ -120,16 +120,18 @@ const DemoVisualiser = () => {
           currentPersons={visualiserData[currentUser].currentPersons}
           showFaceCharts={showFaceCharts}
           isMobile={isMobile}
+          position={index}
         />
       </AnimatedFaceDiv>
     ));
   } else {
-    faces = personsSortedByName.map(person => (
+    faces = personsSortedByName.map((person, index) => (
       <AnimatedFaceDiv key={person.name}>
         <Face
           person={person}
           showFaceCharts={showFaceCharts}
           isMobile={isMobile}
+          position={index}
         />
       </AnimatedFaceDiv>
     ));
