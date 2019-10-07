@@ -73,6 +73,12 @@
   background-color: #61B7E1;
 }
 
+.demo-visualiser-screen .filtered {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 1;
+}
+
 .demo-visualiser-screen .face {
   border: 3px solid black;
   width: 230px;
