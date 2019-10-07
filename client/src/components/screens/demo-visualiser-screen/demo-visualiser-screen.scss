@@ -53,6 +53,11 @@
   position: absolute;
   left: 20px;
   top: 20px;
+  z-index: 5;
+}
+
+.demo-visualiser-screen .person-seen-image {
+  position: absolute;
   z-index: 10;
 }
 
@@ -71,12 +76,6 @@
 .demo-visualiser-screen .face {
   border: 3px solid black;
   width: 230px;
-}
-
-.demo-visualiser-screen .filtered {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-  opacity: 0.5;
 }
 
 .demo-visualiser-screen .selected {
