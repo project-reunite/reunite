@@ -7,7 +7,7 @@ import { origin } from '../../../config';
 
 const VisualiserFace = (props) => {
   const {
-    person, currentPersons, showFaceCharts, isMobile, maximumProbability, minimumProbability,
+    person, currentPersons, showFaceCharts, isMobile, maximumProbability, minimumProbability, showProbability,
   } = props;
 
   const faceChartRadius = isMobile ? 50 : 100;
@@ -26,19 +26,13 @@ const VisualiserFace = (props) => {
     </AnimatedFaceChartDiv>
   );
 
-  let personImageStyle = {};
-  if (maximumProbability && !person.personSeen) {
-    personImageStyle = {
-      // weight the image opacity so all images are seen
-      opacity: 0.5 + (0.5 * (person.probability - minimumProbability) / (maximumProbability - minimumProbability)),
-    };
-  } else {
-    personImageStyle = {};
-  }
+  const personImageStyle = (showProbability && !person.personSeen)
+    ? { opacity: 0.5 + (0.5 * (person.probability - minimumProbability) / (maximumProbability - minimumProbability)) }
+    : {};
+
 
   return (
     <div className="person-container">
-      {/* {personSeenImage} */}
       {faceChart}
       <img style={personImageStyle} className={imgClass} src={`${origin}${person.img_url}`} alt="Missing person" />
       {person.name}
@@ -51,6 +45,7 @@ VisualiserFace.defaultProps = {
   currentPersons: [],
   maximumProbability: 1,
   minimumProbability: 0,
+  showProbability: false,
 };
 
 VisualiserFace.propTypes = {
@@ -60,6 +55,7 @@ VisualiserFace.propTypes = {
   showFaceCharts: PropTypes.bool.isRequired,
   maximumProbability: PropTypes.number,
   minimumProbability: PropTypes.number,
+  showProbability: PropTypes.bool,
 };
 
 export default VisualiserFace;

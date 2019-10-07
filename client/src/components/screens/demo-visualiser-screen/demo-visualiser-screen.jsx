@@ -127,6 +127,7 @@ const DemoVisualiser = () => {
           isMobile={isMobile}
           maximumProbability={maximumProbability}
           minimumProbability={minimumProbability}
+          showProbability
         />
       </AnimatedFaceDiv>
     ));
@@ -138,6 +139,7 @@ const DemoVisualiser = () => {
           person={person}
           showFaceCharts={showFaceCharts}
           isMobile={isMobile}
+          showProbability={false}
         />
       </AnimatedFaceDiv>
     ));

@@ -5,22 +5,26 @@ import {
   Radar, RadarChart, PolarAngleAxis, PolarRadiusAxis, PolarGrid,
 } from 'recharts';
 
+import CustomTick from './custom-tick';
+
 const FacePredictionChart = (props) => {
   const { data, size } = props;
+
   return (
     <RadarChart
       outerRadius={size}
       innerRadius={2 * size / 3}
+      fontWeight="bold"
       width={3.8 * size}
       height={2.5 * size}
       data={data}
     >
-      <PolarAngleAxis tick={{ fontSize: 20, fontWeight: 'bold' }} dataKey="feature" />
+      <PolarAngleAxis tick={<CustomTick data={data} />} dataKey="feature" />
       <PolarGrid
         stroke="#bebebe"
         gridType="circle"
       />
-      <Radar dataKey="data" stroke="#132832" fillOpacity={0.6} />
+      <Radar dataKey="data" fill="#61B7E1" stroke="#132832" fillOpacity={0.6} />
       <PolarRadiusAxis fill="#8c8c8c" domain={[0, 1]} tickCount={3} />
     </RadarChart>
   );
