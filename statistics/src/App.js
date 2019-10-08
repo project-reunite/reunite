@@ -33,8 +33,22 @@ class App extends Component {
       averageNumPhotosUsed
     } = this.state;
 
+    const date = new Date();
+    const dateLabel = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+
     return (
       <div className="App">
+        <div className="row" style={{backgroundColor: '#171717'}}>
+          <div className="column" style={{textAlign: "left"}}>
+            <p style={{color: '#FFFFFF', padding: '0 0 0 10px', fontSize: '25px', fontWeight:"bold"}}> <img src='https://reunite.eu-gb.cf.appdomain.cloud/reunite-dark.svg' height="20" width="20"/> Project Reunite Statistics</p>
+          </div>
+          <div className="column">
+            <p> </p>
+          </div>
+          <div className="column" style={{textAlign: "right"}}>
+            <p style={{color: '#FFFFFF', padding: '15px 0 0 0', fontSize: '15px', fontStyle: "italic"}}>Updated: {dateLabel}</p>
+          </div>
+        </div>
         <div className="row" style={{backgroundColor: 'rgba(213, 213, 213, 0.3)'}}>
           <div className="column">
             <h1>
@@ -46,7 +60,7 @@ class App extends Component {
           </div>
           <div className="column">
             <h1>
-              Average photos checked per search
+              Average Photos Checked Per Search
               <br></br>
               <span style={{color: '#0062ff'}}>(Reunite)</span>
             </h1>
@@ -54,9 +68,9 @@ class App extends Component {
           </div>
           <div className="column">
             <h1>
-              Average photos checked per search
+              Average Photos Checked Per Search
               <br></br>
-              <span style={{color: 'rgb(255, 112, 79)'}}>(existing solutions)</span>
+              <span style={{color: 'rgb(255, 112, 79)'}}>(Existing Solutions)</span>
             </h1>
             <p className="Data-Value" style={{color: 'rgb(255, 112, 79)'}}>
               {statsService.EXISTING_AVERAGE}

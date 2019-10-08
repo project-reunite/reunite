@@ -4,7 +4,7 @@ const EXISTING_AVERAGE = NUM_MISSING_PEOPLE / 2;
 function getBinLabels(binDefinitions){
   let labels = [];
   binDefinitions.forEach(bin => {
-    let label = `${bin.min} - ${bin.max} Photos`
+    let label = `${bin.min} - ${bin.max}`
     labels.push(label);
   });
   return labels;
@@ -70,6 +70,11 @@ function getGraphData(stats) {
     smoothedTotalUsers.push(bin.count);
   });
 
+  let existingSolutionData = [1, 1, 10, 15, 20, 30, 40, 50, 80, 50];
+
+console.log(data);
+console.log(existingSolutionData);
+
   const graphData = {
       labels,
       datasets:[
@@ -77,6 +82,16 @@ function getGraphData(stats) {
           label: 'Smoothed',
           type:'line',
           data: smoothedTotalUsers,
+          pointBorderColor: 'rgba(0, 0, 0, 0)',
+          pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+          backgroundColor: 'rgb(255, 112, 79, 0.06)',
+          borderColor: 'rgb(255, 112, 79)',
+          borderWidth: 5,
+        },
+        {
+          label: 'existingSolution',
+          type:'line',
+          data: existingSolutionData,
           pointBorderColor: 'rgba(0, 0, 0, 0)',
           pointBackgroundColor: 'rgba(0, 0, 0, 0)',
           backgroundColor: 'rgb(255, 112, 79, 0.06)',

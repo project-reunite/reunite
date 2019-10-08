@@ -18,7 +18,7 @@ const BarChart = (props) => {
         options={{
           title:{
             display: defaultProps.displayTitle,
-            text: 'Photos checked per search',
+            text: 'Photos Checked Per Search',
             fontSize: 37,
             fontColor: '#282c34',
           },
@@ -29,6 +29,20 @@ const BarChart = (props) => {
               fontSize: 24,
               fontColor: 'black',
             },
+          },
+          scales:{
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: "Number of Users"
+              }
+            }],
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: "Number of Photos Shown Until Missing Person Found"
+              }
+            }],
           },
         }}
       />

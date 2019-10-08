@@ -19,6 +19,10 @@ h1 {
   width: 32%;
 }
 
+.chart {
+  margin: 10px;
+}
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
