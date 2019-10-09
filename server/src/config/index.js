@@ -12,6 +12,25 @@ const FEATURE_CONFIDENCE = [
     0.5,
 ];
 
+const dbConfigs = {
+    local: 'http://localhost:5984',
+    cloud: {
+        account: process.env.DB_ACCOUNT,
+        password: process.env.DB_PASSWORD,
+        maxAttempt: 5,
+        plugins: [
+            {
+                retry: { retryErrors: false, retryStatusCodes: [ 429 ] },
+            },
+        ],
+    },
+};
+
+const DB_LOCATION = 'cloud';
+console.log(`DB_LOCATION: ${DB_LOCATION}`);
+
+const dbConfig = dbConfigs[DB_LOCATION];
+
 /* istanbul ignore next */
 function determineLogLevel(env) {
     if (env === 'production' || env === 'staging') {
@@ -26,4 +45,5 @@ module.exports = {
     env,
     NUM_FEATURES,
     FEATURE_CONFIDENCE,
+    dbConfig,
 };

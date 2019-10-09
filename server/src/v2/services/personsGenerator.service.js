@@ -21,8 +21,8 @@ const generatePersonIds = (numberOfFeatures) => {
 const generatePersonsFromIds = (id, name) => ({
     _id: id,
     name,
-    age: 26 + (parseInt(id, 2) % 10),
-    gender: id.charAt(0) === '1' ? 'Male' : 'Female',
+    age: 26 + (parseInt(id, 2) % 10), // for filters (currently unused)
+    gender: id.charAt(0) === '1' ? 'Male' : 'Female', // for filters (currently unused)
     img_url: `/images/generated/7_features/lighter/low_res/${id}.png`,
 });
 
