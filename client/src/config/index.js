@@ -4,6 +4,8 @@ const port = process.env.PORT || 9100;
 // console.log('process.env');
 // console.log(process.env);
 // console.log('port', port);
+// console.log('process.env.REACT_APP_SERVER_LOCATION');
+// console.log(process.env.REACT_APP_SERVER_LOCATION);
 
 const origins = {
   cloud: 'https://reunite.eu-gb.cf.appdomain.cloud',
@@ -11,12 +13,11 @@ const origins = {
   'local-network': `http://169.254.XXX.XX:${port}`, // Set this to your Private IP address
 };
 
-console.log('process.env.REACT_APP_SERVER_LOCATION');
-console.log(process.env.REACT_APP_SERVER_LOCATION);
-
 const serverLocation = process.env.REACT_APP_SERVER_LOCATION || 'local';
 
 const origin = origins[serverLocation];
+
+console.log(`Client expects server at origin: ${origin}`);
 
 const numMissingPeople = 128;
 const numPhotosViaExistingSolutions = numMissingPeople / 2;
