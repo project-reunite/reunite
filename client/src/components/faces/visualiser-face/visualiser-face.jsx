@@ -7,7 +7,15 @@ import { origin } from '../../../config';
 
 const VisualiserFace = (props) => {
   const {
-    person, currentPersons, showFaceCharts, isMobile, maximumProbability, minimumProbability, showProbability,
+    person,
+    currentPersons,
+    showFaceCharts,
+    isMobile,
+    maximumProbability,
+    minimumProbability,
+    showProbability,
+    minFaceOpacity,
+    position,
   } = props;
 
   const faceChartRadius = isMobile ? 50 : 100;
@@ -27,8 +35,13 @@ const VisualiserFace = (props) => {
   );
 
   const personImageStyle = (showProbability && !person.personSeen)
-    ? { opacity: 0.5 + (0.5 * (person.probability - minimumProbability) / (maximumProbability - minimumProbability)) }
-    : {};
+    ? {
+      opacity: minFaceOpacity
+      + ((1 - minFaceOpacity) * (person.probability - minimumProbability) / (maximumProbability - minimumProbability)),
+    }
+    : {
+      opacity: minFaceOpacity + ((128 - position) / 128),
+    };
 
 
   return (
@@ -46,6 +59,8 @@ VisualiserFace.defaultProps = {
   maximumProbability: 1,
   minimumProbability: 0,
   showProbability: false,
+  minFaceOpacity: 0,
+  position: 0,
 };
 
 VisualiserFace.propTypes = {
@@ -55,6 +70,8 @@ VisualiserFace.propTypes = {
   showFaceCharts: PropTypes.bool.isRequired,
   maximumProbability: PropTypes.number,
   minimumProbability: PropTypes.number,
+  minFaceOpacity: PropTypes.number,
+  position: PropTypes.number,
   showProbability: PropTypes.bool,
 };
 

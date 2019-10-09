@@ -14,7 +14,6 @@ const CustomTick = (props) => {
     <text
       className="tickLabel"
       fontSize="20"
-      color="green"
       x={x}
       y={y}
       textAnchor={textAnchor}
@@ -31,14 +30,13 @@ CustomTick.defaultProps = {
   x: 0,
   y: 0,
   payload: {},
-  textAnchor: 'end',
 };
 
 CustomTick.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
   payload: PropTypes.objectOf(PropTypes.any),
-  textAnchor: PropTypes.string,
+  textAnchor: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
 };
 
