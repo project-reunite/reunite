@@ -34,15 +34,19 @@ const VisualiserFace = (props) => {
     </AnimatedFaceChartDiv>
   );
 
-  const personImageStyle = (showProbability && !person.personSeen)
-    ? {
-      opacity: minFaceOpacity
-      + ((1 - minFaceOpacity) * (person.probability - minimumProbability) / (maximumProbability - minimumProbability)),
-    }
-    : {
-      opacity: minFaceOpacity + ((128 - position) / 128),
-    };
+  let personImageStyle = {};
 
+  if (!person.personSeen) {
+    personImageStyle = (showProbability)
+      ? {
+        opacity: minFaceOpacity
+      + ((1 - minFaceOpacity) * (person.probability - minimumProbability)
+      / (maximumProbability - minimumProbability)),
+      }
+      : {
+        opacity: minFaceOpacity + ((128 - position) / 128),
+      };
+  }
 
   return (
     <div className="person-container">

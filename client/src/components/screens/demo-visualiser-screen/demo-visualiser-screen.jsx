@@ -8,6 +8,7 @@ import FaceChartMenu from '../../menus/face-charts-menu';
 import Face from '../../faces/visualiser-face';
 import FacePredictionChart from '../../charts/face-prediction-chart';
 import Slider from '../../slider';
+import ColorBar from '../../color-bar';
 
 import { origin } from '../../../config';
 import { AnimatedDiv } from '../../animations/div-animations';
@@ -26,7 +27,7 @@ const DemoVisualiser = () => {
   const [personsSortedByName, setPersonsSortedByName] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
   const [showProbabilities, setShowProbabilities] = useState(false);
-  const [minFaceOpacity, setMinFaceOpacity] = useState(0.5);
+  const [minFaceOpacity, setMinFaceOpacity] = useState(0.3);
   const [isMobile, setIsMobile] = useState(false);
 
   const size = useWindowSize();
@@ -120,7 +121,6 @@ const DemoVisualiser = () => {
       person => person.probability,
     );
     const minimumProbability = Math.min(...probabilities);
-    console.log(showProbabilities);
     faces = visualiserData[currentUser].rankedPersons.map((person, index) => (
       <AnimatedFaceDiv key={person.name}>
         <Face
@@ -183,9 +183,12 @@ const DemoVisualiser = () => {
     const chart = showCurrentEstimateChart
       ? (
         <PoseGroup>
-          <AnimatedDiv key="predictionChart" className="predictionChart">
+          <AnimatedDiv key="predictionChart" className="face-prediction-chart">
             <h2>Current estimate of missing person&apos;s features</h2>
-            <FacePredictionChart size={facePredictionRadius} data={faceChartData} />
+            <div className="labeled-chart">
+              <FacePredictionChart size={facePredictionRadius} data={faceChartData} />
+              <ColorBar />
+            </div>
           </AnimatedDiv>
         </PoseGroup>
       ) : null;
@@ -197,10 +200,10 @@ const DemoVisualiser = () => {
       {userMenu}
       {pageTitle}
       {showFaceChartsButton}
-      <Slider
+      {/* <Slider
         defaultValue={0.5}
         submitValue={value => setMinFaceOpacity(value)}
-      />
+      /> */}
       {predictedFaceChart()}
       {facePanel}
     </div>

@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const getColor = (value) => {
+  const confidenceLevel = Math.abs(0.5 - value);
+  return `rgb(150, ${450 * confidenceLevel}, 0)`;
+};
+
 const CustomTick = (props) => {
   const {
     x, y, payload, textAnchor, data,
   } = props;
   const { value } = payload;
   const targetFeature = data.filter(feature => feature.feature === value)[0].data;
-  const color = (targetFeature < 0.2 || targetFeature > 0.8)
-    ? 'green'
-    : 'red';
+  const color = getColor(targetFeature);
   return (
     <text
       className="tickLabel"

@@ -24,7 +24,7 @@ export default class SliderInput extends Component {
     return (
       <div className="slider">
         <h3>
-          Min Face opacity
+          Minimum Face Opacity
         </h3>
         <p>
           {value}
