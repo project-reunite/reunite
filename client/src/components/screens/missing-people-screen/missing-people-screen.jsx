@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import Face from './face';
+import Face from '../../faces/missing-person-face';
 
-import apiRequests from '../../utils/apiRequests';
-import { origin } from '../../config';
+import { origin } from '../../../config';
+import { getPersonsInNameOrder } from '../../../utils/util-functions';
 import './missing-people-screen.scss';
-
-const getPersonsInNameOrder = async () => {
-  const persons = await apiRequests.getPersonsWithNFeatures();
-  return persons.sort((person1, person2) => (person1.name > person2.name ? 1 : -1));
-};
 
 const MissingPeopleScreen = () => {
   const [persons, setPersons] = useState([]);
@@ -42,14 +37,12 @@ const MissingPeopleScreen = () => {
   const faces = (
     <ul id="#menu">
       {persons.map(person => (
-
         <Face
           key={person.name}
           id={person._id}
           src={`${origin}${person.img_url}`}
           name={person.name}
         />
-
       ))}
     </ul>
   );

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import Translate from '../../locales/translate';
+import Translate from '../../../locales/translate';
 
 const existingSolutionLabel = <Translate string="stats-summary-1" />;
 

@@ -7,7 +7,7 @@ import Flex, { FlexItem } from 'mineral-ui/Flex';
 import Button from 'mineral-ui/Button';
 import IconNext from 'mineral-ui-icons/IconPlayCircleOutline';
 import Translate from '../../../locales/translate';
-import DemoSummaryChart from '../../demo-chart';
+import DemoSummaryChart from '../../charts/demo-chart';
 
 const { flexStyle } = require('../../../styles/flex-styles');
 const { responsivePrimaryButtonStyle } = require('../../../styles/button-styles');

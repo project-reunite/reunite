@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'mineral-ui/themes';
 import LocaleContext from '../locale-context';
-import Dashboard from '../components/dashboard';
+import MainAppScreen from '../components/screens/main-app-screen';
 import './app.scss';
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
   return (
     <LocaleContext.Provider value={preferredLocale}>
       <ThemeProvider>
-        <Dashboard changeLanguage={changeLanguage} />
+        <MainAppScreen changeLanguage={changeLanguage} />
       </ThemeProvider>
     </LocaleContext.Provider>
   );

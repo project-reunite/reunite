@@ -1,16 +1,16 @@
 import posed from 'react-pose';
 
-const FaceItem = posed.li({
+const AnimatedFaceDiv = posed.li({
   flip: {
     scale: 1,
     transition: {
-      delay: 500,
+      delay: 300,
       duration: 2500,
     },
   },
 });
 
-const UserItem = posed.li({
+const AnimatedUserButton = posed.li({
   flip: {
     scale: 1,
     transition: {
@@ -20,6 +20,6 @@ const UserItem = posed.li({
 });
 
 export {
-  FaceItem,
-  UserItem,
+  AnimatedFaceDiv,
+  AnimatedUserButton,
 };

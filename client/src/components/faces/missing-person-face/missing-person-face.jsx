@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Face = (props) => {
+const MissingPersonFace = (props) => {
   const { src, name } = props;
   return (
     <div className="person-container">
@@ -11,9 +11,9 @@ const Face = (props) => {
   );
 };
 
-Face.propTypes = {
+MissingPersonFace.propTypes = {
   src: PropTypes.string.isRequired,
   name: PropTypes.number.isRequired,
 };
 
-export default Face;
+export default MissingPersonFace;

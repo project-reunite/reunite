@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import './language-menu.scss';
 import Menu, { MenuItem } from 'mineral-ui/Menu';
 
-import GbEngIcon from '../icons/gb-icon';
-import FrIcon from '../icons/fr-icon';
-import InIcon from '../icons/in-icon';
+import GbEngIcon from '../../icons/gb-icon';
+import FrIcon from '../../icons/fr-icon';
+import InIcon from '../../icons/in-icon';
 
-import useOutsideClick from '../../hooks/useOutsideClick';
+import useOutsideClick from '../../../hooks/useOutsideClick';
 
-const { languageMenuStyle } = require('../../styles/menu-styles');
+const { languageMenuStyle } = require('../../../styles/menu-styles');
 
 const LanguageMenu = (props) => {
   const { submitLanguage, onClose } = props;
