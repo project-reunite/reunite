@@ -190,6 +190,7 @@ npm run test:coverage
 ### Local network (for accessing the client site on nearby devices, without a Wi-Fi connection)
 
 1. Run a local instance of [Apache CouchDB](http://docs.couchdb.org/en/stable/install/mac.html).
+2. On that instance, create a database called `persons_migrants`.
 2. In `server/config/index.js`, set that your database is located locally.
 3. Run `npm run deploy:local-network`
 4. Create a local network by (on Mac) going to `Wi-Fi settings` and selecting `Create Network`.
