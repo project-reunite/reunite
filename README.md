@@ -184,26 +184,27 @@ npm run test:coverage
 ### Locally (for accessing the client site on the same computer)
 
 1. Set up a [Cloudant database on IBM Cloud](https://cloud.ibm.com/catalog/services/cloudant), or run a local instance of  [Apache CouchDB](http://docs.couchdb.org/en/stable/install/mac.html).
-2. In `server/config/index.js`, set where your database is located. (If it is located on the cloud, ensure you have specified your login details in `server/config/index.js` or a `.env` file).
+2. In `server/src/config/index.js`, set where your database is located. (If it is located on the cloud, ensure you have specified your login details in `server/src/config/index.js` or a `.env` file).
 3. Run `npm run deploy:local`
 
 ### Local network (for accessing the client site on nearby devices, without a Wi-Fi connection)
 
 1. Run a local instance of [Apache CouchDB](http://docs.couchdb.org/en/stable/install/mac.html).
 2. On that instance, create a database called `persons_migrants`.
-2. In `server/config/index.js`, set that your database is located locally.
-3. Run `npm run deploy:local-network`
-4. Create a local network by (on Mac) going to `Wi-Fi settings` and selecting `Create Network`.
-5. In `client/config/index.js`, set your `origin` to your computer's Private IP address (e.g. 192.168.0.0). (On Mac, go to `System Preferences` -> `Network` -> `Wi-Fi`).
-6. On nearby internet-enabled devices, open the `available networks` settings page. The local network you created should appear here. Connect to it.
-7. The app should now be accessible at (e.g.) `http://192.168.0.0:9100`
+2. In `server/src/config/index.js`, set that your database is located locally by updating the value of `DB_LOCATION` to `'local'`.
+3. In `server/src/app.js` uncomment `require('./v2/services/personsGenerator.service');` to allow the database to be populated.
+4. Run `npm run deploy:local-network`
+5. Create a local network by (on Mac) going to `Wi-Fi settings` and selecting `Create Network`.
+6. In `client/src/config/index.js`, change the `local-network` origin IP to be your computer's Private IP address (e.g. `192.168.0.0`). (On Mac, go to `System Preferences` -> `Network` -> `Wi-Fi`).
+7. On nearby internet-enabled devices, open the `available networks` settings page. The local network you created should appear here. Connect to it.
+8. The app should now be accessible at your Private IP address (e.g.) `http://192.168.0.0:9100/#/`
 
 ### To IBM Cloud Foundry (for accessing the client site on any internet device connected to the internet)
 
 1. Set up your [IBM Cloud Foundry](https://www.ibm.com/cloud/cloud-foundry) account.
-2. In `client/config/index.js`, set the cloud config to your Cloud Foundry address.
+2. In `client/src/config/index.js`, set the cloud config to your Cloud Foundry address.
 3. Set up a [Cloudant database on IBM Cloud](https://cloud.ibm.com/catalog/services/cloudant).
-4. In `server/config/index.js`, set that your database is located on the cloud. Ensure you have specified your login details in `server/config/index.js` or a `.env` file.
+4. In `server/src/config/index.js`, set that your database is located on the cloud. Ensure you have specified your login details in `server/src/config/index.js` or a `.env` file.
 5. `npm run deploy:cloud`
 
 
