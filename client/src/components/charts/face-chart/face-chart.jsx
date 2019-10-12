@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  Radar, RadarChart, PolarGrid, PolarRadiusAxis,
+  Radar, RadarChart, PolarGrid,
 } from 'recharts';
 
 const FaceChart = (props) => {
@@ -20,7 +20,6 @@ const FaceChart = (props) => {
         stroke="#8c8c8c"
         gridType="circle"
       />
-      <PolarRadiusAxis tick={false} tickCount={3} axisLine={false} />
     </RadarChart>
   );
 };

@@ -11,7 +11,7 @@ import Slider from '../../slider';
 import ColorBar from '../../color-bar';
 
 import { origin } from '../../../config';
-import { AnimatedDiv } from '../../animations/div-animations';
+import { StandardAnimatedDiv } from '../../animations/div-animations';
 import { AnimatedFaceDiv } from '../../animations/list-animations';
 import { getPersonsInNameOrder, generateDataForFacePredictionChart } from '../../../utils/util-functions';
 import useWindowSize from '../../../hooks/useWindowSize';
@@ -98,9 +98,9 @@ const DemoVisualiser = () => {
 
   const pageTitle = (
     <PoseGroup>
-      <AnimatedDiv key="title">
+      <StandardAnimatedDiv key="title">
         <h1>Reunite Search Visualiser</h1>
-      </AnimatedDiv>
+      </StandardAnimatedDiv>
     </PoseGroup>
   );
 
@@ -183,13 +183,13 @@ const DemoVisualiser = () => {
     const chart = showCurrentEstimateChart
       ? (
         <PoseGroup>
-          <AnimatedDiv key="predictionChart" className="face-prediction-chart">
+          <StandardAnimatedDiv key="predictionChart" className="face-prediction-chart">
             <h2>Current estimate of missing person&apos;s features</h2>
             <div className="labeled-chart">
               <FacePredictionChart size={facePredictionRadius} data={faceChartData} />
               <ColorBar />
             </div>
-          </AnimatedDiv>
+          </StandardAnimatedDiv>
         </PoseGroup>
       ) : null;
     return chart;

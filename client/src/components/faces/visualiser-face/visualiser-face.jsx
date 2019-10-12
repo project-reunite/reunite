@@ -36,7 +36,7 @@ const VisualiserFace = (props) => {
 
   let personImageStyle = {};
 
-  if (!person.personSeen) {
+  if (!person.personSeen && minimumProbability !== maximumProbability) {
     personImageStyle = (showProbability)
       ? {
         opacity: minFaceOpacity
