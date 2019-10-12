@@ -34,7 +34,7 @@ class App extends Component {
     } = this.state;
 
     const date = new Date();
-    const dateLabel = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    const dateLabel = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} - ${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`
 
     return (
       <div className="App">
@@ -46,7 +46,7 @@ class App extends Component {
             <p> </p>
           </div>
           <div className="column" style={{textAlign: "right"}}>
-            <p style={{color: '#FFFFFF', padding: '15px 0 0 0', fontSize: '15px', fontStyle: "italic"}}>Updated: {dateLabel}</p>
+            <p style={{color: '#FFFFFF', padding: '15px 0 0 0', fontSize: '15px', fontStyle: "italic"}}>Last updated at {dateLabel}</p>
           </div>
         </div>
         <div className="row" style={{backgroundColor: 'rgba(213, 213, 213, 0.3)'}}>

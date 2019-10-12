@@ -40,7 +40,7 @@ const BarChart = (props) => {
             xAxes: [{
               scaleLabel: {
                 display: true,
-                labelString: "Number of Photos Shown Until Missing Person Found"
+                labelString: "Photos Shown Until Missing Person Found"
               }
             }],
           },
