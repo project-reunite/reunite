@@ -4,9 +4,9 @@ const { env } = require('../../config');
 const database = 'statistics';
 
 const postStatistic = (doc) => {
-    if (env === 'development') {
-        return;
-    }
+    // if (env === 'development') {
+    //     return;
+    // }
 
     insertDocument({
         database,

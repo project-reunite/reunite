@@ -4,6 +4,9 @@ const postStatistic = async function(req, res, next) {
     try {
         const statistic = await statisticsService.postStatistic({ ...req.body, username: req.body.username });
         res.status(200).send(statistic);
+        const statistics = await statisticsService.getStatistics({});
+        console.log(statistics);
+        req.io.emit('statistics', statistics);
     } catch(err) {
         next(err);
     }
