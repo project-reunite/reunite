@@ -5,14 +5,19 @@ import statsService from './utils/statsService';
 import apiRequest from './utils/apiRequests';
 import socketIOClient from 'socket.io-client';
 import { origin } from './config';
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
 const socket = socketIOClient(origin);
+const PROJECT_START_DATE = new Date(1560553200000); // 15/06/2019
+
 
 const App = () => {
   const [chartData, setChartData] = useState({});
   const [peopleFound, setPeopleFound] = useState(0);
   const [averageNumPhotosUsed, setAverageNumPhotosUsed] = useState(0);
-
+  const [selectedDay, setSelectedDay] = useState(PROJECT_START_DATE);
+  
   async function setStatistics(statistics){
     const newChartData = statsService.getGraphData(statistics);
     const newPeopleFound = await statsService.getPeopleFound(statistics);
@@ -22,11 +27,33 @@ const App = () => {
     setAverageNumPhotosUsed(newAverageNumPhotosUsed);
   }
 
+  function getStatsSince(stats, date) {
+    let statsSinceDate = [];
+    for (const statsOfAUser of stats) {
+      if (statsOfAUser.created_at >= date) {
+        statsSinceDate.push(statsOfAUser)
+      }
+    }
+    return statsSinceDate;
+  }
+
+  useEffect(() => {
+    const updateDate = async () => {
+      try {
+        let statistics = await apiRequest.getStatistics();
+        statistics = getStatsSince(statistics, selectedDay.getTime())
+        await setStatistics(statistics);
+      } catch(err) {
+        console.error(err);
+      }
+    }
+    updateDate();
+  }, [selectedDay]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const statistics = await apiRequest.getStatistics();
+        let statistics = await apiRequest.getStatistics();
         await setStatistics(statistics);
       } catch(err) {
         console.error(err);
@@ -48,7 +75,15 @@ const App = () => {
   });
 
   const date = new Date();
-  const dateLabel = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} - ${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`
+  const dateLabel = `${date.toLocaleTimeString()} - ${date.toLocaleDateString()}`
+
+  const handleDayClick = (day) => {
+    if (day === selectedDay) {
+      setSelectedDay(PROJECT_START_DATE);
+    } else {
+      setSelectedDay(day);
+    }
+  }
 
   return (
     <div className="App">
@@ -96,6 +131,14 @@ const App = () => {
           <BarChart chartData={chartData} />
         </div>
       </div>
+      <div className="row">
+        <DayPicker  onDayClick={handleDayClick} />
+      </div>
+      {selectedDay ? (
+          <p>You clicked {selectedDay.toLocaleDateString()}</p>
+        ) : (
+          <p>Please select a day.</p>
+        )}
     </div>
   );
 

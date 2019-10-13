@@ -72,32 +72,32 @@ function getGraphData(stats) {
 
   let existingSolutionData = [1, 1, 10, 15, 20, 30, 40, 50, 80, 50];
 
-console.log(data);
-console.log(existingSolutionData);
+// console.log(data);
+// console.log(existingSolutionData);
 
   const graphData = {
       labels,
       datasets:[
-        {
-          label: 'Smoothed',
-          type:'line',
-          data: smoothedTotalUsers,
-          pointBorderColor: 'rgba(0, 0, 0, 0)',
-          pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-          backgroundColor: 'rgb(255, 112, 79, 0.06)',
-          borderColor: 'rgb(255, 112, 79)',
-          borderWidth: 5,
-        },
-        {
-          label: 'existingSolution',
-          type:'line',
-          data: existingSolutionData,
-          pointBorderColor: 'rgba(0, 0, 0, 0)',
-          pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-          backgroundColor: 'rgb(255, 112, 79, 0.06)',
-          borderColor: 'rgb(255, 112, 79)',
-          borderWidth: 5,
-        },
+        // {
+        //   label: 'Smoothed',
+        //   type:'line',
+        //   data: smoothedTotalUsers,
+        //   pointBorderColor: 'rgba(0, 0, 0, 0)',
+        //   pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+        //   backgroundColor: 'rgb(255, 112, 79, 0.06)',
+        //   borderColor: 'rgb(255, 112, 79)',
+        //   borderWidth: 5,
+        // },
+        // {
+        //   label: 'existingSolution',
+        //   type:'line',
+        //   data: existingSolutionData,
+        //   pointBorderColor: 'rgba(0, 0, 0, 0)',
+        //   pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+        //   backgroundColor: 'rgb(255, 112, 79, 0.06)',
+        //   borderColor: 'rgb(255, 112, 79)',
+        //   borderWidth: 5,
+        // },
         {
           label: 'Number of Users',
           data,
@@ -122,6 +122,7 @@ function getAverageNumPhotosUsed(stats) {
 }
 
 function getNumPhotosUsed(stats) {
+
   let numPhotosUsed = 0;
   for (const statsOfAUser of stats) {
     numPhotosUsed += statsOfAUser.viewedPeople.length;
