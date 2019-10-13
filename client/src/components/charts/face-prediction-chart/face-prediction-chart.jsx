@@ -11,12 +11,12 @@ const FacePredictionChart = (props) => {
   const { data, size } = props;
 
   return (
-    <div className="chart">
+    <div style={{ display: 'inline-block', verticalAlign: 'middle' }}>
       <RadarChart
         outerRadius={size}
         innerRadius={(2 * size) / 3}
         fontWeight="bold"
-        width={3.2 * size}
+        width={3.8 * size}
         height={2.5 * size}
         data={data}
       >
