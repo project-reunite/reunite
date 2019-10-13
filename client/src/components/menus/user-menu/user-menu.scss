@@ -1,0 +1,25 @@
+.user-menu {
+  padding-top: 3px;
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+  margin: 4px;
+  padding-inline-start: 0px;
+}
+
+.remove-user-button {
+  border-radius: 10px;
+  font-size: 140%;
+  background-color: #f3f3f3;
+}
+
+.user-button {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 180%;
+  text-align: center;
+}
+
+.selected-button {
+  background-color: #61B7E1;
+}

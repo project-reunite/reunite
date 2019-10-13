@@ -22,11 +22,17 @@ const VisualiserFace = (props) => {
 
   let imgClass = 'face';
 
-  if (currentPersons && currentPersons.includes(person._id)) { imgClass += ' selected'; }
+  if (currentPersons && currentPersons.includes(person._id)) {
+    imgClass += ' selected';
+  }
 
-  if (person.personSeen) { imgClass += ' filtered'; }
+  if (person.personSeen) {
+    imgClass += ' filtered';
+  }
 
-  if (showFaceCharts) { imgClass += ' background-image'; }
+  if (showFaceCharts) {
+    imgClass += ' background-image';
+  }
 
   const faceChart = (
     <AnimatedFaceChartDiv className="person-chart" pose={showFaceCharts ? 'visible' : 'hidden'}>
@@ -37,21 +43,27 @@ const VisualiserFace = (props) => {
   let personImageStyle = {};
 
   if (!person.personSeen && minimumProbability !== maximumProbability) {
-    personImageStyle = (showProbability)
+    personImageStyle = showProbability
       ? {
-        opacity: minFaceOpacity
-      + ((1 - minFaceOpacity) * (person.probability - minimumProbability)
-      / (maximumProbability - minimumProbability)),
+        opacity:
+            minFaceOpacity
+            + ((1 - minFaceOpacity) * (person.probability - minimumProbability))
+              / (maximumProbability - minimumProbability),
       }
       : {
-        opacity: minFaceOpacity + ((128 - position) / 128),
+        opacity: minFaceOpacity + (128 - position) / 128,
       };
   }
 
   return (
     <div className="person-container">
       {faceChart}
-      <img style={personImageStyle} className={imgClass} src={`${origin}${person.img_url}`} alt="Missing person" />
+      <img
+        style={personImageStyle}
+        className={imgClass}
+        src={`${origin}${person.img_url}`}
+        alt="Missing person"
+      />
       {person.name}
     </div>
   );

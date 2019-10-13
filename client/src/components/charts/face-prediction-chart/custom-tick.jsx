@@ -16,7 +16,7 @@ const CustomTick = (props) => {
   return (
     <text
       className="tickLabel"
-      fontSize="20"
+      fontSize="30"
       x={x}
       y={y}
       textAnchor={textAnchor}

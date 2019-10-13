@@ -4,16 +4,17 @@ import socketIOClient from 'socket.io-client';
 import { PoseGroup } from 'react-pose';
 
 import UserMenu from '../../menus/user-menu';
-import FaceChartMenu from '../../menus/face-charts-menu';
 import Face from '../../faces/visualiser-face';
 import FacePredictionChart from '../../charts/face-prediction-chart';
-import Slider from '../../slider';
 import ColorBar from '../../color-bar';
 
 import { origin } from '../../../config';
 import { StandardAnimatedDiv } from '../../animations/div-animations';
 import { AnimatedFaceDiv } from '../../animations/list-animations';
-import { getPersonsInNameOrder, generateDataForFacePredictionChart } from '../../../utils/util-functions';
+import {
+  getPersonsInNameOrder,
+  generateDataForFacePredictionChart,
+} from '../../../utils/util-functions';
 import useWindowSize from '../../../hooks/useWindowSize';
 
 import './demo-visualiser-screen.scss';
@@ -22,17 +23,14 @@ const socket = socketIOClient(origin);
 
 const DemoVisualiser = () => {
   const [visualiserData, setVisualiserData] = useState({});
-  const [showFaceCharts, setShowFaceCharts] = useState(false);
-  const [showCurrentEstimateChart, setShowCurrentEstimateChart] = useState(false);
   const [personsSortedByName, setPersonsSortedByName] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
-  const [showProbabilities, setShowProbabilities] = useState(false);
-  const [minFaceOpacity, setMinFaceOpacity] = useState(0.3);
+  const [visualiserSettings, setVisualiserSettings] = useState({});
   const [isMobile, setIsMobile] = useState(false);
+  const [users, setUsers] = useState([]);
 
   const size = useWindowSize();
-
-  const facePredictionRadius = isMobile ? 50 : 100;
+  const facePredictionRadius = isMobile ? 50 : 200;
 
   useEffect(() => {
     setIsMobile(size.width < 500);
@@ -52,6 +50,15 @@ const DemoVisualiser = () => {
   }, []);
 
   useEffect(() => {
+    socket.on('users', (userList) => {
+      setUsers(userList);
+      return () => {
+        socket.off('users');
+      };
+    });
+  });
+
+  useEffect(() => {
     socket.on('newUser', (username) => {
       const newVisualiserData = { ...visualiserData };
       newVisualiserData[username] = {
@@ -63,6 +70,25 @@ const DemoVisualiser = () => {
     });
     return () => {
       socket.off('newUser');
+    };
+  });
+
+  useEffect(() => {
+    socket.on('settings', (settings) => {
+      const newVisualiserSettings = { ...visualiserSettings, ...settings };
+      setVisualiserSettings(newVisualiserSettings);
+    });
+    return () => {
+      socket.off('settings');
+    };
+  });
+
+  useEffect(() => {
+    socket.on('currentUser', (user) => {
+      setCurrentUser(user);
+    });
+    return () => {
+      socket.off('currentUser');
     };
   });
 
@@ -106,7 +132,8 @@ const DemoVisualiser = () => {
 
   const userMenu = (
     <UserMenu
-      users={Object.keys(visualiserData)}
+      users={users}
+      // users={Object.keys(visualiserData)}
       setCurrentUser={setCurrentUser}
       removeUser={removeUser}
       currentUser={currentUser}
@@ -127,12 +154,12 @@ const DemoVisualiser = () => {
           person={person}
           personSeen={person.personSeen}
           currentPersons={visualiserData[currentUser].currentPersons}
-          showFaceCharts={showFaceCharts}
+          showFaceCharts={visualiserSettings.showFaceCharts}
           isMobile={isMobile}
           maximumProbability={maximumProbability}
           minimumProbability={minimumProbability}
-          minFaceOpacity={minFaceOpacity}
-          showProbability={showProbabilities}
+          minFaceOpacity={visualiserSettings.minimumFaceOpacity}
+          showProbability={visualiserSettings.showProbabilities}
           position={index}
         />
       </AnimatedFaceDiv>
@@ -143,9 +170,9 @@ const DemoVisualiser = () => {
       <AnimatedFaceDiv key={person.name}>
         <Face
           person={person}
-          showFaceCharts={showFaceCharts}
+          showFaceCharts={visualiserSettings.showFaceCharts}
           isMobile={isMobile}
-          minFaceOpacity={minFaceOpacity}
+          minFaceOpacity={visualiserSettings.minimumFaceOpacity}
           showProbability={false}
           position={index}
         />
@@ -155,43 +182,39 @@ const DemoVisualiser = () => {
 
   const facePanel = (
     <ul>
-      <PoseGroup>
-        {faces}
-      </PoseGroup>
+      <PoseGroup>{faces}</PoseGroup>
     </ul>
   );
 
-  const showFaceChartsButton = (
-    <FaceChartMenu
-      showCurrentEstimateChart={showCurrentEstimateChart}
-      showFaceCharts={showFaceCharts}
-      setShowCurrentEstimateChart={setShowCurrentEstimateChart}
-      setShowFaceCharts={setShowFaceCharts}
-      setShowProbabilities={setShowProbabilities}
-      showProbabilities={showProbabilities}
-    />
-  );
+  // const showFaceChartsButton = (
+  //   <FaceChartMenu
+  //     showCurrentEstimateChart={visualiserSettings.showCurrentEstimateChart}
+  //     showFaceCharts={visualiserSettings.showFaceCharts}
+  //     // setShowCurrentEstimateChart={setShowCurrentEstimateChart}
+  //     // setShowFaceCharts={setShowFaceCharts}
+  //     // setShowProbabilities={setShowProbabilities}
+  //     showProbabilities={visualiserSettings.showProbabilities}
+  //   />
+  // );
 
   const predictedFaceChart = () => {
     // Default to 0.5 for each feature if user doesn't exist or isn't searching yet
-    const facePrediction = (visualiserData[currentUser]
-      && visualiserData[currentUser].facePrediction.length > 0)
+    const facePrediction = visualiserData[currentUser] && visualiserData[currentUser].facePrediction.length > 0
       ? visualiserData[currentUser].facePrediction
       : [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
     const faceChartData = generateDataForFacePredictionChart(facePrediction);
 
-    const chart = showCurrentEstimateChart
-      ? (
-        <PoseGroup>
-          <StandardAnimatedDiv key="predictionChart" className="face-prediction-chart">
-            <h2>Current estimate of missing person&apos;s features</h2>
-            <div className="labeled-chart">
-              <FacePredictionChart size={facePredictionRadius} data={faceChartData} />
-              <ColorBar />
-            </div>
-          </StandardAnimatedDiv>
-        </PoseGroup>
-      ) : null;
+    const chart = visualiserSettings.showCurrentEstimateChart ? (
+      <PoseGroup>
+        <StandardAnimatedDiv key="predictionChart" className="face-prediction-chart">
+          <h2>Current estimate of missing person&apos;s features</h2>
+          <div className="labeled-chart">
+            <FacePredictionChart size={facePredictionRadius} data={faceChartData} />
+            <ColorBar />
+          </div>
+        </StandardAnimatedDiv>
+      </PoseGroup>
+    ) : null;
     return chart;
   };
 
@@ -199,11 +222,8 @@ const DemoVisualiser = () => {
     <div className="demo-visualiser-screen">
       {userMenu}
       {pageTitle}
-      {showFaceChartsButton}
-      {/* <Slider
-        defaultValue={0.5}
-        submitValue={value => setMinFaceOpacity(value)}
-      /> */}
+      {/* {showFaceChartsButton} */}
+
       {predictedFaceChart()}
       {facePanel}
     </div>

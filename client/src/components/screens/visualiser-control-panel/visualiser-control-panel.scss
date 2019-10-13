@@ -1,0 +1,56 @@
+.visualiser-control-panel {
+  text-align: center;
+  margin: 20px;
+}
+
+.visualiser-control-panel h1 {
+  color: black;
+}
+
+.visualiser-control-panel h2 {
+  color: black;
+}
+
+.show-graphs-button {
+  text-align: center;
+  background-color: white;
+  border: 2px solid rgb(216, 216, 216);
+  padding: 30px;
+  margin: 20px 10px;
+  font-size: 130%;
+  border-radius: 10px;
+  width: 300px;
+  height: 100px;
+  line-height: 1em;
+}
+
+.visualiser-control-panel .title-image {
+  width: 150px;
+}
+
+.visualiser-control-panel .buttons {
+  padding-top: 3px;
+  justify-content: center;
+  margin: 4px;
+  padding-inline-start: 0px;
+}
+
+.visualiser-control-panel .menu {
+  padding-top: 3px;
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+  margin: 4px;
+  padding-inline-start: 0px;
+}
+
+.visualiser-control-panel .opacity-slider {
+  text-align: center;
+}
+
+.visualiser-control-panel li {
+  display: block;
+  border-radius: 2px;
+  margin: 10px;
+  text-align: center;
+}
