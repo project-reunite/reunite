@@ -12,7 +12,8 @@ const createUser = async function(req, res, next) {
 const deleteUser = function(req, res, next) {
     try {
         const username = req.body.username;
-        usersService.removeUserFromDemo(username, req.io);
+        // usersService.removeUserFromDemo(username, req.io);
+        req.deleteUser(username);
         res.sendStatus(200);
     } catch (err) {
         next(err);

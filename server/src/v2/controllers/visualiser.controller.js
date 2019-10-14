@@ -1,7 +1,6 @@
 const postSettings = function(req, res, next) {
     try {
         res.sendStatus(200);
-        console.log(req.body);
         req.io.emit('settings', req.body);
     } catch (err) {
         next(err);

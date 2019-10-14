@@ -13,7 +13,7 @@ const io = socketIo(server, { origins: '*:*' });
 
 let users = {};
 
-const getUsers = () => {
+const getUserList = () => {
     return Object.keys(users).map(key => {
         return users[key].username;
     });
@@ -25,13 +25,16 @@ const createUser = user => {
             [user.username]: {
                 username: user.username,
                 sockets: [user.socket_id],
+                rankedPersons: [],
+                currentPersons: [],
+                facePrediction: [],
             },
         },
         users
     );
 };
 
-const createSocket = user => {
+const addSocketToExistingUser = user => {
     let cur_user = users[user.username],
         updated_user = {
             [user.username]: Object.assign(cur_user, {
@@ -41,32 +44,43 @@ const createSocket = user => {
     users = Object.assign(users, updated_user);
 };
 
-const removeSocket = socket_id => {
+const getUsernameFromSocketId = socket_id => {
     let username = '';
     Object.keys(users).map(key => {
-        let sockets = users[key].sockets;
+        const sockets = users[key].sockets;
+        console.log(sockets);
         if (sockets.indexOf(socket_id) !== -1) {
             username = key;
         }
     });
+    return username;
+};
+
+const deleteUser = username => {
+    let clone_users = Object.assign({}, users);
+    delete clone_users[username];
+    users = clone_users;
+    io.emit('users', getUserList());
+};
+
+const deleteSocketFromUser = (user, socketId) => {
+    let index = user.sockets.indexOf(socketId);
+    let updated_user = {
+        [user.username]: Object.assign(user, {
+            sockets: user.sockets
+                .slice(0, index)
+                .concat(user.sockets.slice(index + 1)),
+        }),
+    };
+    users = Object.assign(users, updated_user);
+};
+
+const removeSocket = socketId => {
+    const username = getUsernameFromSocketId(socketId);
     let user = users[username];
-    if (user && user.sockets.length > 1) {
-        // Remove socket only
-        let index = user.sockets.indexOf(socket_id);
-        let updated_user = {
-            [username]: Object.assign(user, {
-                sockets: user.sockets
-                    .slice(0, index)
-                    .concat(user.sockets.slice(index + 1)),
-            }),
-        };
-        users = Object.assign(users, updated_user);
-    } else {
-        // Remove user by key
-        let clone_users = Object.assign({}, users);
-        delete clone_users[username];
-        users = clone_users;
-    }
+    user && user.sockets.length > 1
+        ? deleteSocketFromUser(user, socketId)
+        : deleteUser(username);
 };
 
 io.on('connection', socket => {
@@ -77,27 +91,25 @@ io.on('connection', socket => {
     };
     if (user.username) {
         console.log(`${user.username} connected`);
-        if (users[user.username]) {
-            createSocket(user);
-            socket.emit('users', getUsers());
-        } else {
-            createUser(user);
-            io.emit('newUser', user.username);
-            io.emit('users', getUsers());
-        }
+        users[user.username] ? addSocketToExistingUser(user) : createUser(user);
     }
+    io.emit('users', getUserList());
+
     socket.on('disconnect', () => {
-        let username = '';
-        Object.keys(users).map(key => {
-            let sockets = users[key].sockets;
-            if (sockets.indexOf(socket.id) !== -1) {
-                username = key;
-            }
-        });
-        console.log(`${username} disconnected`);
-        removeSocket(socket.id);
-        io.emit('users', getUsers());
+        const username = getUsernameFromSocketId(socket.id);
+        if (username) {
+            console.log(`${username} disconnected`);
+            removeSocket(socket.id);
+        }
     });
+});
+
+io.on('removeUser', username => {
+    if (username) {
+        console.log(`${username} disconnected`);
+        deleteUser(username);
+        io.emit('users', getUserList());
+    }
 });
 
 const middleware = require('./middleware');
@@ -110,6 +122,8 @@ app.use(cors());
 
 app.use(function(req, res, next) {
     req.io = io;
+    req.users = users;
+    req.deleteUser = deleteUser;
     next();
 });
 
