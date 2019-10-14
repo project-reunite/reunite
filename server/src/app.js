@@ -34,16 +34,9 @@ io.on('connection', socket => {
         if (username) {
             console.log(`${username} disconnected`);
             users.removeSocket(socket.id);
+            io.emit('users', users.getUserList());
         }
     });
-});
-
-io.on('removeUser', username => {
-    if (username) {
-        console.log(`${username} disconnected`);
-        users.deleteUser(username);
-        io.emit('users', users.getUserList());
-    }
 });
 
 const middleware = require('./middleware');
@@ -57,7 +50,6 @@ app.use(cors());
 app.use(function(req, res, next) {
     req.io = io;
     req.users = users;
-    // req.deleteUser = users.deleteUser;
     next();
 });
 

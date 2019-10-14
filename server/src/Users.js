@@ -3,6 +3,10 @@ class Users {
         this.users = {};
     }
 
+    getUsers() {
+        return this.users;
+    }
+
     getUserList() {
         return Object.keys(this.users).map(key => {
             return this.users[key].username;
@@ -24,12 +28,28 @@ class Users {
         );
     }
 
+    updateUser(username, newUserObject) {
+        this.users[username] = {
+            ...this.users[username],
+            ...newUserObject,
+        };
+    }
+
+    addSocketToExistingUser(user) {
+        let cur_user = this.users[user.username],
+            updated_user = {
+                [user.username]: Object.assign(cur_user, {
+                    sockets: [...cur_user.sockets, user.socket_id],
+                }),
+            };
+        this.users = Object.assign(this.users, updated_user);
+    }
+
     getUsernameFromSocketId(socket_id) {
         let username = '';
         Object.keys(this.users).map(key => {
             const sockets = this.users[key].sockets;
-            console.log(sockets);
-            if (sockets.indexOf(socket_id) !== -1) {
+            if (sockets && sockets.indexOf(socket_id) !== -1) {
                 username = key;
             }
         });

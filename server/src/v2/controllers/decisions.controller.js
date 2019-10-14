@@ -14,17 +14,17 @@ const getDecision = async function(req, res, next) {
             decisions,
             viewedPeople
         );
-        req.users[username] = {
-            ...req.users[username],
+        req.users.updateUser(username, {
             rankedPersons: nextSelectionDetails.rankedPersons,
             facePrediction: nextSelectionDetails.prediction,
             currentPersons: [
                 decision.choices[0].personId,
                 decision.choices[1].personId,
             ],
-        };
-        req.users[username];
-        req.io.emit('rankedPersons', req.users);
+        });
+        const users = req.users.getUsers();
+        req.io.emit('rankedPersons', users);
+        // req.io.emit('rankedPersons', req.users.getUsers());
     } catch (err) {
         next(err);
     }

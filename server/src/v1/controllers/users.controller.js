@@ -15,6 +15,8 @@ const deleteUser = function(req, res, next) {
         // usersService.removeUserFromDemo(username, req.io);
         req.users.deleteUser(username);
         res.sendStatus(200);
+        const newUserList = req.users.getUserList();
+        req.io.emit('users', newUserList);
     } catch (err) {
         next(err);
     }
