@@ -87,7 +87,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="row" style={{backgroundColor: '#171717'}}>
+      <div className="row" style={{backgroundColor: '#132832'}}>
         <div className="column" style={{textAlign: "left"}}>
           <p style={{color: '#FFFFFF', padding: '0 0 0 10px', fontSize: '25px', fontWeight:"bold"}}> <img src='https://reunite.eu-gb.cf.appdomain.cloud/reunite-dark.svg' height="20" width="20"/> Project Reunite Statistics</p>
         </div>

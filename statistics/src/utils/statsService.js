@@ -46,6 +46,22 @@ function getGraphData(stats) {
       count: 0,
     }, {
       min: 34,
+      max:36,
+      count: 0,
+    }, {
+      min: 38,
+      max:40,
+      count: 0,
+    }, {
+      min: 42,
+      max:44,
+      count: 0,
+    }, {
+      min: 46,
+      max:48,
+      count: 0,
+    }, {
+      min: 50,
       max: NUM_MISSING_PEOPLE / 2,
       count: 0,
     }, {
@@ -113,12 +129,16 @@ function getPeopleFound(stats) {
 }
 
 function getAverageNumPhotosUsed(stats) {
-  let totalPhotosUsed = 0;
-  for (const statsOfAUser of stats) {
-    totalPhotosUsed += statsOfAUser.viewedPeople.length;
+  if (stats.length === 0 ) {
+    return 0;
+  } else {
+    let totalPhotosUsed = 0;
+    for (const statsOfAUser of stats) {
+      totalPhotosUsed += statsOfAUser.viewedPeople.length;
+    }
+    const averagePhotosUsed = totalPhotosUsed / stats.length;
+    return Math.round(averagePhotosUsed);
   }
-  const averagePhotosUsed = totalPhotosUsed / stats.length;
-  return Math.round(averagePhotosUsed);
 }
 
 function getNumPhotosUsed(stats) {
