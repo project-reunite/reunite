@@ -48,8 +48,8 @@ const VisualiserControlPanel = () => {
   }, [showCurrentEstimateChart]);
 
   useEffect(() => {
-    socket.on('users', (userList) => {
-      setUsers(userList);
+    socket.on('visualiserData', (visualiserData) => {
+      setUsers(Object.keys(visualiserData));
       return () => {
         socket.off('users');
       };
