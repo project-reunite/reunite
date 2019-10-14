@@ -192,12 +192,12 @@ npm run test:coverage
 1. Run a local instance of [Apache CouchDB](http://docs.couchdb.org/en/stable/install/mac.html).
 2. On that instance, create a database called `persons_migrants`.
 2. In `server/src/config/index.js`, set that your database is located locally by updating the value of `DB_LOCATION` to `'local'`.
-3. In `server/src/app.js` uncomment `require('./v2/services/personsGenerator.service');` to allow the database to be populated.
+3. Populate the `persons_migrants` database by going in `server/src/app.js`, uncommenting `require('./v2/services/personsGenerator.service')`, and running the app once. Comment the line again afterwards.
 4. Run `npm run deploy:local-network`
 5. Create a local network by (on Mac) going to `Wi-Fi settings` and selecting `Create Network`.
 6. In `client/src/config/index.js`, change the `local-network` origin IP to be your computer's Private IP address (e.g. `192.168.0.0`). (On Mac, go to `System Preferences` -> `Network` -> `Wi-Fi`).
 7. On nearby internet-enabled devices, open the `available networks` settings page. The local network you created should appear here. Connect to it.
-8. The app should now be accessible at your Private IP address (e.g.) `http://192.168.0.0:9100/#/`
+8. The app should now be accessible at your Private IP address (e.g.) `http://192.168.0.0:9100`. You may need to append `/#/` onto the url if you are not automatically redirected.
 
 ### To IBM Cloud Foundry (for accessing the client site on any internet device connected to the internet)
 
