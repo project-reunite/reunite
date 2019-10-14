@@ -13,7 +13,7 @@ const deleteUser = function(req, res, next) {
     try {
         const username = req.body.username;
         // usersService.removeUserFromDemo(username, req.io);
-        req.deleteUser(username);
+        req.users.deleteUser(username);
         res.sendStatus(200);
     } catch (err) {
         next(err);
