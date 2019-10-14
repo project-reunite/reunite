@@ -26,7 +26,12 @@ const DemoVisualiser = () => {
   const [visualiserData, setVisualiserData] = useState({});
   const [personsSortedByName, setPersonsSortedByName] = useState([]);
   const [currentUser, setCurrentUser] = useState('');
-  const [visualiserSettings, setVisualiserSettings] = useState({});
+  const [visualiserSettings, setVisualiserSettings] = useState({
+    showFaceCharts: false,
+    showCurrentEstimateChart: false,
+    showProbabilities: true,
+    minimumFaceOpacity: 0.3,
+  });
   const [isMobile, setIsMobile] = useState(false);
   const [users, setUsers] = useState([]);
 
