@@ -99,7 +99,7 @@ const VisualiserControlPanel = () => {
     <UserMenu users={users} setCurrentUser={setCurrentUser} removeUser={removeUser} />
   );
 
-  const wrapperStyle = { width: 400, margin: 'auto', paddingTop: '20px' };
+  const sliderStyle = { width: 300, margin: 'auto', padding: '10px 0px' };
 
   return (
     <div className="visualiser-control-panel">
@@ -108,7 +108,7 @@ const VisualiserControlPanel = () => {
       {userMenu}
       <div className="opacity-slider">
         <h2>Minimum Face Opacity</h2>
-        <div style={wrapperStyle}>
+        <div style={sliderStyle}>
           <Slider
             min={0}
             max={1}

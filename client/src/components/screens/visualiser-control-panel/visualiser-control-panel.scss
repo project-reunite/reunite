@@ -16,7 +16,7 @@
   background-color: white;
   border: 2px solid rgb(216, 216, 216);
   padding: 30px;
-  margin: 20px 10px;
+  margin: 10px;
   font-size: 130%;
   border-radius: 10px;
   width: 300px;
@@ -53,4 +53,35 @@
   border-radius: 2px;
   margin: 10px;
   text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .visualiser-control-panel .title-image {
+    width: 80px;
+  }
+
+  .visualiser-control-panel h1 {
+    font-size: 120%
+  }
+
+  .visualiser-control-panel h2 {
+    font-size: 90%;
+  }
+
+  .show-graphs-button {
+    padding: 10px;
+    margin: 3px 5px;
+    font-size: 70%;
+    border-radius: 10px;
+    width: 100px;
+    height: 80px;
+    line-height: 1em;
+  }
+
+  .visualiser-control-panel .buttons {
+    padding-top: 3px;
+    justify-content: center;
+    margin: 4px;
+    padding-inline-start: 0px;
+  }
 }

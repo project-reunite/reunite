@@ -9,17 +9,29 @@
 
 .remove-user-button {
   border-radius: 10px;
-  font-size: 140%;
+  font-size: 100%;
   background-color: #f3f3f3;
 }
 
 .user-button {
   padding: 10px;
   border-radius: 10px;
-  font-size: 180%;
+  font-size: 130%;
   text-align: center;
 }
 
 .selected-button {
   background-color: #61B7E1;
+}
+
+@media only screen and (max-width: 600px) {
+  .remove-user-button {
+    font-size: 70%;
+    padding: 2px;
+  }
+
+  .user-button {
+    padding: 5px;
+    font-size: 70%;
+  }
 }

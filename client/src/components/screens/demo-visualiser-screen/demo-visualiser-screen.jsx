@@ -17,6 +17,7 @@ import {
 } from '../../../utils/util-functions';
 import useWindowSize from '../../../hooks/useWindowSize';
 
+import apiRequests from '../../../utils/apiRequests';
 import './demo-visualiser-screen.scss';
 
 const socket = socketIOClient(origin);
@@ -59,17 +60,20 @@ const DemoVisualiser = () => {
   });
 
   useEffect(() => {
-    socket.on('newUser', (username) => {
-      const newVisualiserData = { ...visualiserData };
-      newVisualiserData[username] = {
-        rankedPersons: [],
-        currentPersons: [],
-        facePrediction: [],
-      };
-      setVisualiserData(newVisualiserData);
+    socket.on('currentUser', (user) => {
+      setCurrentUser(user);
     });
     return () => {
-      socket.off('newUser');
+      socket.off('currentUser');
+    };
+  });
+
+  useEffect(() => {
+    socket.on('rankedPersons', (data) => {
+      setVisualiserData(data);
+    });
+    return () => {
+      socket.off('rankedPersons');
     };
   });
 
@@ -83,44 +87,13 @@ const DemoVisualiser = () => {
     };
   });
 
-  useEffect(() => {
-    socket.on('currentUser', (user) => {
-      setCurrentUser(user);
-    });
-    return () => {
-      socket.off('currentUser');
-    };
-  });
-
-  useEffect(() => {
-    socket.on('rankedPersons', (data) => {
-      const newVisualiserData = { ...visualiserData };
-      if (newVisualiserData[data.username]) {
-        newVisualiserData[data.username].rankedPersons = data.rankedPersons;
-        newVisualiserData[data.username].currentPersons = data.currentPersons;
-        newVisualiserData[data.username].facePrediction = data.facePrediction;
-      }
-      setVisualiserData(newVisualiserData);
-    });
-    return () => {
-      socket.off('rankedPersons');
-    };
-  });
-
-  const removeUser = (username) => {
-    const newVisualiserData = { ...visualiserData };
-    delete newVisualiserData[username];
-    setVisualiserData(newVisualiserData);
+  const removeUser = async (username) => {
+    try {
+      await apiRequests.deleteUser(username);
+    } catch (err) {
+      console.log(err);
+    }
   };
-
-  useEffect(() => {
-    socket.on('removeUser', (username) => {
-      removeUser(username);
-    });
-    return () => {
-      socket.off('removeUser');
-    };
-  });
 
   const pageTitle = (
     <PoseGroup>
@@ -134,15 +107,19 @@ const DemoVisualiser = () => {
     <UserMenu
       users={users}
       // users={Object.keys(visualiserData)}
-      setCurrentUser={setCurrentUser}
       removeUser={removeUser}
+      setCurrentUser={setCurrentUser}
       currentUser={currentUser}
     />
   );
 
   let faces;
   // If rankedPersons hasn't been received, default to ordering by name
-  if (visualiserData[currentUser] && visualiserData[currentUser].rankedPersons.length > 0) {
+  if (
+    visualiserData[currentUser]
+    && visualiserData[currentUser].rankedPersons
+    && visualiserData[currentUser].rankedPersons.length > 0
+  ) {
     const maximumProbability = visualiserData[currentUser].rankedPersons[0].probability;
     const probabilities = visualiserData[currentUser].rankedPersons.map(
       person => person.probability,
@@ -165,7 +142,6 @@ const DemoVisualiser = () => {
       </AnimatedFaceDiv>
     ));
   } else {
-    // const facesLength = personsSortedByName.length * 1.2;
     faces = personsSortedByName.map((person, index) => (
       <AnimatedFaceDiv key={person.name}>
         <Face
@@ -186,20 +162,11 @@ const DemoVisualiser = () => {
     </ul>
   );
 
-  // const showFaceChartsButton = (
-  //   <FaceChartMenu
-  //     showCurrentEstimateChart={visualiserSettings.showCurrentEstimateChart}
-  //     showFaceCharts={visualiserSettings.showFaceCharts}
-  //     // setShowCurrentEstimateChart={setShowCurrentEstimateChart}
-  //     // setShowFaceCharts={setShowFaceCharts}
-  //     // setShowProbabilities={setShowProbabilities}
-  //     showProbabilities={visualiserSettings.showProbabilities}
-  //   />
-  // );
-
   const predictedFaceChart = () => {
     // Default to 0.5 for each feature if user doesn't exist or isn't searching yet
-    const facePrediction = visualiserData[currentUser] && visualiserData[currentUser].facePrediction.length > 0
+    const facePrediction = visualiserData[currentUser]
+      && visualiserData[currentUser].facePrediction
+      && visualiserData[currentUser].facePrediction.length > 0
       ? visualiserData[currentUser].facePrediction
       : [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
     const faceChartData = generateDataForFacePredictionChart(facePrediction);
@@ -222,8 +189,6 @@ const DemoVisualiser = () => {
     <div className="demo-visualiser-screen">
       {userMenu}
       {pageTitle}
-      {/* {showFaceChartsButton} */}
-
       {predictedFaceChart()}
       {facePanel}
     </div>
