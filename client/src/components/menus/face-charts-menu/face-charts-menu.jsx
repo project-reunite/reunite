@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PoseGroup } from 'react-pose';
-import Slider from '../../slider';
-
 
 import { AnimatedUserButton } from '../../animations/list-animations';
 
@@ -14,24 +12,35 @@ const FaceChartMenu = (props) => {
     setShowFaceCharts,
     showProbabilities,
     setShowProbabilities,
-    setMinFaceOpacity,
   } = props;
 
   return (
     <ul className="menu">
       <PoseGroup>
         <AnimatedUserButton key="open-graphs">
-          <button type="button" className="show-graphs-button" onClick={() => setShowCurrentEstimateChart(!showCurrentEstimateChart)}>
+          <button
+            type="button"
+            className="show-graphs-button"
+            onClick={() => setShowCurrentEstimateChart(!showCurrentEstimateChart)}
+          >
             {showCurrentEstimateChart ? 'Hide Current Estimate' : 'Show Current Estimate'}
           </button>
         </AnimatedUserButton>
         <AnimatedUserButton key="open-graphs">
-          <button type="button" className="show-graphs-button" onClick={() => setShowFaceCharts(!showFaceCharts)}>
+          <button
+            type="button"
+            className="show-graphs-button"
+            onClick={() => setShowFaceCharts(!showFaceCharts)}
+          >
             {showFaceCharts ? 'Hide Image Analysis' : 'Show Image Analysis'}
           </button>
         </AnimatedUserButton>
         <AnimatedUserButton key="open-graphs">
-          <button type="button" className="show-graphs-button" onClick={() => setShowProbabilities(!showProbabilities)}>
+          <button
+            type="button"
+            className="show-graphs-button"
+            onClick={() => setShowProbabilities(!showProbabilities)}
+          >
             {showProbabilities ? 'Show Gradients' : 'Show Probabilities'}
           </button>
         </AnimatedUserButton>

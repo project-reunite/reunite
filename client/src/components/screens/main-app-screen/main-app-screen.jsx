@@ -34,7 +34,6 @@ const MainAppScreen = (props) => {
   const [userActions, setUserActions] = useState([]);
   const [isMobile, setIsMobile] = useState(false);
   const [username, setUsername] = useState('');
-  // const [uid, setUid] = useState('');
 
   const size = useWindowSize();
 
@@ -49,7 +48,6 @@ const MainAppScreen = (props) => {
     async function fetchData() {
       if (mounted) {
         const response = await apiRequests.postUser();
-        // localStorage.setItem('username', response.data);
         setUsername(response.data);
         socketIOClient(origin, {
           query: `username=${response.data}`,

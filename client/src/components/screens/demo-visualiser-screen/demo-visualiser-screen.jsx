@@ -106,7 +106,6 @@ const DemoVisualiser = () => {
   const userMenu = (
     <UserMenu
       users={users}
-      // users={Object.keys(visualiserData)}
       removeUser={removeUser}
       setCurrentUser={setCurrentUser}
       currentUser={currentUser}
@@ -115,11 +114,7 @@ const DemoVisualiser = () => {
 
   let faces;
   // If rankedPersons hasn't been received, default to ordering by name
-  if (
-    visualiserData[currentUser]
-    && visualiserData[currentUser].rankedPersons
-    && visualiserData[currentUser].rankedPersons.length > 0
-  ) {
+  if (visualiserData[currentUser] && visualiserData[currentUser].rankedPersons.length > 0) {
     const maximumProbability = visualiserData[currentUser].rankedPersons[0].probability;
     const probabilities = visualiserData[currentUser].rankedPersons.map(
       person => person.probability,
@@ -164,9 +159,7 @@ const DemoVisualiser = () => {
 
   const predictedFaceChart = () => {
     // Default to 0.5 for each feature if user doesn't exist or isn't searching yet
-    const facePrediction = visualiserData[currentUser]
-      && visualiserData[currentUser].facePrediction
-      && visualiserData[currentUser].facePrediction.length > 0
+    const facePrediction = visualiserData[currentUser] && visualiserData[currentUser].facePrediction.length > 0
       ? visualiserData[currentUser].facePrediction
       : [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
     const faceChartData = generateDataForFacePredictionChart(facePrediction);

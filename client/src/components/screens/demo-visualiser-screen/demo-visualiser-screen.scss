@@ -30,12 +30,12 @@
   margin: 0 3px
 }
 
-// .demo-visualiser-screen .user-button {
-//   padding: 10px;
-//   border-radius: 10px;
-//   font-size: 140%;
-//   text-align: center;
-// }
+.demo-visualiser-screen .user-button {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 170%;
+  text-align: center;
+}
 
 .demo-visualiser-screen .show-graphs-button {
   text-align: center;
@@ -73,17 +73,17 @@
   z-index: 10;
 }
 
-// .demo-visualiser-screen .remove-user-button {
-//   border-radius: 10px;
-//   font-size: 140%;
-//   padding: 0px;
-//   background-color: #f3f3f3;
-//   border: none;
-// }
+.demo-visualiser-screen .remove-user-button {
+  border-radius: 10px;
+  font-size: 140%;
+  padding: 0px;
+  background-color: #f3f3f3;
+  border: none;
+}
 
-// .demo-visualiser-screen .selected-button {
-//   background-color: #61B7E1;
-// }
+.demo-visualiser-screen .selected-button {
+  background-color: #61B7E1;
+}
 
 .demo-visualiser-screen .filtered {
   -webkit-filter: grayscale(100%);
