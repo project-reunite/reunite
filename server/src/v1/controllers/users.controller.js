@@ -14,8 +14,8 @@ const deleteUser = function(req, res, next) {
         const username = req.body.username;
         req.users.deleteUser(username);
         res.sendStatus(200);
-        const newUserList = req.users.getUserList();
-        req.io.emit('users', newUserList);
+        const newUsers = req.users.getUsers();
+        req.io.emit('visualiserData', newUsers);
     } catch (err) {
         next(err);
     }

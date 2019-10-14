@@ -26,15 +26,15 @@ io.on('connection', socket => {
         users[user.username]
             ? users.addSocketToExistingUser(user)
             : users.createUser(user);
+        io.emit('visualiserData', users.getUsers());
     }
-    io.emit('users', users.getUserList());
 
     socket.on('disconnect', () => {
         const username = users.getUsernameFromSocketId(socket.id);
         if (username) {
             console.log(`${username} disconnected`);
             users.removeSocket(socket.id);
-            io.emit('users', users.getUserList());
+            io.emit('visualiserData', users.getUsers());
         }
     });
 });

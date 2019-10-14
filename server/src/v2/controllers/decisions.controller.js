@@ -23,7 +23,7 @@ const getDecision = async function(req, res, next) {
             ],
         });
         const users = req.users.getUsers();
-        req.io.emit('rankedPersons', users);
+        req.io.emit('visualiserData', users);
     } catch (err) {
         next(err);
     }

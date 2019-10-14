@@ -33,7 +33,6 @@ const DemoVisualiser = () => {
     minimumFaceOpacity: 0.3,
   });
   const [isMobile, setIsMobile] = useState(false);
-  const [users, setUsers] = useState([]);
 
   const size = useWindowSize();
   const facePredictionRadius = isMobile ? 50 : 200;
@@ -56,15 +55,6 @@ const DemoVisualiser = () => {
   }, []);
 
   useEffect(() => {
-    socket.on('users', (userList) => {
-      setUsers(userList);
-      return () => {
-        socket.off('users');
-      };
-    });
-  });
-
-  useEffect(() => {
     socket.on('currentUser', (user) => {
       setCurrentUser(user);
     });
@@ -74,11 +64,11 @@ const DemoVisualiser = () => {
   });
 
   useEffect(() => {
-    socket.on('rankedPersons', (data) => {
+    socket.on('visualiserData', (data) => {
       setVisualiserData(data);
     });
     return () => {
-      socket.off('rankedPersons');
+      socket.off('visualiserData');
     };
   });
 
@@ -110,7 +100,7 @@ const DemoVisualiser = () => {
 
   const userMenu = (
     <UserMenu
-      users={users}
+      users={Object.keys(visualiserData)}
       removeUser={removeUser}
       setCurrentUser={setCurrentUser}
       currentUser={currentUser}
