@@ -8,4 +8,6 @@ router.post('/settings', visualiserController.postSettings);
 
 router.post('/currentUser', visualiserController.postCurrentUser);
 
+router.get('/users', visualiserController.getUsers);
+
 module.exports = router;

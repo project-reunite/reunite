@@ -1,7 +1,7 @@
 const postSettings = function(req, res, next) {
     try {
-        res.sendStatus(200);
         req.io.emit('settings', req.body);
+        res.sendStatus(200);
     } catch (err) {
         next(err);
     }
@@ -10,8 +10,17 @@ const postSettings = function(req, res, next) {
 const postCurrentUser = function(req, res, next) {
     try {
         const username = req.body.username;
-        res.sendStatus(200);
         req.io.emit('currentUser', username);
+        res.sendStatus(200);
+    } catch (err) {
+        next(err);
+    }
+};
+
+const getUsers = function(req, res, next) {
+    try {
+        const users = req.users.getUsers();
+        res.status(200).send(users);
     } catch (err) {
         next(err);
     }
@@ -20,4 +29,5 @@ const postCurrentUser = function(req, res, next) {
 module.exports = {
     postSettings,
     postCurrentUser,
+    getUsers,
 };

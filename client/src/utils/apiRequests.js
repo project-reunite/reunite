@@ -76,6 +76,11 @@ const postCurrentUser = async (username) => {
   await axios.post(`${origin}/api/v2/visualiser/currentUser`, { username });
 };
 
+const getAllUsers = async () => {
+  const allUsers = axios.get(`${origin}/api/v2/visualiser/users`);
+  return allUsers;
+};
+
 export default {
   postStatistics,
   getPerson,
@@ -87,4 +92,5 @@ export default {
   deleteUser,
   postVisualiserSetting,
   postCurrentUser,
+  getAllUsers,
 };

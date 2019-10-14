@@ -55,6 +55,18 @@ const DemoVisualiser = () => {
   }, []);
 
   useEffect(() => {
+    async function fetchInitialData() {
+      try {
+        const currentVisualiserData = await apiRequests.getAllUsers();
+        setVisualiserData(currentVisualiserData.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchInitialData();
+  }, []);
+
+  useEffect(() => {
     socket.on('currentUser', (user) => {
       setCurrentUser(user);
     });

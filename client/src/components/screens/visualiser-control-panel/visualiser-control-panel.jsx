@@ -48,15 +48,6 @@ const VisualiserControlPanel = () => {
   }, [showCurrentEstimateChart]);
 
   useEffect(() => {
-    socket.on('visualiserData', (visualiserData) => {
-      setUsers(Object.keys(visualiserData));
-      return () => {
-        socket.off('users');
-      };
-    });
-  });
-
-  useEffect(() => {
     async function postSetting() {
       try {
         await apiRequests.postVisualiserSetting({
@@ -94,6 +85,32 @@ const VisualiserControlPanel = () => {
     }
     postSetting();
   }, [showProbabilities]);
+
+  useEffect(() => {
+    socket.on('visualiserData', (visualiserData) => {
+      if (visualiserData) {
+        setUsers(Object.keys(visualiserData));
+      }
+      return () => {
+        socket.off('users');
+      };
+    });
+  });
+
+  useEffect(() => {
+    async function fetchInitialData() {
+      try {
+        const response = await apiRequests.getAllUsers();
+        const currentVisualiserData = response.data;
+        if (currentVisualiserData) {
+          setUsers(Object.keys(currentVisualiserData));
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchInitialData();
+  }, []);
 
   const userMenu = (
     <UserMenu users={users} setCurrentUser={setCurrentUser} removeUser={removeUser} />
