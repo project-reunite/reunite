@@ -10,7 +10,7 @@ function getBinLabels(binDefinitions){
   return labels;
 }
 
-function getGraphData(stats) {
+function getHistogramData(stats) {
   const smoothedTotalUsers = [];
   let binDefinitions = [{
       min: 2,
@@ -86,28 +86,15 @@ function getGraphData(stats) {
     smoothedTotalUsers.push(bin.count);
   });
 
-  let existingSolutionData = [1, 1, 10, 15, 20, 30, 40, 50, 80, 50];
 
-// console.log(data);
-// console.log(existingSolutionData);
 
-  const graphData = {
+  const histogramData = {
       labels,
       datasets:[
         // {
         //   label: 'Smoothed',
         //   type:'line',
         //   data: smoothedTotalUsers,
-        //   pointBorderColor: 'rgba(0, 0, 0, 0)',
-        //   pointBackgroundColor: 'rgba(0, 0, 0, 0)',
-        //   backgroundColor: 'rgb(255, 112, 79, 0.06)',
-        //   borderColor: 'rgb(255, 112, 79)',
-        //   borderWidth: 5,
-        // },
-        // {
-        //   label: 'existingSolution',
-        //   type:'line',
-        //   data: existingSolutionData,
         //   pointBorderColor: 'rgba(0, 0, 0, 0)',
         //   pointBackgroundColor: 'rgba(0, 0, 0, 0)',
         //   backgroundColor: 'rgb(255, 112, 79, 0.06)',
@@ -121,7 +108,44 @@ function getGraphData(stats) {
         },
       ]
   };
-  return graphData;
+  return histogramData;
+}
+
+function getBarChartData(stats) {
+  const data = [];
+  const labels = [];
+  const averagePhotosUsedByExistingSystems = [];
+
+
+  for (const statsOfAUser of stats) {
+    labels.push(statsOfAUser.username);
+    data.push(statsOfAUser.viewedPeople.length);
+    averagePhotosUsedByExistingSystems.push(EXISTING_AVERAGE);
+  }
+
+
+
+  const barChartData = {
+      labels,
+      datasets:[
+        {
+          label: 'Average of Existing Systems',
+          type:'line',
+          data: averagePhotosUsedByExistingSystems,
+          pointBorderColor: 'rgba(0, 0, 0, 0)',
+          pointBackgroundColor: 'rgba(0, 0, 0, 0)',
+          backgroundColor: 'rgb(255, 112, 79, 0.06)',
+          borderColor: 'rgb(255, 112, 79)',
+          borderWidth: 5,
+        },
+        {
+          label: 'Number of Users',
+          data,
+          backgroundColor: 'rgba(0, 98, 255, 1)',
+        },
+      ]
+  };
+  return barChartData;
 }
 
 function getPeopleFound(stats) {
@@ -185,7 +209,8 @@ function getDoughnutData(stats) {
 
 export default {
   EXISTING_AVERAGE,
-  getGraphData,
+  getHistogramData,
+  getBarChartData,
   getPeopleFound,
   getAverageNumPhotosUsed,
   getDoughnutData,

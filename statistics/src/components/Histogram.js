@@ -34,13 +34,13 @@ const BarChart = (props) => {
             yAxes: [{
               scaleLabel: {
                 display: true,
-                labelString: "Number of Photos"
+                labelString: "Number of Users"
               }
             }],
             xAxes: [{
               scaleLabel: {
                 display: true,
-                labelString: "Users"
+                labelString: "Photos Shown Until Missing Person Found"
               }
             }],
           },
