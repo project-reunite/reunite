@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import FaceChart from '../../charts/face-chart';
 import { AnimatedFaceChartDiv } from '../../animations/div-animations';
 import { generateDataForFaceChart } from '../../../utils/util-functions';
+import chartSizes from '../../../utils/chart-sizes';
 import { origin } from '../../../config';
 
 const VisualiserFace = (props) => {
@@ -15,10 +16,9 @@ const VisualiserFace = (props) => {
     minimumProbability,
     showProbability,
     minFaceOpacity,
-    position,
   } = props;
 
-  const faceChartRadius = isMobile ? 50 : 100;
+  const faceChartRadius = isMobile ? chartSizes.faceChartRadiusMobile : chartSizes.faceChartRadius;
 
   let imgClass = 'face';
 
