@@ -1,7 +1,7 @@
 applications:
   - name: reunite
     routes:
-      - route: project-reunite.eu-gb.cf.appdomain.cloud
+      - route: reunite.eu-gb.cf.appdomain.cloud
     memory: 256M
     timeout: 180
     # domain: null
