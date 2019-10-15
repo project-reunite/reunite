@@ -64,6 +64,7 @@ const VisualiserFace = (props) => {
         src={`${origin}${person.img_url}`}
         alt="Missing person"
       />
+      #
       {person.name}
     </div>
   );
