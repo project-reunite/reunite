@@ -8,7 +8,7 @@ const port = process.env.PORT || 9100;
 // console.log(process.env.REACT_APP_SERVER_LOCATION);
 
 const origins = {
-  cloud: 'https://reunite.eu-gb.cf.appdomain.cloud',
+  cloud: 'https://project-reunite.eu-gb.cf.appdomain.cloud',
   local: `http://localhost:${port}`,
   'local-network': `http://169.254.XXX.XX:${port}`, // Set this to your Private IP address
 };

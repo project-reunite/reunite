@@ -9,13 +9,14 @@
 .demo-visualiser-screen h1 {
   color: black;
   text-align: center;
-  font-size: 400%;
+  font-size: 600%;
+  margin: 10px;
 }
 
 .demo-visualiser-screen h2 {
   color: black;
   text-align: center;
-  font-size: 200%;
+  font-size: 300%;
 }
 
 .demo-visualiser-screen .face-prediction-chart {
@@ -33,7 +34,8 @@
 .demo-visualiser-screen .user-button {
   padding: 10px;
   border-radius: 10px;
-  font-size: 170%;
+  font-size: 250%;
+  margin-top: 30px;
   text-align: center;
 }
 

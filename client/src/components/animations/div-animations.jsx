@@ -4,7 +4,7 @@ const AnimatedFaceChartDiv = posed.div({
   visible: {
     opacity: 1,
     transition: {
-      opacity: { ease: 'easeIn', duration: 1500 },
+      opacity: { ease: 'easeIn', duration: 1000 },
       default: { ease: 'easeOut', duration: 3500 },
     },
   },
@@ -20,7 +20,4 @@ const StandardAnimatedDiv = posed.div({
   },
 });
 
-export {
-  AnimatedFaceChartDiv,
-  StandardAnimatedDiv,
-};
+export { AnimatedFaceChartDiv, StandardAnimatedDiv };

@@ -1,11 +1,11 @@
 applications:
-- name: reunite
-  routes:
-  - route: reunite.eu-gb.cf.appdomain.cloud
-  memory: 256M
-  timeout: 180
-  # domain: null
-  # host: rwalle61
-  # buildpack: sdk-for-nodejs
-  # command: npm start
-  # instances: 1
+  - name: reunite
+    routes:
+      - route: project-reunite.eu-gb.cf.appdomain.cloud
+    memory: 256M
+    timeout: 180
+    # domain: null
+    # host: rwalle61
+    # buildpack: sdk-for-nodejs
+    # command: npm start
+    # instances: 1

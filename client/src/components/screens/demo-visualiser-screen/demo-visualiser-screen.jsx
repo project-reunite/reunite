@@ -131,14 +131,13 @@ const DemoVisualiser = () => {
       <AnimatedFaceDiv key={person.name}>
         <Face
           person={person}
-          personSeen={person.personSeen}
           currentPersons={visualiserData[currentUser].currentPersons}
-          showFaceCharts={visualiserSettings.showFaceCharts}
           isMobile={isMobile}
           maximumProbability={maximumProbability}
           minimumProbability={minimumProbability}
           minFaceOpacity={visualiserSettings.minimumFaceOpacity}
           showProbability={visualiserSettings.showProbabilities}
+          showFaceCharts={visualiserSettings.showFaceCharts}
           position={index}
         />
       </AnimatedFaceDiv>
@@ -149,9 +148,9 @@ const DemoVisualiser = () => {
         <Face
           person={person}
           showFaceCharts={visualiserSettings.showFaceCharts}
-          isMobile={isMobile}
           minFaceOpacity={visualiserSettings.minimumFaceOpacity}
           showProbability={false}
+          isMobile={isMobile}
           position={index}
         />
       </AnimatedFaceDiv>
@@ -166,7 +165,8 @@ const DemoVisualiser = () => {
 
   const predictedFaceChart = () => {
     // Default to 0.5 for each feature if user doesn't exist or isn't searching yet
-    const facePrediction = visualiserData[currentUser] && visualiserData[currentUser].facePrediction.length > 0
+    const userVisualiserData = visualiserData[currentUser];
+    const facePrediction = userVisualiserData && userVisualiserData.facePrediction.length > 0
       ? visualiserData[currentUser].facePrediction
       : [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5];
     const faceChartData = generateDataForFacePredictionChart(facePrediction);

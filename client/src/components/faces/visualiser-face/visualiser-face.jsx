@@ -51,7 +51,7 @@ const VisualiserFace = (props) => {
               / (maximumProbability - minimumProbability),
       }
       : {
-        opacity: minFaceOpacity + (128 - position) / 128,
+        // opacity: minFaceOpacity + (128 - position) / 128,
       };
   }
 
