@@ -11,64 +11,64 @@ function getBinLabels(binDefinitions){
 }
 
 function getHistogramData(stats) {
+  const binDefinitions = [{
+    min: 2,
+    max:4,
+    count: 0,
+  }, {
+    min: 6,
+    max:8,
+    count: 0,
+  }, {
+    min: 10,
+    max:12,
+    count: 0,
+  }, {
+    min: 14,
+    max: 16,
+    count: 0,
+  }, {
+    min: 18,
+    max:20,
+    count: 0,
+  }, {
+    min: 22,
+    max:24,
+    count: 0,
+  }, {
+    min: 26,
+    max:28,
+    count: 0,
+  }, {
+    min: 30,
+    max:32,
+    count: 0,
+  }, {
+    min: 34,
+    max:36,
+    count: 0,
+  }, {
+    min: 38,
+    max:40,
+    count: 0,
+  }, {
+    min: 42,
+    max:44,
+    count: 0,
+  }, {
+    min: 46,
+    max:48,
+    count: 0,
+  }, {
+    min: 50,
+    max: NUM_MISSING_PEOPLE / 2,
+    count: 0,
+  }, {
+    min: (NUM_MISSING_PEOPLE / 2) + 2,
+    max: NUM_MISSING_PEOPLE,
+    count: 0,
+  }];
   const smoothedTotalUsers = [];
-  let binDefinitions = [{
-      min: 2,
-      max:4,
-      count: 0,
-    }, {
-      min: 6,
-      max:8,
-      count: 0,
-    }, {
-      min: 10,
-      max:12,
-      count: 0,
-    }, {
-      min: 14,
-      max: 16,
-      count: 0,
-    }, {
-      min: 18,
-      max:20,
-      count: 0,
-    }, {
-      min: 22,
-      max:24,
-      count: 0,
-    }, {
-      min: 26,
-      max:28,
-      count: 0,
-    }, {
-      min: 30,
-      max:32,
-      count: 0,
-    }, {
-      min: 34,
-      max:36,
-      count: 0,
-    }, {
-      min: 38,
-      max:40,
-      count: 0,
-    }, {
-      min: 42,
-      max:44,
-      count: 0,
-    }, {
-      min: 46,
-      max:48,
-      count: 0,
-    }, {
-      min: 50,
-      max: NUM_MISSING_PEOPLE / 2,
-      count: 0,
-    }, {
-      min: (NUM_MISSING_PEOPLE / 2) + 2,
-      max: NUM_MISSING_PEOPLE,
-      count: 0,
-    }];
   const labels = getBinLabels(binDefinitions);
 
 
