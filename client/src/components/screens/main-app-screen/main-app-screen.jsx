@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import socketIOClient from 'socket.io-client';
 
 import Flex from 'mineral-ui/Flex';
 
@@ -7,6 +8,7 @@ import './main-app-screen.scss';
 
 import appStatus from '../../../utils/appStatus';
 import appOrder from '../../../utils/appOrder';
+import { origin } from '../../../config';
 
 import LanguageSelectionPanel from '../../panels/language-selection-panel';
 import WelcomeCard from '../../panels/welcome-panel';
@@ -44,9 +46,12 @@ const MainAppScreen = (props) => {
   useEffect(() => {
     let mounted = true;
     async function fetchData() {
-      const response = await apiRequests.postUser();
       if (mounted) {
+        const response = await apiRequests.postUser();
         setUsername(response.data);
+        socketIOClient(origin, {
+          query: `username=${response.data}`,
+        });
       }
     }
     fetchData();

@@ -19,7 +19,4 @@ const AnimatedUserButton = posed.li({
   },
 });
 
-export {
-  AnimatedFaceDiv,
-  AnimatedUserButton,
-};
+export { AnimatedFaceDiv, AnimatedUserButton };

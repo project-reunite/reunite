@@ -9,11 +9,14 @@
 .demo-visualiser-screen h1 {
   color: black;
   text-align: center;
+  font-size: 500%;
+  margin: 10px;
 }
 
 .demo-visualiser-screen h2 {
   color: black;
   text-align: center;
+  font-size: 300%;
 }
 
 .demo-visualiser-screen .face-prediction-chart {
@@ -21,7 +24,7 @@
 }
 
 .demo-visualiser-screen .person-container {
-  width: 230px;
+  width: 200px;
   position: relative;
   font-size: 110%;
   text-align: center;
@@ -31,7 +34,8 @@
 .demo-visualiser-screen .user-button {
   padding: 10px;
   border-radius: 10px;
-  font-size: 140%;
+  font-size: 200%;
+  margin-top: 15px;
   text-align: center;
 }
 
@@ -49,10 +53,25 @@
   padding: 0px;
 }
 
+.demo-visualiser-screen .face-prediction-chart .chart {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.demo-visualiser-screen .labeled-chart {
+  display: inline-block;
+  text-align: center;
+}
+
 .demo-visualiser-screen .person-chart {
   position: absolute;
-  left: 20px;
-  top: 20px;
+  left: 5px;
+  top: 5px;
+  z-index: 5;
+}
+
+.demo-visualiser-screen .person-seen-image {
+  position: absolute;
   z-index: 10;
 }
 
@@ -68,15 +87,16 @@
   background-color: #61B7E1;
 }
 
-.demo-visualiser-screen .face {
-  border: 3px solid black;
-  width: 230px;
-}
-
 .demo-visualiser-screen .filtered {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
-  opacity: 0.5;
+  opacity: 1;
+}
+
+.demo-visualiser-screen .face {
+  border: 3px solid black;
+  border-radius: 10px;
+  width: 200px;
 }
 
 .demo-visualiser-screen .selected {
@@ -84,11 +104,11 @@
 }
 
 .demo-visualiser-screen .background-image {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .demo-visualiser-screen .recharts-wrapper {
-  margin : 0 auto;
+  margin: 0 auto;
 }
 
 .demo-visualiser-screen ul {
@@ -96,7 +116,7 @@
   justify-content: center;
   flex-wrap: wrap;
   display: flex;
-  margin: 4px;
+  margin: 1px;
   padding-inline-start: 0px;
 }
 

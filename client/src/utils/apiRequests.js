@@ -65,7 +65,20 @@ const postUser = async () => {
 };
 
 const deleteUser = async (username) => {
-  await axios.delete(`${origin}/api/v1/users`, { username });
+  await axios.delete(`${origin}/api/v1/users`, { data: { username } });
+};
+
+const postVisualiserSetting = async (body) => {
+  await axios.post(`${origin}/api/v2/visualiser/settings`, body);
+};
+
+const postCurrentUser = async (username) => {
+  await axios.post(`${origin}/api/v2/visualiser/currentUser`, { username });
+};
+
+const getAllUsers = async () => {
+  const allUsers = axios.get(`${origin}/api/v2/visualiser/users`);
+  return allUsers;
 };
 
 export default {
@@ -77,4 +90,7 @@ export default {
   getPersonUrls,
   postUser,
   deleteUser,
+  postVisualiserSetting,
+  postCurrentUser,
+  getAllUsers,
 };

@@ -10,21 +10,38 @@ const FaceChartMenu = (props) => {
     showFaceCharts,
     setShowCurrentEstimateChart,
     setShowFaceCharts,
+    showProbabilities,
+    setShowProbabilities,
   } = props;
 
   return (
     <ul className="menu">
       <PoseGroup>
         <AnimatedUserButton key="open-graphs">
-          <button type="button" className="show-graphs-button" onClick={() => setShowCurrentEstimateChart(!showCurrentEstimateChart)}>
+          <button
+            type="button"
+            className="show-graphs-button"
+            onClick={() => setShowCurrentEstimateChart(!showCurrentEstimateChart)}
+          >
             {showCurrentEstimateChart ? 'Hide Current Estimate' : 'Show Current Estimate'}
           </button>
         </AnimatedUserButton>
-      </PoseGroup>
-      <PoseGroup>
         <AnimatedUserButton key="open-graphs">
-          <button type="button" className="show-graphs-button" onClick={() => setShowFaceCharts(!showFaceCharts)}>
+          <button
+            type="button"
+            className="show-graphs-button"
+            onClick={() => setShowFaceCharts(!showFaceCharts)}
+          >
             {showFaceCharts ? 'Hide Image Analysis' : 'Show Image Analysis'}
+          </button>
+        </AnimatedUserButton>
+        <AnimatedUserButton key="open-graphs">
+          <button
+            type="button"
+            className="show-graphs-button"
+            onClick={() => setShowProbabilities(!showProbabilities)}
+          >
+            {showProbabilities ? 'Show Gradients' : 'Show Probabilities'}
           </button>
         </AnimatedUserButton>
       </PoseGroup>
@@ -35,15 +52,21 @@ const FaceChartMenu = (props) => {
 FaceChartMenu.defaultProps = {
   showCurrentEstimateChart: false,
   showFaceCharts: false,
+  showProbabilities: false,
   setShowCurrentEstimateChart: () => {},
   setShowFaceCharts: () => {},
+  setShowProbabilities: () => {},
+  setMinFaceOpacity: () => {},
 };
 
 FaceChartMenu.propTypes = {
   showCurrentEstimateChart: PropTypes.bool,
   showFaceCharts: PropTypes.bool,
+  showProbabilities: PropTypes.bool,
   setShowCurrentEstimateChart: PropTypes.func,
   setShowFaceCharts: PropTypes.func,
+  setShowProbabilities: PropTypes.func,
+  setMinFaceOpacity: PropTypes.func,
 };
 
 export default FaceChartMenu;

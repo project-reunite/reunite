@@ -6,41 +6,37 @@ import { PoseGroup } from 'react-pose';
 import IconCancel from 'mineral-ui-icons/IconCancel';
 
 import { AnimatedUserButton } from '../../animations/list-animations';
+import './user-menu.scss';
 
 const UserMenu = (props) => {
   const {
-    users,
-    setCurrentUser,
-    removeUser,
-    currentUser,
+    users, setCurrentUser, removeUser, currentUser,
   } = props;
 
   return (
-    <ul>
+    <ul className="user-menu">
       <PoseGroup>
         {users.map(user => (
           <AnimatedUserButton onClick={() => setCurrentUser(user)} key={user}>
             <div>
               <Button
+                style={{ border: 'none' }}
                 className="remove-user-button"
                 onClick={() => removeUser(user)}
                 iconStart={<IconCancel className="cancel-icon" />}
               />
-              {user === currentUser
-                ? (
-                  <button className="user-button selected-button" type="submit">
-                    {user}
-                  </button>
-                )
-                : (
-                  <button className="user-button " type="submit">
-                    {user}
-                  </button>
-                )}
+              {user === currentUser ? (
+                <button className="user-button selected-button" type="submit">
+                  {user}
+                </button>
+              ) : (
+                <button className="user-button " type="submit">
+                  {user}
+                </button>
+              )}
             </div>
           </AnimatedUserButton>
         ))}
-
       </PoseGroup>
     </ul>
   );

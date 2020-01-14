@@ -10,19 +10,20 @@ const getDecision = async function(req, res, next) {
             viewedPeople
         );
         res.status(200).send(decision);
-        const detailsToDisplay = {};
         const nextSelectionDetails = await personsService.getOrderedPersonsAndPrediction(
             decisions,
             viewedPeople
         );
-        detailsToDisplay.rankedPersons = nextSelectionDetails.rankedPersons;
-        detailsToDisplay.facePrediction = nextSelectionDetails.prediction;
-        detailsToDisplay.currentPersons = [
-            decision.choices[0].personId,
-            decision.choices[1].personId,
-        ];
-        detailsToDisplay.username = username;
-        req.io.emit('rankedPersons', detailsToDisplay);
+        req.users.updateUser(username, {
+            rankedPersons: nextSelectionDetails.rankedPersons,
+            facePrediction: nextSelectionDetails.prediction,
+            currentPersons: [
+                decision.choices[0].personId,
+                decision.choices[1].personId,
+            ],
+        });
+        const users = req.users.getUsers();
+        req.io.emit('visualiserData', users);
     } catch (err) {
         next(err);
     }
