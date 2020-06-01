@@ -43,7 +43,7 @@ By dividing the search area repeatedly, we divide Arame's search time too:
 So our prioritization algorithm makes searching really fast, and reunites Arame with her son quicker. Try it yourself at http://ibm.biz/reunite, or watch our 3-minute demo:
 
 [<img width="1275" alt="reunitethumbnail" src="https://media.github.ibm.com/user/186207/files/0b91ce00-b20b-11e9-9eff-05a9cfda3d50">
-](https://www.youtube.com/watch?v=tHKpA7ailS4)
+](https://www.youtube.com/watch?v=If--QTY_dpI)
 
 ## FAQs
 
