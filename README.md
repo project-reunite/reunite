@@ -86,7 +86,7 @@ These instructions will get you a copy of the project up and running on your loc
 Clone the repo
 
 ```bash
-git clone git@github.ibm.com:ProjectReunite/reunite.git
+git clone git@github.com:project-reunite/reunite.git
 ```
 
 Install dependencies
@@ -221,11 +221,11 @@ npm run test:coverage
 
 ## Authors
 
-- [James Cockbain](https://github.ibm.com/James-Cockbain)
-- [Craig Forrest](https://github.ibm.com/Craig-Forrest)
-- [Liam Hampton](https://github.ibm.com/Liam-Hampton)
-- [Richard Waller](https://github.ibm.com/Richard-Waller)
-- [Michael Westerby](https://github.ibm.com/Michael-Westerby)
+- [James Cockbain](https://github.com/jcockbain)
+- [Craig Forrest](https://github.com/CForrest97)
+- [Liam Hampton](https://github.com/liamchampton)
+- [Richard Waller](https://github.com/rwalle61)
+- [Michael Westerby](https://github.com/mwesterby)
 
 ## Acknowledgments
 
